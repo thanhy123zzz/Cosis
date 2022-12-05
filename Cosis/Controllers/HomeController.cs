@@ -1,6 +1,10 @@
 ﻿using Cosis.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SelectPdf;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,16 +22,10 @@ namespace Cosis.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string result)
         {
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
