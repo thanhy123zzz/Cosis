@@ -1,10 +1,12 @@
-﻿namespace WebApplication3.Models
+﻿using System;
+using System.Collections.Generic;
+namespace Cosis.Models.Entities
 {
     public partial class Phieu
     {
-        private virtual Master Master { get; set; }
-        private virtual ICollection<DanhSachNhanToAnhHuong> DanhSachNhanToAnhHuong { get; set; }
-        private virtual NhanToThu9 NhanToThu9 { get; set; }
-        private virtual Detail Detail { get; set; }
+        public virtual Master Master { get; set; }
+        public virtual ICollection<DanhSachNhanToAnhHuong> DanhSachNhanToAnhHuong { get; set; }
+        public virtual NhanToThu9 NhanToThu9 { get; set; }
+        public virtual Detail Detail { get; set; }
     }
 }
