@@ -1,5 +1,7 @@
 ﻿using Cosis.Models;
+using Cosis.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Cosis.Controllers
 {
