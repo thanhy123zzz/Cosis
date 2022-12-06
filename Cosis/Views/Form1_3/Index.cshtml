@@ -6,6 +6,12 @@
     int getNam(){
         return DateTime.Now.Year;
     }
+    string getThangNamTruoc(){
+        if (getThang()==1)
+            return "12/"+(getNam()-1);else{
+            return (getThang()-1) +"/" + getNam();
+        }
+    }
 }
 <form action="/form1_3" method="post" class="form" enctype="multipart/form-data">
         <div class="form-group text-center">
@@ -276,8 +282,8 @@
             <tr class="text-center">
               <th><b>Tên chỉ tiêu</b></th>
               <th><b>Đơn vị tính</b></th>
-              <th><b>Thực hiện</b></th>
-              <th><b>Dự tính</b></th>
+              <th><b>Tháng thực hiện @getThangNamTruoc()</b></th>
+              <th><b>Dự tính @getThang()/@getNam() </b></th>
               <th class="col-lg-2">
                 CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO
               </th>
@@ -292,129 +298,214 @@
               <td>3</td>
             </tr>
             <tr>
-              <td>1.Tổng doanh thu</td>
-              <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>1.Tổng doanh thu <input type="hidden" name="Detail[0].Stt" value="1."/>
+                    <input type="hidden" name="Detail[0].TenCt" value="Tổng doanh thu"/>    
+              </td>
+              
+              <td class="text-center">Triệu đồng 
+                  <input type="hidden" name="Detail[0].Dvt" value="Triệu đồng"/>  
+              </td>
+              <td><input type="text" name="Detail[0].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[0].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[0].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
               <th attr colspan="5">I. Hoạt động vận tải hành kha</th>
             </tr>
             <tr>
-              <td>2.Doanh thu thuần</td>
-              <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>2.Doanh thu thuần<input type="hidden" name="Detail[1].Stt" value="2."/>
+                    <input type="hidden" name="Detail[1].TenCt" value="Doanh thu thuần"/>    
+              </td>
+
+              <td class="text-center">Triệu đồng 
+                  <input type="hidden" name="Detail[1].Dvt" value="Triệu đồng"/>  
+              </td>
+              <td><input type="text" name="Detail[1].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[1].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[1].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>3.Số lượt khách vận chuyển</td>
-              <td class="text-center">Lượt khách</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>3.Số lượt khách vận chuyển<input type="hidden" name="Detail[2].Stt" value="3."/>
+                    <input type="hidden" name="Detail[2].TenCt" value="Số lượt khách vận chuyển"/>    
+              </td>
+
+              <td class="text-center">Lượt khách
+                  <input type="hidden" name="Detail[2].Dvt" value="Lượt khách"/>  
+              </td>
+              <td><input type="text" name="Detail[2].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[2].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[2].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td class="p-1"><i>3.1.Trong đó: Ngoài nước</i></td>
-              <td class="text-center">Lượt khách</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td class="p-1"><i>3.1.Trong đó: Ngoài nước</i>
+              <input type="hidden" name="Detail[3].Stt" value="3.1."/>
+                    <input type="hidden" name="Detail[3].TenCt" value="Trong đó: Ngoài nước"/>     
+              </td>
+              <td class="text-center">Lượt khách
+                  <input type="hidden" name="Detail[3].Dvt" value="Lượt khách"/>  
+              </td>
+              <td><input type="text" name="Detail[3].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[3].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[3].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>4.Số lượt hành khách luân chuyển</td>
-              <td class="text-center">HK Km</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>4.Số lượt hành khách luân chuyển
+              <input type="hidden" name="Detail[4].Stt" value="4."/>
+                    <input type="hidden" name="Detail[4].TenCt" value="Số lượt hành khách luân chuyển"/>     
+              </td>
+              <td class="text-center">HK Km
+                  <input type="hidden" name="Detail[4].Dvt" value="HK Km"/>  
+              </td>
+              <td><input type="text" name="Detail[4].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[4].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[4].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td class="p-1"><i>4.1.Trong đó: Ngoài nước</i></td>
-              <td class="text-center">HK Km</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td class="p-1"><i>4.1.Trong đó: Ngoài nước</i>
+              <input type="hidden" name="Detail[5].Stt" value="4.1."/>
+                    <input type="hidden" name="Detail[5].TenCt" value="Trong đó: Ngoài nước"/>     
+              </td>
+              <td class="text-center">HK Km
+                  <input type="hidden" name="Detail[5].Dvt" value="HK Km"/>  
+              </td>
+              <td><input type="text" name="Detail[5].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[5].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[5].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>5.Đơn giá bình quân</td>
-              <td class="text-center">HK Km</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>5.Đơn giá bình quân
+              <input type="hidden" name="Detail[6].Stt" value="5."/>
+                    <input type="hidden" name="Detail[6].TenCt" value="Đơn giá bình quân"/>     
+              </td>
+              <td class="text-center">HK Km
+                  <input type="hidden" name="Detail[6].Dvt" value="HK Km"/>  
+              </td>
+              <td><input type="text" name="Detail[6].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[6].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[6].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>6.Tổng số phương tiện đang hoạt động</td>
-              <td class="text-center">HK Km</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>6.Tổng số phương tiện đang hoạt động
+              <input type="hidden" name="Detail[7].Stt" value="6."/>
+                    <input type="hidden" name="Detail[7].TenCt" value="Tổng số phương tiện đang hoạt động"/>     
+              </td>
+              <td class="text-center">HK Km
+                  <input type="hidden" name="Detail[7].Dvt" value="HK Km"/>  
+              </td>
+              <td><input type="text" name="Detail[7].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[7].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[7].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>7.Tổng tải trọng</td>
-              <td class="text-center">HK Km</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>7.Tổng tải trọng
+              <input type="hidden" name="Detail[8].Stt" value="7."/>
+                    <input type="hidden" name="Detail[8].TenCt" value="Tổng tải trọng"/>     
+              </td>
+              <td class="text-center">HK Km
+                  <input type="hidden" name="Detail[8].Dvt" value="HK Km"/>  
+              </td>
+              <td><input type="text" name="Detail[8].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[8].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[8].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
               <th attr colspan="5">II.Hoạt động vận tải hàng hòa</th>
             </tr>
             <tr>
-              <td>8.Doanh thu thuần</td>
-              <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>8.Doanh thu thuần
+              <input type="hidden" name="Detail[9].Stt" value="8."/>
+                    <input type="hidden" name="Detail[9].TenCt" value="Doanh thu thuần"/>     
+              </td>
+              <td class="text-center">Triệu đồng
+                  <input type="hidden" name="Detail[9].Dvt" value="Triệu đồng"/>  
+              </td>
+              <td><input type="text" name="Detail[9].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[9].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[9].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>9.Khối lượng hàng hóa vận chuyển</td>
-              <td class="text-center">Tấn</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>9.Khối lượng hàng hóa vận chuyển
+              <input type="hidden" name="Detail[10].Stt" value="9."/>
+                    <input type="hidden" name="Detail[10].TenCt" value="Khối lượng hàng hóa vận chuyển"/>     
+              </td>
+              <td class="text-center">Tấn
+                  <input type="hidden" name="Detail[10].Dvt" value="Tấn"/>  
+              </td>
+              <td><input type="text" name="Detail[10].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[10].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[10].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td class="p-1"><i>9.1.Trong đó: Ngoài nước</i></td>
-              <td class="text-center">Tấn</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td class="p-1"><i>9.1.Trong đó: Ngoài nước</i>
+              <input type="hidden" name="Detail[11].Stt" value="9.1."/>
+                    <input type="hidden" name="Detail[11].TenCt" value="Trong đó: Ngoài nước"/>     
+              </td>
+              <td class="text-center">Tấn
+                  <input type="hidden" name="Detail[11].Dvt" value="Tấn"/>  
+              </td>
+              <td><input type="text" name="Detail[11].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[11].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[11].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>10.Khối lượng hàng hóa luân chuyển</td>
-              <td class="text-center">Tấn.Km</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>10.Khối lượng hàng hóa luân chuyển
+              <input type="hidden" name="Detail[12].Stt" value="10."/>
+                    <input type="hidden" name="Detail[12].TenCt" value="Khối lượng hàng hóa luân chuyển"/>     
+              </td>
+              <td class="text-center">Tấn.Km
+                  <input type="hidden" name="Detail[12].Dvt" value="Tấn.Km"/>  
+              </td>
+              <td><input type="text" name="Detail[12].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[12].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[12].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td class="p-1"><i>10.1.Trong đó: Ngoài nước</i></td>
-              <td class="text-center">Tấn.Km</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td class="p-1"><i>10.1.Trong đó: Ngoài nước</i>
+              <input type="hidden" name="Detail[13].Stt" value="10.1."/>
+                    <input type="hidden" name="Detail[13].TenCt" value="Trong đó: Ngoài nước"/>     
+              </td>
+              <td class="text-center">Tấn.Km
+                  <input type="hidden" name="Detail[13].Dvt" value="Tấn.Km"/>  
+              </td>
+              <td><input type="text" name="Detail[13].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[13].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[13].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>11.Đơn giá bình quân</td>
-              <td class="text-center">Đồng/Tấn.Km</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+               <td>11.Đơn giá bình quân
+              <input type="hidden" name="Detail[14].Stt" value="11."/>
+                    <input type="hidden" name="Detail[14].TenCt" value="Đơn giá bình quân"/>     
+              </td>
+              <td class="text-center">Đồng/Tấn.Km
+                  <input type="hidden" name="Detail[14].Dvt" value="Đồng/Tấn.Km"/>  
+              </td>
+              <td><input type="text" name="Detail[14].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[14].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[14].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>12.Khối lượng hàng hóa luân chuyển</td>
-              <td class="text-center">Cái</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+             <td>12.Khối lượng hàng hóa luân chuyển
+              <input type="hidden" name="Detail[15].Stt" value="12."/>
+                    <input type="hidden" name="Detail[15].TenCt" value="Khối lượng hàng hóa luân chuyển"/>     
+              </td>
+              <td class="text-center">Cái
+                  <input type="hidden" name="Detail[15].Dvt" value="Cái"/>  
+              </td>
+              <td><input type="text" name="Detail[15].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[15].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[15].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <td>13.Tổng tải trọng</td>
-              <td class="text-center">Tấn</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+                <td>13.Tổng tải trọng
+              <input type="hidden" name="Detail[16].Stt" value="13."/>
+                    <input type="hidden" name="Detail[16].TenCt" value="Tổng tải trọng"/>     
+              </td>
+              <td class="text-center">Tấn
+                  <input type="hidden" name="Detail[16].Dvt" value="Tấn"/>  
+              </td>
+              <td><input type="text" name="Detail[16].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[16].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[16].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
               <th attr colspan="5">
@@ -423,11 +514,16 @@
               </th>
             </tr>
             <tr>
-              <td>14.Doanh thu thuần</td>
-              <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>14.Doanh thu thuần
+              <input type="hidden" name="Detail[17].Stt" value="14."/>
+                    <input type="hidden" name="Detail[17].TenCt" value="Doanh thu thuần"/>     
+              </td>
+              <td class="text-center">Triệu đồng
+                  <input type="hidden" name="Detail[17].Dvt" value="Triệu đồng"/>  
+              </td>
+              <td><input type="text" name="Detail[17].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[17].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[17].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
               <th attr colspan="5">
@@ -436,11 +532,16 @@
               </th>
             </tr>
             <tr>
-              <td>14.Doanh thu thuần</td>
-              <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td>15.Doanh thu thuần
+              <input type="hidden" name="Detail[18].Stt" value="15."/>
+                    <input type="hidden" name="Detail[18].TenCt" value="Doanh thu thuần"/>     
+              </td>
+              <td class="text-center">Triệu đồng
+                  <input type="hidden" name="Detail[18].Dvt" value="Triệu đồng"/>  
+              </td>
+              <td><input type="text" name="Detail[18].ThthangTruoc" class="infoma" /></td>
+              <td><input type="text" name="Detail[18].DuTinh" class="infoma" /></td>
+              <td><input type="text" name="Detail[18].TongCongDon" class="infoma" /></td>
             </tr>
           </tbody>
         </table>
@@ -465,20 +566,20 @@
               <label for="">9. Lý do khác: ghi rõ</label>
             </div>
             <div class="YTAH-check">
-              <input type="checkbox" name="DanhSachNhanToAnhHuong[1].MaAh" value="01" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong[2].MaAh" value="02" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong[3].MaAh" value="03" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong[4].MaAh" value="04" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong[5].MaAh" value="05" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong[0].MaAh" value="01" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong[1].MaAh" value="02" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong[2].MaAh" value="03" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong[3].MaAh" value="04" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong[4].MaAh" value="05" />
               <input
                 type="checkbox"
-                name="DanhSachNhanToAnhHuong[6].MaAh"
+                name="DanhSachNhanToAnhHuong[5].MaAh"
                 value="06"
               />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong[7].MaAh" value="07" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong[6].MaAh" value="07" />
               <input
                 type="checkbox"
-                name="DanhSachNhanToAnhHuong[8].MaAh"
+                name="DanhSachNhanToAnhHuong[7].MaAh"
                 value="08"
               />
               <input type="checkbox" id="YT9" value="" />
