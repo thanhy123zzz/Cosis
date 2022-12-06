@@ -18,7 +18,7 @@ namespace Cosis.Models.Entities
             : base(options)
         {
         }
-        public virtual DbSet<Phieu> Phieu { get; set; }
+        // public virtual DbSet<Phieu> Phieu { get; set; }
         public virtual DbSet<DanhSachNhanToAnhHuong> DanhSachNhanToAnhHuong { get; set; }
         public virtual DbSet<Detail> Detail { get; set; }
         public virtual DbSet<LoaiHinhKinhte> LoaiHinhKinhte { get; set; }

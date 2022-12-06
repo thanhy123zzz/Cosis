@@ -1,412 +1,261 @@
-﻿      <form action="" class="form">
-        <div class="form-group text-center">
-          <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
-        </div>
-        <div class="form-group row">
-          <label class="P-name"><b>Phiếu 2.1/CT-TM-T</b></label>
-        </div>
-        <div class="form-group text-center">
-          <label class="text-center">
-            <b>PHIẾU THU THẬP THÔNG TIN ĐỐI VỚI CƠ SỞ KINH DOANH CÁ THỂ</b>
-          </label>
-          <label>
-            <b>
-              <i>
-                (Áp dụng đối với cơ sở kinh doanh cá thể có hoạt động bán buôn,
-                bán lẻ hàng hóa)
-              </i>
-            </b>
-          </label>
-        </div>
+﻿<form method="POST" action="/submit" class="form">
+  <div class="form-group text-center">
+    <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
+  </div>
+  <div class="form-group row">
+    <label class="P-name"><b>Phiếu 2.1/CT-TM-T</b></label>
+  </div>
+  <div class="form-group text-center">
+    <label class="text-center">
+      <b>PHIẾU THU THẬP THÔNG TIN ĐỐI VỚI CƠ SỞ KINH DOANH CÁ THỂ</b>
+    </label>
+    <label>
+      <b>
+        <i>
+          (Áp dụng đối với cơ sở kinh doanh cá thể có hoạt động bán buôn,
+          bán lẻ hàng hóa)
+        </i>
+      </b>
+    </label>
+  </div>
 
-        <div class="form-group text-center">
-          <div class="row"></div>
-          <div>
-            <label> <b>Tháng ... Năm 202...</b> </label>
-          </div>
-          <div class="row"></div>
-        </div>
-        <div class="form-group bg-primary">
-          <h5><b>A. THÔNG TIN CHUNG</b></h5>
-        </div>
-        <div class="form-group">
-          <div class="row">
-            <label class="lb-info">Tên doanh nghiệp/HTX: </label>
-            <input type="text" class="infoma" />
-          </div>
+  <div class="form-group text-center">
+    <div class="row"></div>
+    <div>
+      <label> <b>Tháng ... Năm 202...</b> </label>
+    </div>
+    <div class="row"></div>
+  </div>
+  <div class="form-group bg-primary">
+    <h5><b>A. THÔNG TIN CHUNG</b></h5>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <label class="lb-info">Tên doanh nghiệp/HTX: </label>
+      <input type="text" class="infoma" />
+    </div>
 
-          <div class="row">
-            <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
-            <select name="" id="" class="infoma">
-              <option value="">--- Chọn Tỉnh/TP ---</option>
-            </select>
-          </div>
-          <div class="row">
-            <label class="lb-info"
-              >Huyện/quận <i>(thị xã, TP thuộc tỉnh)</i>:
-            </label>
-            <select name="" id="" class="infoma">
-              <option value="">--- Chọn Huyện/quận ---</option>
-            </select>
-          </div>
-          <div class="row">
-            <label class="lb-info">Xã/phường/thị trấn: </label>
-            <select name="" id="" class="infoma">
-              <option value="">--- Chọn Xã/phường/thị trấn ---</option>
-            </select>
-          </div>
-          <div class="row">
-            <label class="lb-info">Địa bàn: </label>
-            <input type="text" class="infoma" />
-          </div>
-          <div class="row">
-            <label class="lb-info">Mã cơ sở: </label>
-            <input type="text" class="infoma" />
-          </div>
-          <div class="row">
-            <label class="lb-info">Tên cơ sở: </label>
-            <input type="text" class="infoma" />
-          </div>
-          <div class="row">
-            <label class="lb-info">Mã số thuế</label>
+    <div class="row">
+      <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
+      <select name="" id="" class="infoma">
+        <option value="">--- Chọn Tỉnh/TP ---</option>
+      </select>
+    </div>
+    <div class="row">
+      <label class="lb-info">Huyện/quận <i>(thị xã, TP thuộc tỉnh)</i>:
+      </label>
+      <select name="" id="" class="infoma">
+        <option value="">--- Chọn Huyện/quận ---</option>
+      </select>
+    </div>
+    <div class="row">
+      <label class="lb-info">Xã/phường/thị trấn: </label>
+      <select name="" id="" class="infoma">
+        <option value="">--- Chọn Xã/phường/thị trấn ---</option>
+      </select>
+    </div>
+    <div class="row">
+      <label class="lb-info">Địa bàn: </label>
+      <input type="text" class="infoma" />
+    </div>
+    <div class="row">
+      <label class="lb-info">Mã cơ sở: </label>
+      <input type="text" class="infoma" />
+    </div>
+    <div class="row">
+      <label class="lb-info">Tên cơ sở: </label>
+      <input type="text" class="infoma" />
+    </div>
+    <div class="row">
+      <label class="lb-info">Mã số thuế</label>
 
-            <input
-              type="text"
-              id="n0"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="1"
-            />
-            <input
-              type="text"
-              id="n1"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="2"
-            />
-            <input
-              type="text"
-              id="n2"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="3"
-            />
-            <input
-              type="text"
-              id="n3"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="4"
-            />
-            <input
-              type="text"
-              id="n4"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="5"
-            />
-            <input
-              type="text"
-              id="n5"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="6"
-            />
-            <input
-              type="text"
-              id="n6"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="7"
-            />
-            <input
-              type="text"
-              id="n7"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="8"
-            />
-            <input
-              type="text"
-              id="n8"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="9"
-            />
-            <input
-              type="text"
-              id="n9"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="10"
-            />
+      <input type="text" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="1" />
+      <input type="text" id="n1" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="2" />
+      <input type="text" id="n2" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="3" />
+      <input type="text" id="n3" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="4" />
+      <input type="text" id="n4" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="5" />
+      <input type="text" id="n5" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="6" />
+      <input type="text" id="n6" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="7" />
+      <input type="text" id="n7" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="8" />
+      <input type="text" id="n8" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="9" />
+      <input type="text" id="n9" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="10" />
 
-            <input
-              type="text"
-              id="n10"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="11"
-            />
-            <input
-              type="text"
-              id="n11"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="12"
-            />
-            <input
-              type="text"
-              id="n12"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="13"
-            />
-          </div>
-          <div class="row">
-            <label class="lb-info">Thôn, ấp<i>(số nhà, đường phố)</i>: </label>
-            <input type="text" class="infoma" />
-          </div>
+      <input type="text" id="n10" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="11" />
+      <input type="text" id="n11" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="12" />
+      <input type="text" id="n12" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="13" />
+    </div>
+    <div class="row">
+      <label class="lb-info">Thôn, ấp<i>(số nhà, đường phố)</i>: </label>
+      <input type="text" class="infoma" />
+    </div>
 
-          <div class="row">
-            <label class="lb-info">Số điện thoại: </label>
-            <input type="text" class="infoma" />
-          </div>
-          <div class="row">
-            <label class="lb-info">Email: </label>
-            <input type="text" class="infoma" />
-          </div>
-          <div class="loaihinh">
-            <label>Loại hình kinh tế</label>
+    <div class="row">
+      <label class="lb-info">Số điện thoại: </label>
+      <input type="text" class="infoma" />
+    </div>
+    <div class="row">
+      <label class="lb-info">Email: </label>
+      <input type="text" class="infoma" />
+    </div>
+    <div class="loaihinh">
+      <label>Loại hình kinh tế</label>
 
-            <div class="checkbox-tt">
-              <label> 1.Kinh tế nhà nước</label>
-              <label> 2.Kinh tế ngoài nhà nước</label>
-              <label> 3.Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
-            </div>
-            <div class="checkbox">
-              <input type="radio" name="loaihinhkt" value="Kinh tế nhà nước" />
-              <input
-                type="radio"
-                name="loaihinhkt"
-                value="Kinh tế ngoài nhà nước"
-              />
-              <input
-                type="radio"
-                name="loaihinhkt"
-                value="Kinh tế có vốn đầu tư trực tiếp nước ngoài"
-              />
-            </div>
-          </div>
-          <div class="nganhKD">
-            <div class="row">
-              <label for="">Ngành hoạt động kinh doanh</label>
-              <div class="MNHD row">
-                <input
-                  type="text"
-                  maxlength="1"
-                  size="1"
-                  class="text-center MN"
-                />
-                <input
-                  type="text"
-                  maxlength="1"
-                  size="1"
-                  class="text-center MN"
-                />
-                <input
-                  type="text"
-                  maxlength="1"
-                  size="1"
-                  class="text-center MN"
-                />
-                <input
-                  type="text"
-                  maxlength="1"
-                  size="1"
-                  class="text-center MN"
-                />
-                <input
-                  type="text"
-                  maxlength="1"
-                  size="1"
-                  class="text-center MN"
-                />
-              </div>
-              <label for="">Tên ngành HĐKD:</label>
-              <input type="text" class="infoma-nganh" />
-            </div>
-          </div>
+      <div class="checkbox-tt">
+        <label> 1.Kinh tế nhà nước</label>
+        <label> 2.Kinh tế ngoài nhà nước</label>
+        <label> 3.Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
+      </div>
+      <div class="checkbox">
+        <input type="radio" name="loaihinhkt" value="Kinh tế nhà nước" />
+        <input type="radio" name="loaihinhkt" value="Kinh tế ngoài nhà nước" />
+        <input type="radio" name="loaihinhkt" value="Kinh tế có vốn đầu tư trực tiếp nước ngoài" />
+      </div>
+    </div>
+    <div class="nganhKD">
+      <div class="row">
+        <label for="">Ngành hoạt động kinh doanh</label>
+        <div class="MNHD row">
+          <input type="text" maxlength="1" size="1" class="text-center MN" />
+          <input type="text" maxlength="1" size="1" class="text-center MN" />
+          <input type="text" maxlength="1" size="1" class="text-center MN" />
+          <input type="text" maxlength="1" size="1" class="text-center MN" />
+          <input type="text" maxlength="1" size="1" class="text-center MN" />
         </div>
-        <div class="form-group bg-primary">
-          <h5><b>B. KẾT QUẢ HOẠT ĐỘNG KINH DOANH</b></h5>
-        </div>
-        <table class="table table-bordered">
-          <thead>
-            <tr class="text-center">
-              <th>Chi tiết</th>
-              <th>Ngành chọn mẫu</th>
-              <th>Đơn vị tính</th>
-              <th>Thực hiện [tháng trước]</th>
-              <th>Dự tính [tháng báo cáo]</th>
-              <th>
-                CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO (Chương trình tự động
-                tính)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="text-center">
-              <td>A</td>
-              <td>B</td>
-              <td>C</td>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-            </tr>
-            <tr>
-              <td>
-                1. Ông/bà vui lòng cho biết tổng số tiền thu về (bao gồm cả vốn
-                và lãi) của cơ sở [tháng trước] và dự tính [tháng báo cáo]
-              </td>
-              <td><input type="text" class="infoma" /></td>
-              <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-            </tr>
+        <label for="">Tên ngành HĐKD:</label>
+        <input type="text" class="infoma-nganh" />
+      </div>
+    </div>
+  </div>
+  <div class="form-group bg-primary">
+    <h5><b>B. KẾT QUẢ HOẠT ĐỘNG KINH DOANH</b></h5>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="text-center">
+        <th>Chi tiết</th>
+        <th>Ngành chọn mẫu</th>
+        <th>Đơn vị tính</th>
+        <th>Thực hiện [tháng trước]</th>
+        <th>Dự tính [tháng báo cáo]</th>
+        <th>
+          CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO (Chương trình tự động
+          tính)
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-center">
+        <td>A</td>
+        <td>B</td>
+        <td>C</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>
+          1. Ông/bà vui lòng cho biết tổng số tiền thu về (bao gồm cả vốn
+          và lãi) của cơ sở [tháng trước] và dự tính [tháng báo cáo]
+        </td>
+        <td><input type="text" class="infoma" /></td>
+        <td class="text-center">Triệu đồng</td>
+        <td><input type="text" class="infoma" /></td>
+        <td><input type="text" class="infoma" /></td>
+        <td><input type="text" class="infoma" /></td>
+      </tr>
 
-            <tr>
-              <td>
-                2. Trong tổng số tiền thu về của cơ sở, số tiền thu về (bao gồm
-                cả vốn lẫn lãi) của [NGÀNH CHỌN MẪU] [tháng trước] và dự tính
-                [tháng báo cáo]
-              </td>
-              <td><input type="text" class="infoma" /></td>
-              <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-            </tr>
-            <tr>
-              <td>3. Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?</td>
-              <td></td>
-              <td></td>
-              <td>
-                1. Bán tại siêu thị mini, cửa hàng tiện ích
-                <input type="radio" name="chose3" id="3-1" />
-              </td>
-              <td>
-                2. Bán tại các địa điểm khác
-                <input type="radio" name="chose3" id="3-2" />
-              </td>
-              <td>
-                3. Bán tại siêu thị mini, cửa hàng tiện ích và các địa điểm khác
-                <input type="radio" name="chose3" id="3" />
-              </td>
-            </tr>
-            <tr class="changed3">
-              <td>
-                3.1 Số tiền thu về (bao gồm cả vốn và lãi) từ bán [NGÀNH CHỌN
-                MẪU] [tháng trước] và dự tính [tháng báo cáo] tại siêu thị mini,
-                cửa hàng tiện ích?
-              </td>
-              <td><input type="text" class="infoma" /></td>
-              <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="form-group bg-primary">
-          <h5><b>C. CÁC YẾU TỔ ẢNH HƯỞNG ĐẾN HOẠT ĐỘNG KINH DOANH</b></h5>
+      <tr>
+        <td>
+          2. Trong tổng số tiền thu về của cơ sở, số tiền thu về (bao gồm
+          cả vốn lẫn lãi) của [NGÀNH CHỌN MẪU] [tháng trước] và dự tính
+          [tháng báo cáo]
+        </td>
+        <td><input type="text" class="infoma" /></td>
+        <td class="text-center">Triệu đồng</td>
+        <td><input type="text" class="infoma" /></td>
+        <td><input type="text" class="infoma" /></td>
+        <td><input type="text" class="infoma" /></td>
+      </tr>
+      <tr>
+        <td>3. Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?</td>
+        <td></td>
+        <td></td>
+        <td>
+          1. Bán tại siêu thị mini, cửa hàng tiện ích
+          <input type="radio" name="chose3" id="3-1" />
+        </td>
+        <td>
+          2. Bán tại các địa điểm khác
+          <input type="radio" name="chose3" id="3-2" />
+        </td>
+        <td>
+          3. Bán tại siêu thị mini, cửa hàng tiện ích và các địa điểm khác
+          <input type="radio" name="chose3" id="3" />
+        </td>
+      </tr>
+      <tr class="changed3">
+        <td>
+          3.1 Số tiền thu về (bao gồm cả vốn và lãi) từ bán [NGÀNH CHỌN
+          MẪU] [tháng trước] và dự tính [tháng báo cáo] tại siêu thị mini,
+          cửa hàng tiện ích?
+        </td>
+        <td><input type="text" class="infoma" /></td>
+        <td class="text-center">Triệu đồng</td>
+        <td><input type="text" class="infoma" /></td>
+        <td><input type="text" class="infoma" /></td>
+        <td><input type="text" class="infoma" /></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group bg-primary">
+    <h5><b>C. CÁC YẾU TỔ ẢNH HƯỞNG ĐẾN HOẠT ĐỘNG KINH DOANH</b></h5>
+  </div>
+  <div class="form-group">
+    <label for="">Yếu tố nào sau đây ảnh hưởng đến hoạt động kinh doanh của đơn vị
+      trong tháng ...</label>
+      <div class="YTAH">
+        <div class="YTAH-tt">
+          <label for="NhanToAnhHuong[1]">1. Nhu cầu thị trường</label>
+          <label for="NhanToAnhHuong[2]">2. Dịch bệnh</label>
+          <label for="NhanToAnhHuong[3]">3. Thời tiết</label>
+          <label for="NhanToAnhHuong[4]">4. Ảnh hưởng mùa vụ</label>
+          <label for="NhanToAnhHuong[5]">5. Thay đổi nhân sự</label>
+          <label for="NhanToAnhHuong[6]">6. Thay đổi kĩ thuật/công nghệ/phương tiện</label>
+          <label for="NhanToAnhHuong[7]">7. Nguồn vốn kinh doanh</label>
+          <label for="NhanToAnhHuong[8]">8. Thay đổi địa điểm/thị trường kinh doanh</label>
+          <label for="NhanToAnhHuong[9]">9. Lý do khác: ghi rõ</label>
         </div>
-        <div class="form-group">
-          <label for=""
-            >Yếu tố nào sau đây ảnh hưởng đến hoạt động kinh doanh của đơn vị
-            trong tháng ...</label
-          >
-          <div class="YTAH">
-            <div class="YTAH-tt">
-              <label for="">1. Nhu cầu thị trường</label>
-              <label for="">2. Dịch bệnh</label>
-              <label for="">3. Thời tiết</label>
-              <label for="">4. Ảnh hưởng mùa vụ</label>
-              <label for="">5. Thay đổi nhân sự</label>
-              <label for="">6. Thay đổi kĩ thuật/công nghệ/phương tiện</label>
-              <label for="">7. Nguồn vốn kinh doanh</label>
-              <label for="">8. Thay đổi địa điểm/thị trường kinh doanh</label>
-              <label for="">9. Lý do khác: ghi rõ</label>
-            </div>
-            <div class="YTAH-check">
-              <input type="checkbox" name="" value="Nhu cầu thị trường" />
-              <input type="checkbox" name="" value="Dịch bệnh" />
-              <input type="checkbox" name="" value="Thời tiết" />
-              <input type="checkbox" name="" value="Ảnh hưởng mùa vụ" />
-              <input type="checkbox" name="" value="Thay đổi nhân sự" />
-              <input
-                type="checkbox"
-                name=""
-                value="Thay đổi kĩ thuật/công nghệ/phương tiện"
-              />
-              <input type="checkbox" name="" value="Nguồn vốn kinh doanh" />
-              <input
-                type="checkbox"
-                name=""
-                value="Thay đổi địa điểm/thị trường kinh doanh"
-              />
-              <input type="checkbox" name="YT9" id="YT9" value="" />
-            </div>
-          </div>
-          <div class="YTAH9">
-            <textarea
-              class="form-control"
-              rows="1"
-              id="comment"
-              name="comment"
-              disabled
-            ></textarea>
-          </div>
+        <div class="YTAH-check">
+          <input type="checkbox" name="NhanToAnhHuong[1]" id="YT01" />
+          <input type="checkbox" name="NhanToAnhHuong[2]" id="YT02" />
+          <input type="checkbox" name="NhanToAnhHuong[3]" id="YT03" />
+          <input type="checkbox" name="NhanToAnhHuong[4]" id="YT04" />
+          <input type="checkbox" name="NhanToAnhHuong[5]" id="YT05" />
+          <input type="checkbox" name="NhanToAnhHuong[6]" id="YT06" />
+          <input type="checkbox" name="NhanToAnhHuong[7]" id="YT07" />
+          <input type="checkbox" name="NhanToAnhHuong[8]" id="YT08" />
+          <input type="checkbox" name="NhanToAnhHuong[9]" id="YT9" value="" />
         </div>
-        <div class="form-group uname-info">
-          <div class="row">
-            <label class="uname-lb">Họ tên người trả lời:</label>
-            <input type="text" name="" id="" class="infoma" />
-          </div>
-          <div class="row">
-            <label class="uname-lb">Số điện thoại:</label>
-            <input type="text" name="" id="" class="infoma" />
-          </div>
-        </div>
-        <div class="group-btn">
-          <button class="btn btn-success">Lưu và xuất file PDF</button>
-          <button class="btn btn-primary">Lưu</button>
-        </div>
-      </form>
+        <script>
+          
+        </script>
+      </div>
+      <div class="YTAH9">
+        <textarea class="form-control" rows="1" id="comment" name="comment" required disabled></textarea>
+      </div>
+  </div>
+  <div class="form-group uname-info">
+    <div class="row">
+      <label class="uname-lb">Họ tên người trả lời:</label>
+      <input type="text" name="" id="" class="infoma" />
+    </div>
+    <div class="row">
+      <label class="uname-lb">Số điện thoại:</label>
+      <input type="text" name="" id="" class="infoma" />
+    </div>
+  </div>
+  <div class="group-btn">
+    <button class="btn btn-success">Lưu và xuất file PDF</button>
+    <button class="btn btn-primary">Lưu</button>
+  </div>
+</form>

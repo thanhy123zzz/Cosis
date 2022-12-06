@@ -1,9 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Controllers",
+    "\\bin",
     "\\Models",
-    "\\Models\\Entities"
+    "\\Models\\Entities",
+    "\\Views",
+    "\\wwwroot",
+    "\\wwwroot\\assets",
+    "\\wwwroot\\assets\\bootstrap-4.5.3-dist",
+    "\\wwwroot\\assets\\bootstrap-4.5.3-dist\\css",
+    "\\wwwroot\\assets\\bootstrap-4.5.3-dist\\js"
   ],
+  "SelectedNode": "\\wwwroot\\assets\\bootstrap-4.5.3-dist\\css\\bootstrap-reboot.min.css.map",
   "PreviewInSolutionExplorer": false
 }
