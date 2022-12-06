@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Cosis.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Cosis.Controllers
 {
@@ -7,6 +8,12 @@ namespace Cosis.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        [HttpPost("/form1_3")]
+        public IActionResult InsertForm1_3(PhieuDieuTra phieu)
+        {
+
+            return RedirectToAction("Index");
         }
     }
 }

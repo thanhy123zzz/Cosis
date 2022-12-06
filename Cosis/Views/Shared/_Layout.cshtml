@@ -76,7 +76,38 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
   <script type="text/javascript">
+    var strMS = "";
+    function AddMS(item){
+        strMS += item;
+    }
+
+    $(".MS").keyup(function() {
+
+        var valueArr = [];
+                document.querySelectorAll('.MS').forEach(function(el){
+                valueArr.push(el.value);
+            });
+        strMS = "";
+        valueArr.forEach(AddMS)
+        $('#MST1').val(strMS);
+        if(strMS.length==13){
+                $.ajax({
+                    type: 'POST',
+                    url: '/loadMaster',
+                    data: "ms=" + strMS,
+                    success: function (result) {
+                        $('#ThongTinDoanhNghiepGroup').replaceWith(result);
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+                    }
+            })
+        }
+    });
+
     $(".MS").keyup(function (e) {
       if (this.value.length === this.maxLength) {
         var next = $(this).data("next");

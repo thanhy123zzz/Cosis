@@ -62,12 +62,12 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaAhNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.MaAh)
-                    .HasConstraintName("FK__DanhSachNh__MaAH__10216507");
+                    .HasConstraintName("FK__DanhSachNh__MaAH__2F9A1060");
 
                 entity.HasOne(d => d.MaPhieuNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.MaPhieu)
-                    .HasConstraintName("FK__DanhSachN__MaPhi__0F2D40CE");
+                    .HasConstraintName("FK__DanhSachN__MaPhi__2EA5EC27");
             });
 
             modelBuilder.Entity<Detail>(entity =>
@@ -114,7 +114,7 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaPhieuNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.MaPhieu)
-                    .HasConstraintName("FK__Detail__MaPhieu__0B5CAFEA");
+                    .HasConstraintName("FK__Detail__MaPhieu__2CBDA3B5");
             });
 
             modelBuilder.Entity<LoaiHinhKinhte>(entity =>
@@ -136,7 +136,7 @@ namespace Cosis.Models.Entities
             modelBuilder.Entity<Master>(entity =>
             {
                 entity.HasKey(e => e.MaPhieu)
-                    .HasName("PK__Master__2660BFE0F12FB40D");
+                    .HasName("PK__Master__2660BFE002E6373D");
 
                 entity.HasIndex(e => new { e.MaSoThue, e.MaSoThue2, e.MaCoSo, e.NgayThucHien, e.NgayDuTinh })
                     .HasName("unique_Master")
@@ -147,7 +147,7 @@ namespace Cosis.Models.Entities
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.DiaChi).HasMaxLength(200);
+                entity.Property(e => e.DiaChiCuThe).HasMaxLength(200);
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
@@ -164,6 +164,16 @@ namespace Cosis.Models.Entities
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.MaPhuongXa)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MaQuanHuyen)
+                    .HasMaxLength(3)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.MaSoThue)
                     .HasMaxLength(10)
                     .IsUnicode(false)
@@ -171,6 +181,12 @@ namespace Cosis.Models.Entities
 
                 entity.Property(e => e.MaSoThue2)
                     .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MaTinhTp)
+                    .HasColumnName("MaTinhTP")
+                    .HasMaxLength(2)
                     .IsUnicode(false)
                     .IsFixedLength();
 
@@ -199,17 +215,32 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaCoSoNavigation)
                     .WithMany(p => p.Master)
                     .HasForeignKey(d => d.MaCoSo)
-                    .HasConstraintName("FK__Master__MaCoSo__03BB8E22");
+                    .HasConstraintName("FK__Master__MaCoSo__22401542");
 
                 entity.HasOne(d => d.MaLhNavigation)
                     .WithMany(p => p.Master)
                     .HasForeignKey(d => d.MaLh)
-                    .HasConstraintName("FK__Master__MaLH__02C769E9");
+                    .HasConstraintName("FK__Master__MaLH__214BF109");
+
+                entity.HasOne(d => d.MaPhuongXaNavigation)
+                    .WithMany(p => p.Master)
+                    .HasForeignKey(d => d.MaPhuongXa)
+                    .HasConstraintName("FK__Master__MaPhuong__251C81ED");
+
+                entity.HasOne(d => d.MaQuanHuyenNavigation)
+                    .WithMany(p => p.Master)
+                    .HasForeignKey(d => d.MaQuanHuyen)
+                    .HasConstraintName("FK__Master__MaQuanHu__24285DB4");
+
+                entity.HasOne(d => d.MaTinhTpNavigation)
+                    .WithMany(p => p.Master)
+                    .HasForeignKey(d => d.MaTinhTp)
+                    .HasConstraintName("FK__Master__MaTinhTP__2334397B");
 
                 entity.HasOne(d => d.MaSoThueNavigation)
                     .WithMany(p => p.Master)
                     .HasForeignKey(d => new { d.MaSoThue, d.MaSoThue2 })
-                    .HasConstraintName("FK__Master__04AFB25B");
+                    .HasConstraintName("FK__Master__2610A626");
             });
 
             modelBuilder.Entity<NganhHoatDongKinhDoanh>(entity =>
@@ -252,17 +283,17 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaCoSoNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.MaCoSo)
-                    .HasConstraintName("FK__NganhKinh__MaCoS__0880433F");
+                    .HasConstraintName("FK__NganhKinh__MaCoS__29E1370A");
 
                 entity.HasOne(d => d.MaNganhNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.MaNganh)
-                    .HasConstraintName("FK__NganhKinh__MaNga__078C1F06");
+                    .HasConstraintName("FK__NganhKinh__MaNga__28ED12D1");
 
                 entity.HasOne(d => d.MaSoThueNavigation)
                     .WithMany()
                     .HasForeignKey(d => new { d.MaSoThue, d.MaSoThue2 })
-                    .HasConstraintName("FK__NganhKinhDoanh__0697FACD");
+                    .HasConstraintName("FK__NganhKinhDoanh__27F8EE98");
             });
 
             modelBuilder.Entity<NhanToAnhHuong>(entity =>
@@ -295,7 +326,7 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaPhieuNavigation)
                     .WithMany()
                     .HasForeignKey(d => d.MaPhieu)
-                    .HasConstraintName("FK__NhanToThu__MaPhi__1209AD79");
+                    .HasConstraintName("FK__NhanToThu__MaPhi__318258D2");
             });
 
             modelBuilder.Entity<PhuongXa>(entity =>
@@ -323,14 +354,14 @@ namespace Cosis.Models.Entities
             modelBuilder.Entity<ThongTinCaThe>(entity =>
             {
                 entity.HasKey(e => e.MaCoSo)
-                    .HasName("PK__ThongTin__152D063440D6961C");
+                    .HasName("PK__ThongTin__152D0634CE5DCEDE");
 
                 entity.Property(e => e.MaCoSo)
                     .HasMaxLength(5)
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.DiaChi).HasMaxLength(200);
+                entity.Property(e => e.DiaChiCuThe).HasMaxLength(200);
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
@@ -342,6 +373,16 @@ namespace Cosis.Models.Entities
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.MaPhuongXa)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MaQuanHuyen)
+                    .HasMaxLength(3)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
                 entity.Property(e => e.MaSoThue)
                     .HasMaxLength(10)
                     .IsUnicode(false)
@@ -349,6 +390,12 @@ namespace Cosis.Models.Entities
 
                 entity.Property(e => e.MaSoThue2)
                     .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MaTinhTp)
+                    .HasColumnName("MaTinhTP")
+                    .HasMaxLength(2)
                     .IsUnicode(false)
                     .IsFixedLength();
 
@@ -363,13 +410,28 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaLhNavigation)
                     .WithMany(p => p.ThongTinCaThe)
                     .HasForeignKey(d => d.MaLh)
-                    .HasConstraintName("FK__ThongTinCa__MaLH__662B2B3B");
+                    .HasConstraintName("FK__ThongTinCa__MaLH__1A9EF37A");
+
+                entity.HasOne(d => d.MaPhuongXaNavigation)
+                    .WithMany(p => p.ThongTinCaThe)
+                    .HasForeignKey(d => d.MaPhuongXa)
+                    .HasConstraintName("FK__ThongTinC__MaPhu__1D7B6025");
+
+                entity.HasOne(d => d.MaQuanHuyenNavigation)
+                    .WithMany(p => p.ThongTinCaThe)
+                    .HasForeignKey(d => d.MaQuanHuyen)
+                    .HasConstraintName("FK__ThongTinC__MaQua__1C873BEC");
+
+                entity.HasOne(d => d.MaTinhTpNavigation)
+                    .WithMany(p => p.ThongTinCaThe)
+                    .HasForeignKey(d => d.MaTinhTp)
+                    .HasConstraintName("FK__ThongTinC__MaTin__1B9317B3");
             });
 
             modelBuilder.Entity<ThongTinDoanhNghiep>(entity =>
             {
                 entity.HasKey(e => new { e.MaSoThue, e.MaSoThue2 })
-                    .HasName("PK__ThongTin__E1639B2C051B2A2B");
+                    .HasName("PK__ThongTin__E1639B2CDD779CF0");
 
                 entity.Property(e => e.MaSoThue)
                     .HasMaxLength(10)
@@ -381,7 +443,7 @@ namespace Cosis.Models.Entities
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.DiaChi).HasMaxLength(200);
+                entity.Property(e => e.DiaChiCuThe).HasMaxLength(200);
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
@@ -390,6 +452,22 @@ namespace Cosis.Models.Entities
                 entity.Property(e => e.MaLh)
                     .HasColumnName("MaLH")
                     .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MaPhuongXa)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MaQuanHuyen)
+                    .HasMaxLength(3)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MaTinhTp)
+                    .HasColumnName("MaTinhTP")
+                    .HasMaxLength(2)
                     .IsUnicode(false)
                     .IsFixedLength();
 
@@ -404,7 +482,22 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaLhNavigation)
                     .WithMany(p => p.ThongTinDoanhNghiep)
                     .HasForeignKey(d => d.MaLh)
-                    .HasConstraintName("FK__ThongTinDo__MaLH__634EBE90");
+                    .HasConstraintName("FK__ThongTinDo__MaLH__14E61A24");
+
+                entity.HasOne(d => d.MaPhuongXaNavigation)
+                    .WithMany(p => p.ThongTinDoanhNghiep)
+                    .HasForeignKey(d => d.MaPhuongXa)
+                    .HasConstraintName("FK__ThongTinD__MaPhu__17C286CF");
+
+                entity.HasOne(d => d.MaQuanHuyenNavigation)
+                    .WithMany(p => p.ThongTinDoanhNghiep)
+                    .HasForeignKey(d => d.MaQuanHuyen)
+                    .HasConstraintName("FK__ThongTinD__MaQua__16CE6296");
+
+                entity.HasOne(d => d.MaTinhTpNavigation)
+                    .WithMany(p => p.ThongTinDoanhNghiep)
+                    .HasForeignKey(d => d.MaTinhTp)
+                    .HasConstraintName("FK__ThongTinD__MaTin__15DA3E5D");
             });
 
             modelBuilder.Entity<TinhTp>(entity =>
