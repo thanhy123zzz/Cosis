@@ -11,6 +11,7 @@ namespace Cosis.Models.Entities
     {
         public string MaPhieu { get; set; }
         public string NoiDung { get; set; }
+
         public virtual Master MaPhieuNavigation { get; set; }
     }
 }

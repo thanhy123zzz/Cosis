@@ -38,7 +38,7 @@ namespace Cosis.Models.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=LAPTOP-FPKNLS6A\\SQLEXPRESS;Initial Catalog= FormCosis;Persist Security Info=True;User ID=sa;Password=123456");
+                optionsBuilder.UseSqlServer("Data Source=LAPTOP-FPKNLS6A\\SQLEXPRESS;Initial Catalog=FormCosis;Persist Security Info=True;User ID=sa;Password=123456");
             }
         }
 
@@ -91,7 +91,7 @@ namespace Cosis.Models.Entities
 
                 entity.Property(e => e.Stt)
                     .HasColumnName("STT")
-                    .HasMaxLength(5)
+                    .HasMaxLength(10)
                     .IsUnicode(false)
                     .IsFixedLength();
 
@@ -138,7 +138,7 @@ namespace Cosis.Models.Entities
                 entity.HasKey(e => e.MaPhieu)
                     .HasName("PK__Master__2660BFE002E6373D");
 
-                entity.HasIndex(e => new { e.MaSoThue, e.MaSoThue2, e.MaCoSo, e.NgayThucHien, e.NgayDuTinh })
+                entity.HasIndex(e => new { e.MaSoThue, e.MaSoThue2, e.MaCoSo, e.ThangThucHien, e.ThangDuTinh })
                     .HasName("unique_Master")
                     .IsUnique();
 
@@ -190,11 +190,12 @@ namespace Cosis.Models.Entities
                     .IsUnicode(false)
                     .IsFixedLength();
 
-                entity.Property(e => e.NgayDuTinh).HasColumnType("date");
+                entity.Property(e => e.Nam)
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
 
                 entity.Property(e => e.NgayTao).HasColumnType("date");
-
-                entity.Property(e => e.NgayThucHien).HasColumnType("date");
 
                 entity.Property(e => e.Sdt)
                     .HasColumnName("SDT")
@@ -211,6 +212,16 @@ namespace Cosis.Models.Entities
                 entity.Property(e => e.Ten).HasMaxLength(200);
 
                 entity.Property(e => e.TenNguoiTraLoi).HasMaxLength(50);
+
+                entity.Property(e => e.ThangDuTinh)
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.ThangThucHien)
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
+                    .IsFixedLength();
 
                 entity.HasOne(d => d.MaCoSoNavigation)
                     .WithMany(p => p.Master)
