@@ -146,31 +146,22 @@
             }
       </div>
 </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
     var citis = document.getElementById("city");
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
+
 var Parameter = {
-  url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json", 
+  url: "https://localhost:44358/assets/DiaChi.json", 
   method: "GET", 
   responseType: "application/json", 
 };
 var promise = axios(Parameter);
-promise.then(function (result) {
-  renderCity(result.data);
+promise.then(
+    function (result) {
+        renderCity(result.data);
 });
-/*function renderQuan(data){
-      const result = data.filter(n => n.Id === @Html.Raw(Model.MaTinhTp.Trim()));
-      for (const k of result[0].Districts) {
-        if(k.Id == @Html.Raw(Model.MaQuanHuyen.Trim())){
-        district.options[district.options.length] = new Option(k.Name, k.Id,true,true);
-        }else{
-            district.options[district.options.length] = new Option(k.Name, k.Id,true,true);
-        }
-      }
-      console.log(1);
-}*/
 function renderCity(data) {
   for (const x of data) {
       if(x.Id == @Html.Raw(Model.MaTinhTp.Trim())){
@@ -180,16 +171,6 @@ function renderCity(data) {
             for (const k of result[0].Districts) {
                 if(k.Id == @Html.Raw(Model.MaQuanHuyen.Trim())){
                     district.options[district.options.length] = new Option(k.Name, k.Id,true,true);
-
-                    /*const dataCity = data.filter((a) => a.Id === x.Id);
-                    const dataWards = dataCity[0].Districts.filter(a => a.Id === k.Id)[0].Wards;
-                    for (const w of dataWards) {
-                        if(a.Id == @Html.Raw(Model.MaPhuongXa.Trim())){
-                        wards.options[wards.options.length] = new Option(w.Name, w.Id,true,true);
-                        }else{
-                            wards.options[wards.options.length] = new Option(w.Name, w.Id);
-                        }
-                    }*/
                     const dataCity = data.filter((n) => n.Id === citis.value);
                     const dataWards = dataCity[0].Districts.filter(n => n.Id === k.Id)[0].Wards;
                       for (const w of dataWards) {
@@ -210,7 +191,6 @@ function renderCity(data) {
 citis.onchange = function () {
     district.length = 1;
     ward.length = 1;
-    /*$("#district").empty();*/
     if(this.value != ""){
       const result = data.filter(n => n.Id === this.value);
 

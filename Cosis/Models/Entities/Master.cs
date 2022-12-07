@@ -22,10 +22,11 @@ namespace Cosis.Models.Entities
         public string MaLh { get; set; }
         public string MaPhieu { get; set; }
         public DateTime? NgayTao { get; set; }
-        public DateTime? NgayThucHien { get; set; }
-        public DateTime? NgayDuTinh { get; set; }
+        public string ThangThucHien { get; set; }
+        public string ThangDuTinh { get; set; }
         public string TenNguoiTraLoi { get; set; }
         public string SdtnguoiTraLoi { get; set; }
+        public string Nam { get; set; }
 
         public virtual ThongTinCaThe MaCoSoNavigation { get; set; }
         public virtual LoaiHinhKinhte MaLhNavigation { get; set; }
