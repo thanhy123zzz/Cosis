@@ -1,133 +1,123 @@
-﻿<form action="" class="form">
+﻿@model Cosis.Models.PhieuDieuTra
+@{
+    int getThang(){
+        return DateTime.Now.Month;
+    }
+    int getNam(){
+        return DateTime.Now.Year;
+    }
+    string getThangNamTruoc(){
+        if (getThang()==1)
+            return "12/"+(getNam()-1);else{
+            return (getThang()-1) +"/" + getNam();
+        }
+    }
+}
+<form action="/form1_2" method="post" class="form" enctype="multipart/form-data">
         <div class="form-group text-center">
           <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
         </div>
-        <div class="form-group row">
-          <label class="P-name"><b>Phiếu 1.2/DN-LAD-T</b></label>
-          <label for="">Mã số thuế</label>
-          <div class="row">
-            <input
-              type="text"
-              id="n0"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              autofocus
-              data-next="1"
-            />
-            <input
-              type="text"
-              id="n1"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="2"
-            />
-            <input
-              type="text"
-              id="n2"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="3"
-            />
-            <input
-              type="text"
-              id="n3"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="4"
-            />
-            <input
-              type="text"
-              id="n4"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="5"
-            />
-            <input
-              type="text"
-              id="n5"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="6"
-            />
-            <input
-              type="text"
-              id="n6"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="7"
-            />
-            <input
-              type="text"
-              id="n7"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="8"
-            />
-            <input
-              type="text"
-              id="n8"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="9"
-            />
-            <input
-              type="text"
-              id="n9"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="10"
-            />
-          </div>
-          <div class="row">
-            <input
-              type="text"
-              id="n10"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="11"
-            />
-            <input
-              type="text"
-              id="n11"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="12"
-            />
-            <input
-              type="text"
-              id="n12"
-              maxlength="1"
-              size="1"
-              class="text-center MS"
-              autocomplete="off"
-              data-next="13"
-            />
-          </div>
+    <div class="form-group row">
+        <label class="P-name"><b>Phiếu 1.2/DN-LAD-T</b></label>
+        <label for="">Mã số thuế</label>
+        <div class="row">
+            <input type="text"
+                   id="n0"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   autofocus
+                   data-next="1" />
+            <input type="text"
+                   id="n1"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="2" />
+            <input type="text"
+                   id="n2"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="3" />
+            <input type="text"
+                   id="n3"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="4" />
+            <input type="text"
+                   id="n4"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="5" />
+            <input type="text"
+                   id="n5"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="6" />
+            <input type="text"
+                   id="n6"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="7" />
+            <input type="text"
+                   id="n7"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="8" />
+            <input type="text"
+                   id="n8"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="9" />
+            <input type="text"
+                   id="n9"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="10" />
         </div>
+        <div class="row">
+            <input type="text"
+                   id="n10"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="11" />
+            <input type="text"
+                   id="n11"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="12" />
+            <input type="text"
+                   id="n12"
+                   maxlength="1"
+                   size="1"
+                   class="text-center MS"
+                   autocomplete="off"
+                   data-next="13" />
+            <input type="hidden" id="MST1" name="Master.MaSoThue" />
+        </div>
+    </div>
         <div class="form-group text-center">
           <label class="text-center">
             <b>PHIẾU THU THẬP THÔNG TIN ĐỐI VỚI DOANH NGHIỆP/HỢP TÁC XÃ</b>
@@ -145,14 +135,14 @@
         <div class="form-group text-center">
           <div class="row"></div>
           <div>
-            <label> <b>Tháng ... Năm 202...</b> </label>
+            <label> <b>Tháng @getThang() Năm @getNam()</b> </label>
           </div>
           <div class="row"></div>
         </div>
         <div class="form-group bg-primary">
           <h5><b>A. THÔNG TIN CHUNG</b></h5>
         </div>
-        <div class="form-group">
+        <div id="ThongTinDoanhNghiepGroup" class="form-group">
           <div class="row">
             <label class="lb-info">Tên doanh nghiệp/HTX: </label>
             <input type="text" class="infoma" />
@@ -266,8 +256,8 @@
             <tr class="text-center">
               <th><b>Tên chỉ tiêu</b></th>
               <th><b>Đơn vị tính</b></th>
-              <th><b>Thực hiện</b></th>
-              <th><b>Dự tính</b></th>
+                <th><b>Tháng thực hiện @getThangNamTruoc()</b></th>
+              <th><b>Tháng dự tính @getThang()/@getNam()</b></th>
               <th class="col-lg-2">
                 CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO
               </th>
