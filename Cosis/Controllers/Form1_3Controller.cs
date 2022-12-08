@@ -41,7 +41,16 @@ namespace Cosis.Controllers
                 
             }
             phieu.DanhSachNhanToAnhHuong = list;
-            phieu.Master.MaPhieu = RandomString(5);
+            
+            while (true)
+            {
+                string maPhieu = RandomString(5);
+                if (context.Master.Find(maPhieu) == null)
+                {
+                    phieu.Master.MaPhieu = maPhieu;
+                    break;
+                }
+            }
             phieu.Master.NgayTao = DateTime.Now;
             phieu.Master.Nam = DateTime.Now.Year.ToString();
             phieu.Master.ThangThucHien = (DateTime.Now.Month-1).ToString();
