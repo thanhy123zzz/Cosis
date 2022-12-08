@@ -67,7 +67,7 @@ namespace Cosis.Controllers
         }
         [HttpPost("/get-tong")]
         public decimal? getTongDauNam(string mast,string stt, decimal thangTrc, decimal duTinh)
-        {
+        {//Huệ
             if (mast == null) { return thangTrc + duTinh; }
             string mast1 = mast.Substring(0, 10);
             string mast2 = mast.Substring(10);
