@@ -325,3 +325,17 @@ C:\Users\TG\Desktop\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.genruntimeconfig.c
 D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Master.cshtml.g.cs
 D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Master2_1.cshtml.g.cs
 >>>>>>> 88e4e6bee5983b62e46b956c0ecee1891971abd9
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.csproj.AssemblyReference.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.GeneratedMSBuildEditorConfig.editorconfig
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.AssemblyInfoInputs.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.AssemblyInfo.cs
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.csproj.CoreCompileInputs.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.MvcApplicationPartsAssemblyInfo.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.RazorAssemblyInfo.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.RazorAssemblyInfo.cs
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\staticwebassets\Cosis.StaticWebAssets.Manifest.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.TagHelpers.input.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.TagHelpers.output.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.RazorCoreGenerate.cache
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.dll
+D:\Newfolder\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.pdb

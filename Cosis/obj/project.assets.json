@@ -9183,11 +9183,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TG\\Desktop\\Cosis\\Cosis\\Cosis.csproj",
+      "projectUniqueName": "D:\\Newfolder\\Cosis\\Cosis\\Cosis.csproj",
       "projectName": "Cosis",
-      "projectPath": "C:\\Users\\TG\\Desktop\\Cosis\\Cosis\\Cosis.csproj",
+      "projectPath": "D:\\Newfolder\\Cosis\\Cosis\\Cosis.csproj",
       "packagesPath": "C:\\Users\\TG\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TG\\Desktop\\Cosis\\Cosis\\obj\\",
+      "outputPath": "D:\\Newfolder\\Cosis\\Cosis\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\TG\\AppData\\Roaming\\NuGet\\NuGet.Config",

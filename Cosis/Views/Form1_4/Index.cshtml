@@ -1,4 +1,25 @@
-﻿      <form action="" class="form">
+﻿@model Cosis.Models.PhieuDieuTra
+@{
+    int getThang(){
+        return DateTime.Now.Month;
+    }
+    int getNam(){
+        return DateTime.Now.Year;
+    }
+    string getThangNamTruoc(){
+        if (getThang()==1)
+            return "12/"+(getNam()-1);else{
+            return (getThang()-1) +"/" + getNam();
+        }
+    }
+    string getThangNam(){
+        return getThang() + "/" + getNam();
+    }
+    int getTest(int a){
+        return a;
+    }
+}
+      <form action="" class="form">
         <div class="form-group text-center">
           <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
         </div>
@@ -14,7 +35,7 @@
               class="text-center MS"
               autocomplete="off"
               autofocus
-              data-next="1"
+              data-next="1" value="1"
             />
             <input
               type="text"
@@ -23,7 +44,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="2"
+              data-next="2" value="1"
             />
             <input
               type="text"
@@ -32,7 +53,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="3"
+              data-next="3" value="1"
             />
             <input
               type="text"
@@ -41,7 +62,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="4"
+              data-next="4" value="1"
             />
             <input
               type="text"
@@ -50,7 +71,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="5"
+              data-next="5" value="1"
             />
             <input
               type="text"
@@ -59,7 +80,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="6"
+              data-next="6" value="1"
             />
             <input
               type="text"
@@ -68,7 +89,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="7"
+              data-next="7" value="1"
             />
             <input
               type="text"
@@ -77,7 +98,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="8"
+              data-next="8" value="1"
             />
             <input
               type="text"
@@ -86,7 +107,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="9"
+              data-next="9" value="1"
             />
             <input
               type="text"
@@ -95,7 +116,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="10"
+              data-next="10" value="1"
             />
           </div>
           <div class="row">
@@ -106,7 +127,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="11"
+              data-next="11" value="1"
             />
             <input
               type="text"
@@ -115,7 +136,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="12"
+              data-next="12" value="1"
             />
             <input
               type="text"
@@ -124,7 +145,7 @@
               size="1"
               class="text-center MS"
               autocomplete="off"
-              data-next="13"
+              data-next="13" value="1"
             />
           </div>
         </div>
@@ -146,7 +167,7 @@
         <div class="form-group text-center">
           <div class="row"></div>
           <div>
-            <label> <b>Tháng ... Năm 202...</b> </label>
+            <label> <b>Tháng @getThang() Năm @getNam()</b> </label>
           </div>
           <div class="row"></div>
         </div>

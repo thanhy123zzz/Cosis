@@ -37,12 +37,9 @@ namespace Cosis.Models.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-<<<<<<< HEAD
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.D
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-Q0B8QHD/MSSQLSERVER02;Database=FormCosis;Trusted_Connection=True;");
-=======
-                optionsBuilder.UseSqlServer("Data Source=LAPTOP-FPKNLS6A\\SQLEXPRESS;Initial Catalog=FormCosis;Persist Security Info=True;User ID=sa;Password=123456");
->>>>>>> 88e4e6bee5983b62e46b956c0ecee1891971abd9
+
             }
         }
 
