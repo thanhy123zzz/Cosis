@@ -1,5 +1,24 @@
 ﻿@model Cosis.Models.PhieuDieuTra
-
+@{
+    int getThang(){
+        return DateTime.Now.Month;
+    }
+    int getNam(){
+        return DateTime.Now.Year;
+    }
+    string getThangNamTruoc(){
+        if (getThang()==1)
+            return "12/"+(getNam()-1);else{
+            return (getThang()-1) +"/" + getNam();
+        }
+    }
+    string getThangNam(){
+        return getThang() + "/" + getNam();
+    }
+    int getTest(int a){
+        return a;
+    }
+}
       <form action="" class="form">
         <div class="form-group text-center">
           <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
@@ -24,14 +43,14 @@
         <div class="form-group text-center">
           <div class="row"></div>
           <div>
-            <label> <b>Tháng ... Năm 202...</b> </label>
+            <label> <b>Tháng @getThang() Năm @getNam()</b> </label>
           </div>
           <div class="row"></div>
         </div>
         <div class="form-group bg-primary">
           <h5><b>A. THÔNG TIN CHUNG</b></h5>
         </div>
-        <div class="form-group">
+        <div id="ThongTinDoanhNghiepGroup" class="form-group">
           <div class="row">
             <label class="lb-info">Tên doanh nghiệp/HTX: </label>
             <input type="text" class="infoma" />
@@ -71,14 +90,13 @@
           </div>
           <div class="row">
             <label class="lb-info">Mã số thuế</label>
-            <button type="button" id="getValues">Get Values</button>
             <input
               type="text"
               id="n0"
               maxlength="1"
               size="1"
               class="text-center MS"
-              autocomplete="off"
+              autocomplete="off" autofocus
               data-next="1"
             />
             <input
@@ -275,8 +293,8 @@
               <th>Chi tiết</th>
               <th>Ngành chọn mẫu</th>
               <th>Đơn vị tính</th>
-              <th>Thực hiện [tháng trước]</th>
-              <th>Dự tính [tháng báo cáo]</th>
+              <th>Thực hiện @getThangNamTruoc()</th>
+              <th>Dự tính @getThang()/@getNam()</th>
               <th>
                 CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO (Chương trình tự động
                 tính)

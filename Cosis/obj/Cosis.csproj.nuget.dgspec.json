@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj": {}
+    "D:\\Cosis\\Cosis\\Cosis.csproj": {}
   },
   "projects": {
-    "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj": {
+    "D:\\Cosis\\Cosis\\Cosis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
+        "projectUniqueName": "D:\\Cosis\\Cosis\\Cosis.csproj",
         "projectName": "Cosis",
-        "projectPath": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\ProjectC#\\Cosis\\Cosis\\obj\\",
+        "projectPath": "D:\\Cosis\\Cosis\\Cosis.csproj",
+        "packagesPath": "C:\\Users\\TG\\.nuget\\packages\\",
+        "outputPath": "D:\\Cosis\\Cosis\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TG\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -78,6 +78,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.28, 3.1.28]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
