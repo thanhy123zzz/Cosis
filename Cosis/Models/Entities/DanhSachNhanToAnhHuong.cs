@@ -14,7 +14,7 @@ namespace Cosis.Models.Entities
 
         public DanhSachNhanToAnhHuong(string MaAh)
         {
-            MaPhieu = MaAh;
+            this.MaAh = MaAh;
         }
         public virtual NhanToAnhHuong MaAhNavigation { get; set; }
         public virtual Master MaPhieuNavigation { get; set; }
