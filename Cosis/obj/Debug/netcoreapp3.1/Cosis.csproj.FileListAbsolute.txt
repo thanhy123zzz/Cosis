@@ -159,6 +159,7 @@ D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form1_2\Index.cshtm
 D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form1_3\Index.cshtml.g.cs
 D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form1_4\Index.cshtml.g.cs
 D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form2_1\Index.cshtml.g.cs
+<<<<<<< HEAD
 C:\Users\TG\Desktop\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.csproj.AssemblyReference.cache
 C:\Users\TG\Desktop\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\TG\Desktop\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.AssemblyInfoInputs.cache
@@ -320,3 +321,7 @@ C:\Users\TG\Desktop\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.RazorTargetAssembl
 C:\Users\TG\Desktop\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.Views.pdb
 C:\Users\TG\Desktop\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.csproj.CopyComplete
 C:\Users\TG\Desktop\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.genruntimeconfig.cache
+=======
+D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Master.cshtml.g.cs
+D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Master2_1.cshtml.g.cs
+>>>>>>> 88e4e6bee5983b62e46b956c0ecee1891971abd9

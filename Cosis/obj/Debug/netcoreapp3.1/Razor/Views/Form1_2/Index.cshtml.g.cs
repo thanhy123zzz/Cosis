@@ -26,8 +26,15 @@ using Cosis.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
+using Cosis.Models.Entities;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ba60bebadbb51b63e08841d5eef72a32d95e3bc4", @"/Views/Form1_2/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9569ccc5721fb17e8039cd61f83764f796ce981c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0b88521a2e1eba7c1c948980452ed678c2226406", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Form1_2_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -61,7 +68,11 @@ using Cosis.Models;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba60bebadbb51b63e08841d5eef72a32d95e3bc44268", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba60bebadbb51b63e08841d5eef72a32d95e3bc44408", async() => {
+>>>>>>> 88e4e6bee5983b62e46b956c0ecee1891971abd9
                 WriteLiteral(@"
         <div class=""form-group text-center"">
           <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
@@ -232,7 +243,11 @@ using Cosis.Models;
                 BeginWriteAttribute("id", " id=\"", 4837, "\"", 4842, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"infoma\">\r\n                  ");
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba60bebadbb51b63e08841d5eef72a32d95e3bc410298", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba60bebadbb51b63e08841d5eef72a32d95e3bc410438", async() => {
+>>>>>>> 88e4e6bee5983b62e46b956c0ecee1891971abd9
                     WriteLiteral("--- Chọn Tỉnh/TP ---");
                 }
                 );
@@ -253,7 +268,11 @@ using Cosis.Models;
                 BeginWriteAttribute("id", " id=\"", 5169, "\"", 5174, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"infoma\">\r\n                  ");
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba60bebadbb51b63e08841d5eef72a32d95e3bc412091", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba60bebadbb51b63e08841d5eef72a32d95e3bc412231", async() => {
+>>>>>>> 88e4e6bee5983b62e46b956c0ecee1891971abd9
                     WriteLiteral("--- Chọn Huyện/quận ---");
                 }
                 );
@@ -274,7 +293,11 @@ using Cosis.Models;
                 BeginWriteAttribute("id", " id=\"", 5444, "\"", 5449, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"infoma\">\r\n                  ");
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba60bebadbb51b63e08841d5eef72a32d95e3bc413823", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba60bebadbb51b63e08841d5eef72a32d95e3bc413963", async() => {
+>>>>>>> 88e4e6bee5983b62e46b956c0ecee1891971abd9
                     WriteLiteral("--- Chọn Xã/phường/thị trấn ---");
                 }
                 );
