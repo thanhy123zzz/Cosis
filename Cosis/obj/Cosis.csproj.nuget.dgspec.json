@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj": {}
+    "E:\\a\\Cosis\\Cosis\\Cosis.csproj": {}
   },
   "projects": {
-    "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj": {
+    "E:\\a\\Cosis\\Cosis\\Cosis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
+        "projectUniqueName": "E:\\a\\Cosis\\Cosis\\Cosis.csproj",
         "projectName": "Cosis",
-        "projectPath": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\ProjectC#\\Cosis\\Cosis\\obj\\",
+        "projectPath": "E:\\a\\Cosis\\Cosis\\Cosis.csproj",
+        "packagesPath": "C:\\Users\\PNN\\.nuget\\packages\\",
+        "outputPath": "E:\\a\\Cosis\\Cosis\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PNN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,8 +73,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -86,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"
         }
       }
     }
