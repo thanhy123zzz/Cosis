@@ -102,12 +102,13 @@
           </div>
       <div class="nganhKD row">
               <label class="nganh-lb" for="">Ngành hoạt động kinh doanh</label>
+    <div class="nganh-ct">
         @{
             int i= 0;
         }
         @foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.MaSoThue, Model.MaSoThue2))
         {
-            <div class="nganh-ct">
+            
                 <div class="row">
                    <div class="MNHD row">
                       <input value="@nganh.MaNganh.Substring(0,1)" type="text"
@@ -142,8 +143,8 @@
                   <label for="">Tên ngành HĐKD:</label>
                   <input value="@getNganhHoatDongKinhDoanh(nganh.MaNganh).TenNganh" type="text" class="infoma-nganh" />
                 </div>
-            </div>
             }
+             </div>
       </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>

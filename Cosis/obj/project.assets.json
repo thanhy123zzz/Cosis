@@ -9178,24 +9178,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\votra\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis\\Cosis.csproj",
+      "projectUniqueName": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
       "projectName": "Cosis",
-      "projectPath": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis\\Cosis.csproj",
-      "packagesPath": "C:\\Users\\votra\\.nuget\\packages\\",
-      "outputPath": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis\\obj\\",
+      "projectPath": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "D:\\ProjectC#\\Cosis\\Cosis\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\votra\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9203,7 +9198,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

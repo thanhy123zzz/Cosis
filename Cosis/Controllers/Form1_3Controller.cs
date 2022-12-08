@@ -41,13 +41,29 @@ namespace Cosis.Controllers
                 
             }
             phieu.DanhSachNhanToAnhHuong = list;
-            phieu.Master.MaPhieu = RandomString(5);
+            
+            while (true)
+            {
+                string maPhieu = RandomString(5);
+                if (context.Master.Find(maPhieu) == null)
+                {
+                    phieu.Master.MaPhieu = maPhieu;
+                    break;
+                }
+            }
             phieu.Master.NgayTao = DateTime.Now;
             phieu.Master.Nam = DateTime.Now.Year.ToString();
             phieu.Master.ThangThucHien = (DateTime.Now.Month-1).ToString();
             phieu.Master.ThangDuTinh = DateTime.Now.Month.ToString();
             phieu.Master.MaSoThue2 = phieu.Master.MaSoThue.Substring(10);
             phieu.Master.MaSoThue = phieu.Master.MaSoThue.Substring(0, 10);
+
+            var check = context.Master.FromSqlRaw("select*from Master where MaSoThue = '" + phieu.Master.MaSoThue + "' and MaSoThue2 = '" + phieu.Master.MaSoThue2 + "'and ThangThucHien = '" + phieu.Master.ThangThucHien + "' and ThangDuTinh = '" + phieu.Master.ThangDuTinh + "' and Nam = '" + phieu.Master.Nam + "'").ToList();
+            if (check.Count > 0)
+            {
+                TempData["ThongBao"] = "Thất bại! Đã điều tra doanh nghiệp trong tháng này!";
+                return RedirectToAction("Index");
+            }
 
             context.Master.Add(phieu.Master);
             context.SaveChanges();
@@ -62,7 +78,7 @@ namespace Cosis.Controllers
             {
                 context.Database.ExecuteSqlRaw("INSERT INTO [dbo].[Detail]([MaPhieu],[STT],[TenCT],[DVT],[THThangTruoc],[DuTinh],[TongCongDon]) values({0},{1},{2},{3},{4},{5},{6})", phieu.Master.MaPhieu,dt.Stt,dt.TenCt,dt.Dvt,dt.ThthangTruoc,dt.DuTinh,dt.TongCongDon);
             }
-            
+            TempData["ThongBao"] = "Thành công!";
             return RedirectToAction("Index");
         }
         [HttpPost("/get-tong")]
