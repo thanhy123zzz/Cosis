@@ -1,25 +1,4 @@
-﻿@model Cosis.Models.PhieuDieuTra
-@{
-    int getThang(){
-        return DateTime.Now.Month;
-    }
-    int getNam(){
-        return DateTime.Now.Year;
-    }
-    string getThangNamTruoc(){
-        if (getThang()==1)
-            return "12/"+(getNam()-1);else{
-            return (getThang()-1) +"/" + getNam();
-        }
-    }
-    string getThangNam(){
-        return getThang() + "/" + getNam();
-    }
-    int getTest(int a){
-        return a;
-    }
-}
-      <form action="" class="form">
+﻿      <form action="" class="form">
         <div class="form-group text-center">
           <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
         </div>
@@ -43,22 +22,22 @@
         <div class="form-group text-center">
           <div class="row"></div>
           <div>
-            <label> <b>Tháng @getThang() Năm @getNam()</b> </label>
+            <label> <b>Tháng ... Năm 202...</b> </label>
           </div>
           <div class="row"></div>
         </div>
         <div class="form-group bg-primary">
           <h5><b>A. THÔNG TIN CHUNG</b></h5>
         </div>
-        <div id="ThongTinDoanhNghiepGroup" class="form-group">
+        <div class="form-group">
           <div class="row">
             <label class="lb-info">Tên doanh nghiệp/HTX: </label>
-            <input type="text" name="Master.Ten" class="infoma" />
+            <input type="text" class="infoma" />
           </div>
 
           <div class="row">
             <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
-            <select name="Master.MaTinhTp" id="city" class="infoma">
+            <select name="" id="" class="infoma">
               <option value="">--- Chọn Tỉnh/TP ---</option>
             </select>
           </div>
@@ -66,37 +45,38 @@
             <label class="lb-info"
               >Huyện/quận <i>(thị xã, TP thuộc tỉnh)</i>:
             </label>
-            <select name="Master.MaQuanHuyen" id="district" class="infoma">
+            <select name="" id="" class="infoma">
               <option value="">--- Chọn Huyện/quận ---</option>
             </select>
           </div>
           <div class="row">
             <label class="lb-info">Xã/phường/thị trấn: </label>
-            <select name="Master.MaPhuongXa" id="ward" class="infoma">
+            <select name="" id="" class="infoma">
               <option value="">--- Chọn Xã/phường/thị trấn ---</option>
             </select>
           </div>
           <div class="row">
             <label class="lb-info">Địa bàn: </label>
-            <input type="text" name="Master.TenCoSo"  class="infoma" />
+            <input type="text" class="infoma" />
           </div>
           <div class="row">
             <label class="lb-info">Mã cơ sở: </label>
-            <input type="text" name="" class="infoma" />
+            <input type="text" class="infoma" />
           </div>
           <div class="row">
             <label class="lb-info">Tên cơ sở: </label>
-            <input type="text" name="" class="infoma" />
+            <input type="text" class="infoma" />
           </div>
           <div class="row">
             <label class="lb-info">Mã số thuế</label>
+
             <input
               type="text"
               id="n0"
               maxlength="1"
               size="1"
               class="text-center MS"
-              autocomplete="off" autofocus
+              autocomplete="off"
               data-next="1"
             />
             <input
@@ -211,16 +191,16 @@
           </div>
           <div class="row">
             <label class="lb-info">Thôn, ấp<i>(số nhà, đường phố)</i>: </label>
-            <input type="text" name="Master.DiaChiCuThe" class="infoma" />
+            <input type="text" class="infoma" />
           </div>
 
           <div class="row">
             <label class="lb-info">Số điện thoại: </label>
-            <input name="Master.Sdt" type="text" class="infoma" />
+            <input type="text" class="infoma" />
           </div>
           <div class="row">
             <label class="lb-info">Email: </label>
-            <input name="Master.Email" type="text" class="infoma" />
+            <input type="text" class="infoma" />
           </div>
           <div class="loaihinh">
             <label>Loại hình kinh tế</label>
@@ -231,15 +211,15 @@
               <label> 3.Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
             </div>
             <div class="checkbox">
-              <input type="radio" name="Master.MaLh" value="Kinh tế nhà nước" />
+              <input type="radio" name="loaihinhkt" value="Kinh tế nhà nước" />
               <input
                 type="radio"
-                name="Master.MaLh"
+                name="loaihinhkt"
                 value="Kinh tế ngoài nhà nước"
               />
               <input
                 type="radio"
-                name="Master.MaLh"
+                name="loaihinhkt"
                 value="Kinh tế có vốn đầu tư trực tiếp nước ngoài"
               />
             </div>
@@ -292,8 +272,8 @@
             <tr class="text-center">
               <th>Chi tiết</th>
               <th>Đơn vị tính</th>
-              <th>Thực hiện tháng @getThangNamTruoc()</th>
-              <th>Dự tính @getThang()/@getNam() </th>
+              <th>Thực hiện tháng [trước]</th>
+              <th>Dự tính [tháng báo cáo]</th>
               <th>CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO</th>
             </tr>
           </thead>
@@ -601,23 +581,23 @@
               <label for="">9. Lý do khác: ghi rõ</label>
             </div>
             <div class="YTAH-check">
-              <input type="checkbox" name="DanhSachNhanToAnhHuong0" value="01" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong1" value="02" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong2" value="03" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong3" value="04" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong4" value="05" />
+              <input type="checkbox" name="" value="Nhu cầu thị trường" />
+              <input type="checkbox" name="" value="Dịch bệnh" />
+              <input type="checkbox" name="" value="Thời tiết" />
+              <input type="checkbox" name="" value="Ảnh hưởng mùa vụ" />
+              <input type="checkbox" name="" value="Thay đổi nhân sự" />
               <input
                 type="checkbox"
-                name="DanhSachNhanToAnhHuong5"
-                value="06"
+                name=""
+                value="Thay đổi kĩ thuật/công nghệ/phương tiện"
               />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong6" value="07" />
+              <input type="checkbox" name="" value="Nguồn vốn kinh doanh" />
               <input
                 type="checkbox"
-                name="DanhSachNhanToAnhHuong7"
-                value="08"
+                name=""
+                value="Thay đổi địa điểm/thị trường kinh doanh"
               />
-              <input type="checkbox" id="YT9" value="" />
+              <input type="checkbox" name="YT9" id="YT9" value="" />
             </div>
           </div>
           <div class="YTAH9">
@@ -625,7 +605,7 @@
               class="form-control"
               rows="1"
               id="comment"
-              name="NhanToThu9.NoiDung"
+              name="comment"
               disabled
             ></textarea>
           </div>
@@ -633,11 +613,11 @@
         <div class="form-group uname-info">
           <div class="row">
             <label class="uname-lb">Họ tên người trả lời:</label>
-            <input type="text" name="Master.TenNguoiTraLoi" id="" class="infoma" />
+            <input type="text" name="" id="" class="infoma" />
           </div>
           <div class="row">
             <label class="uname-lb">Số điện thoại:</label>
-            <input type="text" name="Master.SdtnguoiTraLoi" id="" class="infoma" />
+            <input type="text" name="" id="" class="infoma" />
           </div>
         </div>
         <div class="group-btn">
