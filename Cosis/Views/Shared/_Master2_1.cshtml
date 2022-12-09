@@ -1,215 +1,237 @@
-﻿@using Cosis.Models
-@using Microsoft.EntityFrameworkCore;
-@model Cosis.Models.Entities.Master
-@{
-  FormCosisContext context = new FormCosisContext();
-  TinhTp getTinh(string idTinh){
-  return context.TinhTp.Find(idTinh);
-  }
+﻿@model Cosis.Models.Entities.Master
 
-  QuanHuyen getHuyen(string idHuyen)
-  {
-  return context.QuanHuyen.Find(idHuyen);
-  }
-
-  PhuongXa getXa(string idXa)
-  {
-  return context.PhuongXa.Find(idXa);
-  }
-  List<NganhKinhDoanh> getNganhKinhDoanh(string mast1, string mast2)
-  {
-    return context.NganhKinhDoanh.Where(x => x.MaSoThue == mast1 && x.MaSoThue2 == mast2).ToList();
-  }
-
-  NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma)
-  {
-    return context.NganhHoatDongKinhDoanh.Where(x => x.MaNganh == ma).FirstOrDefault();
-  }
-}
-<div id="ThongTinDoanhNghiepGroup" class="form-group">
-  <div class="row">
-    <label class="lb-info">Tên doanh nghiệp/HTX: </label>
-    <input type="text" value="@Model.Ten" name="Master.Ten" class="infoma" />
-  </div>
-
-  <div class="row">
-    <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
-    <input name="Master.MaTinhTp" value="@getTinh(Model.MaTinhTp).Name" readonly id="city"  class="infoma"/>
-  </div>
-  <div class="row">
-    <label class="lb-info">Huyện/quận <i>(thị xã, TP thuộc tỉnh)</i>:
-    </label>
-    <input name="Master.MaQuanHuyen" value="@getHuyen(Model.MaQuanHuyen).Name" readonly  id="district" class="infoma"/>
-  </div>
-  <div class="row">
-    <label class="lb-info">Xã/phường/thị trấn: </label>
-    <input readonly name="Master.MaPhuongXa" value="@getXa(Model.MaPhuongXa).Name"  id="ward" class="infoma"/>
-  </div>
-  <div class="row">
-    <label class="lb-info">Địa bàn: </label>
-    <input type="text" value="@Model.DiaChiCuThe - @getXa(Model.MaPhuongXa).Name - @getHuyen(Model.MaQuanHuyen).Name - @getTinh(Model.MaTinhTp).Name" class="infoma" />
-  </div>
-  <div class="row">
-    <label class="lb-info">Mã cơ sở: </label>
-    <input type="text" value="@Model.MaCoSoNavigation.MaCoSo" class="infoma" />  
-  </div>
-  <div class="row">
-    <label class="lb-info">Tên cơ sở: </label>
-    <input type="text" value="@Model.MaCoSoNavigation.TenCoSo" class="infoma" />
-    </div>
-  <div class="row">
-    <label class="lb-info">Mã số thuế</label>
-
-    <input type="text" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="1" />
-    <input type="text" id="n1" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="2" />
-    <input type="text" id="n2" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="3" />
-    <input type="text" id="n3" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="4" />
-    <input type="text" id="n4" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="5" />
-    <input type="text" id="n5" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="6" />
-    <input type="text" id="n6" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="7" />
-    <input type="text" id="n7" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="8" />
-    <input type="text" id="n8" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="9" />
-    <input type="text" id="n9" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="10" />
-
-    <input type="text" id="n10" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="11" />
-    <input type="text" id="n11" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="12" />
-    <input type="text" id="n12" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="13" />
-  </div>
-  <div class="row">
-    <label class="lb-info">Thôn, ấp<i>(số nhà, đường phố)</i>: </label>
-    <input type="text" name="Master.DiaChiCuThe" value="@Model.DiaChiCuThe" class="infoma" />
-  </div>
-
-  <div class="row">
-    <label class="lb-info">Số điện thoại: </label>
-    <input name="Master.Sdt" value="@Model.MaSoThueNavigation.SdtdoanhNghiep" type="text" class="infoma" />
-  </div>
-  <div class="row">
-    <label class="lb-info">Email: </label>
-    <input name="Master.Email" value="@Model.Email" type="text" class="infoma" />
-  </div>
-  <div class="loaihinh">
-    <label>Loại hình kinh tế</label>
-
-    <div class="checkbox-tt">
-      <label> 1.Kinh tế nhà nước</label>
-      <label> 2.Kinh tế ngoài nhà nước</label>
-      <label> 3.Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
-    </div>
-    <div class="checkbox">
-      @if (Model.MaLh.Trim() == "01")
-      {
-        <input type="radio" checked name="Master.MaLh" value="01" />
-      }
-      else
-      {
-        <input type="radio" name="Master.MaLh" value="01" />
-      }
-      @if (Model.MaLh.Trim() == "02")
-      {
-        <input type="radio" checked name="Master.MaLh" value="02" />
-      }
-      else
-      {
-        <input type="radio" name="Master.MaLh" value="02" />
-      }
-
-      @if (Model.MaLh.Trim() == "03")
-      {
-        <input type="radio" checked name="Master.MaLh" value="03" />
-      }
-      else
-      {
-        <input type="radio" name="Master.MaLh" value="03" />
-      }
-    </div>
-  </div>
-  <div class="nganhKD row">
-    <label class="nganh-lb" for="">Ngành hoạt động kinh doanh</label>
-    @{
-      int i = 0;
-    }
-    @foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.MaSoThue, Model.MaSoThue2))
-    {
-      <div class="nganh-ct">
-        <div class="row">
-          <div class="MNHD row">
-            <input value="@nganh.MaNganh.Substring(0,1)" type="text" maxlength="1" size="1" class="text-center MN" />
-            <input value="@nganh.MaNganh.Substring(1,1)" type="text" maxlength="1" size="1" class="text-center MN" />
-            <input value="@nganh.MaNganh.Substring(2,1)" type="text" maxlength="1" size="1" class="text-center MN" />
-            <input value="@nganh.MaNganh.Substring(3,1)" type="text" maxlength="1" size="1" class="text-center MN" />
-            <input value="@nganh.MaNganh.Substring(4,1)" type="text" maxlength="1" size="1" class="text-center MN" />
+<div class="form-group">
+          <div class="row">
+            <label class="lb-info">Tên doanh nghiệp/HTX: </label>
+            <input type="text" class="infoma" />
           </div>
-          <label for="">Tên ngành HĐKD:</label>
-          <input value="@getNganhHoatDongKinhDoanh(nganh.MaNganh).TenNganh" type="text" class="infoma-nganh" />
+
+          <div class="row">
+            <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
+            <select name="" id="" class="infoma">
+              <option value="">--- Chọn Tỉnh/TP ---</option>
+            </select>
+          </div>
+          <div class="row">
+            <label class="lb-info"
+              >Huyện/quận <i>(thị xã, TP thuộc tỉnh)</i>:
+            </label>
+            <select name="" id="" class="infoma">
+              <option value="">--- Chọn Huyện/quận ---</option>
+            </select>
+          </div>
+          <div class="row">
+            <label class="lb-info">Xã/phường/thị trấn: </label>
+            <select name="" id="" class="infoma">
+              <option value="">--- Chọn Xã/phường/thị trấn ---</option>
+            </select>
+          </div>
+          <div class="row">
+            <label class="lb-info">Địa bàn: </label>
+            <input type="text" class="infoma" />
+          </div>
+          <div class="row">
+            <label class="lb-info">Mã cơ sở: </label>
+            <input type="text" class="infoma" />
+          </div>
+          <div class="row">
+            <label class="lb-info">Tên cơ sở: </label>
+            <input type="text" class="infoma" />
+          </div>
+          <div class="row">
+            <label class="lb-info">Mã số thuế</label>
+            <button type="button" id="getValues">Get Values</button>
+            <input
+              type="text"
+              id="n0"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="1"
+            />
+            <input
+              type="text"
+              id="n1"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="2"
+            />
+            <input
+              type="text"
+              id="n2"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="3"
+            />
+            <input
+              type="text"
+              id="n3"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="4"
+            />
+            <input
+              type="text"
+              id="n4"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="5"
+            />
+            <input
+              type="text"
+              id="n5"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="6"
+            />
+            <input
+              type="text"
+              id="n6"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="7"
+            />
+            <input
+              type="text"
+              id="n7"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="8"
+            />
+            <input
+              type="text"
+              id="n8"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="9"
+            />
+            <input
+              type="text"
+              id="n9"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="10"
+            />
+
+            <input
+              type="text"
+              id="n10"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="11"
+            />
+            <input
+              type="text"
+              id="n11"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="12"
+            />
+            <input
+              type="text"
+              id="n12"
+              maxlength="1"
+              size="1"
+              class="text-center MS"
+              autocomplete="off"
+              data-next="13"
+            />
+          </div>
+          <div class="row">
+            <label class="lb-info">Thôn, ấp<i>(số nhà, đường phố)</i>: </label>
+            <input type="text" class="infoma" />
+          </div>
+
+          <div class="row">
+            <label class="lb-info">Số điện thoại: </label>
+            <input type="text" class="infoma" />
+          </div>
+          <div class="row">
+            <label class="lb-info">Email: </label>
+            <input type="text" class="infoma" />
+          </div>
+          <div class="loaihinh">
+            <label>Loại hình kinh tế</label>
+
+            <div class="checkbox-tt">
+              <label> 1.Kinh tế nhà nước</label>
+              <label> 2.Kinh tế ngoài nhà nước</label>
+              <label> 3.Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
+            </div>
+            <div class="checkbox">
+              <input type="radio" name="loaihinhkt" value="Kinh tế nhà nước" />
+              <input
+                type="radio"
+                name="loaihinhkt"
+                value="Kinh tế ngoài nhà nước"
+              />
+              <input
+                type="radio"
+                name="loaihinhkt"
+                value="Kinh tế có vốn đầu tư trực tiếp nước ngoài"
+              />
+            </div>
+          </div>
+          <div class="nganhKD">
+            <div class="row">
+              <label for="">Ngành hoạt động kinh doanh</label>
+              <div class="MNHD row">
+                <input
+                  type="text"
+                  maxlength="1"
+                  size="1"
+                  class="text-center MN"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  size="1"
+                  class="text-center MN"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  size="1"
+                  class="text-center MN"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  size="1"
+                  class="text-center MN"
+                />
+                <input
+                  type="text"
+                  maxlength="1"
+                  size="1"
+                  class="text-center MN"
+                />
+              </div>
+              <label for="">Tên ngành HĐKD:</label>
+              <input type="text" class="infoma-nganh" />
+            </div>
+          </div>
         </div>
-      </div>
-    }
-  </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script>
-  @* var citis = document.getElementById("city");
-  var districts = document.getElementById("district");
-  var wards = document.getElementById("ward");
-
-  var Parameter = {
-    url: "https://localhost:5001/assets/DiaChi.json",
-    method: "GET",
-    responseType: "application/json",
-  };
-  var promise = axios(Parameter);
-  promise.then(
-    function (result) {
-      renderCity(result.data);
-    });
-  function renderCity(data) {
-    for (const x of data) {
-      if (x.Id == @Html.Raw(Model.MaTinhTp.Trim())) {
-        citis.options[citis.options.length] = new Option(x.Name, x.Id, true, true);
-        const result = data.filter(n => n.Id === x.Id);
-
-        for (const k of result[0].Districts) {
-          if (k.Id == @Html.Raw(Model.MaQuanHuyen.Trim())) {
-            district.options[district.options.length] = new Option(k.Name, k.Id, true, true);
-            const dataCity = data.filter((n) => n.Id === citis.value);
-            const dataWards = dataCity[0].Districts.filter(n => n.Id === k.Id)[0].Wards;
-            for (const w of dataWards) {
-              if (w.Id == @Html.Raw(Model.MaPhuongXa.Trim())) {
-                wards.options[wards.options.length] = new Option(w.Name, w.Id, true, true);
-              } else {
-                wards.options[wards.options.length] = new Option(w.Name, w.Id);
-              }
-            }
-          } else {
-            district.options[district.options.length] = new Option(k.Name, k.Id);
-          }
-        }
-      } else {
-        citis.options[citis.options.length] = new Option(x.Name, x.Id);
-      }
-    }
-    citis.onchange = function () {
-      district.length = 1;
-      ward.length = 1;
-      if (this.value != "") {
-        const result = data.filter(n => n.Id === this.value);
-
-        for (const k of result[0].Districts) {
-          district.options[district.options.length] = new Option(k.Name, k.Id);
-        }
-      }
-    };
-    district.onchange = function () {
-      ward.length = 1;
-      const dataCity = data.filter((n) => n.Id === citis.value);
-      if (this.value != "") {
-        const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
-
-        for (const w of dataWards) {
-          wards.options[wards.options.length] = new Option(w.Name, w.Id);
-        }
-      }
-    };
-  } *@
-</script>

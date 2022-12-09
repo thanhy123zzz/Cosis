@@ -39,51 +39,8 @@ namespace Cosis.Controllers
             FormCosisContext context = new FormCosisContext();
             string mst1 = ms.Substring(0, 10);
             string mst2 = ms.Substring(10);
-            var a = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
-            return PartialView("_Master", a);
-        }
-        // xd
-        [HttpPost("/loadMaster2")]
-        public IActionResult loadInfor(string ms)
-        {
-            FormCosisContext context = new FormCosisContext();
-            string mst1 = ms.Substring(0, 10);
-            string mst2 = ms.Substring(10);
-            var a = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
-            var a1 = context.ThongTinCaThe.FromSqlRaw("select*from ThongTinCaThe where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
-            var b = context.Master.FromSqlRaw("select*from Master where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
-            Console.WriteLine(a1);
-            if (a1 == null)
-            {
-                if (a == null)
-                {
-                    // k tim thay ma so thue
-                }
-                else
-                {
-                    a1 = new ThongTinCaThe();
-                    b.MaSoThueNavigation = a;
-                    b.MaCoSoNavigation = a1;
-                }
-
-            }
-            else
-            {
-                b.MaCoSoNavigation = a1;
-                b.MaSoThueNavigation = a;
-            }
-            return PartialView("_Master2_1", b);
-        }
-        [HttpPost("/loaddata_21B")]
-        public IActionResult loaddata_21B(string ms)
-        {
-            FormCosisContext context = new FormCosisContext();
-            string mst1 = ms.Substring(0, 10);
-            string mst2 = ms.Substring(10);
-            var a = context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).ToList();
-            Console.WriteLine(a.ToString());
-            ViewBag.ListNghanh = a;
-            return PartialView("_2_1B");
+            var a = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}",mst1,mst2).FirstOrDefault();
+            return PartialView("_Master",a);
         }
     }
 }
