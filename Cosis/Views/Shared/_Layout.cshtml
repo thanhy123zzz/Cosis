@@ -105,8 +105,19 @@
             }
           });
         }
-
-
+        if ($('label.P-name b').text().includes('2.1')) {
+          $.ajax({
+            type: 'POST',
+            url: '/loaddata_21B',
+            data: "ms=" + strMS,
+            success: function (result) {
+              $('#table-data').replaceWith(result);
+            },
+            error: function (result) {
+              alert('Mã số thuế không tồn tại!');
+            }
+          });
+        }
       }
     });
 
@@ -131,17 +142,28 @@
         document.getElementById("comment").disabled = true;
       }
     });
+    /* 
+    $('input[id*="3"').click(function () {
+      $(".changed3").toggle(this.checked);
+    });
+    $('input[id*="#3-1"').click(function () {
+      $(".changed3").hide(this.check);
+    });
+     */
+    $('input[id*="#3-2"').click(function () {
+      $(".changed3").hide(this.check);
+    });
     $("#5").click(function () {
-      $(".changed1").toggle(this.checked);
+      $(".changed1").show(this.checked);
     });
     $("#5-1").click(function () {
-      $(".changed1").toggle(this.check);
+      $(".changed1").hide(this.check);
     });
     $("#13").click(function () {
-      $(".changed2").toggle(this.checked);
+      $(".changed2").show(this.checked);
     });
     $("#13-1").click(function () {
-      $(".changed2").toggle(this.check);
+      $(".changed2").hide(this.check);
     });
   </script>
   @RenderSection("Scripts", required: false)
