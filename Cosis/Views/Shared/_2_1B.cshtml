@@ -1,0 +1,74 @@
+@using Cosis.Models
+@* @model Cosis.Models.Entities.NganhKinhDoanh *@
+@{
+    var context = new FormCosisContext();
+    NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma)
+    {
+        return context.NganhHoatDongKinhDoanh.Where(x => x.MaNganh == ma).FirstOrDefault();
+    }
+}
+<tbody id="table-data">
+    <tr class="text-center">
+        <td>A</td>
+        <td>B</td>
+        <td>C</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>
+            1. Ông/bà vui lòng cho biết tổng số tiền thu về (bao gồm cả vốn
+            và lãi) của cơ sở [tháng trước] và dự tính [tháng báo cáo]
+        </td>
+        <td><input type="text" class="infoma" /></td>
+        <td class="text-center">Triệu đồng</td>
+        <td><input type="text" class="infoma" /></td>
+        <td><input type="text" class="infoma" /></td>
+        <td><input type="text" class="infoma" /></td>
+    </tr>
+    @foreach (var item in @ViewBag.ListNghanh)
+    {
+        <tr>
+            <td>
+                2. Trong tổng số tiền thu về của cơ sở, số tiền thu về (bao gồm
+                cả vốn lẫn lãi) của nghành <b>@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh</b> [tháng trước] và dự tính
+                [tháng báo cáo]
+            </td>
+            <td><input type="text" class="infoma" /></td>
+            <td class="text-center">Triệu đồng</td>
+            <td><input type="text" class="infoma" /></td>
+            <td><input type="text" class="infoma" /></td>
+            <td><input type="text" class="infoma" /></td>
+        </tr>
+        <tr id="checkRadio">
+            <td>3. Cơ sở bán <b>@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh</b> tại đâu?</td>
+            <td></td>
+            <td></td>
+            <td>
+                1. Bán tại siêu thị mini, cửa hàng tiện ích
+                <input type="radio" name="chose3" id="3-1" />
+            </td>
+            <td>
+                2. Bán tại các địa điểm khác
+                <input type="radio" name="chose3" id="3-2" />
+            </td>
+            <td>
+                3. Bán tại siêu thị mini, cửa hàng tiện ích và các địa điểm khác
+                <input type="radio" name="chose3" id="3" />
+            </td>
+        </tr>
+        <tr id="checkRadio" class="changed3">
+            <td>
+                3.1 Số tiền thu về (bao gồm cả vốn và lãi) từ bán [NGÀNH CHỌN
+                MẪU] [tháng trước] và dự tính [tháng báo cáo] tại siêu thị mini,
+                cửa hàng tiện ích?
+            </td>
+            <td><input type="text" class="infoma" /></td>
+            <td class="text-center">Triệu đồng</td>
+            <td><input type="text" class="infoma" /></td>
+            <td><input type="text" class="infoma" /></td>
+            <td><input type="text" class="infoma" /></td>
+        </tr>
+    }
+</tbody>
