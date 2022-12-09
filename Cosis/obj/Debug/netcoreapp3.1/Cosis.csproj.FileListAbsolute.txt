@@ -161,4 +161,8 @@ D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form1_4\Index.cshtm
 D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form2_1\Index.cshtml.g.cs
 D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Master.cshtml.g.cs
 D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Master2_1.cshtml.g.cs
-D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\ViewPDF\Form1_3.cshtml.g.cs
+D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form1_3\Form1_3.cshtml.g.cs
+D:\ProjectC#\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form1_3\Form1_3PDF.cshtml.g.cs
+D:\ProjectC#\Cosis\Cosis\bin\Debug\netcoreapp3.1\Syncfusion.Compression.Portable.dll
+D:\ProjectC#\Cosis\Cosis\bin\Debug\netcoreapp3.1\Syncfusion.Licensing.dll
+D:\ProjectC#\Cosis\Cosis\bin\Debug\netcoreapp3.1\Syncfusion.XlsIO.Portable.dll

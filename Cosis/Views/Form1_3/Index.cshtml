@@ -3,6 +3,13 @@
     int getThang(){
         return DateTime.Now.Month;
     }
+    int getThangTruoc(){
+        if(getThang()==1){
+            return 12;
+        }else{
+            return getThang() - 1;
+        }
+    }
     int getNam(){
         return DateTime.Now.Year;
     }
@@ -12,13 +19,15 @@
             return (getThang()-1) +"/" + getNam();
         }
     }
-    string getThangNam(){
-        return getThang() + "/" + getNam();
-    }
-    int getTest(int a){
-        return a;
-    }
 }
+@if (TempData["ThongBao"] != null)
+		{
+			<script type="text/javascript" charset="utf-8">
+				window.onload = function () {
+				alert("@Html.Raw(@TempData["ThongBao"])");
+			};
+			</script>
+		}
 <form action="/form1_3" method="post" class="form" enctype="multipart/form-data">
         <div class="form-group text-center">
           <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
@@ -311,12 +320,12 @@
               <td class="text-center">Triệu đồng 
                   <input type="hidden" name="Detail[0].Dvt" value="Triệu đồng"/>  
               </td>
-              <td><input type="text" readonly id="ThthangTruoc0" oninput="changeThthangTruoc(0)" name="Detail[0].ThthangTruoc" class="infoma" /></td>
-              <td><input type="text" readonly id="DuTinh0" oninput="changeDuTinh(0)" name="Detail[0].DuTinh" class="infoma" /></td>
-              <td><input type="text" readonly id="TongCongDon0" name="Detail[0].TongCongDon" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required readonly id="ThthangTruoc0" oninput="changeThthangTruoc(0)" name="Detail[0].ThthangTruoc" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required readonly id="DuTinh0" oninput="changeDuTinh(0)" name="Detail[0].DuTinh" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required readonly id="TongCongDon0" name="Detail[0].TongCongDon" class="infoma" /></td>
             </tr>
             <tr>
-              <th attr colspan="5">I. Hoạt động vận tải hành kha</th>
+              <th attr colspan="5">I. Hoạt động vận tải hành khách</th>
             </tr>
             <tr>
               <td>2.Doanh thu thuần<input type="hidden" id="stt2" name="Detail[1].Stt" value="2."/>
@@ -326,9 +335,9 @@
               <td class="text-center">Triệu đồng 
                   <input type="hidden" name="Detail[1].Dvt" value="Triệu đồng"/>  
               </td>
-              <td><input type="text" name="Detail[1].ThthangTruoc" id="ThthangTruoc2" oninput="changeThthangTruoc(2)" class="infoma" /></td>
-              <td><input type="text" name="Detail[1].DuTinh" id="DuTinh2" oninput="changeDuTinh(2)" class="infoma" /></td>
-              <td><input type="text" name="Detail[1].TongCongDon" id="TongCongDon2" oninput="changeCongDon(2)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[1].ThthangTruoc" id="ThthangTruoc2" oninput="changeThthangTruoc(2)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[1].DuTinh" id="DuTinh2" oninput="changeDuTinh(2)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[1].TongCongDon" id="TongCongDon2" oninput="changeCongDon(2)" class="infoma" /></td>
             </tr>
             <tr>
               <td>3.Số lượt khách vận chuyển<input type="hidden" id="stt3" name="Detail[2].Stt" value="3."/>
@@ -338,9 +347,9 @@
               <td class="text-center">Lượt khách
                   <input type="hidden" name="Detail[2].Dvt" value="Lượt khách"/>  
               </td>
-              <td><input type="text" name="Detail[2].ThthangTruoc" id="ThthangTruoc3" oninput="changeThthangTruoc(3)" class="infoma" /></td>
-              <td><input type="text" name="Detail[2].DuTinh" id="DuTinh3" oninput="changeDuTinh(3)" class="infoma" /></td>
-              <td><input type="text" name="Detail[2].TongCongDon" id="TongCongDon3" oninput="changeCongDon(3)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[2].ThthangTruoc" id="ThthangTruoc3" oninput="changeThthangTruoc(3)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[2].DuTinh" id="DuTinh3" oninput="changeDuTinh(3)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[2].TongCongDon" id="TongCongDon3" oninput="changeCongDon(3)" class="infoma" /></td>
             </tr>
             <tr>
               <td class="p-1"><i>3.1.Trong đó: Ngoài nước</i>
@@ -350,9 +359,9 @@
               <td class="text-center">Lượt khách
                   <input type="hidden" name="Detail[3].Dvt" value="Lượt khách"/>  
               </td>
-              <td><input type="text" name="Detail[3].ThthangTruoc" id="ThthangTruoc3_1" oninput="changeThthangTruoc('3_1')" class="infoma" /></td>
-              <td><input type="text" name="Detail[3].DuTinh" id="DuTinh3_1" oninput="changeDuTinh('3_1')" class="infoma" /></td>
-              <td><input type="text" name="Detail[3].TongCongDon" id="TongCongDon3_1" oninput="changeCongDon('3_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[3].ThthangTruoc" id="ThthangTruoc3_1" oninput="changeThthangTruoc('3_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[3].DuTinh" id="DuTinh3_1" oninput="changeDuTinh('3_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[3].TongCongDon" id="TongCongDon3_1" oninput="changeCongDon('3_1')" class="infoma" /></td>
             </tr>
             <tr>
               <td>4.Số lượt hành khách luân chuyển
@@ -362,9 +371,9 @@
               <td class="text-center">HK Km
                   <input type="hidden" name="Detail[4].Dvt" value="HK Km"/>  
               </td>
-              <td><input type="text" name="Detail[4].ThthangTruoc" id="ThthangTruoc4" oninput="changeThthangTruoc(4)" class="infoma" /></td>
-              <td><input type="text" name="Detail[4].DuTinh" id="DuTinh4" oninput="changeDuTinh(4)" class="infoma" /></td>
-              <td><input type="text" name="Detail[4].TongCongDon" id="TongCongDon4" oninput="changeCongDon(4)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[4].ThthangTruoc" id="ThthangTruoc4" oninput="changeThthangTruoc(4)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[4].DuTinh" id="DuTinh4" oninput="changeDuTinh(4)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[4].TongCongDon" id="TongCongDon4" oninput="changeCongDon(4)" class="infoma" /></td>
             </tr>
             <tr>
               <td class="p-1"><i>4.1.Trong đó: Ngoài nước</i>
@@ -374,9 +383,9 @@
               <td class="text-center">HK Km
                   <input type="hidden" name="Detail[5].Dvt" value="HK Km"/>  
               </td>
-              <td><input type="text" name="Detail[5].ThthangTruoc" id="ThthangTruoc4_1" oninput="changeThthangTruoc('4_1')" class="infoma" /></td>
-              <td><input type="text" name="Detail[5].DuTinh" id="DuTinh4_1" oninput="changeDuTinh('4_1')" class="infoma" /></td>
-              <td><input type="text" name="Detail[5].TongCongDon" id="TongCongDon4_1" oninput="changeCongDon('4_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[5].ThthangTruoc" id="ThthangTruoc4_1" oninput="changeThthangTruoc('4_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[5].DuTinh" id="DuTinh4_1" oninput="changeDuTinh('4_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[5].TongCongDon" id="TongCongDon4_1" oninput="changeCongDon('4_1')" class="infoma" /></td>
             </tr>
             <tr>
               <td>5.Đơn giá bình quân
@@ -386,9 +395,9 @@
               <td class="text-center">HK Km
                   <input type="hidden" name="Detail[6].Dvt" value="HK Km"/>  
               </td>
-              <td><input type="text" name="Detail[6].ThthangTruoc" id="ThthangTruoc5" oninput="changeThthangTruoc(5)" class="infoma" /></td>
-              <td><input type="text" name="Detail[6].DuTinh" id="DuTinh5" oninput="changeDuTinh(5)" class="infoma" /></td>
-              <td><input type="text" name="Detail[6].TongCongDon" id="TongCongDon5" oninput="changeCongDon(5)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[6].ThthangTruoc" id="ThthangTruoc5" oninput="changeThthangTruoc(5)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[6].DuTinh" id="DuTinh5" oninput="changeDuTinh(5)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[6].TongCongDon" id="TongCongDon5" oninput="changeCongDon(5)" class="infoma" /></td>
             </tr>
             <tr>
               <td>6.Tổng số phương tiện đang hoạt động
@@ -398,9 +407,9 @@
               <td class="text-center">HK Km
                   <input type="hidden" name="Detail[7].Dvt" value="HK Km"/>  
               </td>
-              <td><input type="text" name="Detail[7].ThthangTruoc" id="ThthangTruoc6" oninput="changeThthangTruoc(6)" class="infoma" /></td>
-              <td><input type="text" name="Detail[7].DuTinh" id="DuTinh6" oninput="changeDuTinh(6)" class="infoma" /></td>
-              <td><input type="text" name="Detail[7].TongCongDon" id="TongCongDon6" oninput="changeCongDon(6)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[7].ThthangTruoc" id="ThthangTruoc6" oninput="changeThthangTruoc(6)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[7].DuTinh" id="DuTinh6" oninput="changeDuTinh(6)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[7].TongCongDon" id="TongCongDon6" oninput="changeCongDon(6)" class="infoma" /></td>
             </tr>
             <tr>
               <td>7.Tổng tải trọng
@@ -410,12 +419,12 @@
               <td class="text-center">HK Km
                   <input type="hidden" name="Detail[8].Dvt" value="HK Km"/>  
               </td>
-              <td><input type="text" name="Detail[8].ThthangTruoc" id="ThthangTruoc7" oninput="changeThthangTruoc(7)" class="infoma" /></td>
-              <td><input type="text" name="Detail[8].DuTinh" id="DuTinh7" oninput="changeDuTinh(7)" class="infoma" /></td>
-              <td><input type="text" name="Detail[8].TongCongDon" id="TongCongDon7" oninput="changeCongDon(7)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[8].ThthangTruoc" id="ThthangTruoc7" oninput="changeThthangTruoc(7)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[8].DuTinh" id="DuTinh7" oninput="changeDuTinh(7)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[8].TongCongDon" id="TongCongDon7" oninput="changeCongDon(7)" class="infoma" /></td>
             </tr>
             <tr>
-              <th attr colspan="5">II.Hoạt động vận tải hàng hòa</th>
+              <th attr colspan="5">II.Hoạt động vận tải hàng hoá</th>
             </tr>
             <tr>
               <td>8.Doanh thu thuần
@@ -425,9 +434,9 @@
               <td class="text-center">Triệu đồng
                   <input type="hidden" name="Detail[9].Dvt" value="Triệu đồng"/>  
               </td>
-              <td><input type="text" name="Detail[9].ThthangTruoc" id="ThthangTruoc8" oninput="changeThthangTruoc(8)" class="infoma" /></td>
-              <td><input type="text" name="Detail[9].DuTinh" id="DuTinh8" oninput="changeDuTinh(8)" class="infoma" /></td>
-              <td><input type="text" name="Detail[9].TongCongDon" id="TongCongDon8" oninput="changeCongDon(8)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[9].ThthangTruoc" id="ThthangTruoc8" oninput="changeThthangTruoc(8)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[9].DuTinh" id="DuTinh8" oninput="changeDuTinh(8)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[9].TongCongDon" id="TongCongDon8" oninput="changeCongDon(8)" class="infoma" /></td>
             </tr>
             <tr>
               <td>9.Khối lượng hàng hóa vận chuyển
@@ -437,9 +446,9 @@
               <td class="text-center">Tấn
                   <input type="hidden" name="Detail[10].Dvt" value="Tấn"/>  
               </td>
-              <td><input type="text" name="Detail[10].ThthangTruoc" id="ThthangTruoc9" oninput="changeThthangTruoc(9)" class="infoma" /></td>
-              <td><input type="text" name="Detail[10].DuTinh" id="DuTinh9" oninput="changeDuTinh(9)" class="infoma" /></td>
-              <td><input type="text" name="Detail[10].TongCongDon" id="TongCongDon9" oninput="changeCongDon(9)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[10].ThthangTruoc" id="ThthangTruoc9" oninput="changeThthangTruoc(9)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[10].DuTinh" id="DuTinh9" oninput="changeDuTinh(9)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[10].TongCongDon" id="TongCongDon9" oninput="changeCongDon(9)" class="infoma" /></td>
             </tr>
             <tr>
               <td class="p-1"><i>9.1.Trong đó: Ngoài nước</i>
@@ -449,9 +458,9 @@
               <td class="text-center">Tấn
                   <input type="hidden" name="Detail[11].Dvt" value="Tấn"/>  
               </td>
-              <td><input type="text" name="Detail[11].ThthangTruoc" id="ThthangTruoc9_1" oninput="changeThthangTruoc('9_1')" class="infoma" /></td>
-              <td><input type="text" name="Detail[11].DuTinh" id="DuTinh9_1" oninput="changeDuTinh('9_1')" class="infoma" /></td>
-              <td><input type="text" name="Detail[11].TongCongDon" id="TongCongDon9_1" oninput="changeCongDon('9_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[11].ThthangTruoc" id="ThthangTruoc9_1" oninput="changeThthangTruoc('9_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[11].DuTinh" id="DuTinh9_1" oninput="changeDuTinh('9_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[11].TongCongDon" id="TongCongDon9_1" oninput="changeCongDon('9_1')" class="infoma" /></td>
             </tr>
             <tr>
               <td>10.Khối lượng hàng hóa luân chuyển
@@ -461,9 +470,9 @@
               <td class="text-center">Tấn.Km
                   <input type="hidden" name="Detail[12].Dvt" value="Tấn.Km"/>  
               </td>
-              <td><input type="text" name="Detail[12].ThthangTruoc" id="ThthangTruoc10" oninput="changeThthangTruoc(10)" class="infoma" /></td>
-              <td><input type="text" name="Detail[12].DuTinh" id="DuTinh10" oninput="changeDuTinh(10)" class="infoma" /></td>
-              <td><input type="text" name="Detail[12].TongCongDon" id="TongCongDon10" oninput="changeCongDon(10)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[12].ThthangTruoc" id="ThthangTruoc10" oninput="changeThthangTruoc(10)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[12].DuTinh" id="DuTinh10" oninput="changeDuTinh(10)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[12].TongCongDon" id="TongCongDon10" oninput="changeCongDon(10)" class="infoma" /></td>
             </tr>
             <tr>
               <td class="p-1"><i>10.1.Trong đó: Ngoài nước</i>
@@ -473,9 +482,9 @@
               <td class="text-center">Tấn.Km
                   <input type="hidden" name="Detail[13].Dvt" value="Tấn.Km"/>  
               </td>
-              <td><input type="text" name="Detail[13].ThthangTruoc" id="ThthangTruoc10_1" oninput="changeThthangTruoc('10_1')" class="infoma" /></td>
-              <td><input type="text" name="Detail[13].DuTinh" id="DuTinh10_1" oninput="changeDuTinh('10_1')" class="infoma" /></td>
-              <td><input type="text" name="Detail[13].TongCongDon" id="TongCongDon10_1" oninput="changeCongDon('10_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[13].ThthangTruoc" id="ThthangTruoc10_1" oninput="changeThthangTruoc('10_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[13].DuTinh" id="DuTinh10_1" oninput="changeDuTinh('10_1')" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[13].TongCongDon" id="TongCongDon10_1" oninput="changeCongDon('10_1')" class="infoma" /></td>
             </tr>
             <tr>
                <td>11.Đơn giá bình quân
@@ -485,9 +494,9 @@
               <td class="text-center">Đồng/Tấn.Km
                   <input type="hidden" name="Detail[14].Dvt" value="Đồng/Tấn.Km"/>  
               </td>
-              <td><input type="text" name="Detail[14].ThthangTruoc" id="ThthangTruoc11" oninput="changeThthangTruoc(11)" class="infoma" /></td>
-              <td><input type="text" name="Detail[14].DuTinh" id="DuTinh11" oninput="changeDuTinh(11)" class="infoma" /></td>
-              <td><input type="text" name="Detail[14].TongCongDon" id="TongCongDon11" oninput="changeCongDon(11)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[14].ThthangTruoc" id="ThthangTruoc11" oninput="changeThthangTruoc(11)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[14].DuTinh" id="DuTinh11" oninput="changeDuTinh(11)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[14].TongCongDon" id="TongCongDon11" oninput="changeCongDon(11)" class="infoma" /></td>
             </tr>
             <tr>
              <td>12.Khối lượng hàng hóa luân chuyển
@@ -497,9 +506,9 @@
               <td class="text-center">Cái
                   <input type="hidden" name="Detail[15].Dvt" value="Cái"/>  
               </td>
-              <td><input type="text" name="Detail[15].ThthangTruoc" id="ThthangTruoc12" oninput="changeThthangTruoc(12)" class="infoma" /></td>
-              <td><input type="text" name="Detail[15].DuTinh" id="DuTinh12" oninput="changeDuTinh(12)" class="infoma" /></td>
-              <td><input type="text" name="Detail[15].TongCongDon" id="TongCongDon12" oninput="changeCongDon(12)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[15].ThthangTruoc" id="ThthangTruoc12" oninput="changeThthangTruoc(12)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[15].DuTinh" id="DuTinh12" oninput="changeDuTinh(12)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[15].TongCongDon" id="TongCongDon12" oninput="changeCongDon(12)" class="infoma" /></td>
             </tr>
             <tr>
                 <td>13.Tổng tải trọng
@@ -509,14 +518,14 @@
               <td class="text-center">Tấn
                   <input type="hidden" name="Detail[16].Dvt" value="Tấn"/>  
               </td>
-              <td><input type="text" name="Detail[16].ThthangTruoc" id="ThthangTruoc13" oninput="changeThthangTruoc(13)" class="infoma" /></td>
-              <td><input type="text" name="Detail[16].DuTinh" id="DuTinh13" oninput="changeDuTinh(13)" class="infoma" /></td>
-              <td><input type="text" name="Detail[16].TongCongDon" id="TongCongDon13" oninput="changeCongDon(13)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[16].ThthangTruoc" id="ThthangTruoc13" oninput="changeThthangTruoc(13)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[16].DuTinh" id="DuTinh13" oninput="changeDuTinh(13)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[16].TongCongDon" id="TongCongDon13" oninput="changeCongDon(13)" class="infoma" /></td>
             </tr>
             <tr>
               <th attr colspan="5">
-                III.Hoạt động kho bãi, dịch vụ hỗ trợ vận tải của [tháng trước]
-                và [tháng báo cáo]
+                III.Hoạt động kho bãi, dịch vụ hỗ trợ vận tải của tháng @getThangTruoc()
+                và tháng @getThang()
               </th>
             </tr>
             <tr>
@@ -527,14 +536,13 @@
               <td class="text-center">Triệu đồng
                   <input type="hidden" name="Detail[17].Dvt" value="Triệu đồng"/>  
               </td>
-              <td><input type="text" name="Detail[17].ThthangTruoc" id="ThthangTruoc14" oninput="changeThthangTruoc(14)" class="infoma" /></td>
-              <td><input type="text" name="Detail[17].DuTinh" id="DuTinh14" oninput="changeDuTinh(14)" class="infoma" /></td>
-              <td><input type="text" name="Detail[17].TongCongDon" id="TongCongDon14" oninput="changeCongDon(14)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[17].ThthangTruoc" id="ThthangTruoc14" oninput="changeThthangTruoc(14)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[17].DuTinh" id="DuTinh14" oninput="changeDuTinh(14)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[17].TongCongDon" id="TongCongDon14" oninput="changeCongDon(14)" class="infoma" /></td>
             </tr>
             <tr>
               <th attr colspan="5">
-                IV.Hoạt động bưu chính, chuyển phát của [tháng trước] và [tháng
-                báo cáo] là bao nhiêu?
+                IV.Hoạt động bưu chính, chuyển phát của tháng @getThangTruoc() và tháng @getThang() là bao nhiêu?
               </th>
             </tr>
             <tr>
@@ -545,9 +553,9 @@
               <td class="text-center">Triệu đồng
                   <input type="hidden" name="Detail[18].Dvt" value="Triệu đồng"/>  
               </td>
-              <td><input type="text" name="Detail[18].ThthangTruoc" id="ThthangTruoc15" oninput="changeThthangTruoc(15)" class="infoma" /></td>
-              <td><input type="text" name="Detail[18].DuTinh" id="DuTinh15" oninput="changeDuTinh(15)" class="infoma" /></td>
-              <td><input type="text" name="Detail[18].TongCongDon" id="TongCongDon15" oninput="changeCongDon(15)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[18].ThthangTruoc" id="ThthangTruoc15" oninput="changeThthangTruoc(15)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[18].DuTinh" id="DuTinh15" oninput="changeDuTinh(15)" class="infoma" /></td>
+              <td><input type="number" step="0.1" min="0" required name="Detail[18].TongCongDon" id="TongCongDon15" oninput="changeCongDon(15)" class="infoma" /></td>
             </tr>
           </tbody>
         </table>
@@ -612,14 +620,12 @@
           </div>
         </div>
         <div class="group-btn">
-          <button class="btn btn-success">Lưu và xuất file PDF</button>
-          <button type="submit" class="btn btn-primary">Lưu</button>
+          <button type="submit" value="true" name="loai" class="btn btn-success">Lưu và xuất file PDF</button>
+          <button type="submit" value="false" name="loai" class="btn btn-primary">Lưu</button>
         </div>
       </form>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script type="text/javascript">
-
-
     var citis = document.getElementById("city");
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
@@ -661,8 +667,25 @@ function renderCity(data) {
   };
 }
     function changeThthangTruoc(tt){
-        $('#ThthangTruoc'+tt).val($('#ThthangTruoc'+tt).val().replace(/\D/g, ''));
-
+       /* $('#ThthangTruoc'+tt).val($('#ThthangTruoc'+tt).val().replace(/\D/g, ''));*/
+       if(tt==4){
+           $('#ThthangTruoc4_1').attr({
+            "max" : $('#ThthangTruoc'+tt).val()
+        });
+       }else if(tt==3){
+           $('#ThthangTruoc3_1').attr({
+            "max" : $('#ThthangTruoc'+tt).val()
+        });
+       }else if(tt==9){
+           $('#ThthangTruoc9_1').attr({
+            "max" : $('#ThthangTruoc'+tt).val()
+        });
+       }
+       else if(tt==10){
+           $('#ThthangTruoc10_1').attr({
+            "max" : $('#ThthangTruoc'+tt).val()
+        });
+       }
         var value = parseFloat($('#ThthangTruoc'+tt).val());
         if((!isNaN(value) && $('#ThthangTruoc'+tt).val() === '' + value)){
             var stt = $('#stt'+tt).val();        
@@ -703,7 +726,26 @@ function renderCity(data) {
         }
     }
     function changeDuTinh(tt){
-        $('#DuTinh'+tt).val($('#DuTinh'+tt).val().replace(/\D/g, ''));
+        /*$('#DuTinh'+tt).val($('#DuTinh'+tt).val().replace(/\D/g, ''));*/
+
+        if(tt==4){
+           $('#DuTinh4_1').attr({
+            "max" : $('#DuTinh'+tt).val()
+        });
+       }else if(tt==3){
+           $('#DuTinh3_1').attr({
+            "max" : $('#DuTinh'+tt).val()
+        });
+       }else if(tt==9){
+           $('#DuTinh9_1').attr({
+            "max" : $('#DuTinh'+tt).val()
+        });
+       }
+       else if(tt==10){
+           $('#DuTinh10_1').attr({
+            "max" : $('#DuTinh'+tt).val()
+        });
+       }
 
         var value = parseFloat($('#DuTinh'+tt).val());
 

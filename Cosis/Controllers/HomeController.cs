@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Syncfusion.XlsIO;
+using System.IO;
 
 namespace Cosis.Controllers
 {
@@ -42,5 +44,12 @@ namespace Cosis.Controllers
             var a = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}",mst1,mst2).FirstOrDefault();
             return PartialView("_Master",a);
         }
+
+/*        [Route("/xlsx")]
+        public IActionResult xlsx()
+        {
+           
+        }*/
+
     }
 }
