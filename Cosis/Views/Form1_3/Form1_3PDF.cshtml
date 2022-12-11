@@ -277,9 +277,12 @@
                         }
                     </div>
                 </div>
-                <div class="YTAH9" style="margin-left:20px;">
-                    <label>Yếu tố khác: @Model.NhanToThu9.NoiDung</label>
-                </div>
+                @if (Model.NhanToThu9 != null)
+                {
+                    <div class="YTAH9" style="margin-left:20px;">
+                        <label>Yếu tố khác: @Model.NhanToThu9.NoiDung</label>
+                    </div>
+                }
             </div>
             <div class="uname-info">
                 <div class="row">
