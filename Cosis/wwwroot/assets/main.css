@@ -1,7 +1,9 @@
 .header {
   background-image: url(/assets/image/anh-background-cuc-dep_110341116.jpg);
 }
-
+table input {
+  border: none !important;
+}
 .choose-day {
   display: flex;
   justify-content: flex-end;
@@ -12,6 +14,10 @@
 
 .choose-year {
   margin: 0 25px 0 25px;
+}
+.tenphieu {
+  display: flex;
+  flex-direction: column;
 }
 .m-title {
   background: #ffe15d;
@@ -25,6 +31,7 @@
   background: #fff3bd;
   height: 660px;
   overflow: scroll;
+  width: 74%;
 }
 .form1 {
   border: 2px solid #ff4800;
@@ -34,10 +41,9 @@
 .form-QLTT {
   border: 2px solid #ff4800;
   margin: 10px 0 10px 0;
-  width: 37%;
+  width: 26%;
   height: 660px;
   position: relative;
-  display: none;
 }
 .container {
   display: flex;
@@ -107,7 +113,7 @@
   border: 1px solid #000000;
 }
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgb(255 255 0 / 50%);
+  background-color: rgb(240 240 75 / 50%);
 }
 
 .infoma {
