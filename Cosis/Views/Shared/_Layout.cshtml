@@ -101,6 +101,20 @@
                     data: "ms=" + strMS,
                     success: function (result) {
                         $('#ThongTinDoanhNghiepGroup').replaceWith(result);
+
+                        if($('#tenPhieu').val()==='1.1'){
+                            $.ajax({
+                                type: 'POST',
+                                url: '/loadTable1-1',
+                                data: "ms=" + strMS,
+                                success: function (result) {
+                                    $('#tab-KQ').replaceWith(result);
+                                },
+                               error: function (result) {
+                               alert('Mã số thuế không tồn tại!');
+                             }
+                        })
+                        }
                     },
                     error: function (result) {
                         alert('Mã số thuế không tồn tại!');

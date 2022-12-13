@@ -1,10 +1,49 @@
-﻿
-      <form action="" class="form">
+﻿@model Cosis.Models.PhieuDieuTra
+@{
+    int getThang()
+    {
+        return DateTime.Now.Month;
+    }
+    int getThangTruoc()
+    {
+        if (getThang() == 1)
+        {
+            return 12;
+        }
+        else
+        {
+            return getThang() - 1;
+        }
+    }
+    int getNam()
+    {
+        return DateTime.Now.Year;
+    }
+    string getThangNamTruoc()
+    {
+        if (getThang() == 1)
+            return "12/" + (getNam() - 1);
+        else
+        {
+            return (getThang() - 1) + "/" + getNam();
+        }
+    }
+}
+@if (TempData["ThongBao"] != null)
+{
+                <script type="text/javascript" charset="utf-8">
+                    window.onload = function () {
+                    alert("@Html.Raw(@TempData["ThongBao"])");
+                };
+                </script>
+}
+      <form action="/form1_1" method="post" enctype="multipart/form-data" class="form">
         <div class="form-group text-center">
           <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
         </div>
         <div class="form-group row">
           <label class="P-name"><b>Phiếu 1.1/DN-TM-T</b></label>
+          <input type="hidden" id="tenPhieu" value="1.1"/>
           <label for="">Mã số thuế</label>
           <div class="row">
             <input
@@ -127,6 +166,7 @@
               autocomplete="off"
               data-next="13"
             />
+            <input type="hidden" id="MST1" name="Master.MaSoThue"/>
           </div>
         </div>
         <div class="form-group text-center">
@@ -146,24 +186,24 @@
         <div class="form-group text-center">
           <div class="row"></div>
           <div>
-            <label> <b>Tháng ... Năm 202...</b> </label>
+            <label> <b>Tháng @getThang() Năm @getNam()</b> </label>
           </div>
           <div class="row"></div>
         </div>
         <div class="form-group bg-primary">
           <h5><b>A. THÔNG TIN CHUNG</b></h5>
         </div>
-        <div class="form-group">
+        <div id="ThongTinDoanhNghiepGroup" class="form-group">
           <div class="row">
             <label class="lb-info">Tên doanh nghiệp/HTX: </label>
-            <input type="text" class="infoma" />
+            <input type="text" name="Master.Ten" class="infoma" />
           </div>
           <div class="adress">
             <label for="">Địa chỉ doanh nghiệp </label>
             <div class="adress-detail">
               <div class="row">
                 <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
-                <select name="" id="" class="infoma">
+                <select name="Master.MaTinhTp" id="city" class="infoma">
                   <option value="">--- Chọn Tỉnh/TP ---</option>
                 </select>
               </div>
@@ -171,13 +211,13 @@
                 <label class="lb-info"
                   >Huyện/quận <i>(thị xã, TP thuộc tỉnh)</i>:
                 </label>
-                <select name="" id="" class="infoma">
+                <select name="Master.MaQuanHuyen" id="district" class="infoma">
                   <option value="">--- Chọn Huyện/quận ---</option>
                 </select>
               </div>
               <div class="row">
                 <label class="lb-info">Xã/phường/thị trấn: </label>
-                <select name="" id="" class="infoma">
+                <select name="Master.MaPhuongXa" id="ward" class="infoma">
                   <option value="">--- Chọn Xã/phường/thị trấn ---</option>
                 </select>
               </div>
@@ -185,17 +225,17 @@
                 <label class="lb-info"
                   >Thôn, ấp<i>(số nhà, đường phố)</i>:
                 </label>
-                <input type="text" class="infoma" />
+                <input name="Master.DiaChiCuThe" type="text" class="infoma" />
               </div>
             </div>
           </div>
           <div class="row">
             <label class="lb-info">Số điện thoại: </label>
-            <input type="text" class="infoma" />
+            <input name="Master.Sdt" type="text" class="infoma" />
           </div>
           <div class="row">
             <label class="lb-info">Email: </label>
-            <input type="text" class="infoma" />
+            <input name="Master.Email" type="text" class="infoma" />
           </div>
           <div class="loaihinh">
             <label>Loại hình kinh tế</label>
@@ -206,15 +246,15 @@
               <label> 3.Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
             </div>
             <div class="checkbox">
-              <input type="radio" name="loaihinhkt" value="Kinh tế nhà nước" />
-              <input
+              <input type="radio" name="Master.MaLh" value="Kinh tế nhà nước" />
+              <input 
                 type="radio"
-                name="loaihinhkt"
+                name="Master.MaLh"
                 value="Kinh tế ngoài nhà nước"
               />
               <input
                 type="radio"
-                name="loaihinhkt"
+                name="Master.MaLh"
                 value="Kinh tế có vốn đầu tư trực tiếp nước ngoài"
               />
             </div>
@@ -255,9 +295,9 @@
                 />
               </div>
               <label for="">Tên ngành HĐKD:</label>
-              <input type="text" class="infoma-nganh" />
+              <input type="text" readonly class="infoma-nganh" style="width: 40%;"/>
             </div>
-          </div>
+          </div>    
         </div>
         <div class="form-group bg-primary">
           <h5><b>B. KẾT QUẢ HOẠT ĐỘNG KINH DOANH</b></h5>
@@ -268,10 +308,10 @@
               <th class="Chitieu">Chỉ tiêu</th>
               <th class="NganhCM">Ngành chọn mẫu</th>
               <th class="DVT">Đơn vị tính</th>
-              <th colspan="2" class="Money"><b>Thực hiện</b></th>
-              <th colspan="2" class="Money"><b>Dự tính</b></th>
+              <th colspan="2" class="Money">Thực hiện</th>
+              <th colspan="2" class="Money">Dự tính</th>
               <th colspan="2" class="Money">
-                CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO
+                Cộng dồn từ đầu năm đến cuối tháng
               </th>
             </tr>
           </thead>
@@ -289,25 +329,25 @@
             </tr>
             <tr>
               <td class="DMNganh">1.Tổng doanh thu</td>
-              <td><input type="text" class="infoma" /></td>
+              <td class="text-center">...</td>
               <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td><input readonly type="text" class="infomal" /></td>
+              <td><input readonly type="text" class="infomal" /></td>
+              <td><input readonly type="text" class="infomal" /></td>
+              <td><input readonly type="text" class="infomal" /></td>
+              <td><input readonly type="text" class="infomal" /></td>
+              <td><input readonly type="text" class="infomal" /></td>
             </tr>
             <tr>
               <td class="DMNganh">2.Doanh thu thuần</td>
               <td><input type="text" class="infoma" /></td>
               <td class="text-center">Triệu đồng</td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
-              <td><input type="text" class="infoma" /></td>
+              <td><input type="text" class="infomal" /></td>
+              <td><input type="text" class="infomal" /></td>
+              <td><input type="text" class="infomal" /></td>
+              <td><input type="text" class="infomal" /></td>
+              <td><input type="text" class="infomal" /></td>
+              <td><input type="text" class="infomal" /></td>
             </tr>
           </tbody>
         </table>
@@ -332,23 +372,23 @@
               <label for="">9. Lý do khác: ghi rõ</label>
             </div>
             <div class="YTAH-check">
-              <input type="checkbox" name="" value="Nhu cầu thị trường" />
-              <input type="checkbox" name="" value="Dịch bệnh" />
-              <input type="checkbox" name="" value="Thời tiết" />
-              <input type="checkbox" name="" value="Ảnh hưởng mùa vụ" />
-              <input type="checkbox" name="" value="Thay đổi nhân sự" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong0" value="01" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong1" value="02" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong2" value="03" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong3" value="04" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong4" value="05" />
               <input
                 type="checkbox"
-                name=""
-                value="Thay đổi kĩ thuật/công nghệ/phương tiện"
+                name="DanhSachNhanToAnhHuong5"
+                value="06"
               />
-              <input type="checkbox" name="" value="Nguồn vốn kinh doanh" />
+              <input type="checkbox" name="DanhSachNhanToAnhHuong6" value="07" />
               <input
                 type="checkbox"
-                name=""
-                value="Thay đổi địa điểm/thị trường kinh doanh"
+                name="DanhSachNhanToAnhHuong7"
+                value="08"
               />
-              <input type="checkbox" name="YT9" id="YT9" value="" />
+              <input type="checkbox" id="YT9" value="" />
             </div>
           </div>
           <div class="YTAH9">
@@ -356,7 +396,7 @@
               class="form-control"
               rows="1"
               id="comment"
-              name="comment"
+              name="NhanToThu9.NoiDung"
               disabled
             ></textarea>
           </div>
@@ -364,15 +404,343 @@
         <div class="form-group uname-info">
           <div class="row">
             <label class="uname-lb">Họ tên người trả lời:</label>
-            <input type="text" name="" id="" class="infoma" />
+            <input type="text" name="Master.TenNguoiTraLoi" id="" class="infoma" />
           </div>
           <div class="row">
             <label class="uname-lb">Số điện thoại:</label>
-            <input type="text" name="" id="" class="infoma" />
+            <input type="text" name="Master.SdtnguoiTraLoi" id="" class="infoma" />
           </div>
         </div>
-        <div class="group-btn">
-          <button class="btn btn-success">Lưu và xuất file PDF</button>
-          <button class="btn btn-primary">Lưu</button>
+        <div class="group-btn" style="justify-content: end;">
+          <select name="loai" style="margin-right:10px">
+              <option value="0">Chọn file cần xuất</option>
+              <option value="1">Xuất File PDF</option>
+              <option value="2">Xuất File Excel</option>
+              <option value="3">Xuất cả 2</option>
+          </select>
+          <button type="submit" value="false" class="btn btn-primary">Lưu</button>
         </div>
       </form>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script type="text/javascript">
+    var citis = document.getElementById("city");
+var districts = document.getElementById("district");
+var wards = document.getElementById("ward");
+var Parameter = {
+  url: "https://localhost:44358/assets/DiaChi.json", 
+  method: "GET", 
+  responseType: "application/json", 
+};
+var promise = axios(Parameter);
+promise.then(function (result) {
+  renderCity(result.data);
+});
+
+function renderCity(data) {
+  for (const x of data) {
+    citis.options[citis.options.length] = new Option(x.Name, x.Id);
+  }
+  citis.onchange = function () {
+    district.length = 1;
+    ward.length = 1;
+    if(this.value != ""){
+      const result = data.filter(n => n.Id === this.value);
+
+      for (const k of result[0].Districts) {
+        district.options[district.options.length] = new Option(k.Name, k.Id);
+      }
+    }
+  };
+  district.onchange = function () {
+    ward.length = 1;
+    const dataCity = data.filter((n) => n.Id === citis.value);
+    if (this.value != "") {
+      const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+
+      for (const w of dataWards) {
+        wards.options[wards.options.length] = new Option(w.Name, w.Id);
+      }
+    }
+  };
+}
+
+$('.infomal').on('blur', function() {
+    if(checkNumber(this.value)){
+        const value = this.value.replace(/,/g, '');
+        this.value = parseFloat(value).toLocaleString('en-US', {
+        style: 'decimal',
+            maximumFractionDigits: 2,
+            minimumFractionDigits: 2
+            })
+    }
+});
+
+    function changeThthangTruoc(tt){
+        var tong = 0;
+        for(var i = 2; i< $('#SLRow').val();i++){
+            tong += getValue($('#ThangTruoc_'+i).val());
+        }
+        $('#ThangTruoc0').val(
+            parseFloat(tong).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+            })
+        );
+        changeTong(tt);
+    }
+    function changeDuTinh(tt){
+        var tong = 0;
+        for(var i = 2; i< $('#SLRow').val();i++){
+            tong += getValue($('#DuTinh_'+i).val());
+        }
+        $('#DuTinh0').val(
+            parseFloat(tong).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+            })
+        );
+        changeTong(tt);
+    }
+
+    function changeThthangTruocTT(tt){
+        var tong = 0;
+        for(var i = 2; i< $('#SLRow').val();i++){
+            tong += getValue($('#ThangTruocTT_'+i).val());
+        }
+        $('#ThangTruocTT0').val(
+            parseFloat(tong).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+            })
+        );
+        changeTongTT(tt);
+    }
+    function changeDuTinhTT(tt){
+        var tong = 0;
+        for(var i = 2; i< $('#SLRow').val();i++){
+            tong += getValue($('#DuTinhTT_'+i).val());
+        }
+        $('#DuTinhTT0').val(
+            parseFloat(tong).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+            })
+        );
+        changeTongTT(tt);
+    }
+
+    function changeTong(tt){
+        
+        var stt = $('#stt_'+tt).val();        
+        var mst = $('#MST1').val();
+        var duTinh = $('#DuTinh_'+tt).val();
+        var value = $('#ThangTruoc_'+tt).val();
+        $.ajax({
+                type: 'POST',
+                url: '/form1_1/get-tong',
+                data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh,
+                success: function (result) {
+                    $('#TongCongDon_'+tt).val(
+                        parseFloat(result).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })
+                    );
+                    var tong = 0;
+                    for(var i = 2; i< $('#SLRow').val();i++){
+                        tong += getValue($('#TongCongDon_'+i).val());
+                    }
+                    $('#TongCongDon0').val(
+                        parseFloat(tong).toLocaleString('en-US', {
+                                    style: 'decimal',
+                                    maximumFractionDigits: 2,
+                                    minimumFractionDigits: 2
+                        })
+                    );
+                },
+               error: function (result) {
+               alert('Mã số thuế không tồn tại!');
+             }
+            });
+    }
+    function changeTongTT(tt){
+
+        var stt = $('#sttTT_'+tt).val();        
+        var mst = $('#MST1').val();
+        var duTinh = $('#DuTinhTT_'+tt).val();
+        var value = $('#ThangTruocTT_'+tt).val();
+        $.ajax({
+                type: 'POST',
+                url: '/form1_1/get-tong',
+                data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh,
+                success: function (result) {
+                    $('#TongCongDonTT_'+tt).val(
+                        parseFloat(result).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })
+                    );
+                    var tong = 0;
+                    for(var i = 2; i< $('#SLRow').val();i++){
+                        tong += getValue($('#TongCongDonTT_'+i).val());
+                    }
+                    $('#TongCongDonTT0').val(
+                        parseFloat(tong).toLocaleString('en-US', {
+                                    style: 'decimal',
+                                    maximumFractionDigits: 2,
+                                    minimumFractionDigits: 2
+                        })
+                    );
+                },
+               error: function (result) {
+               alert('Mã số thuế không tồn tại!');
+             }
+            });
+    }
+
+/*    function changeThthangTruoc(tt){
+        var value = getValue($('#ThthangTruoc'+tt).val());
+
+        if(checkNumber(value)){
+            var stt = $('#stt'+tt).val();        
+            var mst = $('#MST1').val();
+            var duTinh = $('#DuTinh'+tt).val();
+            $.ajax({
+                type: 'POST',
+                url: '/get-tong',
+                data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh,
+                success: function (result) {
+                    $('#TongCongDon'+tt).val(
+                        parseFloat(result).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })
+                    );
+                    changeCongDon(result,tt);
+                },
+               error: function (result) {
+               alert('Mã số thuế không tồn tại!');
+             }
+            });
+          }
+        if(tt==2||tt==8||tt==14||tt==15){
+            var tong = 0;
+            var value2 = getValue($('#ThthangTruoc'+2).val());
+            if(checkNumber(value2)){
+                tong = tong + value2;
+            }
+            var value8 = getValue($('#ThthangTruoc'+8).val());
+            if(checkNumber(value8)){
+                tong = tong + value8;
+            }
+            var value14 = getValue($('#ThthangTruoc'+14).val());
+            if(checkNumber(value14)){
+                tong = tong + value14;
+            }
+            var value15 = getValue($('#ThthangTruoc'+15).val());
+            if(checkNumber(value15)){
+                tong = tong + value15;
+            }
+            $("#ThthangTruoc0").val(
+            parseFloat(tong).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })
+            );
+        }
+    }
+    function changeDuTinh(tt){
+        var value = parseFloat($('#DuTinh'+tt).val());
+
+        if((!isNaN(value) && $('#DuTinh'+tt).val() === '' + value)){
+            var stt = $('#stt'+tt).val();        
+            var mst = $('#MST1').val();
+            var duTinh = $('#ThthangTruoc'+tt).val();
+            $.ajax({
+                type: 'POST',
+                url: '/get-tong',
+                data: "mast=" + mst + "&stt="+stt+"&thangTrc="+duTinh+"&duTinh="+value,
+                success: function (result) {
+                    $('#TongCongDon'+tt).val(
+                        parseFloat(result).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })
+                    );
+                    changeCongDon(result,tt);
+                },
+               error: function (result) {
+               alert('Mã số thuế không tồn tại!');
+             }
+            });
+          }
+          if(tt==2||tt==8||tt==14||tt==15){
+            var tong = 0;
+            var value2 = getValue($('#DuTinh'+2).val());
+            if(checkNumber(value2)){
+                tong = tong + value2;
+            }
+            var value8 = getValue($('#DuTinh'+8).val());
+            if(checkNumber(value8)){
+                tong = tong + value8;
+            }
+            var value14 = getValue($('#DuTinh'+14).val());
+            if(checkNumber(value14)){
+                tong = tong + value14;
+            }
+            var value15 = getValue($('#DuTinh'+15).val());
+            if(checkNumber(value15)){
+                tong = tong + value15;
+            }
+            $("#DuTinh0").val(
+            parseFloat(tong).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })
+            );
+        }
+    }
+
+    function changeCongDon(result,tt){
+
+        if(tt==2||tt==8||tt==14||tt==15){
+            var tong = 0;
+            if(checkNumber($('#TongCongDon2').val())){
+                tong = tong + getValue($('#TongCongDon2').val());
+            }
+            if(checkNumber($('#TongCongDon8').val())){
+                tong = tong + getValue($('#TongCongDon8').val());
+            }
+            if(checkNumber($('#TongCongDon14').val())){
+                tong = tong + getValue($('#TongCongDon14').val());
+            }
+            if(checkNumber($('#TongCongDon').val())){
+                tong = tong + getValue($('#TongCongDon15').val());
+            }
+            $("#TongCongDon0").val(
+                parseFloat(tong).toLocaleString('en-US', {
+                        style: 'decimal',
+                        maximumFractionDigits: 2,
+                        minimumFractionDigits: 2
+                      })
+            );
+        }
+    }
+    */
+    function checkNumber(str) {
+        return /[0-9,.\-$]+/.test(str);
+    }
+    function getValue(str){
+       return Number(str.replace(/[^0-9.-]+/g,""));
+    }
+</script>

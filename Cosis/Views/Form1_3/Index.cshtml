@@ -285,9 +285,9 @@
                 />
               </div>
               <label for="">Tên ngành HĐKD:</label>
-              <input type="text" class="infoma-nganh" style="width: 40%;"/>
+              <input type="text" readonly class="infoma-nganh" style="width: 40%;"/>
             </div>
-          </div>
+          </div>    
         </div>
         <div class="form-group bg-primary">
           <h5><b>B. KẾT QUẢ HOẠT ĐỘNG KINH DOANH</b></h5>
@@ -337,7 +337,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[1].ThthangTruoc" id="ThthangTruoc2" oninput="changeThthangTruoc(2)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[1].DuTinh" id="DuTinh2" oninput="changeDuTinh(2)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[1].TongCongDon" id="TongCongDon2" oninput="changeCongDon(2)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[1].TongCongDon" id="TongCongDon2" oninput="changeCongDon(2)" class="infomal" /></td>
             </tr>
             <tr>
               <td>3.Số lượt khách vận chuyển<input type="hidden" id="stt3" name="Detail[2].Stt" value="3."/>
@@ -349,7 +349,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[2].ThthangTruoc" id="ThthangTruoc3" oninput="changeThthangTruoc(3)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[2].DuTinh" id="DuTinh3" oninput="changeDuTinh(3)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[2].TongCongDon" id="TongCongDon3" oninput="changeCongDon(3)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[2].TongCongDon" id="TongCongDon3" oninput="changeCongDon(3)" class="infomal" /></td>
             </tr>
             <tr>
               <td class="p-1"><i>3.1.Trong đó: Ngoài nước</i>
@@ -359,9 +359,11 @@
               <td class="text-center">Lượt khách
                   <input type="hidden" name="Detail[3].Dvt" value="Lượt khách"/>  
               </td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[3].ThthangTruoc" id="ThthangTruoc3_1" oninput="changeThthangTruoc('3_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required id="ThthangTruoc3_1" name="Detail[3].ThthangTruoc" oninput="changeThthangTruoc('3_1')" class="infomal" />
+               
+              </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[3].DuTinh" id="DuTinh3_1" oninput="changeDuTinh('3_1')" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[3].TongCongDon" id="TongCongDon3_1" oninput="changeCongDon('3_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[3].TongCongDon" id="TongCongDon3_1" oninput="changeCongDon('3_1')" class="infomal" /></td>
             </tr>
             <tr>
               <td>4.Số lượt hành khách luân chuyển
@@ -373,7 +375,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[4].ThthangTruoc" id="ThthangTruoc4" oninput="changeThthangTruoc(4)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[4].DuTinh" id="DuTinh4" oninput="changeDuTinh(4)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[4].TongCongDon" id="TongCongDon4" oninput="changeCongDon(4)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[4].TongCongDon" id="TongCongDon4" oninput="changeCongDon(4)" class="infomal" /></td>
             </tr>
             <tr>
               <td class="p-1"><i>4.1.Trong đó: Ngoài nước</i>
@@ -385,7 +387,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[5].ThthangTruoc" id="ThthangTruoc4_1" oninput="changeThthangTruoc('4_1')" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[5].DuTinh" id="DuTinh4_1" oninput="changeDuTinh('4_1')" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[5].TongCongDon" id="TongCongDon4_1" oninput="changeCongDon('4_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[5].TongCongDon" id="TongCongDon4_1" oninput="changeCongDon('4_1')" class="infomal" /></td>
             </tr>
             <tr>
               <td>5.Đơn giá bình quân
@@ -397,7 +399,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[6].ThthangTruoc" id="ThthangTruoc5" oninput="changeThthangTruoc(5)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[6].DuTinh" id="DuTinh5" oninput="changeDuTinh(5)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[6].TongCongDon" id="TongCongDon5" oninput="changeCongDon(5)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[6].TongCongDon" id="TongCongDon5" oninput="changeCongDon(5)" class="infomal" /></td>
             </tr>
             <tr>
               <td>6.Tổng số phương tiện đang hoạt động
@@ -409,7 +411,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[7].ThthangTruoc" id="ThthangTruoc6" oninput="changeThthangTruoc(6)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[7].DuTinh" id="DuTinh6" oninput="changeDuTinh(6)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[7].TongCongDon" id="TongCongDon6" oninput="changeCongDon(6)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[7].TongCongDon" id="TongCongDon6" oninput="changeCongDon(6)" class="infomal" /></td>
             </tr>
             <tr>
               <td>7.Tổng tải trọng
@@ -421,7 +423,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[8].ThthangTruoc" id="ThthangTruoc7" oninput="changeThthangTruoc(7)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[8].DuTinh" id="DuTinh7" oninput="changeDuTinh(7)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[8].TongCongDon" id="TongCongDon7" oninput="changeCongDon(7)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[8].TongCongDon" id="TongCongDon7" oninput="changeCongDon(7)" class="infomal" /></td>
             </tr>
             <tr>
               <th attr colspan="5">II.Hoạt động vận tải hàng hoá</th>
@@ -436,7 +438,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[9].ThthangTruoc" id="ThthangTruoc8" oninput="changeThthangTruoc(8)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[9].DuTinh" id="DuTinh8" oninput="changeDuTinh(8)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[9].TongCongDon" id="TongCongDon8" oninput="changeCongDon(8)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[9].TongCongDon" id="TongCongDon8" oninput="changeCongDon(8)" class="infomal" /></td>
             </tr>
             <tr>
               <td>9.Khối lượng hàng hóa vận chuyển
@@ -448,7 +450,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[10].ThthangTruoc" id="ThthangTruoc9" oninput="changeThthangTruoc(9)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[10].DuTinh" id="DuTinh9" oninput="changeDuTinh(9)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[10].TongCongDon" id="TongCongDon9" oninput="changeCongDon(9)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[10].TongCongDon" id="TongCongDon9" oninput="changeCongDon(9)" class="infomal" /></td>
             </tr>
             <tr>
               <td class="p-1"><i>9.1.Trong đó: Ngoài nước</i>
@@ -460,7 +462,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[11].ThthangTruoc" id="ThthangTruoc9_1" oninput="changeThthangTruoc('9_1')" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[11].DuTinh" id="DuTinh9_1" oninput="changeDuTinh('9_1')" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[11].TongCongDon" id="TongCongDon9_1" oninput="changeCongDon('9_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[11].TongCongDon" id="TongCongDon9_1" oninput="changeCongDon('9_1')" class="infomal" /></td>
             </tr>
             <tr>
               <td>10.Khối lượng hàng hóa luân chuyển
@@ -472,7 +474,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[12].ThthangTruoc" id="ThthangTruoc10" oninput="changeThthangTruoc(10)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[12].DuTinh" id="DuTinh10" oninput="changeDuTinh(10)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[12].TongCongDon" id="TongCongDon10" oninput="changeCongDon(10)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[12].TongCongDon" id="TongCongDon10" oninput="changeCongDon(10)" class="infomal" /></td>
             </tr>
             <tr>
               <td class="p-1"><i>10.1.Trong đó: Ngoài nước</i>
@@ -484,7 +486,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[13].ThthangTruoc" id="ThthangTruoc10_1" oninput="changeThthangTruoc('10_1')" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[13].DuTinh" id="DuTinh10_1" oninput="changeDuTinh('10_1')" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[13].TongCongDon" id="TongCongDon10_1" oninput="changeCongDon('10_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[13].TongCongDon" id="TongCongDon10_1" oninput="changeCongDon('10_1')" class="infomal" /></td>
             </tr>
             <tr>
                <td>11.Đơn giá bình quân
@@ -496,7 +498,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[14].ThthangTruoc" id="ThthangTruoc11" oninput="changeThthangTruoc(11)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[14].DuTinh" id="DuTinh11" oninput="changeDuTinh(11)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[14].TongCongDon" id="TongCongDon11" oninput="changeCongDon(11)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[14].TongCongDon" id="TongCongDon11" oninput="changeCongDon(11)" class="infomal" /></td>
             </tr>
             <tr>
              <td>12.Khối lượng hàng hóa luân chuyển
@@ -508,7 +510,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[15].ThthangTruoc" id="ThthangTruoc12" oninput="changeThthangTruoc(12)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[15].DuTinh" id="DuTinh12" oninput="changeDuTinh(12)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[15].TongCongDon" id="TongCongDon12" oninput="changeCongDon(12)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[15].TongCongDon" id="TongCongDon12" oninput="changeCongDon(12)" class="infomal" /></td>
             </tr>
             <tr>
                 <td>13.Tổng tải trọng
@@ -520,7 +522,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[16].ThthangTruoc" id="ThthangTruoc13" oninput="changeThthangTruoc(13)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[16].DuTinh" id="DuTinh13" oninput="changeDuTinh(13)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[16].TongCongDon" id="TongCongDon13" oninput="changeCongDon(13)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[16].TongCongDon" id="TongCongDon13" oninput="changeCongDon(13)" class="infomal" /></td>
             </tr>
             <tr>
               <th attr colspan="5">
@@ -538,7 +540,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[17].ThthangTruoc" id="ThthangTruoc14" oninput="changeThthangTruoc(14)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[17].DuTinh" id="DuTinh14" oninput="changeDuTinh(14)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[17].TongCongDon" id="TongCongDon14" oninput="changeCongDon(14)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[17].TongCongDon" id="TongCongDon14" oninput="changeCongDon(14)" class="infomal" /></td>
             </tr>
             <tr>
               <th attr colspan="5">
@@ -555,7 +557,7 @@
               </td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[18].ThthangTruoc" id="ThthangTruoc15" oninput="changeThthangTruoc(15)" class="infomal" /></td>
               <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[18].DuTinh" id="DuTinh15" oninput="changeDuTinh(15)" class="infomal" /></td>
-              <td><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[18].TongCongDon" id="TongCongDon15" oninput="changeCongDon(15)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[18].TongCongDon" id="TongCongDon15" oninput="changeCongDon(15)" class="infomal" /></td>
             </tr>
           </tbody>
         </table>

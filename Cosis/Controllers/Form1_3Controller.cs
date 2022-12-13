@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -381,6 +382,7 @@ namespace Cosis.Controllers
 
         public List<NganhKinhDoanh> GetNganhKinhDoanhs(string MaSoThue, string MaSoThue2)
         {
+            CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
             FormCosisContext context = new FormCosisContext();
             return
             context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue ='" + MaSoThue + "' and MaSoThue2='" + MaSoThue2 + "'").ToList();
