@@ -1372,7 +1372,8 @@ $('.infomal').on('blur', function() {
         });
        }else if(tt==9){
            $('#DuTinh9_1').attr({
-            ""max"" : $('#DuTinh'+tt).val()");
+            ""max"" : $('#DuTinh'+tt).val()
+");
             WriteLiteral(@"
         });
        }
