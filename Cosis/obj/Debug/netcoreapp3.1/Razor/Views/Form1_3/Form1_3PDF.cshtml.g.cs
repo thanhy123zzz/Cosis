@@ -13,21 +13,21 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 1 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 2 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 3 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis.Models.Entities;
 
 #line default
@@ -73,7 +73,7 @@ using Cosis.Models.Entities;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 2 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 2 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
   
     Layout = null;
     FormCosisContext context = new FormCosisContext();
@@ -156,7 +156,7 @@ using Cosis.Models.Entities;
                     EndWriteAttribute();
                     WriteLiteral(">Mã số thuế</label>\r\n                <div class=\"row\">\r\n");
 #nullable restore
-#line 44 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 44 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                      for(int i = 0; i < 10; i++){
 
 #line default
@@ -172,7 +172,7 @@ using Cosis.Models.Entities;
                            data-next=""1""");
                     BeginWriteAttribute("value", " \r\n                           value=\"", 1870, "\"", 1944, 1);
 #nullable restore
-#line 53 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 53 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
 WriteAttributeValue("", 1907, Model.Master.MaSoThue.Substring(i,1), 1907, 37, false);
 
 #line default
@@ -181,7 +181,7 @@ WriteAttributeValue("", 1907, Model.Master.MaSoThue.Substring(i,1), 1907, 37, fa
                     EndWriteAttribute();
                     WriteLiteral("\r\n                           />\r\n");
 #nullable restore
-#line 55 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 55 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                     }
 
 #line default
@@ -189,7 +189,7 @@ WriteAttributeValue("", 1907, Model.Master.MaSoThue.Substring(i,1), 1907, 37, fa
 #nullable disable
                     WriteLiteral("                </div>\r\n                <div class=\"row\">\r\n");
 #nullable restore
-#line 58 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 58 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                      for(int i=0;i<3;i++){
 
 
@@ -205,7 +205,7 @@ WriteAttributeValue("", 1907, Model.Master.MaSoThue.Substring(i,1), 1907, 37, fa
                            data-next=""11""");
                     BeginWriteAttribute("value", " \r\n                           value=\"", 2401, "\"", 2476, 1);
 #nullable restore
-#line 67 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 67 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
 WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, false);
 
 #line default
@@ -214,7 +214,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
                     EndWriteAttribute();
                     WriteLiteral("\r\n                           />\r\n");
 #nullable restore
-#line 69 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 69 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                     }
 
 #line default
@@ -241,7 +241,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
                 <div>
                     <label> <b>Tháng ");
 #nullable restore
-#line 89 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 89 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                 Write(Model.Master.NgayTao.Value.Month);
 
 #line default
@@ -249,7 +249,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral(" Năm ");
 #nullable restore
-#line 89 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 89 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                                       Write(Model.Master.NgayTao.Value.Year);
 
 #line default
@@ -267,7 +267,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
                     <label class=""lb-info"">Tên doanh nghiệp/HTX: </label>
                     <label>");
 #nullable restore
-#line 99 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 99 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                       Write(Model.Master.Ten);
 
 #line default
@@ -278,7 +278,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
                     EndWriteAttribute();
                     WriteLiteral(">Địa chỉ doanh nghiệp </label>\r\n                    <div class=\"adress-detail\">\r\n                        <div class=\"row\">\r\n                            <label class=\"lb-info\">Tỉnh/TP trực thuộc TW: </label>\r\n                            <label>");
 #nullable restore
-#line 106 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 106 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                               Write(getTinh(Model.Master.MaTinhTp));
 
 #line default
@@ -292,7 +292,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
                             </label>
                             <label>");
 #nullable restore
-#line 112 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 112 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                               Write(getHuyen(Model.Master.MaQuanHuyen));
 
 #line default
@@ -300,7 +300,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral("</label>\r\n                        </div>\r\n                        <div class=\"row\">\r\n                            <label class=\"lb-info\">Xã/phường/thị trấn: </label>\r\n                            <label>");
 #nullable restore
-#line 116 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 116 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                               Write(getXa(Model.Master.MaPhuongXa));
 
 #line default
@@ -314,7 +314,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
                             </label>
                             <label>");
 #nullable restore
-#line 122 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 122 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                               Write(Model.Master.DiaChiCuThe);
 
 #line default
@@ -322,7 +322,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral("</label>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <label class=\"lb-info\">Số điện thoại: </label>\r\n                    <label>");
 #nullable restore
-#line 128 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 128 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                       Write(Model.Master.Sdt);
 
 #line default
@@ -330,7 +330,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral("</label>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <label class=\"lb-info\">Email: </label>\r\n                    <label>");
 #nullable restore
-#line 132 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 132 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                       Write(Model.Master.Email);
 
 #line default
@@ -338,7 +338,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral("</label>\r\n                </div>\r\n                <div class=\"loaihinh\">\r\n                    <div class=\"checkbox-tt\">\r\n");
 #nullable restore
-#line 136 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 136 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                          if (Model.Master.MaLh.Trim() == "01")
                         {
 
@@ -347,7 +347,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral("                         <label>Loại hình kinh tế: Kinh tế nhà nước</label>\r\n");
 #nullable restore
-#line 139 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 139 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                         }
                         else if (Model.Master.MaLh.Trim() == "02")
                         {
@@ -357,7 +357,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral("                            <label>Loại hình kinh tế: Kinh tế ngoài nhà nước</label>\r\n");
 #nullable restore
-#line 143 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 143 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                         }
                         else if (Model.Master.MaLh.Trim() == "03")
                         {
@@ -367,7 +367,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral("                            <label>Loại hình kinh tế: Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>\r\n");
 #nullable restore
-#line 147 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 147 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                         }
 
 #line default
@@ -376,7 +376,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
                     WriteLiteral("                    </div>\r\n");
                     WriteLiteral("                </div>\r\n                <div class=\"nganhKD row\">\r\n                    <label class=\"nganh-lb\">Ngành hoạt động kinh doanh</label>\r\n                    <div class=\"nganh-ct\">\r\n");
 #nullable restore
-#line 162 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 162 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                          foreach(NganhKinhDoanh a in ViewBag.NganhKinhDoanh){
 
 #line default
@@ -384,7 +384,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
 #nullable disable
                     WriteLiteral("                        <div class=\"row\">\r\n                            \r\n                            <div class=\"MNHD row\">\r\n");
 #nullable restore
-#line 166 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 166 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                      for (int i =0; i<5;i++)
                                     {
 
@@ -394,7 +394,7 @@ WriteAttributeValue("", 2438, Model.Master.MaSoThue2.Substring(i,1), 2438, 38, f
                     WriteLiteral("                                       <input type=\"text\"\r\n                                       maxlength=\"1\"\r\n                                       size=\"1\"\r\n                                       class=\"text-center MN\"");
                     BeginWriteAttribute("value", " \r\n                                       value = \"", 7416, "\"", 7492, 1);
 #nullable restore
-#line 172 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 172 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
 WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 
 #line default
@@ -403,7 +403,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
                     EndWriteAttribute();
                     WriteLiteral("\r\n                                       />\r\n");
 #nullable restore
-#line 174 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 174 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                     }
 
 #line default
@@ -414,7 +414,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
                     EndWriteAttribute();
                     WriteLiteral(">Tên ngành HĐKD:  ");
 #nullable restore
-#line 176 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 176 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                       Write(getNganhHoatDongKinhDoanh(a.MaNganh).TenNganh);
 
 #line default
@@ -422,7 +422,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</label>\r\n                        </div>\r\n");
 #nullable restore
-#line 178 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 178 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                         }
 
 #line default
@@ -452,11 +452,10 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
                         <td>B</td>
                         <td>1</td>
                         <td>2</td>
-                        <td>3</td>
-");
+                        <td>3</td>");
                     WriteLiteral("\n                    </tr>\r\n                    <tr>\r\n                        <td>");
 #nullable restore
-#line 206 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 206 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                        Write(Model.Detail[0].Stt);
 
 #line default
@@ -464,7 +463,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral(" ");
 #nullable restore
-#line 206 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 206 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                             Write(Model.Detail[0].TenCt);
 
 #line default
@@ -472,7 +471,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        <td class=\"text-center\">");
 #nullable restore
-#line 207 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 207 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                            Write(Model.Detail[0].Dvt);
 
 #line default
@@ -480,7 +479,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        <td class=\"text-center\">");
 #nullable restore
-#line 208 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 208 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                            Write(Model.Detail[0].ThthangTruoc);
 
 #line default
@@ -488,7 +487,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        <td class=\"text-center\">");
 #nullable restore
-#line 209 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 209 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                            Write(Model.Detail[0].DuTinh);
 
 #line default
@@ -496,7 +495,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        <td class=\"text-center\">");
 #nullable restore
-#line 210 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 210 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                            Write(Model.Detail[0].TongCongDon);
 
 #line default
@@ -504,7 +503,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <th attr colspan=\"5\">I. Hoạt động vận tải hành khách</th>\r\n                    </tr>\r\n");
 #nullable restore
-#line 215 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 215 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                      for(int i = 1;i<=8;i++){
 
 #line default
@@ -512,7 +511,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("                    <tr>\r\n                        <td>");
 #nullable restore
-#line 217 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 217 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                        Write(Model.Detail[i].Stt);
 
 #line default
@@ -520,7 +519,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral(" ");
 #nullable restore
-#line 217 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 217 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                             Write(Model.Detail[i].TenCt);
 
 #line default
@@ -528,7 +527,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        <td class=\"text-center\">");
 #nullable restore
-#line 218 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 218 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                            Write(Model.Detail[i].Dvt);
 
 #line default
@@ -536,7 +535,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        <td class=\"text-center\">");
 #nullable restore
-#line 219 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 219 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                            Write(Model.Detail[i].ThthangTruoc);
 
 #line default
@@ -544,7 +543,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        <td class=\"text-center\">");
 #nullable restore
-#line 220 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 220 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                            Write(Model.Detail[i].DuTinh);
 
 #line default
@@ -552,7 +551,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        <td class=\"text-center\">");
 #nullable restore
-#line 221 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 221 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                            Write(Model.Detail[i].TongCongDon);
 
 #line default
@@ -560,7 +559,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                    </tr>\r\n");
 #nullable restore
-#line 223 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 223 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                     }
 
 #line default
@@ -568,7 +567,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("                    <tr>\r\n                        <th attr colspan=\"5\">II.Hoạt động vận tải hàng hóa</th>\r\n                    </tr>\r\n");
 #nullable restore
-#line 227 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 227 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                      for (int i = 9; i <= 16; i++)
                     {
 
@@ -577,7 +576,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("                        <tr>\r\n                            <td>");
 #nullable restore
-#line 230 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 230 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                            Write(Model.Detail[i].Stt);
 
 #line default
@@ -585,7 +584,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral(" ");
 #nullable restore
-#line 230 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 230 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                 Write(Model.Detail[i].TenCt);
 
 #line default
@@ -593,7 +592,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                            <td class=\"text-center\">");
 #nullable restore
-#line 231 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 231 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                Write(Model.Detail[i].Dvt);
 
 #line default
@@ -601,7 +600,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                            <td class=\"text-center\">");
 #nullable restore
-#line 232 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 232 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                Write(Model.Detail[i].ThthangTruoc);
 
 #line default
@@ -609,7 +608,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                            <td class=\"text-center\">");
 #nullable restore
-#line 233 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 233 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                Write(Model.Detail[i].DuTinh);
 
 #line default
@@ -617,7 +616,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                            <td class=\"text-center\">");
 #nullable restore
-#line 234 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 234 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                Write(Model.Detail[i].TongCongDon);
 
 #line default
@@ -625,7 +624,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        </tr>\r\n");
 #nullable restore
-#line 236 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 236 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                     }
 
 #line default
@@ -633,7 +632,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("                    <tr>\r\n                        <th attr colspan=\"5\">\r\n                            III.Hoạt động kho bãi, dịch vụ hỗ trợ vận tải của ");
 #nullable restore
-#line 239 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 239 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                                          Write(Model.Master.ThangThucHien);
 
 #line default
@@ -641,7 +640,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("\r\n                            và ");
 #nullable restore
-#line 240 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 240 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                           Write(Model.Master.ThangDuTinh);
 
 #line default
@@ -649,7 +648,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("\r\n                        </th>\r\n                    </tr>\r\n                        <tr>\r\n                            <td>");
 #nullable restore
-#line 244 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 244 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                            Write(Model.Detail[17].Stt);
 
 #line default
@@ -657,7 +656,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral(" ");
 #nullable restore
-#line 244 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 244 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                  Write(Model.Detail[17].TenCt);
 
 #line default
@@ -665,7 +664,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                            <td class=\"text-center\">");
 #nullable restore
-#line 245 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 245 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                Write(Model.Detail[17].Dvt);
 
 #line default
@@ -673,7 +672,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                            <td class=\"text-center\">");
 #nullable restore
-#line 246 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 246 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                Write(Model.Detail[17].ThthangTruoc);
 
 #line default
@@ -681,7 +680,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                            <td class=\"text-center\">");
 #nullable restore
-#line 247 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 247 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                Write(Model.Detail[17].DuTinh);
 
 #line default
@@ -689,7 +688,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                            <td class=\"text-center\">");
 #nullable restore
-#line 248 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 248 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                Write(Model.Detail[17].TongCongDon);
 
 #line default
@@ -697,7 +696,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                        </tr>\r\n                    <tr>\r\n                        <th attr colspan=\"5\">\r\n                            IV.Hoạt động bưu chính, chuyển phát của ");
 #nullable restore
-#line 252 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 252 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                                Write(Model.Master.ThangThucHien);
 
 #line default
@@ -705,7 +704,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral(" và ");
 #nullable restore
-#line 252 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 252 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                                                                               Write(Model.Master.ThangDuTinh);
 
 #line default
@@ -713,7 +712,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral(" là bao nhiêu?\r\n                        </th>\r\n                    </tr>\r\n                    <tr>\r\n                       <td>");
 #nullable restore
-#line 256 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 256 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                       Write(Model.Detail[18].Stt);
 
 #line default
@@ -721,7 +720,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral(" ");
 #nullable restore
-#line 256 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 256 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                             Write(Model.Detail[18].TenCt);
 
 #line default
@@ -729,7 +728,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                       <td class=\"text-center\">");
 #nullable restore
-#line 257 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 257 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                           Write(Model.Detail[18].Dvt);
 
 #line default
@@ -737,7 +736,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                       <td class=\"text-center\">");
 #nullable restore
-#line 258 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 258 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                           Write(Model.Detail[18].ThthangTruoc);
 
 #line default
@@ -745,7 +744,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                       <td class=\"text-center\">");
 #nullable restore
-#line 259 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 259 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                           Write(Model.Detail[18].DuTinh);
 
 #line default
@@ -753,7 +752,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</td>\r\n                       <td class=\"text-center\">");
 #nullable restore
-#line 260 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 260 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                           Write(Model.Detail[18].TongCongDon);
 
 #line default
@@ -772,7 +771,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
                     EndWriteAttribute();
                     WriteLiteral(">\r\n                    Yếu tố nào sau đây ảnh hưởng đến hoạt động kinh doanh của đơn vị\r\n                    trong tháng ");
 #nullable restore
-#line 270 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 270 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                            Write(Model.Master.ThangThucHien);
 
 #line default
@@ -780,7 +779,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("\r\n                </label>\r\n                <div class=\"YTAH\">\r\n                    <div class=\"YTAH-tt\">\r\n");
 #nullable restore
-#line 274 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 274 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                          for(int i=0;i<Model.DanhSachNhanToAnhHuong.Count;i++)
                         {
 
@@ -792,7 +791,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
                     EndWriteAttribute();
                     WriteLiteral(">");
 #nullable restore
-#line 276 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 276 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                     Write(i);
 
 #line default
@@ -800,7 +799,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral(". ");
 #nullable restore
-#line 276 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 276 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                                         Write(nhanToAnhHuong(@Model.DanhSachNhanToAnhHuong[i].MaAh).NoiDungAh);
 
 #line default
@@ -808,7 +807,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable disable
                     WriteLiteral("</label>\r\n");
 #nullable restore
-#line 277 "D:\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
+#line 277 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                         }
 
 #line default
@@ -835,6 +834,7 @@ WriteAttributeValue("", 7467, a.MaNganh.Substring(i,1), 7467, 25, false);
 #nullable restore
 #line 285 "D:\ProjectC#\Cosis\Cosis\Views\Form1_3\Form1_3PDF.cshtml"
                 }
+
 #line default
 #line hidden
 #nullable disable

@@ -13,21 +13,21 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 1 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 3 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis.Models.Entities;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 1 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 using Cosis.Models;
 
 #line default
@@ -65,7 +65,7 @@ using Cosis.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 3 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 3 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
   
     FormCosisContext context = new FormCosisContext();
    /* TinhTp getTinh(string idTinh){
@@ -96,7 +96,7 @@ using Cosis.Models;
             WriteLiteral("<div id=\"ThongTinDoanhNghiepGroup\" class=\"form-group\">\r\n          <div class=\"row\">\r\n            <label class=\"lb-info\">Tên doanh nghiệp/HTX: </label>\r\n            <input type=\"text\"");
             BeginWriteAttribute("value", " value=\"", 964, "\"", 993, 1);
 #nullable restore
-#line 30 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 30 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 972, Model.TenDoanhNghiep, 972, 21, false);
 
 #line default
@@ -188,7 +188,7 @@ WriteAttributeValue("", 972, Model.TenDoanhNghiep, 972, 21, false);
                 <input name=""Master.DiaChiCuThe"" type=""text""");
             BeginWriteAttribute("value", " value=\"", 2579, "\"", 2605, 1);
 #nullable restore
-#line 61 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 61 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 2587, Model.DiaChiCuThe, 2587, 18, false);
 
 #line default
@@ -198,7 +198,7 @@ WriteAttributeValue("", 2587, Model.DiaChiCuThe, 2587, 18, false);
             WriteLiteral(" class=\"infoma\" />\r\n              </div>\r\n            </div>\r\n          </div>\r\n          <div class=\"row\">\r\n            <label class=\"lb-info\">Số điện thoại: </label>\r\n            <input name=\"Master.Sdt\" type=\"text\"");
             BeginWriteAttribute("value", " value=\"", 2823, "\"", 2852, 1);
 #nullable restore
-#line 67 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 67 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 2831, Model.SdtdoanhNghiep, 2831, 21, false);
 
 #line default
@@ -208,7 +208,7 @@ WriteAttributeValue("", 2831, Model.SdtdoanhNghiep, 2831, 21, false);
             WriteLiteral(" class=\"infoma\" />\r\n          </div>\r\n          <div class=\"row\">\r\n            <label class=\"lb-info\">Email: </label>\r\n            <input name=\"Master.Email\" type=\"text\"");
             BeginWriteAttribute("value", " value=\"", 3022, "\"", 3042, 1);
 #nullable restore
-#line 71 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 71 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 
 #line default
@@ -228,7 +228,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
             <div class=""checkbox"">
 ");
 #nullable restore
-#line 82 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 82 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
                  if(Model.MaLh.Trim()=="01"){
 
 #line default
@@ -236,7 +236,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 #nullable disable
             WriteLiteral("                    <input type=\"radio\" checked name=\"Master.MaLh\" value=\"01\"/>\r\n");
 #nullable restore
-#line 84 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 84 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
             }
             else{
 
@@ -245,14 +245,14 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 #nullable disable
             WriteLiteral("                        <input type=\"radio\" name=\"Master.MaLh\" value=\"01\"/>\r\n");
 #nullable restore
-#line 87 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 87 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
             } 
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 88 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 88 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
              if (Model.MaLh.Trim() == "02")
             {
 
@@ -261,7 +261,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 #nullable disable
             WriteLiteral("                        <input type=\"radio\" checked name=\"Master.MaLh\" value=\"02\"/>\r\n");
 #nullable restore
-#line 91 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 91 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
             }
             else{
 
@@ -270,7 +270,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 #nullable disable
             WriteLiteral("                        <input type=\"radio\" name=\"Master.MaLh\" value=\"02\"/>\r\n");
 #nullable restore
-#line 94 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 94 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
             } 
 
 #line default
@@ -278,7 +278,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 #nullable disable
             WriteLiteral("            \r\n");
 #nullable restore
-#line 96 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 96 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
              if (Model.MaLh.Trim() == "03") {
 
 #line default
@@ -286,7 +286,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 #nullable disable
             WriteLiteral("                   <input type=\"radio\" checked name=\"Master.MaLh\" value=\"03\"/>\r\n");
 #nullable restore
-#line 98 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 98 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
             }else{
 
 #line default
@@ -294,7 +294,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 #nullable disable
             WriteLiteral("                    <input type=\"radio\" name=\"Master.MaLh\" value=\"03\"/>\r\n");
 #nullable restore
-#line 100 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 100 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
             }
 
 #line default
@@ -305,7 +305,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
             EndWriteAttribute();
             WriteLiteral(">Ngành hoạt động kinh doanh</label>\r\n    <div class=\"nganh-ct\">\r\n");
 #nullable restore
-#line 106 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 106 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
           
             int i= 0;
         
@@ -314,7 +314,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 109 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 109 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
          foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.MaSoThue, Model.MaSoThue2))
         {
             
@@ -325,7 +325,7 @@ WriteAttributeValue("", 3030, Model.Email, 3030, 12, false);
             WriteLiteral("                <div class=\"row\">\r\n                   <div class=\"MNHD row\">\r\n                      <input");
             BeginWriteAttribute("value", " value=\"", 4668, "\"", 4705, 1);
 #nullable restore
-#line 114 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 114 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 4676, nganh.MaNganh.Substring(0,1), 4676, 29, false);
 
 #line default
@@ -335,7 +335,7 @@ WriteAttributeValue("", 4676, nganh.MaNganh.Substring(0,1), 4676, 29, false);
             WriteLiteral(" type=\"text\"\r\n                         maxlength=\"1\"\r\n                         size=\"1\"\r\n                         class=\"text-center MN\"/>\r\n                        <input");
             BeginWriteAttribute("value", " value=\"", 4876, "\"", 4913, 1);
 #nullable restore
-#line 118 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 118 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 4884, nganh.MaNganh.Substring(1,1), 4884, 29, false);
 
 #line default
@@ -345,7 +345,7 @@ WriteAttributeValue("", 4884, nganh.MaNganh.Substring(1,1), 4884, 29, false);
             WriteLiteral("\r\n                      type=\"text\"\r\n                      maxlength=\"1\"\r\n                      size=\"1\"\r\n                      class=\"text-center MN\"\r\n                    />\r\n                        <input");
             BeginWriteAttribute("value", " value=\"", 5120, "\"", 5157, 1);
 #nullable restore
-#line 124 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 124 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 5128, nganh.MaNganh.Substring(2,1), 5128, 29, false);
 
 #line default
@@ -355,7 +355,7 @@ WriteAttributeValue("", 5128, nganh.MaNganh.Substring(2,1), 5128, 29, false);
             WriteLiteral("\r\n                      type=\"text\"\r\n                      maxlength=\"1\"\r\n                      size=\"1\"\r\n                      class=\"text-center MN\"\r\n                    />\r\n                        <input");
             BeginWriteAttribute("value", " value=\"", 5364, "\"", 5401, 1);
 #nullable restore
-#line 130 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 130 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 5372, nganh.MaNganh.Substring(3,1), 5372, 29, false);
 
 #line default
@@ -365,7 +365,7 @@ WriteAttributeValue("", 5372, nganh.MaNganh.Substring(3,1), 5372, 29, false);
             WriteLiteral("\r\n                      type=\"text\"\r\n                      maxlength=\"1\"\r\n                      size=\"1\"\r\n                      class=\"text-center MN\"\r\n                        />\r\n                        <input");
             BeginWriteAttribute("value", " value=\"", 5612, "\"", 5649, 1);
 #nullable restore
-#line 136 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 136 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 WriteAttributeValue("", 5620, nganh.MaNganh.Substring(4,1), 5620, 29, false);
 
 #line default
@@ -385,7 +385,7 @@ WriteAttributeValue("", 5620, nganh.MaNganh.Substring(4,1), 5620, 29, false);
 #nullable disable
             WriteLiteral("</label>\r\n                  \r\n                </div>\r\n");
 #nullable restore
-#line 146 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 146 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
             }
 
 #line default
@@ -401,7 +401,7 @@ var districts = document.getElementById(""district"");
 var wards = document.getElementById(""ward"");
 
 var Parameter = {
-  url: ""https://localhost:5001/assets/DiaChi.json"", 
+  url: ""https://localhost:44358/assets/DiaChi.json"", 
   method: ""GET"", 
   responseType: ""application/json"", 
 };
@@ -414,7 +414,7 @@ function renderCity(data) {
   for (const x of data) {
       if(x.Id == ");
 #nullable restore
-#line 168 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 168 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
             Write(Html.Raw(Model.MaTinhTp.Trim()));
 
 #line default
@@ -422,7 +422,7 @@ function renderCity(data) {
 #nullable disable
             WriteLiteral("){\r\n            citis.options[citis.options.length] = new Option(x.Name, x.Id,true,true);\r\n            const result = data.filter(n => n.Id === x.Id);\r\n\r\n            for (const k of result[0].Districts) {\r\n                if(k.Id == ");
 #nullable restore
-#line 173 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 173 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
                       Write(Html.Raw(Model.MaQuanHuyen.Trim()));
 
 #line default
@@ -435,7 +435,7 @@ function renderCity(data) {
                       for (const w of dataWards) {
                           if(w.Id==");
 #nullable restore
-#line 178 "D:\Cosis\Cosis\Views\Shared\_Master.cshtml"
+#line 178 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
                               Write(Html.Raw(Model.MaPhuongXa.Trim()));
 
 #line default
