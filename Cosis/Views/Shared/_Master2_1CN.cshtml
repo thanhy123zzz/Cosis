@@ -61,7 +61,7 @@
   </div>
   <div class="row">
     <label class="lb-info">Tên cơ sở: </label>
-    <input readonly type="text" value="@Model.TenCoSo" class="infoma" />
+    <input readonly type="text" name="Master.Ten" value="@Model.TenCoSo" class="infoma" />
     </div>
     @if(ExistMSTInTTCT(Model.MaSoThue,Model.MaSoThue2) == false){
         <div class="row">
@@ -152,20 +152,22 @@
     </div>
   </div>
   <div class="nganhKD row">
-    <label class="nganh-lb" for="">Ngành hoạt động kinh doanh</label>
+    <label for="" class="col-12">Ngành hoạt động kinh doanh</label>
     @foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.MaCoSo))
     {
       <div class="nganh-ct">
         <div class="row">
-          <div class="MNHD row">
+          <div class="col-5">
             <input readonly value="@nganh.MaNganh.Substring(0,1)" type="text" maxlength="1" size="1" class="text-center MN" />
             <input readonly value="@nganh.MaNganh.Substring(1,1)" type="text" maxlength="1" size="1" class="text-center MN" />
             <input readonly value="@nganh.MaNganh.Substring(2,1)" type="text" maxlength="1" size="1" class="text-center MN" />
             <input readonly value="@nganh.MaNganh.Substring(3,1)" type="text" maxlength="1" size="1" class="text-center MN" />
             <input readonly value="@nganh.MaNganh.Substring(4,1)" type="text" maxlength="1" size="1" class="text-center MN" />
           </div>
+          <div class="col-7">
           <label for="">Tên ngành HĐKD:</label>
           <input readonly value="@getNganhHoatDongKinhDoanh(nganh.MaNganh).TenNganh" type="text" class="infoma-nganh" />
+        </div>
         </div>
       </div>
     }

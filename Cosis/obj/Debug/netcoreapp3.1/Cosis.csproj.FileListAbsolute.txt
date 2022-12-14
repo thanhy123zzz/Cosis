@@ -346,3 +346,4 @@ D:\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.csproj.CopyComplete
 D:\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.dll
 D:\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.pdb
 D:\Cosis\Cosis\obj\Debug\netcoreapp3.1\Cosis.genruntimeconfig.cache
+D:\Cosis\Cosis\obj\Debug\netcoreapp3.1\Razor\Views\Form2_1\Form2_1PDF.cshtml.g.cs

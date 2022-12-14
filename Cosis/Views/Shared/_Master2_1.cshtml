@@ -55,25 +55,26 @@
   </div>
   @if (getThongTinCaTheByMST(Model.MaSoThue.Trim(), Model.MaSoThue2.Trim()) != null)
   {
-      <div class="row">
-      <label class="lb-info">Mã cơ sở: </label>
-      <input type="text" id="macoso" maxlength="5" name="Master.MaCoSo" value="@getThongTinCaTheByMST(Model.MaSoThue,Model.MaSoThue2).MaCoSo" class="infoma" />  
-    </div>
-    <div class="row">
-      <label class="lb-info">Tên cơ sở: </label>
-      <input readonly type="text" value="@getThongTinCaTheByMST(Model.MaSoThue,Model.MaSoThue2).TenCoSo" class="infoma" />
+        <div class="row">
+        <label class="lb-info">Mã cơ sở: </label>
+        <input type="text" id="macoso" maxlength="5" name="Master.MaCoSo" value="@getThongTinCaTheByMST(Model.MaSoThue,Model.MaSoThue2).MaCoSo" class="infoma" />  
       </div>
+      <div class="row">
+        <label class="lb-info">Tên cơ sở: </label>
+        <input readonly type="text" value="@getThongTinCaTheByMST(Model.MaSoThue,Model.MaSoThue2).TenCoSo" class="infoma" />
+        </div>
   }
   else
   {
-      <div class="row">
-      <label class="lb-info">Mã cơ sở: </label>
-      <input type="text" id="macoso" maxlength="5" name="Master.MaCoSo" value="" class="infoma" />  
-    </div>
-    <div class="row">
-      <label class="lb-info">Tên cơ sở: </label>
-      <input readonly type="text" value="" class="infoma" />
+        <div class="row">
+        <label class="lb-info">Mã cơ sở: </label>
+        <input type="text" id="macoso" maxlength="5" name="Master.MaCoSo" value="" class="infoma" />  
       </div>
+      <div class="row">
+        <label class="lb-info">Tên cơ sở: </label>
+        <input readonly type="text" value="" class="infoma" />
+        <input readonly hidden type="text" name="Master.Ten" value="@Model.TenDoanhNghiep" class="infoma" />
+        </div>
   }
 
   <div class="row">
@@ -118,48 +119,50 @@
     <div class="checkbox">
       @if (Model.MaLh.Trim() == "01")
       {
-          <input type="radio" checked name="Master.MaLh" value="01" />
+            <input type="radio" checked name="Master.MaLh" value="01" />
       }
       else
       {
-          <input disabled type="radio" name="Master.MaLh" value="01" />
+            <input disabled type="radio" name="Master.MaLh" value="01" />
       }
       @if (Model.MaLh.Trim() == "02")
       {
-          <input type="radio" checked name="Master.MaLh" value="02" />
+            <input type="radio" checked name="Master.MaLh" value="02" />
       }
       else
       {
-          <input disabled type="radio" name="Master.MaLh" value="02" />
+            <input disabled type="radio" name="Master.MaLh" value="02" />
       }
 
       @if (Model.MaLh.Trim() == "03")
       {
-          <input type="radio" checked name="Master.MaLh" value="03" />
+            <input type="radio" checked name="Master.MaLh" value="03" />
       }
       else
       {
-          <input disabled type="radio" name="Master.MaLh" value="03" />
+            <input disabled type="radio" name="Master.MaLh" value="03" />
       }
     </div>
   </div>
   <div class="nganhKD row">
-    <label class="nganh-lb" for="">Ngành hoạt động kinh doanh</label>
+    <label for="" class="col-12">Ngành hoạt động kinh doanh</label>
     @foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.MaSoThue, Model.MaSoThue2))
     {
-        <div class="nganh-ct">
-          <div class="row">
-            <div class="MNHD row">
-              <input readonly value="@nganh.MaNganh.Substring(0,1)" type="text" maxlength="1" size="1" class="text-center MN" />
-              <input readonly value="@nganh.MaNganh.Substring(1,1)" type="text" maxlength="1" size="1" class="text-center MN" />
-              <input readonly value="@nganh.MaNganh.Substring(2,1)" type="text" maxlength="1" size="1" class="text-center MN" />
-              <input readonly value="@nganh.MaNganh.Substring(3,1)" type="text" maxlength="1" size="1" class="text-center MN" />
-              <input readonly value="@nganh.MaNganh.Substring(4,1)" type="text" maxlength="1" size="1" class="text-center MN" />
+          <div class="nganh-ct">
+            <div class="row">
+              <div class="col-5">
+                <input readonly value="@nganh.MaNganh.Substring(0,1)" type="text" maxlength="1" size="1" class="text-center MN" />
+                <input readonly value="@nganh.MaNganh.Substring(1,1)" type="text" maxlength="1" size="1" class="text-center MN" />
+                <input readonly value="@nganh.MaNganh.Substring(2,1)" type="text" maxlength="1" size="1" class="text-center MN" />
+                <input readonly value="@nganh.MaNganh.Substring(3,1)" type="text" maxlength="1" size="1" class="text-center MN" />
+                <input readonly value="@nganh.MaNganh.Substring(4,1)" type="text" maxlength="1" size="1" class="text-center MN" />
+              </div>
+              <div class="col-7">
+              <label for="">Tên ngành HĐKD:</label>
+              <input readonly value="@getNganhHoatDongKinhDoanh(nganh.MaNganh).TenNganh" type="text" class="infoma-nganh" />
             </div>
-            <label for="">Tên ngành HĐKD:</label>
-            <input readonly value="@getNganhHoatDongKinhDoanh(nganh.MaNganh).TenNganh" type="text" class="infoma-nganh" />
+            </div>
           </div>
-        </div>
     }
   </div>
 </div>
