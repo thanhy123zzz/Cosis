@@ -1,20 +1,33 @@
 ﻿using Cosis.Models;
 using Cosis.Models.Entities;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
+using Newtonsoft.Json;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using SelectPdf;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 
 namespace Cosis.Controllers
 {
     public class Form1_3Controller : Controller
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
         private static Random random = new Random();
+        public Form1_3Controller(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
 
         public static string RandomString(int length)
         {
@@ -27,7 +40,7 @@ namespace Cosis.Controllers
             return View();
         }
         [HttpPost("/form1_3")]
-        public IActionResult InsertForm1_3(PhieuDieuTra phieu, IFormCollection form, bool loai)
+        public IActionResult InsertForm1_3(PhieuDieuTra phieu, IFormCollection form, int loai)
         {
             FormCosisContext context = new FormCosisContext();
             List<DanhSachNhanToAnhHuong> list = new List<DanhSachNhanToAnhHuong>();
@@ -80,7 +93,7 @@ namespace Cosis.Controllers
                 context.Database.ExecuteSqlRaw("INSERT INTO [dbo].[Detail]([MaPhieu],[STT],[TenCT],[DVT],[THThangTruoc],[DuTinh],[TongCongDon]) values({0},{1},{2},{3},{4},{5},{6})", phieu.Master.MaPhieu,dt.Stt,dt.TenCt,dt.Dvt,dt.ThthangTruoc,dt.DuTinh,dt.TongCongDon);
             }
             TempData["ThongBao"] = "Thành công!";
-            if (loai)
+            if (loai==1)
             {
                 var fullView = new HtmlToPdf();
                 fullView.Options.WebPageWidth = 1280;
@@ -93,6 +106,14 @@ namespace Cosis.Controllers
 
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");
+            }
+            if (loai == 2)
+            {
+                
+            }
+            if (loai == 3)
+            {
+
             }
             return RedirectToAction("Index");
         }
@@ -124,18 +145,273 @@ namespace Cosis.Controllers
         [Route("/form1_3PDF/{maPhieu}")]
         public IActionResult Form1_3PDF(string maPhieu)
         {
+            PhieuDieuTra phieu = GetPhieu(maPhieu);
+            ViewBag.NganhKinhDoanh = GetNganhKinhDoanhs(phieu.Master.MaSoThue,phieu.Master.MaSoThue2);
+
+            return View(phieu);
+        }
+        [Route("Export")]
+        public IActionResult Export()
+        {
+            using (ExcelPackage package = new ExcelPackage())
+            {
+                // add a new worksheet to the empty workbook
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ");
+/*                using (var cells = worksheet.Cells[1, 1, 1, 4])
+                {
+                    cells.Style.Font.Bold = true;
+                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    cells.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                }
+                //First add the headers
+                worksheet.Cells[1, 1].Value = "ID";
+                worksheet.Cells[1, 2].Value = "Name";
+                worksheet.Cells[1, 3].Value = "Gender";
+                worksheet.Cells[1, 4].Value = "Salary (in $)";
+                //Add values
+                worksheet.Cells["A2"].Value = "00000";
+                worksheet.Cells["B2"].Value = "Jon";
+                worksheet.Cells["C2"].Value = "M";
+                worksheet.Cells["D2"].Value = 5000;
+
+                worksheet.Cells["A3"].Value = 1001;
+                worksheet.Cells["B3"].Value = "Graham";
+                worksheet.Cells["C3"].Value = "M";
+                worksheet.Cells["D3"].Value = 10000;
+
+                worksheet.Cells["A4"].Value = 1002;
+                worksheet.Cells["B4"].Value = "Jenny";
+                worksheet.Cells["C4"].Value = "F";
+                worksheet.Cells["D4"].Value = 5000;
+
+                worksheet.Cells[5, 1].Value = "ID";
+                worksheet.Cells[5, 2].Value = "Name";
+                worksheet.Cells[5, 3].Value = "Gender";
+                worksheet.Cells[5, 4].Value = "Salary (in $)";*/
+
+                PhieuDieuTra phieu = GetPhieu("ZKJ8D");
+                FormCosisContext context = new FormCosisContext();
+                //row 1
+                var tenPhieu = worksheet.Cells["A1:K1"];
+                tenPhieu.Style.Font.Bold = true;
+                tenPhieu.Style.Font.Size = 13;
+                tenPhieu.Merge = true;
+                tenPhieu.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                tenPhieu.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                tenPhieu.Value = "ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ";
+                
+                //row 2
+                worksheet.Cells["A2:K2"].Merge = true;
+                
+                //row 3
+                worksheet.Cells["A3:K3"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                worksheet.Cells["B3"].Value = "Phiếu 1.3/DN-VT-T";
+                worksheet.Cells["B3"].Style.Font.Bold = true;
+                worksheet.Cells["G3"].Value = "Mã số thuế";
+                worksheet.Cells["I3"].Value = phieu.Master.MaSoThue;
+                worksheet.Cells["K3"].Value = phieu.Master.MaSoThue2;
+
+                //row 4
+                worksheet.Cells["A4:K4"].Merge = true;
+
+                //row 5
+                worksheet.Cells["A5:K5"].Merge = true;
+                worksheet.Cells["A5:K5"].Value = "PHIẾU THU THẬP THÔNG TIN ĐỐI VỚI DOANH NGHIỆP/HỢP TÁC XÃ";
+                worksheet.Cells["A5:K5"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                worksheet.Cells["A5:K5"].Style.Font.Size = 13;
+                worksheet.Cells["A5:K5"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                worksheet.Cells["A5:K5"].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                worksheet.Cells["A5:K5"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["A5:K5"].Style.Font.Bold = true;
+               
+                //row 6
+                worksheet.Cells["A6:K6"].Merge = true;
+                worksheet.Cells["A6:K6"].Value = "(Áp dụng đối với doanh nghiệp/chi nhánh doanh nghiệp, hợp tác xã có hoạt động vận tải, kho bãi)";
+                worksheet.Cells["A6:K6"].Style.Font.Bold = true;
+                worksheet.Cells["A6:K6"].Style.Font.Italic = true;
+                worksheet.Cells["A6:K6"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                worksheet.Cells["A6:K6"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                //row 7
+                worksheet.Cells["A7:K7"].Merge = true;
+
+                //row 8
+                worksheet.Cells["A8:K8"].Merge = true;
+                worksheet.Cells["A8:K8"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["A8:K8"].Value = "Tháng " + phieu.Master.NgayTao.Value.Month + " Năm " + phieu.Master.NgayTao.Value.Year;
+                //row 9
+                worksheet.Cells["A9:K9"].Merge = true;
+
+                //row 10
+                worksheet.Cells["A10:K10"].Merge = true;
+                worksheet.Cells["A10:K10"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                worksheet.Cells["A10:K10"].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                worksheet.Cells["A10:K10"].Style.Font.Size = 13;
+                worksheet.Cells["A10:K10"].Style.Font.Bold = true;
+                worksheet.Cells["A10:K10"].Value = "A. THÔNG TIN CHUNG";
+                worksheet.Cells["A10:K10"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+
+                //row 11
+                worksheet.Cells["A11:B11"].Merge = true;
+                worksheet.Cells["C11:K11"].Merge = true;
+                worksheet.Cells["A11:B11"].Value = "Tên doanh nghiệp/HTX:";
+                worksheet.Cells["C11:K11"].Value = phieu.Master.Ten;
+
+                //row 12
+                worksheet.Cells["A12:B12"].Merge = true;
+                worksheet.Cells["A12:B12"].Merge = true;
+                worksheet.Cells["A12:B12"].Value = "Địa chỉ doanh nghiệp";
+
+                //row 13
+                worksheet.Cells["B13:C13"].Merge = true;
+                worksheet.Cells["D13:K13"].Merge = true;
+                worksheet.Cells["B13:C13"].Value = "Tỉnh/TP trực thuộc TW:";
+                worksheet.Cells["D13:K13"].Value = getTinh(phieu.Master.MaTinhTp);
+
+                //row 14
+                worksheet.Cells["B14:C14"].Merge = true;
+                worksheet.Cells["D14:K14"].Merge = true;
+                worksheet.Cells["B14:C14"].Value = "Huyện/quận (thị xã, TP thuộc tỉnh):";
+                worksheet.Cells["D14:K14"].Value = getHuyen(phieu.Master.MaQuanHuyen);
+
+                //row 15
+                worksheet.Cells["B15:C15"].Merge = true;
+                worksheet.Cells["D15:K15"].Merge = true;
+                worksheet.Cells["B15:C15"].Value = "Xã/phường/thị trấn:";
+                worksheet.Cells["D15:K15"].Value = getXa(phieu.Master.MaPhuongXa);
+
+                //row 16
+                worksheet.Cells["B16:C16"].Merge = true;
+                worksheet.Cells["D16:K16"].Merge = true;
+                worksheet.Cells["B16:C16"].Value = "Thôn, ấp(số nhà, đường phố):";
+                worksheet.Cells["D16:K16"].Value = phieu.Master.DiaChiCuThe;
+
+                //ROW 17
+                worksheet.Cells["A17:B17"].Merge = true;
+                worksheet.Cells["C17:K17"].Merge = true;
+                worksheet.Cells["A17:B17"].Value = "Số điện thoại:";
+                worksheet.Cells["C17:K17"].Value = phieu.Master.Sdt;
+
+                //row 18
+                worksheet.Cells["A18:B18"].Merge = true;
+                worksheet.Cells["C18:K18"].Merge = true;
+                worksheet.Cells["A18:B18"].Value = "Email:";
+                worksheet.Cells["C18:K18"].Value = phieu.Master.Email;
+
+                //row 19
+                worksheet.Cells["A19:B19"].Merge = true;
+                worksheet.Cells["C19:K19"].Merge = true;
+                worksheet.Cells["A19:B19"].Value = "Loại hình kinh tế:";
+                worksheet.Cells["C19:K19"].Value = context.LoaiHinhKinhte.Find(phieu.Master.MaLh).TenLh;
+
+                //row 20
+                List<NganhKinhDoanh> lits = GetNganhKinhDoanhs(phieu.Master.MaSoThue, phieu.Master.MaSoThue2);
+                int SLNganh = lits.Count;
+                worksheet.Cells["A20:B20"].Value = "Ngành hoạt động kinh doanh";
+                for (int i = 1; i<= SLNganh; i++)
+                {
+                    int r = 19 + i;
+
+                    worksheet.Cells["A" + r + ":B" + r].Merge = true;
+
+                    worksheet.Cells["C" + r + ":D" + r].Merge = true;
+                    worksheet.Cells["C" + r + ":D" + r].Value = lits[i-1].MaNganh;
+
+                    worksheet.Cells["E" + r + ":F" + r].Merge = true;
+                    worksheet.Cells["E" + r + ":F" + r].Value = "Tên ngành HĐKD:";
+
+                    worksheet.Cells["G" + r + ":K" + r].Merge = true;
+                    worksheet.Cells["G" + r + ":K" + r].Value = getNganhHoatDongKinhDoanh(lits[i - 1].MaNganh).TenNganh;
+                }
+                //next row
+                int cr = 20 + SLNganh;
+                var s = worksheet.Cells["A" + cr + ":K" + cr];
+                s.Merge = true;
+                s.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                s.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                s.Style.Font.Size = 13;
+                s.Style.Font.Bold = true;
+                s.Value = "B. KẾT QUẢ HOẠT ĐỘNG KINH DOANH";
+                s.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+
+                // next
+                int crn = 21 + SLNganh;
+                worksheet.Row(crn).Style.Font.Bold = true;
+                worksheet.Row(crn).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["A" + crn + ":C" + crn].Value = "Tên chỉ tiêu";
+                worksheet.Cells["A" + crn + ":C" + crn].Merge = true;
+                worksheet.Cells["D" + crn + ":E" + crn].Value = "Đơn vị tính";
+                worksheet.Cells["D" + crn + ":E" + crn].Merge = true;
+                worksheet.Cells["F" + crn + ":G" + crn].Value = "Tháng thực hiện "+phieu.Master.ThangThucHien+"/"+ phieu.Master.Nam;
+                worksheet.Cells["F" + crn + ":G" + crn].Merge = true;
+                worksheet.Cells["H" + crn + ":I" + crn].Value = "Dự tính " + phieu.Master.ThangDuTinh + "/" + phieu.Master.Nam;
+                worksheet.Cells["H" + crn + ":I" + crn].Merge = true;
+                worksheet.Cells["J" + crn + ":K" + crn].Value = "CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO";
+                worksheet.Cells["J" + crn + ":K" + crn].Merge = true;
+
+                //next
+                int cn = 22 + SLNganh;
+                worksheet.Row(cn).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["A" + cn + ":C" + cn].Value = "A";
+                worksheet.Cells["A" + cn + ":C" + cn].Merge = true;
+                worksheet.Cells["D" + cn + ":E" + cn].Value = "B";
+                worksheet.Cells["D" + cn + ":E" + cn].Merge = true;
+                worksheet.Cells["F" + cn + ":G" + cn].Value = "1";
+                worksheet.Cells["F" + cn + ":G" + cn].Merge = true;
+                worksheet.Cells["H" + cn + ":I" + cn].Value = "2";
+                worksheet.Cells["H" + cn + ":I" + cn].Merge = true;
+                worksheet.Cells["J" + cn + ":K" + cn].Value = "3";
+                worksheet.Cells["J" + cn + ":K" + cn].Merge = true;
+
+                /*worksheet.Cells[FromRow, FromColumn, ToRow, ToColumn].Merge = true;*/
+                return File(package.GetAsByteArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "tet.xlsx");
+            }
+        }
+
+        public PhieuDieuTra GetPhieu(string maPhieu)
+        {
             FormCosisContext context = new FormCosisContext();
             Master master = context.Master.Find(maPhieu);
             PhieuDieuTra phieu = new PhieuDieuTra();
             phieu.Master = master;
-            List<NganhKinhDoanh> listNganh = 
-            context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue ='"+master.MaSoThue+"' and MaSoThue2='"+master.MaSoThue2+"'").ToList();
-            ViewBag.NganhKinhDoanh = listNganh;
-
-            phieu.NhanToThu9 = context.NhanToThu9.FromSqlRaw("select*from NhanToThu9 where MaPhieu = '"+maPhieu+"'").ToList().FirstOrDefault();
+            phieu.NhanToThu9 = context.NhanToThu9.FromSqlRaw("select*from NhanToThu9 where MaPhieu = '" + maPhieu + "'").ToList().FirstOrDefault();
             phieu.DanhSachNhanToAnhHuong = context.DanhSachNhanToAnhHuong.FromSqlRaw("select*from DanhSachNhanToAnhHuong where MaPhieu = '" + maPhieu + "'").ToList();
             phieu.Detail = context.Detail.FromSqlRaw("select*from Detail where MaPhieu = '" + maPhieu + "'").ToList();
-            return View(phieu);
+            return phieu;
+        }
+
+        public List<NganhKinhDoanh> GetNganhKinhDoanhs(string MaSoThue, string MaSoThue2)
+        {
+            CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");
+            FormCosisContext context = new FormCosisContext();
+            return
+            context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue ='" + MaSoThue + "' and MaSoThue2='" + MaSoThue2 + "'").ToList();
+        }
+
+        string getTinh(string ma)
+        {
+            FormCosisContext context = new FormCosisContext();
+            return context.TinhTp.Find(ma).Name;
+        }
+        string getHuyen(string ma)
+        {
+            FormCosisContext context = new FormCosisContext();
+            return context.QuanHuyen.Find(ma).Name;
+        }
+        string getXa(string ma)
+        {
+            FormCosisContext context = new FormCosisContext();
+            return context.PhuongXa.Find(ma).Name;
+        }
+        NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma)
+        {
+            FormCosisContext context = new FormCosisContext();
+            return context.NganhHoatDongKinhDoanh.Find(ma);
+        }
+        NhanToAnhHuong nhanToAnhHuong(string ma)
+        {
+            FormCosisContext context = new FormCosisContext();
+            return context.NhanToAnhHuong.Find(ma);
         }
     }
 }

@@ -2,21 +2,31 @@
 @{
     Layout = null;
     FormCosisContext context = new FormCosisContext();
-    string getTinh(string ma){
+    string getTinh(string ma)
+    {
         return context.TinhTp.Find(ma).Name;
     }
-    string getHuyen(string ma){
+    string getHuyen(string ma)
+    {
         return context.QuanHuyen.Find(ma).Name;
     }
     string getXa(string ma)
     {
         return context.PhuongXa.Find(ma).Name;
     }
-    NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma){
+    NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma)
+    {
         return context.NganhHoatDongKinhDoanh.Find(ma);
     }
-    NhanToAnhHuong nhanToAnhHuong(string ma){
+    NhanToAnhHuong nhanToAnhHuong(string ma)
+    {
         return context.NhanToAnhHuong.Find(ma);
+    }
+
+    string format(decimal? a){
+        var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+        return
+        String.Format(info, "{0:c}", a.Value);
     }
 }
 <!DOCTYPE html>
@@ -41,8 +51,9 @@
                 <label class="P-name"><b>Phiếu 1.3/DN-VT-T</b></label>
                 <label for="">Mã số thuế</label>
                 <div class="row">
-                    @for(int i = 0; i < 10; i++){
-                        <input type="text"
+                    @for (int i = 0; i < 10; i++)
+                    {
+                            <input type="text"
                            id="n0"
                            maxlength="1"
                            size="1"
@@ -55,9 +66,10 @@
                     }
                 </div>
                 <div class="row">
-                    @for(int i=0;i<3;i++){
+                    @for (int i = 0; i < 3; i++)
+                    {
 
-                    <input type="text"
+                        <input type="text"
                            id="n10"
                            maxlength="1"
                            size="1"
@@ -135,18 +147,18 @@
                     <div class="checkbox-tt">
                         @if (Model.Master.MaLh.Trim() == "01")
                         {
-                         <label>Loại hình kinh tế: Kinh tế nhà nước</label>
+                             <label>Loại hình kinh tế: Kinh tế nhà nước</label>
                         }
                         else if (Model.Master.MaLh.Trim() == "02")
                         {
-                            <label>Loại hình kinh tế: Kinh tế ngoài nhà nước</label>
+                                <label>Loại hình kinh tế: Kinh tế ngoài nhà nước</label>
                         }
                         else if (Model.Master.MaLh.Trim() == "03")
                         {
-                            <label>Loại hình kinh tế: Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
+                                <label>Loại hình kinh tế: Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
                         }
                     </div>
-@*                    <div class="checkbox">
+                    @*                    <div class="checkbox">
                         <input type="radio" name="loaihinhkt" value="Kinh tế nhà nước" />
                         <input type="radio"
                                name="loaihinhkt"
@@ -159,22 +171,23 @@
                 <div class="nganhKD row">
                     <label class="nganh-lb">Ngành hoạt động kinh doanh</label>
                     <div class="nganh-ct">
-                        @foreach(NganhKinhDoanh a in ViewBag.NganhKinhDoanh){
-                        <div class="row">
-                            
-                            <div class="MNHD row">
-                                    @for (int i =0; i<5;i++)
+                        @foreach (NganhKinhDoanh a in ViewBag.NganhKinhDoanh)
+                        {
+                            <div class="row">
+
+                                <div class="MNHD row">
+                                    @for (int i = 0; i < 5; i++)
                                     {
-                                       <input type="text"
+                                               <input type="text"
                                        maxlength="1"
                                        size="1"
                                        class="text-center MN" 
                                        value = "@a.MaNganh.Substring(i,1)"
                                        />
                                     }
+                                </div>
+                                <label for="">Tên ngành HĐKD:  @getNganhHoatDongKinhDoanh(a.MaNganh).TenNganh</label>
                             </div>
-                            <label for="">Tên ngành HĐKD:  @getNganhHoatDongKinhDoanh(a.MaNganh).TenNganh</label>
-                        </div>
                         }
                     </div>
                 </div>
@@ -202,63 +215,16 @@
                         <td>2</td>
                         <td>3</td>
                     </tr>
-                    <tr>
-                        <td>@Model.Detail[0].Stt @Model.Detail[0].TenCt</td>
-                        <td class="text-center">@Model.Detail[0].Dvt</td>
-                        <td class="text-center">@Model.Detail[0].ThthangTruoc</td>
-                        <td class="text-center">@Model.Detail[0].DuTinh</td>
-                        <td class="text-center">@Model.Detail[0].TongCongDon</td>
-                    </tr>
-                    <tr>
-                        <th attr colspan="5">I. Hoạt động vận tải hành khách</th>
-                    </tr>
-                    @for(int i = 1;i<=8;i++){
-                    <tr>
-                        <td>@Model.Detail[i].Stt @Model.Detail[i].TenCt</td>
-                        <td class="text-center">@Model.Detail[i].Dvt</td>
-                        <td class="text-center">@Model.Detail[i].ThthangTruoc</td>
-                        <td class="text-center">@Model.Detail[i].DuTinh</td>
-                        <td class="text-center">@Model.Detail[i].TongCongDon</td>
-                    </tr>
-                    }
-                    <tr>
-                        <th attr colspan="5">II.Hoạt động vận tải hàng hóa</th>
-                    </tr>
-                    @for (int i = 9; i <= 16; i++)
+                    @foreach (Detail d in Model.Detail)
                     {
                         <tr>
-                            <td>@Model.Detail[i].Stt @Model.Detail[i].TenCt</td>
-                            <td class="text-center">@Model.Detail[i].Dvt</td>
-                            <td class="text-center">@Model.Detail[i].ThthangTruoc</td>
-                            <td class="text-center">@Model.Detail[i].DuTinh</td>
-                            <td class="text-center">@Model.Detail[i].TongCongDon</td>
+                            <td>@d.Stt @d.TenCt</td>
+                            <td class="text-center">@d.Dvt</td>
+                            <td class="text-center">@format(d.ThthangTruoc)</td>
+                            <td class="text-center">@format(d.DuTinh)</td>
+                            <td class="text-center">@format(d.TongCongDon)</td>
                         </tr>
                     }
-                    <tr>
-                        <th attr colspan="5">
-                            III.Hoạt động kho bãi, dịch vụ hỗ trợ vận tải của @Model.Master.ThangThucHien
-                            và @Model.Master.ThangDuTinh
-                        </th>
-                    </tr>
-                        <tr>
-                            <td>@Model.Detail[17].Stt @Model.Detail[17].TenCt</td>
-                            <td class="text-center">@Model.Detail[17].Dvt</td>
-                            <td class="text-center">@Model.Detail[17].ThthangTruoc</td>
-                            <td class="text-center">@Model.Detail[17].DuTinh</td>
-                            <td class="text-center">@Model.Detail[17].TongCongDon</td>
-                        </tr>
-                    <tr>
-                        <th attr colspan="5">
-                            IV.Hoạt động bưu chính, chuyển phát của @Model.Master.ThangThucHien và @Model.Master.ThangDuTinh là bao nhiêu?
-                        </th>
-                    </tr>
-                    <tr>
-                       <td>@Model.Detail[18].Stt @Model.Detail[18].TenCt</td>
-                       <td class="text-center">@Model.Detail[18].Dvt</td>
-                       <td class="text-center">@Model.Detail[18].ThthangTruoc</td>
-                       <td class="text-center">@Model.Detail[18].DuTinh</td>
-                       <td class="text-center">@Model.Detail[18].TongCongDon</td>
-                     </tr>
                 </tbody>
             </table>
             <div class="form-group bg-primary">
@@ -271,17 +237,17 @@
                 </label>
                 <div class="YTAH">
                     <div class="YTAH-tt">
-                        @for(int i=0;i<Model.DanhSachNhanToAnhHuong.Count;i++)
+                        @for (int i = 0; i < Model.DanhSachNhanToAnhHuong.Count; i++)
                         {
-                           <label for="">@i. @nhanToAnhHuong(@Model.DanhSachNhanToAnhHuong[i].MaAh).NoiDungAh</label>
+                               <label for="">@i. @nhanToAnhHuong(@Model.DanhSachNhanToAnhHuong[i].MaAh).NoiDungAh</label>
                         }
                     </div>
                 </div>
                 @if (Model.NhanToThu9 != null)
                 {
-                    <div class="YTAH9" style="margin-left:20px;">
-                        <label>Yếu tố khác: @Model.NhanToThu9.NoiDung</label>
-                    </div>
+                        <div class="YTAH9" style="margin-left:20px;">
+                            <label>Yếu tố khác: @Model.NhanToThu9.NoiDung</label>
+                        </div>
                 }
             </div>
             <div class="uname-info">
