@@ -13,21 +13,21 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 1 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 2 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 3 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis.Models.Entities;
 
 #line default
