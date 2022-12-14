@@ -49,38 +49,35 @@ namespace Cosis.Controllers
             FormCosisContext context = new FormCosisContext();
             string mst1 = ms.Substring(0, 10);
             string mst2 = ms.Substring(10);
+            // var b = context.Master.FromSqlRaw("select*from Master where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
+            // Console.WriteLine(a1);
             var a = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
-            var a1 = context.ThongTinCaThe.FromSqlRaw("select*from ThongTinCaThe where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
-            var b = context.Master.FromSqlRaw("select*from Master where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
-            Console.WriteLine(a1);
-            if (a1 == null)
-            {
-                if (a == null)
-                {
-                    // k tim thay ma so thue
-                }
-                else
-                {
-                    a1 = new ThongTinCaThe();
-                    b.MaSoThueNavigation = a;
-                    b.MaCoSoNavigation = a1;
-                }
-
-            }
-            else
-            {
-                b.MaCoSoNavigation = a1;
-                b.MaSoThueNavigation = a;
-            }
-            return PartialView("_Master2_1", b);
+            ViewBag.CheckMCS = 0;
+            return PartialView("_Master2_1", a);
+        }
+        [HttpPost("/loadMaster2CN")]
+        public IActionResult loadInforPersonal(string ms)
+        {
+            FormCosisContext context = new FormCosisContext();
+            // var b = context.Master.FromSqlRaw("select*from Master where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
+            // Console.WriteLine(a1);
+            var a = context.ThongTinCaThe.FromSqlRaw("select*from ThongTinCaThe where MaCoSo = {0}", ms).FirstOrDefault();
+            ViewBag.CheckMCS = 0;
+            return PartialView("_Master2_1CN", a);
         }
         [HttpPost("/loaddata_21B")]
         public IActionResult loaddata_21B(string ms)
         {
+            Console.WriteLine("MS:"+ms+"length:"+ms.Length);
             FormCosisContext context = new FormCosisContext();
+            var a = context.NganhKinhDoanh.ToList();
+            if(ms.Length == 13){
             string mst1 = ms.Substring(0, 10);
             string mst2 = ms.Substring(10);
-            var a = context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).ToList();
+            a = context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).ToList();
+            }else{
+             a = context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaCoSo = {0}", ms).ToList();
+            }
             Console.WriteLine(a.ToString());
             ViewBag.ListNghanh = a;
             return PartialView("_2_1B");

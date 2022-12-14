@@ -100,11 +100,11 @@
             <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" class="infoma" /></td>
             <td class="text-center">Triệu đồng</td>
             <input type="hidden" name="Detail[@countDetails].Dvt" value="Triệu đồng" />
-            <td><input type="text" pattern="[0-9,.\-$]+" value=""  name="Detail[@countDetails].ThthangTruoc"
+            <td><input type="text" required pattern="[0-9,.\-$]+" value="999,999,999.00"  name="Detail[@countDetails].ThthangTruoc"
                 id="ThthangTruoc@(countDetails-2)_1" oninput="changeThthangTruoc('@(countDetails-2)_1')" class="infoma infomal" /></td>
-            <td><input type="text" pattern="[0-9,.\-$]+" value=""  name="Detail[@countDetails].DuTinh"
+            <td><input type="text" required pattern="[0-9,.\-$]+" value="999,999,999.00"  name="Detail[@countDetails].DuTinh"
                 id="DuTinh@(countDetails-2)_1" oninput="changeDuTinh('@(countDetails-2)_1')" class="infoma infomal" /></td>
-            <td><input readonly pattern="[0-9,.\-$]+" value="" type="text"  name="Detail[@countDetails].TongCongDon"
+            <td><input readonly value="" type="text"  name="Detail[@countDetails].TongCongDon"
                 id="TongCongDon@(countDetails-2)_1" oninput="changeCongDon('@(countDetails-2)_1')" class="infoma infomal" /></td>
         </tr>
         i++;
@@ -133,169 +133,45 @@
         $('#TongCongDon'+(y-1)+'_1').val("");
         $('#DuTinh'+(y-1)+'_1').val("");
         $('#ThthangTruoc'+(y-1)+'_1').val("");
-
-        /* $('#TongCongDon'+(y-1)+'_1').attr('value',myNewValue);
-        $('#DuTinh'+(y-1)+'_1').attr('value',myNewValue);
-        $('#ThthangTruoc'+(y-1)+'_1').attr('value',myNewValue);  */
+        //
+        $('#TongCongDon'+(y-1)+'_1').prop('required',true);
+        $('#DuTinh'+(y-1)+'_1').prop('required',true);
+        $('#ThthangTruoc'+(y-1)+'_1').prop('required',true);
+        //
         $('#DuTinh' +(y-1)+ '_1').attr({ "max": $('#DuTinh' + (y-1)).val() });
         $('#ThthangTruoc' +(y-1)+ '_1').attr({ "max": $('#ThthangTruoc' + (y-1)).val() });
         $('.changed3_' + y).show();
-        
-           /* 
-        // cut name detail
-         var str = $("input#inputText" + y).attr("name");
-        var cutstring = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
-        // get manghanh
-        var strIDMN = $('td input#manghanh_' + parseInt(cutstring)).val();
-        // get ID STT
-        var stt = $('input[name*="Detail[' + y + '].Stt"]').attr('id');
-        var cutSTT = stt.substring(3, stt.length);
-        if ($('.changed3_' + y).children().length > 0) {
-            $('.changed3_' + y).show(this.checked);
-        } else {
-            $('.changed3_' + y).append('<td>'
-                + '3.1 Số tiền thu về (bao gồm cả vốn và lãi) từ bán [NGÀNH CHỌN'
-                + 'MẪU] [tháng trước] và dự tính [tháng báo cáo] tại siêu thị mini,'
-                + 'cửa hàng tiện ích?'
-                + '<input type="hidden" id=stt' + cutSTT + ' name="Detail[' + (parseInt(cutstring) + 1) + '].Stt" value="3.1._' + strIDMN + '" />'
-                + '<input type="hidden" name=Detail[' + (parseInt(cutstring) + 1) + '].TenCt'
-                + ' value="Số tiền thu về (bao gồm cả vốn và lãi) từ bán [NGÀNH CHỌN MẪU] [tháng trước] và dự tính [tháng báo cáo] tại siêu thị mini, cửa hàng tiện ích?" />'
-                + '</td>'
-                + '<td><input type="text" value="' + $('td input#tennghanh_' + (parseInt(cutstring) - 1)).val() + '" class="infoma" /></td>'
-                + '<td class="text-center">Triệu đồng</td>'
-                + '<input type="hidden" name="Detail[' + (parseInt(cutstring) + 1) + '].Dvt" value="Triệu đồng" />'
-                + '<td><input required value="" type="number"  name="Detail[' + (parseInt(cutstring) + 1) + '].ThthangTruoc" id="ThthangTruoc' + (parseInt(cutstring) - 1) + '_1" oninput="changeThthangTruoc(' + "'" + (parseInt(cutstring) - 1) + '_1' + "'" + ')" class="infoma" /></td>'
-                + '<td><input required value="" type="number"  name="Detail[' + (parseInt(cutstring) + 1) + '].DuTinh" id="DuTinh' + (parseInt(cutstring) - 1) + '_1" oninput="changeDuTinh(' + "'" + (parseInt(cutstring) - 1) + '_1' + "'" + ')" class="infoma" /></td>'
-                + '<td><input readonly value="" type="number"  name="Detail[' + (parseInt(cutstring) + 1) + '].TongCongDon" id="TongCongDon' + (parseInt(cutstring) - 1) + '_1" oninput="changeCongDon(' + "'" + (parseInt(cutstring) - 1) + '_1' + "'" + ')" class="infoma" /></td>');
-            $('.changed3_' + y).show(this.checked);
-        } */
     });
-    // 
-    /* $('input[id*="3_"]:radio').change(function () {
-        var idInput = $(this).attr('id');
-        var y = idInput.substring(4, idInput.length);
-        // cut name detail
-            var str = $("input#inputText" + y).attr("name");
-            var cutstring = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
-            // get manghanh
-            var strIDMN = $('td input#manghanh_' + parseInt(cutstring)).val();
-            // get ID STT
-            var stt = $('input[name*="Detail[' + y + '].Stt"]').attr('id');
-            var cutSTT = stt.substring(3, stt.length);
-         if ($('input[id*="3_"]:radio').is(':checked')) {
-            
-            console.log("Da check");
-        }
-        else {
-        } 
-        $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại siêu thị mini, cửa hàng tiện ích và các địa điểm khác');
-            if ($('.changed3_' + y).children().length > 0) {
-                $('.changed3_' + y).show(this.checked);
-                alert("show check");
-            } else {
-                alert("add new check");
-                $('.changed3_' + y).append('<td>'
-                    + '3.1 Số tiền thu về (bao gồm cả vốn và lãi) từ bán [NGÀNH CHỌN'
-                    + 'MẪU] [tháng trước] và dự tính [tháng báo cáo] tại siêu thị mini,'
-                    + 'cửa hàng tiện ích?'
-                    + '<input type="hidden" id=stt' + cutSTT + ' name="Detail[' + (parseInt(cutstring) + 1) + '].Stt" value="3.1._' + strIDMN + '" />'
-                    + '<input type="hidden" name=Detail[' + (parseInt(cutstring) + 1) + '].TenCt'
-                    + ' value="Số tiền thu về (bao gồm cả vốn và lãi) từ bán [NGÀNH CHỌN MẪU] [tháng trước] và dự tính [tháng báo cáo] tại siêu thị mini, cửa hàng tiện ích?" />'
-                    + '</td>'
-                    + '<td><input type="text" value="' + $('td input#tennghanh_' + (parseInt(cutstring) - 1)).val() + '" class="infoma" /></td>'
-                    + '<td class="text-center">Triệu đồng</td>'
-                    + '<input type="hidden" name="Detail[' + (parseInt(cutstring) + 1) + '].Dvt" value="Triệu đồng" />'
-                    + '<td><input required value="" type="number"  name="Detail[' + (parseInt(cutstring) + 1) + '].ThthangTruoc" id="ThthangTruoc' + (parseInt(cutstring) - 1) + '_1" oninput="changeThthangTruoc(' + "'" + (parseInt(cutstring) - 1) + '_1' + "'" + ')" class="infoma" /></td>'
-                    + '<td><input required value="" type="number"  name="Detail[' + (parseInt(cutstring) + 1) + '].DuTinh" id="DuTinh' + (parseInt(cutstring) - 1) + '_1" oninput="changeDuTinh(' + "'" + (parseInt(cutstring) - 1) + '_1' + "'" + ')" class="infoma" /></td>'
-                    + '<td><input readonly value="" type="number"  name="Detail[' + (parseInt(cutstring) + 1) + '].TongCongDon" id="TongCongDon' + (parseInt(cutstring) - 1) + '_1" oninput="changeCongDon(' + "'" + (parseInt(cutstring) - 1) + '_1' + "'" + ')" class="infoma" /></td>');
-            }
-
-    }); 
-    */
     $('input[id*="3-1_"]:radio').click(function () {
         var idInput = $(this).attr('id');
         var y = idInput.substring(4, idInput.length);
-        console.log(y);
         $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại siêu thị mini, cửa hàng tiện ích');
-        var myNewValue = "999999999";
+        var myNewValue = "999,999,999.00";
         $('#TongCongDon'+(y-1)+'_1').attr('value',myNewValue);
         $('#DuTinh'+(y-1)+'_1').attr('value',myNewValue);
-        $('#ThthangTruoc'+(y-1)+'_1').attr('value',myNewValue);     
-        /*$('#TongCongDon'+(y-1)+'_1').prop('max',999999999);
-        $('#DuTinh'+(y-1)+'_1').prop('max',999999999);
-        $('#ThthangTruoc'+(y-1)+'_1').prop('max',999999999);   */ 
+        $('#ThthangTruoc'+(y-1)+'_1').attr('value',myNewValue);  
+        //
+        $('#TongCongDon'+(y-1)+'_1').removeAttr('required');
+        $('#DuTinh'+(y-1)+'_1').removeAttr('required');
+        $('#ThthangTruoc'+(y-1)+'_1').removeAttr('required');
          $('#DuTinh' + (y-1) + '_1').attr({ "max": ""});
          $('#ThthangTruoc' + (y-1) + '_1').attr({ "max": ""});
         $('.changed3_' + y).hide();
 
-
-
-        /*if ($('.changed3_' + y).children().length > 0) {
-            $(".changed3_" + y).empty();
-            $('input[name*="Detail["]').each(function(){
-                // cut name chua detail hien tai 
-                var str = $("input#inputText" + y).attr("name");
-                var cutstring = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
-                var numberName = parseInt(cutstring)+1;
-                //
-                var getid = $(this).attr('name');
-                var cutstring = str.substring(str.indexOf("[") + 1, str.indexOf("]"));
-                var number = parseInt(cutstring);
-                console.log("number"+number+'  '+numberName)
-                if(numberName > number){
-                var newStr = getid.slice(0,getid.substring(str.indexOf("[") + 1))+(number - 1)+ getid.substring(str.indexOf("]"),getid.length);
-                $(this).attr('name',newStr);
-                console.log(newStr)
-                }else{
-                    
-                }
-                
-            });  
-        } else {
-        }  */
-
     });
-    @* $('input[id*="3-2_"]:radio').change(function () {
-        var idInput = $(this).attr('id');
-        var y = idInput.substring(4, idInput.length);
-        if ($('input[id*="3-2_"]:radio').is(':checked')) {
-            $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại các địa điểm khác');
-            if ($('.changed3_' + y).children().length > 0) {
-                $(".changed3_" + y).empty();
-            } else {
-            }
-        }
-        else {
-        }
-
-    });
-    $('input[id*="3-1_"]:radio').change(function () {
-        var idInput = $(this).attr('id');
-        var y = idInput.substring(4, idInput.length);
-        if ($('input[id*="3-1_"]:radio').is(':checked')) {
-            $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại các địa điểm khác');
-            if ($('.changed3_' + y).children().length > 0) {
-                $(".changed3_" + y).empty();
-            } else {
-            }
-        }
-        else {
-        }
-
-    }); *@
 
     $('input[id*="3-2_"]:radio').click(function () {
         var idInput = $(this).attr('id');
         var y = parseInt(idInput.substring(4, idInput.length));
-        console.log(y);
         $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại các địa điểm khác');
-        var myNewValue = "999999999";
+        var myNewValue = "999,999,999.00";
         $('#TongCongDon'+(y-1)+'_1').attr('value',myNewValue);
         $('#DuTinh'+(y-1)+'_1').attr('value',myNewValue);
         $('#ThthangTruoc'+(y-1)+'_1').attr('value',myNewValue);
-        @* $('#TongCongDon'+(y-1)+'_1').prop('max',999999999);
-        $('#DuTinh'+(y-1)+'_1').prop('max',999999999);
-        $('#ThthangTruoc'+(y-1)+'_1').prop('max',999999999); *@
+        //
+        $('#TongCongDon'+(y-1)+'_1').removeAttr('required');
+        $('#DuTinh'+(y-1)+'_1').removeAttr('required');
+        $('#ThthangTruoc'+(y-1)+'_1').removeAttr('required');
         $('#DuTinh' + (y-1) + '_1').attr({ "max": ""});
         $('#ThthangTruoc' + (y-1) + '_1').attr({ "max": ""});
         $('.changed3_' + y).hide();

@@ -109,7 +109,6 @@
                       $('#table-data').replaceWith(result);
                     },
                     error: function (result) {
-                      console.log('Mã số thuế không tồn tại!');
                     }
                   });
                 }
@@ -141,6 +140,7 @@
         document.getElementById("comment").disabled = false;
       } else {
         document.getElementById("comment").disabled = true;
+        document.getElementById("comment").value = "";
       }
     });
     $(document).ready(function () {
