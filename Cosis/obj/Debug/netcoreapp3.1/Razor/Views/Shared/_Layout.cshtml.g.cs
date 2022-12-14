@@ -13,21 +13,21 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 1 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 2 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Cosis\Cosis\Views\_ViewImports.cshtml"
+#line 3 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
 using Cosis.Models.Entities;
 
 #line default
@@ -133,38 +133,11 @@ using Cosis.Models.Entities;
             WriteLiteral("\r\n");
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7cee366e24d7858e9d320ed022fdbb0611b9376310682", async() => {
                 WriteLiteral(@"
-  <!-- Header -->
-  <div class=""header"">
-    <div class=""text-center text-white bg-dark"">
-      <p><b>HỆ THỐNG XỬ LÝ</b></p>
-      <h1 style=""margin: 0""><b>ĐIỀU TRA DOANH NGHIỆP NĂM</b></h1>
-    </div>
-    <nav class=""navbar navbar-expand-sm bg-info navbar-dark"" style=""padding: 0"">
-      <div class=""collapse navbar-collapse"" id=""collapsibleNavbar"">
-        <ul class=""navbar-nav"">
-          <li class=""nav-item"">
-            <a class=""nav-link text-white"" href=""/Home/Index"">Trang chủ</a>
-          </li>
-          <li class=""nav-item"">
-            <a class=""nav-link text-white"" href=""/Form1_1/Index"">Phiếu 1.1/DN-TM-T</a>
-          </li>
-          <li class=""nav-item"">
-            <a class=""nav-link text-white"" href=""/Form1_2/Index"">Phiếu 1.2/DN-LAD-T</a>
-          </li>
-          <li class=""nav-item"">
-            <a class=""nav-link text-white"" href=""/Form1_3/Index"">Phiếu 1.3/DN-VT-T</a>
-          </li>
-          <li class=""nav-item"">
-            <a class=""nav-link text-white"" href=""/Form1");
-                WriteLiteral(@"_4/Index"">Phiếu 1.4/DN-DVK-T</a>
-          </li>
-          <li class=""nav-item"">
-            <a class=""nav-link text-white"" href=""/Form2_1/Index"">Phiếu 2.1/CT-TM-T</a>
-          </li>
-          <li class=""nav-item"">
-            <a class=""nav-link text-white"" href=""/Form2_3/Index"">Phiếu 2.3/CT-VT-T</a>
-          </li>
-        </ul>
+    <!-- Header -->
+    <div class=""header"">
+      <div class=""text-center text-white bg-dark"">
+        <p><b>HỆ THỐNG XỬ LÝ</b></p>
+        <h1 style=""margin: 0""><b>ĐIỀU TRA DOANH NGHIỆP NĂM</b></h1>
       </div>
       <nav
         class=""navbar navbar-expand-sm bg-info navbar-dark""
@@ -255,44 +228,21 @@ using Cosis.Models.Entities;
                 WriteLiteral(@"
   <script type=""text/javascript"">
     var strMS = """";
-    function AddMS(item) {
-      strMS += item;
+    function AddMS(item){
+        strMS += item;
     }
 
-    $("".MS"").keyup(function () {
+    $("".MS"").keyup(function() {
 
-      var valueArr = [];
-      document.querySelectorAll('.MS').forEach(function (el) {
-        valueArr.push(el.value);
-      });
-      strMS = """";
-      valueArr.forEach(AddMS)
-      $('#MST1').val(strMS);
-      if (strMS.length == 13) {
-        if ($('label.P-name b').text().includes('2.') == false) {
-          $.ajax({
-            type: 'POST',
-            url: '/loadMaster',
-            da");
-                WriteLiteral(@"ta: ""ms="" + strMS,
-            success: function (result) {
-              $('#ThongTinDoanhNghiepGroup').replaceWith(result);
-            },
-            error: function (result) {
-              alert('Mã số thuế không tồn tại!');
-            }
-          });
-        } else {
-          $.ajax({
-            type: 'POST',
-            url: '/loadMaster2',
-            data: ""ms="" + strMS,
-            success: function (result) {
-              $('#ThongTinDoanhNghiepGroup').replaceWith(result);
-              $('#MST1').val(strMS);
-");
-                WriteLiteral(@"              if ($('label.P-name b').text().includes('2.1')) {
-                  $.ajax({
+        var valueArr = [];
+                document.querySelectorAll('.MS').forEach(function(el){
+                valueArr.push(el.value);
+            });
+        strMS = """";
+        valueArr.forEach(AddMS)
+        $('#MST1').val(strMS);
+        if(strMS.length==13){
+                $.ajax({
                     type: 'POST',
                     url: '/loadMaster',
                     data: ""ms="" + strMS,
@@ -315,16 +265,10 @@ using Cosis.Models.Entities;
                         }
                     },
                     error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
                     }
-                  });
-                }
-            },
-            error: function (result) {
-              alert('Mã số thuế không tồn tại!');
-            }
-          });
+            })
         }
-      }
     });
 
     $("".MS"").keyup(function (e) {
@@ -334,10 +278,8 @@ using Cosis.Models.Entities;
         } else {
           var check = document.getElementById(""n"" + next).value;
           if (check !== """") {
-            document.getElementById(""n"" + next).focus();
           } else {
-            document.getElementById(""n"" + next");
-                WriteLiteral(@").focus();
+            document.getElementById(""n"" + next).focus();
           }
         }
       }
@@ -348,44 +290,19 @@ using Cosis.Models.Entities;
 ");
                 WriteLiteral(@"      } else {
         document.getElementById(""comment"").disabled = true;
-        document.getElementById(""comment"").value = """";
       }
     });
-    $(document).ready(function () {
-      $('tr[class*=""changed3_""').hide(this.check);
-    });
-    // hide show 3.1
-    $('input[id*=""3_""').click(function () {
-        var idInput = $(this).attr('id');
-        var y = idInput.substring(2, idInput.length);
-        $('.changed3_' + y).show(this.checked);
-        $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại siêu thị mini, cửa hàng tiện ích và các địa điểm khác');
-    });
-    $('input[id*=""3-1_""').click(function () {
-        var idInput = $(this).attr('id');
-        var y = idInput.substring(4, idInput.length);
-        $('.changed3_' + y).hide(this.check);
-        $('input#inputText' + y).val('Cơ s");
-                WriteLiteral(@"ở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại siêu thị mini, cửa hàng tiện ích');
-    });
-    $('input[id*=""3-2_""').click(function () {
-        var idInput = $(this).attr('id');
-        var y = idInput.substring(4, idInput.length);
-        $('.changed3_' + y).hide(this.check);
-        $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại các địa điểm khác');
-    });
-
     $(""#5"").click(function () {
       $("".changed1"").toggle(this.checked);
     });
     $(""#5-1"").click(function () {
-      $("".changed1"").hide(this.check);
+      $("".changed1"").toggle(this.check);
     });
     $(""#13"").click(function () {
-      $("".changed2"").show(this.checked);
+      $("".changed2"").toggle(this.checked);
     });
     $(""#13-1"").click(function () {
-      $("".changed2"").hide(this.check);
+      $("".changed2"").toggle(this.check);
     });
 
         $(document).ready(function () {
@@ -407,7 +324,7 @@ using Cosis.Models.Entities;
       });
     });
   </script>
-  ");
+    ");
 #nullable restore
 #line 191 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Layout.cshtml"
 Write(RenderSection("Scripts", required: false));
@@ -428,7 +345,7 @@ Write(RenderSection("Scripts", required: false));
             }
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("\r\n\r\n</html>\r\n");
+            WriteLiteral("\r\n</html>\r\n");
         }
         #pragma warning restore 1998
         #nullable restore
