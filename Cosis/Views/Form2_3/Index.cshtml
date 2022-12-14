@@ -52,11 +52,6 @@
         </div>
         <div id="ThongTinDoanhNghiepGroup" class="form-group">
           <div class="row">
-            <label class="lb-info">Tên doanh nghiệp/HTX: </label>
-            <input type="text" name="Master.Ten" class="infoma" />
-          </div>
-
-          <div class="row">
             <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
             <select name="Master.MaTinhTp" id="city" class="infoma">
               <option value="">--- Chọn Tỉnh/TP ---</option>
@@ -82,7 +77,7 @@
           </div>
           <div class="row">
             <label class="lb-info">Mã cơ sở: </label>
-            <input type="text" name="" class="infoma" />
+            <input type="text" id="macoso" maxlength="5" class="infoma" required autofocus/>
           </div>
           <div class="row">
             <label class="lb-info">Tên cơ sở: </label>
@@ -645,3 +640,40 @@
           <button class="btn btn-primary">Lưu</button>
         </div>
       </form>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script type="text/javascript">
+        var pattern = /^\d{5}$/;
+    $('input#macoso').keyup(function() {
+        if ($('input#macoso').val().match(pattern)) {
+         // $('input#n0').focus();
+          $('input#macoso').focusout(function(){
+          });
+          var str = $('input#macoso').val();
+          $.ajax({
+            type: 'POST',
+            url: '/loadMaster2CN',
+            data: "ms=" + $('input#macoso').val(),
+            success: function (result) {
+              $('#ThongTinDoanhNghiepGroup').replaceWith(result);
+              if ($('label.P-name b').text().includes('2.1')) {
+                  $.ajax({
+                    type: 'POST',
+                    url: '/loaddata_21B',
+                    data: "ms=" +str,
+                    success: function (result) {
+                      $('#table-data').replaceWith(result);
+                    },
+                    error: function (result) {
+                      console.log('Mã cơ sở không tồn tại!');
+                    }
+                  });
+                }
+            },
+            error: function (result) {
+              alert('Mã cơ sở không tồn tại!');
+            }
+          });
+        } else {
+        }
+    });
+      </script>

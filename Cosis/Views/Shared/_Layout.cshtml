@@ -75,7 +75,7 @@
       valueArr.forEach(AddMS)
       $('#MST1').val(strMS);
       if (strMS.length == 13) {
-        if ($('label.P-name b').text().indexOf('2.') < 1) {
+        if ($('label.P-name b').text().includes('2.') == false) {
           $.ajax({
             type: 'POST',
             url: '/loadMaster',
@@ -94,24 +94,25 @@
             data: "ms=" + strMS,
             success: function (result) {
               $('#ThongTinDoanhNghiepGroup').replaceWith(result);
-              var i = 0;
-              $("input.MS").each(function () {
+              $('#MST1').val(strMS);
+              @* var i = 0; *@
+              @* $("input.MS").each(function () {
                 $(this).val(strMS[i]);
                 i++;
-              });
-            },
-            error: function (result) {
-              alert('Mã số thuế không tồn tại!');
-            }
-          });
-        }
-        if ($('label.P-name b').text().includes('2.1')) {
-          $.ajax({
-            type: 'POST',
-            url: '/loaddata_21B',
-            data: "ms=" + strMS,
-            success: function (result) {
-              $('#table-data').replaceWith(result);
+              }); *@
+              if ($('label.P-name b').text().includes('2.1')) {
+                  $.ajax({
+                    type: 'POST',
+                    url: '/loaddata_21B',
+                    data: "ms=" + strMS,
+                    success: function (result) {
+                      $('#table-data').replaceWith(result);
+                    },
+                    error: function (result) {
+                      console.log('Mã số thuế không tồn tại!');
+                    }
+                  });
+                }
             },
             error: function (result) {
               alert('Mã số thuế không tồn tại!');
@@ -142,17 +143,29 @@
         document.getElementById("comment").disabled = true;
       }
     });
-    /* 
-    $('input[id*="3"').click(function () {
-      $(".changed3").toggle(this.checked);
+    $(document).ready(function () {
+      $('tr[class*="changed3_"').hide(this.check);
     });
-    $('input[id*="#3-1"').click(function () {
-      $(".changed3").hide(this.check);
+    // hide show 3.1
+    $('input[id*="3_"').click(function () {
+        var idInput = $(this).attr('id');
+        var y = idInput.substring(2, idInput.length);
+        $('.changed3_' + y).show(this.checked);
+        $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại siêu thị mini, cửa hàng tiện ích và các địa điểm khác');
     });
-     */
-    $('input[id*="#3-2"').click(function () {
-      $(".changed3").hide(this.check);
+    $('input[id*="3-1_"').click(function () {
+        var idInput = $(this).attr('id');
+        var y = idInput.substring(4, idInput.length);
+        $('.changed3_' + y).hide(this.check);
+        $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại siêu thị mini, cửa hàng tiện ích');
     });
+    $('input[id*="3-2_"').click(function () {
+        var idInput = $(this).attr('id');
+        var y = idInput.substring(4, idInput.length);
+        $('.changed3_' + y).hide(this.check);
+        $('input#inputText' + y).val('Cơ sở bán [NGÀNH CHỌN MẪU] tại đâu?Bán tại các địa điểm khác');
+    });
+
     $("#5").click(function () {
       $(".changed1").show(this.checked);
     });

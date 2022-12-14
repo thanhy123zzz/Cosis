@@ -1,6 +1,6 @@
-﻿@using Cosis.Models
+@using Cosis.Models
 @using Microsoft.EntityFrameworkCore;
-@model Cosis.Models.Entities.ThongTinDoanhNghiep
+@model Cosis.Models.Entities.ThongTinCaThe
 @{
   FormCosisContext context = new FormCosisContext();
   TinhTp getTinh(string idTinh){
@@ -16,9 +16,9 @@
   {
   return context.PhuongXa.Find(idXa);
   }
-  List<NganhKinhDoanh> getNganhKinhDoanh(string mast1, string mast2)
+  List<NganhKinhDoanh> getNganhKinhDoanh(string macs)
   {
-    return context.NganhKinhDoanh.Where(x => x.MaSoThue == mast1 && x.MaSoThue2 == mast2).ToList();
+    return context.NganhKinhDoanh.Where(x => x.MaCoSo == macs).ToList();
   }
 
   NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma)
@@ -46,15 +46,35 @@
   </div>
     <div class="row">
     <label class="lb-info">Mã cơ sở: </label>
-    <input type="text" id="macoso" maxlength="5" name="Master.MaCoSo" value="" class="infoma" />  
+    <input autofocus type="text" id="macoso" maxlength="5" name="Master.MaCoSo" value="@Model.MaCoSo" class="infoma" />  
   </div>
   <div class="row">
     <label class="lb-info">Tên cơ sở: </label>
-    <input readonly type="text" value="" class="infoma" />
+    <input readonly type="text" value="@Model.TenCoSo" class="infoma" />
     </div>
-  <div class="row">
+    @if((Model.MaSoThue == null && Model.MaSoThue2 == null) || Model.MaSoThue2.Length >=5){
+        <div class="row">
     <label class="lb-info">Mã số thuế</label>
-    <input type="text" value="@Model.MaSoThue.Substring(0,1)" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="1" />
+    <input type="text" value="" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="1" autofocus/>
+    <input type="text" value="" id="n1" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="2" />
+    <input type="text" value="" id="n2" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="3" />
+    <input type="text" value="" id="n3" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="4" />
+    <input type="text" value="" id="n4" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="5" />
+    <input type="text" value="" id="n5" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="6" />
+    <input type="text" value="" id="n6" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="7" />
+    <input type="text" value="" id="n7" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="8" />
+    <input type="text" value="" id="n8" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="9" />
+    <input type="text" value="" id="n9" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="10" />
+
+    <input type="text" value="" id="n10" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="11" />
+    <input type="text" value=""  id="n11" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="12" />
+    <input type="text" value="" id="n12" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="13" />
+    <input type="hidden" id="MST1" value="" />
+  </div>
+    }else{
+        <div class="row">
+    <label class="lb-info">Mã số thuế</label>
+    <input type="text" value="@Model.MaSoThue.Substring(0,1)" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="1" autofocus/>
     <input type="text" value="@Model.MaSoThue.Substring(1,1)" id="n1" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="2" />
     <input type="text" value="@Model.MaSoThue.Substring(2,1)" id="n2" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="3" />
     <input type="text" value="@Model.MaSoThue.Substring(3,1)" id="n3" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="4" />
@@ -70,6 +90,7 @@
     <input type="text" value="@Model.MaSoThue2.Substring(2,1)" id="n12" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="13" />
     <input type="hidden" id="MST1" value="@Model.MaSoThue+@Model.MaSoThue2" />
   </div>
+    }
   <div class="row">
     <label class="lb-info">Thôn, ấp<i>(số nhà, đường phố)</i>: </label>
     <input readonly type="text" name="Master.DiaChiCuThe" value="@Model.DiaChiCuThe" class="infoma" />
@@ -77,7 +98,7 @@
 
   <div class="row">
     <label class="lb-info">Số điện thoại: </label>
-    <input readonly name="Master.Sdt" value="@Model.SdtdoanhNghiep" type="text" class="infoma" />
+    <input readonly name="Master.Sdt" value="@Model.SdtcoSo" type="text" class="infoma" />
   </div>
   <div class="row">
     <label class="lb-info">Email: </label>
@@ -121,7 +142,7 @@
   </div>
   <div class="nganhKD row">
     <label class="nganh-lb" for="">Ngành hoạt động kinh doanh</label>
-    @foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.MaSoThue, Model.MaSoThue2))
+    @foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.MaCoSo))
     {
       <div class="nganh-ct">
         <div class="row">
@@ -141,69 +162,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
-  @* var citis = document.getElementById("city");
-  var districts = document.getElementById("district");
-  var wards = document.getElementById("ward");
-
-  var Parameter = {
-    url: "https://localhost:5001/assets/DiaChi.json",
-    method: "GET",
-    responseType: "application/json",
-  };
-  var promise = axios(Parameter);
-  promise.then(
-    function (result) {
-      renderCity(result.data);
-    });
-  function renderCity(data) {
-    for (const x of data) {
-      if (x.Id == @Html.Raw(Model.MaTinhTp.Trim())) {
-        citis.options[citis.options.length] = new Option(x.Name, x.Id, true, true);
-        const result = data.filter(n => n.Id === x.Id);
-
-        for (const k of result[0].Districts) {
-          if (k.Id == @Html.Raw(Model.MaQuanHuyen.Trim())) {
-            district.options[district.options.length] = new Option(k.Name, k.Id, true, true);
-            const dataCity = data.filter((n) => n.Id === citis.value);
-            const dataWards = dataCity[0].Districts.filter(n => n.Id === k.Id)[0].Wards;
-            for (const w of dataWards) {
-              if (w.Id == @Html.Raw(Model.MaPhuongXa.Trim())) {
-                wards.options[wards.options.length] = new Option(w.Name, w.Id, true, true);
-              } else {
-                wards.options[wards.options.length] = new Option(w.Name, w.Id);
-              }
-            }
-          } else {
-            district.options[district.options.length] = new Option(k.Name, k.Id);
-          }
-        }
-      } else {
-        citis.options[citis.options.length] = new Option(x.Name, x.Id);
-      }
-    }
-    citis.onchange = function () {
-      district.length = 1;
-      ward.length = 1;
-      if (this.value != "") {
-        const result = data.filter(n => n.Id === this.value);
-
-        for (const k of result[0].Districts) {
-          district.options[district.options.length] = new Option(k.Name, k.Id);
-        }
-      }
-    };
-    district.onchange = function () {
-      ward.length = 1;
-      const dataCity = data.filter((n) => n.Id === citis.value);
-      if (this.value != "") {
-        const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
-
-        for (const w of dataWards) {
-          wards.options[wards.options.length] = new Option(w.Name, w.Id);
-        }
-      }
-    };
-  } *@
   var pattern = /^\d{5}$/;
     $('input#macoso').keyup(function() {
         if ($('input#macoso').val().match(pattern)) {
@@ -217,12 +175,6 @@
             data: "ms=" + $('input#macoso').val(),
             success: function (result) {
               $('#ThongTinDoanhNghiepGroup').replaceWith(result);
-              @* var strMS = $('#input#macoso').val(); *@
-              @* var i = 0; *@
-              @* $("input.MS").each(function () {
-                $(this).val(strMS[i]);
-                i++;
-              }); *@
               if ($('label.P-name b').text().includes('2.1')) {
                   $.ajax({
                     type: 'POST',
@@ -274,11 +226,6 @@
             success: function (result) {
               $('#ThongTinDoanhNghiepGroup').replaceWith(result);
               $('#MST1').val(strMS);
-              @* var i = 0; *@
-              @* $("input.MS").each(function () {
-                $(this).val(strMS[i]);
-                i++;
-              }); *@
               if ($('label.P-name b').text().includes('2.1')) {
                   $.ajax({
                     type: 'POST',
