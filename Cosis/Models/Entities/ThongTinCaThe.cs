@@ -26,8 +26,10 @@ namespace Cosis.Models.Entities
         public string Email { get; set; }
         public string MaLh { get; set; }
         public string TaiKhoan { get; set; }
+        public string MaLoaiPhieu { get; set; }
 
         public virtual LoaiHinhKinhte MaLhNavigation { get; set; }
+        public virtual LoaiPhieu MaLoaiPhieuNavigation { get; set; }
         public virtual PhuongXa MaPhuongXaNavigation { get; set; }
         public virtual QuanHuyen MaQuanHuyenNavigation { get; set; }
         public virtual TinhTp MaTinhTpNavigation { get; set; }
