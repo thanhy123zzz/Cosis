@@ -43,6 +43,59 @@ namespace Cosis.Controllers
             var a = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}",mst1,mst2).FirstOrDefault();
             return PartialView("_Master",a);
         }
+        // xd add
+        [HttpPost("/loadMaster2")]
+        public IActionResult loadInfor(string ms)
+        {
+            FormCosisContext context = new FormCosisContext();
+            string mst1 = ms.Substring(0, 10);
+            string mst2 = ms.Substring(10);
+            // var b = context.Master.FromSqlRaw("select*from Master where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
+            // Console.WriteLine(a1);
+            var a = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).FirstOrDefault();
+            ViewBag.CheckMCS = 0;
+            return PartialView("_Master2_1", a);
+        }
+        [HttpPost("/loadMaster2CN")]
+        public IActionResult loadInforPersonal(string ms)
+        {
+            FormCosisContext context = new FormCosisContext();
+            var a = context.ThongTinCaThe.FromSqlRaw("select*from ThongTinCaThe where MaCoSo = {0}", ms).FirstOrDefault();
+            ViewBag.CheckMCS = 0;
+            return PartialView("_Master2_1CN", a);
+        }
+        [HttpPost("/loaddata_21B")]
+        public IActionResult loaddata_21B(string ms)
+        {
+            Console.WriteLine("MS:"+ms+"length:"+ms.Length);
+            FormCosisContext context = new FormCosisContext();
+            var a = context.NganhKinhDoanh.ToList();
+            if(ms.Length == 13){
+            string mst1 = ms.Substring(0, 10);
+            string mst2 = ms.Substring(10);
+            a = context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).ToList();
+            }else{
+             a = context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaCoSo = {0}", ms).ToList();
+            }
+            // Console.WriteLine(a.ToString());
+            ViewBag.ListNghanh = a;
+            return PartialView("_2_1B");
+        }
+        [HttpPost("/loaddata_14B")]
+        public IActionResult loaddata_14B(string ms)
+        {
+            Console.WriteLine("MS:"+ms+"length:"+ms.Length);
+            FormCosisContext context = new FormCosisContext();
+            var a = context.NganhKinhDoanh.ToList();
+            string mst1 = ms.Substring(0, 10);
+            string mst2 = ms.Substring(10);
+            a = context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue = {0} and MaSoThue2 = {1}", mst1, mst2).ToList();
+            
+            // Console.WriteLine(a.ToString());
+            ViewBag.ListNghanh = a;
+            return PartialView("_1_4B");
+        }
+        // end
 
 /*        [Route("/xlsx")]
         public IActionResult xlsx()

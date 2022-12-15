@@ -9647,7 +9647,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
+    "C:\\Users\\TG\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -9655,11 +9655,11 @@
       "projectUniqueName": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
       "projectName": "Cosis",
       "projectPath": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
-      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\TG\\.nuget\\packages\\",
       "outputPath": "D:\\ProjectC#\\Cosis\\Cosis\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TG\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

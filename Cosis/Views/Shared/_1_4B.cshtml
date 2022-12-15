@@ -1,0 +1,181 @@
+@{
+    FormCosisContext context = new FormCosisContext();
+    List<NganhKinhDoanh> getNganhKinhDoanh(string mast1, string mast2)
+    {
+        return context.NganhKinhDoanh.Where(x => x.MaSoThue == mast1 && x.MaSoThue2 == mast2).ToList();
+    }
+    List<NganhKinhDoanh> list;
+    NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma)
+    {
+        return context.NganhHoatDongKinhDoanh.Where(x => x.MaNganh == ma).FirstOrDefault();
+    }
+
+    int getThang()
+    {
+        return DateTime.Now.Month;
+    }
+    int getThangTruoc()
+    {
+        if (getThang() == 1)
+        {
+            return 12;
+        }
+        else
+        {
+            return getThang() - 1;
+        }
+    }
+    int getNam()
+    {
+        return DateTime.Now.Year;
+    }
+    string getThangNamTruoc()
+    {
+        if (getThang() == 1)
+            return "12/" + (getNam() - 1);
+        else
+        {
+            return (getThang() - 1) + "/" + getNam();
+        }
+    }
+}
+<tbody id="table-data1_4">
+    <tr class="text-center">
+        <td></td>
+        <td></td>
+        <td colspan="3"><b>Đơn vị tính: Triệu đồng</b></td>
+    </tr>
+    <tr class="text-center">
+        <td>A</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>1. Tổng doanh thu
+            <input type="hidden" id="stt0" name="Detail[0].Stt" value="1." />
+            <input type="hidden" name="Detail[0].TenCt" value="Tổng doanh thu" />
+        </td>
+        <td></td>
+        <td><input type="text" pattern="[0-9,.\-$]+" id="ThthangTruoc0" oninput="changeThthangTruoc(0)"
+                name="Detail[0].ThthangTruoc" class="infoma infomal" readonly /></td>
+        <td><input type="text" pattern="[0-9,.\-$]+" id="DuTinh0" oninput="changeDuTinh(0)" name="Detail[0].DuTinh"
+                class="infoma infomal" readonly /></td>
+        <td><input type="text" pattern="[0-9,.\-$]+" id="TongCongDon0" name="Detail[0].TongCongDon"
+                class="infoma infomal" readonly /></td>
+    </tr>
+    @{
+        int countDetails = 1;
+    }
+    @foreach (var item in @ViewBag.ListNghanh)
+    {
+        <tr>
+            <td>2. Doanh thu thuần [NGÀNH CHỌN MẪU]
+                <input type="hidden" readonly id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="2._@item.MaNganh" />
+            <input type="hidden" readonly name="Detail[@countDetails].TenCt" value="Doanh thu thuần [NGÀNH CHỌN MẪU]" />
+            </td>
+            <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+                class="infoma" /></td>
+            <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
+                id="ThthangTruoc@(countDetails)" oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+            </td>
+            <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
+                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+            <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
+                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+        </tr>
+            countDetails++;
+        <tr>
+            <td>3. Trị giá vốn nhà để ở đã bán
+                <input type="hidden" id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="3._@item.MaNganh" />
+            <input type="hidden" name="Detail[@countDetails].TenCt" value="Trị giá vốn nhà để ở đã bán" />
+            </td>
+            <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+                class="infoma" /></td>
+            <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
+                id='ThthangTruoc@(countDetails)' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+            </td>
+            <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
+                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+            <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
+                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+        </tr>
+            countDetails++;
+        @if (item.MaNganh.Trim() == "68103")
+        {
+            <tr>
+                <td>
+                    4. Trị giá vốn nhà, công trình không để ở và bất động sản khác
+                    đã bán (Chỉ hiển thị khi mã ngành chọn mẫu là 68103)
+                    <input type="hidden" id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="4._@item.MaNganh" />
+            <input type="hidden" name="Detail[@countDetails].TenCt" value="Trị giá vốn nhà, công trình không để ở và bất động sản khác
+                    đã bán (Chỉ hiển thị khi mã ngành chọn mẫu là 68103)" />
+                </td>
+                <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+                class="infoma" /></td>
+                <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
+                id='ThthangTruoc@(countDetails)' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+                </td>
+                <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
+                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+                <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
+                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+            </tr>
+            countDetails++;
+        }
+        @if (item.MaNganh.Trim() == "92")
+        {
+            <tr>
+                <td>
+                    5. Chi phí hoa hồng cho đại lý xổ số (Chỉ hiển thị khi mã ngành
+                    chọn mẫu là 92)
+                    <input type="hidden" id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="5._@item.MaNganh" />
+            <input type="hidden" name="Detail[@countDetails].TenCt" value="Chi phí hoa hồng cho đại lý xổ số (Chỉ hiển thị khi mã ngành
+                    chọn mẫu là 92)" />
+                </td>
+                <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+                class="infoma" /></td>
+                <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
+                id='ThthangTruoc@(countDetails)' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+                </td>
+                <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
+                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+                <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
+                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+            </tr>
+            countDetails++;
+            <tr>
+                <td>
+                    6. Chi phí trả thưởng xổ số (Chỉ hiển thị khi mã ngành chọn mẫu
+                    là 92)
+                    <input type="hidden" id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="6._@item.MaNganh" />
+            <input type="hidden" name="Detail[@countDetails].TenCt" value="Chi phí trả thưởng xổ số (Chỉ hiển thị khi mã ngành chọn mẫu
+                    là 92)" />
+                </td>
+                <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+                class="infoma" /></td>
+                <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
+                id='ThthangTruoc@(countDetails)' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+                </td>
+                <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
+                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+                <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
+                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+            </tr>
+            countDetails++;
+        }
+    }
+</tbody>
+<script>
+    $('.infomal').on('blur', function () {
+    if (checkNumber(this.value)) {
+      const value = this.value.replace(/,/g, '');
+      this.value = parseFloat(value).toLocaleString('en-US', {
+        style: 'decimal',
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2
+      })
+    }
+  }); 
+</script>
