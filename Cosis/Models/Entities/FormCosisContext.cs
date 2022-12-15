@@ -29,9 +29,11 @@ namespace Cosis.Models.Entities
         public virtual DbSet<NhanToThu9> NhanToThu9 { get; set; }
         public virtual DbSet<PhuongXa> PhuongXa { get; set; }
         public virtual DbSet<QuanHuyen> QuanHuyen { get; set; }
+        public virtual DbSet<TaiKhoang> TaiKhoang { get; set; }
         public virtual DbSet<ThongTinCaThe> ThongTinCaThe { get; set; }
         public virtual DbSet<ThongTinDoanhNghiep> ThongTinDoanhNghiep { get; set; }
         public virtual DbSet<TinhTp> TinhTp { get; set; }
+        public virtual DbSet<VaiTro> VaiTro { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -362,6 +364,31 @@ namespace Cosis.Models.Entities
                 entity.Property(e => e.Name).HasMaxLength(250);
             });
 
+            modelBuilder.Entity<TaiKhoang>(entity =>
+            {
+                entity.HasKey(e => e.TaiKhoang1);
+
+                entity.Property(e => e.TaiKhoang1)
+                    .HasColumnName("TaiKhoang")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IdvaiTro)
+                    .HasColumnName("IDVaiTro")
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MatKhau)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.IdvaiTroNavigation)
+                    .WithMany(p => p.TaiKhoang)
+                    .HasForeignKey(d => d.IdvaiTro)
+                    .HasConstraintName("FK_TaiKhoang_VaiTro");
+            });
+
             modelBuilder.Entity<ThongTinCaThe>(entity =>
             {
                 entity.HasKey(e => e.MaCoSo)
@@ -416,12 +443,16 @@ namespace Cosis.Models.Entities
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.TaiKhoan)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.TenCoSo).HasMaxLength(200);
 
                 entity.HasOne(d => d.MaLhNavigation)
                     .WithMany(p => p.ThongTinCaThe)
                     .HasForeignKey(d => d.MaLh)
-                    .HasConstraintName("FK__ThongTinCa__MaLH__1A9EF37A");
+                    .HasConstraintName("FK__ThongTinCa__MaLH__67DE6983");
 
                 entity.HasOne(d => d.MaPhuongXaNavigation)
                     .WithMany(p => p.ThongTinCaThe)
@@ -437,6 +468,11 @@ namespace Cosis.Models.Entities
                     .WithMany(p => p.ThongTinCaThe)
                     .HasForeignKey(d => d.MaTinhTp)
                     .HasConstraintName("FK__ThongTinC__MaTin__1B9317B3");
+
+                entity.HasOne(d => d.TaiKhoanNavigation)
+                    .WithMany(p => p.ThongTinCaThe)
+                    .HasForeignKey(d => d.TaiKhoan)
+                    .HasConstraintName("FK__ThongTinC__TaiKh__6CA31EA0");
             });
 
             modelBuilder.Entity<ThongTinDoanhNghiep>(entity =>
@@ -488,12 +524,16 @@ namespace Cosis.Models.Entities
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.TaiKhoan)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.TenDoanhNghiep).HasMaxLength(200);
 
                 entity.HasOne(d => d.MaLhNavigation)
                     .WithMany(p => p.ThongTinDoanhNghiep)
                     .HasForeignKey(d => d.MaLh)
-                    .HasConstraintName("FK__ThongTinDo__MaLH__14E61A24");
+                    .HasConstraintName("FK__ThongTinDo__MaLH__6BAEFA67");
 
                 entity.HasOne(d => d.MaPhuongXaNavigation)
                     .WithMany(p => p.ThongTinDoanhNghiep)
@@ -509,6 +549,11 @@ namespace Cosis.Models.Entities
                     .WithMany(p => p.ThongTinDoanhNghiep)
                     .HasForeignKey(d => d.MaTinhTp)
                     .HasConstraintName("FK__ThongTinD__MaTin__15DA3E5D");
+
+                entity.HasOne(d => d.TaiKhoanNavigation)
+                    .WithMany(p => p.ThongTinDoanhNghiep)
+                    .HasForeignKey(d => d.TaiKhoan)
+                    .HasConstraintName("FK__ThongTinD__TaiKh__6D9742D9");
             });
 
             modelBuilder.Entity<TinhTp>(entity =>
@@ -521,6 +566,19 @@ namespace Cosis.Models.Entities
                     .IsFixedLength();
 
                 entity.Property(e => e.Name).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<VaiTro>(entity =>
+            {
+                entity.HasKey(e => e.IdvaiTro);
+
+                entity.Property(e => e.IdvaiTro)
+                    .HasColumnName("IDVaiTro")
+                    .HasMaxLength(5)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.TenVaiTro).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -25,11 +25,13 @@ namespace Cosis.Models.Entities
         public string SdtcoSo { get; set; }
         public string Email { get; set; }
         public string MaLh { get; set; }
+        public string TaiKhoan { get; set; }
 
         public virtual LoaiHinhKinhte MaLhNavigation { get; set; }
         public virtual PhuongXa MaPhuongXaNavigation { get; set; }
         public virtual QuanHuyen MaQuanHuyenNavigation { get; set; }
         public virtual TinhTp MaTinhTpNavigation { get; set; }
+        public virtual TaiKhoang TaiKhoanNavigation { get; set; }
         public virtual ICollection<Master> Master { get; set; }
     }
 }

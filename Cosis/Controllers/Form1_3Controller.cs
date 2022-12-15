@@ -37,7 +37,27 @@ namespace Cosis.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            FormCosisContext context = new FormCosisContext();
+            PhieuDieuTra phieu = new PhieuDieuTra();
+            
+            if (User.IsInRole("001"))
+            {
+                return View(phieu);
+            }
+            if (User.IsInRole("002"))
+            {
+                var ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
+                var master = context.Master.FirstOrDefault(x => x.MaSoThue == ttdn.MaSoThue && x.MaSoThue2 == ttdn.MaSoThue2 && x.NgayTao.Value.Month == DateTime.Now.Month && x.Nam == DateTime.Now.Year.ToString());
+                phieu.Master = master;
+                var ntah = context.DanhSachNhanToAnhHuong.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
+                phieu.DanhSachNhanToAnhHuong = ntah;
+                var detail = context.Detail.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
+                phieu.Detail = detail;
+                var Nhan9 = context.NhanToThu9.FirstOrDefault(x => x.MaPhieu == master.MaPhieu.Trim());
+                phieu.NhanToThu9 = Nhan9;
+                return View(phieu);
+            }
+            return View(phieu);
         }
         [HttpPost("/form1_3")]
         public IActionResult InsertForm1_3(PhieuDieuTra phieu, IFormCollection form, int loai)
@@ -46,7 +66,7 @@ namespace Cosis.Controllers
             List<DanhSachNhanToAnhHuong> list = new List<DanhSachNhanToAnhHuong>();
             for (int i =0; i < 8; i++)
             {
-                string name = "DanhSachNhanToAnhHuong" + i;
+                string name = "DanhSachNhanToAnhHuong_" + i;
                 string value = form[name];
                 if(value!=null)
                 {
