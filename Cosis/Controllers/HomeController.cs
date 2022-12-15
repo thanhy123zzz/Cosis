@@ -12,9 +12,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Cosis.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -43,12 +46,18 @@ namespace Cosis.Controllers
             var a = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}",mst1,mst2).FirstOrDefault();
             return PartialView("_Master",a);
         }
-
-/*        [Route("/xlsx")]
-        public IActionResult xlsx()
+        [HttpPost("/loadMaster1")]
+        public IActionResult loadMaster(string ms)
         {
-           
-        }*/
+            FormCosisContext context = new FormCosisContext();
+            var a = context.Master.FirstOrDefault(x=>x.MaPhieu == ms);
+            return PartialView("_Master1_3", a);
+        }
+        /*        [Route("/xlsx")]
+                public IActionResult xlsx()
+                {
+
+                }*/
 
     }
 }

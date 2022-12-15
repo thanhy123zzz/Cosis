@@ -29,7 +29,7 @@ namespace Cosis.Controllers
         {
             ViewBag.MaSoThue1 = ms.Substring(0, 10);
             ViewBag.MaSoThue2 = ms.Substring(10);
-            return PartialView("_Table1_3");
+            return PartialView("_Table1_1");
         }
 
         [HttpPost("/form1_1")]

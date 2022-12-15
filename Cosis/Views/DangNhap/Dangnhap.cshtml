@@ -1,3 +1,4 @@
+@model Cosis.Models.Entities.TaiKhoang
 @{
     Layout = null;
 }
@@ -11,6 +12,14 @@
     <link rel="stylesheet" href="~/assets/login.css" />
   </head>
   <body>
+    @if (TempData["ThongBaoDN"] != null)
+    {
+                <script type="text/javascript" charset="utf-8">
+                    window.onload = function () {
+                        alert("@Html.Raw(@TempData["ThongBaoDN"])");
+                };
+                </script>
+    }
     <div class="wrapper fadeInDown">
       <div id="formContent">
         <!-- Tabs Titles -->
@@ -19,13 +28,13 @@
         <div class="fadeIn first"></div>
         <h4>ĐĂNG NHẬP</h4>
         <!-- Login Form -->
-        <form>
+        <form method="post" action="/login">
           <input
             style="text-align:left;"
             type="text"
             id="login"
             class="fadeIn second"
-            name="login"
+            asp-for="@Model.TaiKhoang1"
             placeholder="Tài khoản"
           />
           <input
@@ -33,7 +42,7 @@
             type="password"
             id="password"
             class="fadeIn third"
-            name="login"
+            asp-for="@Model.MatKhau"
             
             placeholder="Mật khẩu"
           />

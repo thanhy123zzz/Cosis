@@ -11,7 +11,6 @@ namespace Cosis.Models.Entities
     {
         public string MaPhieu { get; set; }
         public string MaAh { get; set; }
-
         public DanhSachNhanToAnhHuong(string MaAh)
         {
             this.MaAh = MaAh;

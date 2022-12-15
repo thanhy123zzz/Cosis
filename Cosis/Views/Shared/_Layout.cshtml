@@ -70,12 +70,14 @@
           id="collapsibleNavbar"
           style="justify-content: flex-end; padding-right: 15px"
         >
-          <label for="" class="text-white">Liên hệ 2800725143</label>
+          <a class="nav-link text-white" href="/logout"
+                >Đăng xuất</a
+              >
         </div>
       </nav>
     </div>
 
-    <div class="container col-lg-12">
+    <div id="bodyDiv" class="container">
             @RenderBody()
     </div>
   <!-- footer -->
@@ -169,23 +171,35 @@
       $(".changed2").toggle(this.check);
     });
 
-        $(document).ready(function () {
+        $(document).ready(function () 
+        {
       $.fn.DataTable.ext.pager.numbers_length = 5;
       $("#example").dataTable({
         pagingType: "simple_numbers",
         bLengthChange: false,
         bInfo: false,
-        ordering: false,
-        pageLength: 9,
+        pageLength: 9,  
         language: {
           paginate: {
-            previous: "<<",
-            next: ">>",
+            previous: "Trước",
+            next: "Sau",
           },
           searchPlaceholder: "Nhập cơ sở cần tìm",
           search: "Tìm kiếm",
         },
       });
+        }
+    );
+    $(document).ready(function(){
+        let kq = "@User.IsInRole("001")"
+        if(kq=="True"){
+            $('#bodyDiv').addClass("col-lg-12");
+            $('#form').addClass("form");
+            $('#tableQLTT').css("display","block");
+        }else{
+            $('#tableQLTT').css("display","none");
+            $('#form').addClass("form1");
+        }
     });
   </script>
     @RenderSection("Scripts", required: false)

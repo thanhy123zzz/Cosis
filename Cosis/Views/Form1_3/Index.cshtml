@@ -1,5 +1,6 @@
 ﻿@model Cosis.Models.PhieuDieuTra
 @{
+    FormCosisContext context = new FormCosisContext();
     int getThang(){
         return DateTime.Now.Month;
     }
@@ -19,6 +20,24 @@
             return (getThang()-1) +"/" + getNam();
         }
     }
+    string getArray(){
+        if (Model.Master != null)
+        {
+            string a = "";
+            foreach (DanhSachNhanToAnhHuong l in Model.DanhSachNhanToAnhHuong)
+            {
+                a = a + "'" + l.MaAh.Trim() + "', ";
+            }
+            return a;
+        }else{
+            return "";
+        }
+
+    }
+
+    List<Master> getMasters(){
+        return context.Master.ToList();
+    }  
 }
 @if (TempData["ThongBao"] != null)
 		{
@@ -28,7 +47,7 @@
 			};
 			</script>
 		}
-<form action="/form1_3" method="post" class="form" enctype="multipart/form-data">
+<form id="form" action="/form1_3" method="post" enctype="multipart/form-data">
     <div class="choose-day row">
           <div class="choose-month">
             <label for="">Tháng</label>
@@ -50,7 +69,7 @@
               size="1"
               value="@getNam()"
               style="height: 26px"
-              pattern="1900-2023"
+              
             />
           </div>
         </div>
@@ -63,8 +82,10 @@
           <label class="P-name"><b>Phiếu 1.3/DN-VT-T</b></label>
           <div class="mstp">
           <label for="">Mã số thuế</label>
-          <div class="row">
-            <input
+            @if (Model.Master == null)
+            {
+                <div class="row">
+                    <input
               type="text"
               id="n0"
               maxlength="1"
@@ -74,7 +95,7 @@
               autofocus
               data-next="1"
             />
-            <input
+                    <input
               type="text"
               id="n1"
               maxlength="1"
@@ -83,7 +104,7 @@
               autocomplete="off"
               data-next="2"
             />
-            <input
+                    <input
               type="text"
               id="n2"
               maxlength="1"
@@ -92,7 +113,7 @@
               autocomplete="off"
               data-next="3"
             />
-            <input
+                    <input
               type="text"
               id="n3"
               maxlength="1"
@@ -101,7 +122,7 @@
               autocomplete="off"
               data-next="4"
             />
-            <input
+                    <input
               type="text"
               id="n4"
               maxlength="1"
@@ -110,7 +131,7 @@
               autocomplete="off"
               data-next="5"
             />
-            <input
+                    <input
               type="text"
               id="n5"
               maxlength="1"
@@ -119,7 +140,7 @@
               autocomplete="off"
               data-next="6"
             />
-            <input
+                    <input
               type="text"
               id="n6"
               maxlength="1"
@@ -128,7 +149,7 @@
               autocomplete="off"
               data-next="7"
             />
-            <input
+                    <input
               type="text"
               id="n7"
               maxlength="1"
@@ -137,7 +158,7 @@
               autocomplete="off"
               data-next="8"
             />
-            <input
+                    <input
               type="text"
               id="n8"
               maxlength="1"
@@ -146,7 +167,7 @@
               autocomplete="off"
               data-next="9"
             />
-            <input
+                    <input
               type="text"
               id="n9"
               maxlength="1"
@@ -155,9 +176,9 @@
               autocomplete="off"
               data-next="10"
             />
-          </div>
-          <div class="row">
-            <input
+                </div>
+                <div class="row">
+                    <input
               type="text"
               id="n10"
               maxlength="1"
@@ -184,8 +205,41 @@
               autocomplete="off"
               data-next="13"
             />
-            <input type="hidden" id="MST1" name="Master.MaSoThue"/>
           </div>
+              <input type="hidden" id="MST1" value="" name="Master.MaSoThue"/>
+          }else{
+              <div class="row">
+                    @for(int i = 0; i < 10; i++){
+                        <input type="text"
+                           id="n0"
+                           maxlength="1"
+                           size="1"
+                           class="text-center MS"
+                           autocomplete="off"
+                           autofocus
+                           data-next="1" 
+                           value="@Model.Master.MaSoThue.Substring(i,1)"
+                           />
+                    }
+                </div>
+                <div class="row">
+                    @for(int i=0;i<3;i++){
+
+                    <input type="text"
+                           id="n10"
+                           maxlength="1"
+                           size="1"
+                           class="text-center MS"
+                           autocomplete="off"
+                           data-next="11" 
+                           value="@Model.Master.MaSoThue2.Substring(i,1)"
+                           />
+                    }
+                </div>
+                 <input type="hidden" id="Maphieu" asp-for="@Model.Master.MaPhieu"/>
+                    <input type="hidden" id="MST1" value="@Model.Master.MaSoThue@Model.Master.MaSoThue2" name="Master.MaSoThue"/>
+          }
+          
           </div>
         </div>
         <div class="form-group text-center tenphieu">
@@ -205,17 +259,23 @@
         <div class="form-group text-center">
           <div class="row"></div>
           <div>
-            <label> <b>Tháng @getThang() Năm @getNam()</b> </label>
+              @if (Model.Master == null) {
+            <label> <b>Tháng @getThang() Năm @getNam()</b> 
+            </label>
+            }else{
+                <label> <b>Tháng @Model.Master.NgayTao.Value.Month Năm @Model.Master.Nam</b> 
+                </label>
+                }
           </div>
           <div class="row"></div>
         </div>
-        <div class="form-group m-title bg-primary">
-          <h5><b>A. THÔNG TIN CHUNG</b></h5>
+        <div class="form-group m-title text-center">
+          <h5 style="margin-top: .5rem;"><b>A. THÔNG TIN CHUNG</b></h5>
         </div>
         <div id="ThongTinDoanhNghiepGroup" class="form-group">
           <div class="row">
             <label class="lb-info">Tên doanh nghiệp/HTX: </label>
-            <input type="text" name="Master.Ten" class="infoma" />
+            <input type="text" name="Master.Ten" asp-for="@Model.Master.Ten" class="infoma" />
           </div>
           <div class="adress">
             <label for="">Địa chỉ doanh nghiệp </label>
@@ -318,8 +378,8 @@
             </div>
           </div>    
         </div>
-        <div class="form-group m-title bg-primary">
-          <h5><b>B. KẾT QUẢ HOẠT ĐỘNG KINH DOANH</b></h5>
+        <div class="form-group m-title text-center">
+          <h5 style="margin-top: .5rem;"><b>B. KẾT QUẢ HOẠT ĐỘNG KINH DOANH</b></h5>
         </div>
         <table class="table table-striped table-hover table-bordered">
           <thead>
@@ -333,7 +393,7 @@
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tbody">
             <tr class="text-center">
               <td>A</td>
               <td>B</td>
@@ -342,216 +402,216 @@
               <td>3</td>
             </tr>
             <tr>
-              <td>1.Tổng doanh thu <input type="hidden" id="stt0" name="Detail[0].Stt" value="1."/>
-                    <input type="hidden" name="Detail[0].TenCt" value="Tổng doanh thu"/>    
+              <td>1.Tổng doanh thu <input type="hidden" id="stt0" asp-for="Detail[0].Stt" value="1."/>
+                    <input type="hidden" asp-for="Detail[0].TenCt" value="Tổng doanh thu"/>    
               </td>
-              
+
               <td class="text-center">Triệu đồng 
-                  <input type="hidden" name="Detail[0].Dvt" value="Triệu đồng"/>  
+                  <input type="hidden" asp-for="Detail[0].Dvt" value="Triệu đồng"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly id="ThthangTruoc0" oninput="changeThthangTruoc(0)" name="Detail[0].ThthangTruoc" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly id="DuTinh0" oninput="changeDuTinh(0)" name="Detail[0].DuTinh" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly id="TongCongDon0" name="Detail[0].TongCongDon" class="infomal" /></td>
+              <td ><input asp-for="Detail[0].ThthangTruoc" type="text" pattern="[0-9,.\-$]+"  required readonly id="ThthangTruoc0" oninput="changeThthangTruoc(0)" asp-for="Detail[0].ThthangTruoc" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly id="DuTinh0" oninput="changeDuTinh(0)" asp-for="Detail[0].DuTinh" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly id="TongCongDon0" asp-for="Detail[0].TongCongDon" class="infomal" /></td>
             </tr>
             <tr>
               <th attr colspan="5">I. Hoạt động vận tải hành khách</th>
             </tr>
             <tr>
-              <td>2.Doanh thu thuần<input type="hidden" id="stt2" name="Detail[1].Stt" value="2."/>
-                    <input type="hidden" name="Detail[1].TenCt" value="Doanh thu thuần"/>    
+              <td>2.Doanh thu thuần<input type="hidden" id="stt2" asp-for="Detail[1].Stt" value="2."/>
+                    <input type="hidden" asp-for="Detail[1].TenCt" value="Doanh thu thuần"/>    
               </td>
 
               <td class="text-center">Triệu đồng 
-                  <input type="hidden" name="Detail[1].Dvt" value="Triệu đồng"/>  
+                  <input type="hidden" asp-for="Detail[1].Dvt" value="Triệu đồng"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[1].ThthangTruoc" id="ThthangTruoc2" oninput="changeThthangTruoc(2)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[1].DuTinh" id="DuTinh2" oninput="changeDuTinh(2)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[1].TongCongDon" id="TongCongDon2" oninput="changeCongDon(2)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[1].ThthangTruoc" id="ThthangTruoc2" oninput="changeThthangTruoc(2)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[1].DuTinh" id="DuTinh2" oninput="changeDuTinh(2)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[1].TongCongDon" id="TongCongDon2" oninput="changeCongDon(2)" class="infomal" /></td>
             </tr>
             <tr>
-              <td>3.Số lượt khách vận chuyển<input type="hidden" id="stt3" name="Detail[2].Stt" value="3."/>
-                    <input type="hidden" name="Detail[2].TenCt" value="Số lượt khách vận chuyển"/>    
+              <td>3.Số lượt khách vận chuyển<input type="hidden" id="stt3" asp-for="Detail[2].Stt" value="3."/>
+                    <input type="hidden" asp-for="Detail[2].TenCt" value="Số lượt khách vận chuyển"/>    
               </td>
 
               <td class="text-center">Lượt khách
-                  <input type="hidden" name="Detail[2].Dvt" value="Lượt khách"/>  
+                  <input type="hidden" asp-for="Detail[2].Dvt" value="Lượt khách"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[2].ThthangTruoc" id="ThthangTruoc3" oninput="changeThthangTruoc(3)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[2].DuTinh" id="DuTinh3" oninput="changeDuTinh(3)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[2].TongCongDon" id="TongCongDon3" oninput="changeCongDon(3)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[2].ThthangTruoc" id="ThthangTruoc3" oninput="changeThthangTruoc(3)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[2].DuTinh" id="DuTinh3" oninput="changeDuTinh(3)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[2].TongCongDon" id="TongCongDon3" oninput="changeCongDon(3)" class="infomal" /></td>
             </tr>
             <tr>
               <td><i style="margin-left:25px">3.1.Trong đó: Ngoài nước</i>
-              <input type="hidden" name="Detail[3].Stt" id="stt3_1" value="3.1."/>
-                    <input type="hidden" name="Detail[3].TenCt" value="Trong đó: Ngoài nước"/>     
+              <input type="hidden" asp-for="Detail[3].Stt" id="stt3_1" value="3.1."/>
+                    <input type="hidden" asp-for="Detail[3].TenCt" value="Trong đó: Ngoài nước"/>     
               </td>
               <td class="text-center">Lượt khách
-                  <input type="hidden" name="Detail[3].Dvt" value="Lượt khách"/>  
+                  <input type="hidden" asp-for="Detail[3].Dvt" value="Lượt khách"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required id="ThthangTruoc3_1" name="Detail[3].ThthangTruoc" oninput="changeThthangTruoc('3_1')" class="infomal" />
-               
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required id="ThthangTruoc3_1" asp-for="Detail[3].ThthangTruoc" oninput="changeThthangTruoc('3_1')" class="infomal" />
+
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[3].DuTinh" id="DuTinh3_1" oninput="changeDuTinh('3_1')" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[3].TongCongDon" id="TongCongDon3_1" oninput="changeCongDon('3_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[3].DuTinh" id="DuTinh3_1" oninput="changeDuTinh('3_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[3].TongCongDon" id="TongCongDon3_1" oninput="changeCongDon('3_1')" class="infomal" /></td>
             </tr>
             <tr>
               <td>4.Số lượt hành khách luân chuyển
-              <input type="hidden" name="Detail[4].Stt" id="stt4" value="4."/>
-                    <input type="hidden" name="Detail[4].TenCt" value="Số lượt hành khách luân chuyển"/>     
+              <input type="hidden" asp-for="Detail[4].Stt" id="stt4" value="4."/>
+                    <input type="hidden" asp-for="Detail[4].TenCt" value="Số lượt hành khách luân chuyển"/>     
               </td>
               <td class="text-center">HK Km
-                  <input type="hidden" name="Detail[4].Dvt" value="HK Km"/>  
+                  <input type="hidden" asp-for="Detail[4].Dvt" value="HK Km"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[4].ThthangTruoc" id="ThthangTruoc4" oninput="changeThthangTruoc(4)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[4].DuTinh" id="DuTinh4" oninput="changeDuTinh(4)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[4].TongCongDon" id="TongCongDon4" oninput="changeCongDon(4)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[4].ThthangTruoc" id="ThthangTruoc4" oninput="changeThthangTruoc(4)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[4].DuTinh" id="DuTinh4" oninput="changeDuTinh(4)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[4].TongCongDon" id="TongCongDon4" oninput="changeCongDon(4)" class="infomal" /></td>
             </tr>
             <tr>
               <td ><i style="margin-left:25px">4.1.Trong đó: Ngoài nước</i>
-              <input type="hidden" name="Detail[5].Stt" id="stt4_1" value="4.1."/>
-                    <input type="hidden" name="Detail[5].TenCt" value="Trong đó: Ngoài nước"/>     
+              <input type="hidden" asp-for="Detail[5].Stt" id="stt4_1" value="4.1."/>
+                    <input type="hidden" asp-for="Detail[5].TenCt" value="Trong đó: Ngoài nước"/>     
               </td>
               <td class="text-center">HK Km
-                  <input type="hidden" name="Detail[5].Dvt" value="HK Km"/>  
+                  <input type="hidden" asp-for="Detail[5].Dvt" value="HK Km"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[5].ThthangTruoc" id="ThthangTruoc4_1" oninput="changeThthangTruoc('4_1')" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[5].DuTinh" id="DuTinh4_1" oninput="changeDuTinh('4_1')" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[5].TongCongDon" id="TongCongDon4_1" oninput="changeCongDon('4_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[5].ThthangTruoc" id="ThthangTruoc4_1" oninput="changeThthangTruoc('4_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[5].DuTinh" id="DuTinh4_1" oninput="changeDuTinh('4_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[5].TongCongDon" id="TongCongDon4_1" oninput="changeCongDon('4_1')" class="infomal" /></td>
             </tr>
             <tr>
               <td>5.Đơn giá bình quân
-              <input type="hidden" name="Detail[6].Stt" id="stt5" value="5."/>
-                    <input type="hidden" name="Detail[6].TenCt" value="Đơn giá bình quân"/>     
+              <input type="hidden" asp-for="Detail[6].Stt" id="stt5" value="5."/>
+                    <input type="hidden" asp-for="Detail[6].TenCt" value="Đơn giá bình quân"/>     
               </td>
               <td class="text-center">HK Km
-                  <input type="hidden" name="Detail[6].Dvt" value="HK Km"/>  
+                  <input type="hidden" asp-for="Detail[6].Dvt" value="HK Km"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[6].ThthangTruoc" id="ThthangTruoc5" oninput="changeThthangTruoc(5)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[6].DuTinh" id="DuTinh5" oninput="changeDuTinh(5)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[6].TongCongDon" id="TongCongDon5" oninput="changeCongDon(5)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[6].ThthangTruoc" id="ThthangTruoc5" oninput="changeThthangTruoc(5)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[6].DuTinh" id="DuTinh5" oninput="changeDuTinh(5)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[6].TongCongDon" id="TongCongDon5" oninput="changeCongDon(5)" class="infomal" /></td>
             </tr>
             <tr>
               <td>6.Tổng số phương tiện đang hoạt động
-              <input type="hidden" name="Detail[7].Stt" id="stt6" value="6."/>
-                    <input type="hidden" name="Detail[7].TenCt" value="Tổng số phương tiện đang hoạt động"/>     
+              <input type="hidden" asp-for="Detail[7].Stt" id="stt6" value="6."/>
+                    <input type="hidden" asp-for="Detail[7].TenCt" value="Tổng số phương tiện đang hoạt động"/>     
               </td>
               <td class="text-center">HK Km
-                  <input type="hidden" name="Detail[7].Dvt" value="HK Km"/>  
+                  <input type="hidden" asp-for="Detail[7].Dvt" value="HK Km"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[7].ThthangTruoc" id="ThthangTruoc6" oninput="changeThthangTruoc(6)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[7].DuTinh" id="DuTinh6" oninput="changeDuTinh(6)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[7].TongCongDon" id="TongCongDon6" oninput="changeCongDon(6)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[7].ThthangTruoc" id="ThthangTruoc6" oninput="changeThthangTruoc(6)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[7].DuTinh" id="DuTinh6" oninput="changeDuTinh(6)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[7].TongCongDon" id="TongCongDon6" oninput="changeCongDon(6)" class="infomal" /></td>
             </tr>
             <tr>
               <td>7.Tổng tải trọng
-              <input type="hidden" name="Detail[8].Stt" id="stt7" value="7."/>
-                    <input type="hidden" name="Detail[8].TenCt" value="Tổng tải trọng"/>     
+              <input type="hidden" asp-for="Detail[8].Stt" id="stt7" value="7."/>
+                    <input type="hidden" asp-for="Detail[8].TenCt" value="Tổng tải trọng"/>     
               </td>
               <td class="text-center">HK Km
-                  <input type="hidden" name="Detail[8].Dvt" value="HK Km"/>  
+                  <input type="hidden" asp-for="Detail[8].Dvt" value="HK Km"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[8].ThthangTruoc" id="ThthangTruoc7" oninput="changeThthangTruoc(7)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[8].DuTinh" id="DuTinh7" oninput="changeDuTinh(7)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[8].TongCongDon" id="TongCongDon7" oninput="changeCongDon(7)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[8].ThthangTruoc" id="ThthangTruoc7" oninput="changeThthangTruoc(7)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[8].DuTinh" id="DuTinh7" oninput="changeDuTinh(7)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[8].TongCongDon" id="TongCongDon7" oninput="changeCongDon(7)" class="infomal" /></td>
             </tr>
             <tr>
               <th attr colspan="5">II.Hoạt động vận tải hàng hoá</th>
             </tr>
             <tr>
               <td>8.Doanh thu thuần
-              <input type="hidden" name="Detail[9].Stt" id="stt8" value="8."/>
-                    <input type="hidden" name="Detail[9].TenCt" value="Doanh thu thuần"/>     
+              <input type="hidden" asp-for="Detail[9].Stt" id="stt8" value="8."/>
+                    <input type="hidden" asp-for="Detail[9].TenCt" value="Doanh thu thuần"/>     
               </td>
               <td class="text-center">Triệu đồng
-                  <input type="hidden" name="Detail[9].Dvt" value="Triệu đồng"/>  
+                  <input type="hidden" asp-for="Detail[9].Dvt" value="Triệu đồng"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[9].ThthangTruoc" id="ThthangTruoc8" oninput="changeThthangTruoc(8)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[9].DuTinh" id="DuTinh8" oninput="changeDuTinh(8)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[9].TongCongDon" id="TongCongDon8" oninput="changeCongDon(8)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[9].ThthangTruoc" id="ThthangTruoc8" oninput="changeThthangTruoc(8)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[9].DuTinh" id="DuTinh8" oninput="changeDuTinh(8)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[9].TongCongDon" id="TongCongDon8" oninput="changeCongDon(8)" class="infomal" /></td>
             </tr>
             <tr>
               <td>9.Khối lượng hàng hóa vận chuyển
-              <input type="hidden" name="Detail[10].Stt" id="stt9" value="9."/>
-                    <input type="hidden" name="Detail[10].TenCt" value="Khối lượng hàng hóa vận chuyển"/>     
+              <input type="hidden" asp-for="Detail[10].Stt" id="stt9" value="9."/>
+                    <input type="hidden" asp-for="Detail[10].TenCt" value="Khối lượng hàng hóa vận chuyển"/>     
               </td>
               <td class="text-center">Tấn
-                  <input type="hidden" name="Detail[10].Dvt" value="Tấn"/>  
+                  <input type="hidden" asp-for="Detail[10].Dvt" value="Tấn"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[10].ThthangTruoc" id="ThthangTruoc9" oninput="changeThthangTruoc(9)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[10].DuTinh" id="DuTinh9" oninput="changeDuTinh(9)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[10].TongCongDon" id="TongCongDon9" oninput="changeCongDon(9)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[10].ThthangTruoc" id="ThthangTruoc9" oninput="changeThthangTruoc(9)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[10].DuTinh" id="DuTinh9" oninput="changeDuTinh(9)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[10].TongCongDon" id="TongCongDon9" oninput="changeCongDon(9)" class="infomal" /></td>
             </tr>
             <tr>
               <td ><i style="margin-left:25px">9.1.Trong đó: Ngoài nước</i>
-              <input type="hidden" name="Detail[11].Stt" id="stt9_1" value="9.1."/>
-                    <input type="hidden" name="Detail[11].TenCt" value="Trong đó: Ngoài nước"/>     
+              <input type="hidden" asp-for="Detail[11].Stt" id="stt9_1" value="9.1."/>
+                    <input type="hidden" asp-for="Detail[11].TenCt" value="Trong đó: Ngoài nước"/>     
               </td>
               <td class="text-center">Tấn
-                  <input type="hidden" name="Detail[11].Dvt" value="Tấn"/>  
+                  <input type="hidden" asp-for="Detail[11].Dvt" value="Tấn"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[11].ThthangTruoc" id="ThthangTruoc9_1" oninput="changeThthangTruoc('9_1')" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[11].DuTinh" id="DuTinh9_1" oninput="changeDuTinh('9_1')" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[11].TongCongDon" id="TongCongDon9_1" oninput="changeCongDon('9_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[11].ThthangTruoc" id="ThthangTruoc9_1" oninput="changeThthangTruoc('9_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[11].DuTinh" id="DuTinh9_1" oninput="changeDuTinh('9_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[11].TongCongDon" id="TongCongDon9_1" oninput="changeCongDon('9_1')" class="infomal" /></td>
             </tr>
             <tr>
               <td>10.Khối lượng hàng hóa luân chuyển
-              <input type="hidden" name="Detail[12].Stt" id="stt10" value="10."/>
-                    <input type="hidden" name="Detail[12].TenCt" value="Khối lượng hàng hóa luân chuyển"/>     
+              <input type="hidden" asp-for="Detail[12].Stt" id="stt10" value="10."/>
+                    <input type="hidden" asp-for="Detail[12].TenCt" value="Khối lượng hàng hóa luân chuyển"/>     
               </td>
               <td class="text-center">Tấn.Km
-                  <input type="hidden" name="Detail[12].Dvt" value="Tấn.Km"/>  
+                  <input type="hidden" asp-for="Detail[12].Dvt" value="Tấn.Km"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[12].ThthangTruoc" id="ThthangTruoc10" oninput="changeThthangTruoc(10)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[12].DuTinh" id="DuTinh10" oninput="changeDuTinh(10)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[12].TongCongDon" id="TongCongDon10" oninput="changeCongDon(10)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[12].ThthangTruoc" id="ThthangTruoc10" oninput="changeThthangTruoc(10)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[12].DuTinh" id="DuTinh10" oninput="changeDuTinh(10)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[12].TongCongDon" id="TongCongDon10" oninput="changeCongDon(10)" class="infomal" /></td>
             </tr>
             <tr>
               <td ><i style="margin-left:25px">10.1.Trong đó: Ngoài nước</i>
-              <input type="hidden" name="Detail[13].Stt" id="stt10_1" value="10.1."/>
-                    <input type="hidden" name="Detail[13].TenCt" value="Trong đó: Ngoài nước"/>     
+              <input type="hidden" asp-for="Detail[13].Stt" id="stt10_1" value="10.1."/>
+                    <input type="hidden" asp-for="Detail[13].TenCt" value="Trong đó: Ngoài nước"/>     
               </td>
               <td class="text-center">Tấn.Km
-                  <input type="hidden" name="Detail[13].Dvt" value="Tấn.Km"/>  
+                  <input type="hidden" asp-for="Detail[13].Dvt" value="Tấn.Km"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[13].ThthangTruoc" id="ThthangTruoc10_1" oninput="changeThthangTruoc('10_1')" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[13].DuTinh" id="DuTinh10_1" oninput="changeDuTinh('10_1')" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[13].TongCongDon" id="TongCongDon10_1" oninput="changeCongDon('10_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[13].ThthangTruoc" id="ThthangTruoc10_1" oninput="changeThthangTruoc('10_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[13].DuTinh" id="DuTinh10_1" oninput="changeDuTinh('10_1')" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[13].TongCongDon" id="TongCongDon10_1" oninput="changeCongDon('10_1')" class="infomal" /></td>
             </tr>
             <tr>
                <td>11.Đơn giá bình quân
-              <input type="hidden" name="Detail[14].Stt" id="stt11" value="11."/>
-                    <input type="hidden" name="Detail[14].TenCt" value="Đơn giá bình quân"/>     
+              <input type="hidden" asp-for="Detail[14].Stt" id="stt11" value="11."/>
+                    <input type="hidden" asp-for="Detail[14].TenCt" value="Đơn giá bình quân"/>     
               </td>
               <td class="text-center">Đồng/Tấn.Km
-                  <input type="hidden" name="Detail[14].Dvt" value="Đồng/Tấn.Km"/>  
+                  <input type="hidden" asp-for="Detail[14].Dvt" value="Đồng/Tấn.Km"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[14].ThthangTruoc" id="ThthangTruoc11" oninput="changeThthangTruoc(11)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[14].DuTinh" id="DuTinh11" oninput="changeDuTinh(11)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[14].TongCongDon" id="TongCongDon11" oninput="changeCongDon(11)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[14].ThthangTruoc" id="ThthangTruoc11" oninput="changeThthangTruoc(11)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[14].DuTinh" id="DuTinh11" oninput="changeDuTinh(11)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[14].TongCongDon" id="TongCongDon11" oninput="changeCongDon(11)" class="infomal" /></td>
             </tr>
             <tr>
              <td>12.Khối lượng hàng hóa luân chuyển
-              <input type="hidden" name="Detail[15].Stt" id="stt12" value="12."/>
-                    <input type="hidden" name="Detail[15].TenCt" value="Khối lượng hàng hóa luân chuyển"/>     
+              <input type="hidden" asp-for="Detail[15].Stt" id="stt12" value="12."/>
+                    <input type="hidden" asp-for="Detail[15].TenCt" value="Khối lượng hàng hóa luân chuyển"/>     
               </td>
               <td class="text-center">Cái
-                  <input type="hidden" name="Detail[15].Dvt" value="Cái"/>  
+                  <input type="hidden" asp-for="Detail[15].Dvt" value="Cái"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[15].ThthangTruoc" id="ThthangTruoc12" oninput="changeThthangTruoc(12)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[15].DuTinh" id="DuTinh12" oninput="changeDuTinh(12)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[15].TongCongDon" id="TongCongDon12" oninput="changeCongDon(12)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[15].ThthangTruoc" id="ThthangTruoc12" oninput="changeThthangTruoc(12)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[15].DuTinh" id="DuTinh12" oninput="changeDuTinh(12)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[15].TongCongDon" id="TongCongDon12" oninput="changeCongDon(12)" class="infomal" /></td>
             </tr>
             <tr>
                 <td>13.Tổng tải trọng
-              <input type="hidden" name="Detail[16].Stt" id="stt13" value="13."/>
-                    <input type="hidden" name="Detail[16].TenCt" value="Tổng tải trọng"/>     
+              <input type="hidden" asp-for="Detail[16].Stt" id="stt13" value="13."/>
+                    <input type="hidden" asp-for="Detail[16].TenCt" value="Tổng tải trọng"/>     
               </td>
               <td class="text-center">Tấn
-                  <input type="hidden" name="Detail[16].Dvt" value="Tấn"/>  
+                  <input type="hidden" asp-for="Detail[16].Dvt" value="Tấn"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[16].ThthangTruoc" id="ThthangTruoc13" oninput="changeThthangTruoc(13)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[16].DuTinh" id="DuTinh13" oninput="changeDuTinh(13)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[16].TongCongDon" id="TongCongDon13" oninput="changeCongDon(13)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[16].ThthangTruoc" id="ThthangTruoc13" oninput="changeThthangTruoc(13)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[16].DuTinh" id="DuTinh13" oninput="changeDuTinh(13)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[16].TongCongDon" id="TongCongDon13" oninput="changeCongDon(13)" class="infomal" /></td>
             </tr>
             <tr>
               <th attr colspan="5">
@@ -561,15 +621,15 @@
             </tr>
             <tr>
               <td>14.Doanh thu thuần
-              <input type="hidden" name="Detail[17].Stt" id="stt14" value="14."/>
-                    <input type="hidden" name="Detail[17].TenCt" value="Doanh thu thuần"/>     
+              <input type="hidden" asp-for="Detail[17].Stt" id="stt14" value="14."/>
+                    <input type="hidden" asp-for="Detail[17].TenCt" value="Doanh thu thuần"/>     
               </td>
               <td class="text-center">Triệu đồng
-                  <input type="hidden" name="Detail[17].Dvt" value="Triệu đồng"/>  
+                  <input type="hidden" asp-for="Detail[17].Dvt" value="Triệu đồng"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[17].ThthangTruoc" id="ThthangTruoc14" oninput="changeThthangTruoc(14)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[17].DuTinh" id="DuTinh14" oninput="changeDuTinh(14)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[17].TongCongDon" id="TongCongDon14" oninput="changeCongDon(14)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[17].ThthangTruoc" id="ThthangTruoc14" oninput="changeThthangTruoc(14)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[17].DuTinh" id="DuTinh14" oninput="changeDuTinh(14)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[17].TongCongDon" id="TongCongDon14" oninput="changeCongDon(14)" class="infomal" /></td>
             </tr>
             <tr>
               <th attr colspan="5">
@@ -578,20 +638,20 @@
             </tr>
             <tr>
               <td>15.Doanh thu thuần
-              <input type="hidden" name="Detail[18].Stt" id="stt15" value="15."/>
-                    <input type="hidden" name="Detail[18].TenCt" value="Doanh thu thuần"/>     
+              <input type="hidden" asp-for="Detail[18].Stt" id="stt15" value="15."/>
+                    <input type="hidden" asp-for="Detail[18].TenCt" value="Doanh thu thuần"/>     
               </td>
               <td class="text-center">Triệu đồng
-                  <input type="hidden" name="Detail[18].Dvt" value="Triệu đồng"/>  
+                  <input type="hidden" asp-for="Detail[18].Dvt" value="Triệu đồng"/>  
               </td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[18].ThthangTruoc" id="ThthangTruoc15" oninput="changeThthangTruoc(15)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required name="Detail[18].DuTinh" id="DuTinh15" oninput="changeDuTinh(15)" class="infomal" /></td>
-              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly name="Detail[18].TongCongDon" id="TongCongDon15" oninput="changeCongDon(15)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[18].ThthangTruoc" id="ThthangTruoc15" oninput="changeThthangTruoc(15)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required asp-for="Detail[18].DuTinh" id="DuTinh15" oninput="changeDuTinh(15)" class="infomal" /></td>
+              <td ><input type="text" pattern="[0-9,.\-$]+"  required readonly asp-for="Detail[18].TongCongDon" id="TongCongDon15" oninput="changeCongDon(15)" class="infomal" /></td>
             </tr>
           </tbody>
         </table>
-        <div class="form-group m-title bg-primary">
-          <h5><b>C. CÁC YẾU TỔ ẢNH HƯỞNG ĐẾN HOẠT ĐỘNG KINH DOANH</b></h5>
+        <div class="form-group m-title text-center">
+          <h5 style="margin-top: .5rem;"><b>C. CÁC YẾU TỔ ẢNH HƯỞNG ĐẾN HOẠT ĐỘNG KINH DOANH</b></h5>
         </div>
         <div class="form-group">
           <label for=""
@@ -611,27 +671,23 @@
               <label for="">9. Lý do khác: ghi rõ</label>
             </div>
             <div class="YTAH-check">
-              <input type="checkbox" name="DanhSachNhanToAnhHuong0" value="01" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong1" value="02" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong2" value="03" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong3" value="04" />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong4" value="05" />
-              <input
-                type="checkbox"
-                name="DanhSachNhanToAnhHuong5"
-                value="06"
-              />
-              <input type="checkbox" name="DanhSachNhanToAnhHuong6" value="07" />
-              <input
-                type="checkbox"
-                name="DanhSachNhanToAnhHuong7"
-                value="08"
-              />
+                    <input type="checkbox" id="DanhSachNhanToAnhHuong_0" name="DanhSachNhanToAnhHuong_0" value="01" />
+                    <input type="checkbox" id="DanhSachNhanToAnhHuong_1" name="DanhSachNhanToAnhHuong_1" value="02" />
+                    <input type="checkbox" id="DanhSachNhanToAnhHuong_2" name="DanhSachNhanToAnhHuong_2" value="03" />
+                    <input type="checkbox" id="DanhSachNhanToAnhHuong_3" name="DanhSachNhanToAnhHuong_3" value="04" />
+                    <input type="checkbox" id="DanhSachNhanToAnhHuong_4" name="DanhSachNhanToAnhHuong_4" value="05" />
+                    <input type="checkbox" id="DanhSachNhanToAnhHuong_5" name="DanhSachNhanToAnhHuong_5" value="06"/>
+                    <input type="checkbox" id="DanhSachNhanToAnhHuong_6" name="DanhSachNhanToAnhHuong_6" value="07" />
+                    <input type="checkbox" id="DanhSachNhanToAnhHuong_7" name="DanhSachNhanToAnhHuong_7" value="08" />
+               @if(Model.NhanToThu9==null){
               <input type="checkbox" id="YT9" value="" />
+               }else{
+                   <input type="checkbox" checked id="YT9" value="" />
+               }
             </div>
           </div>
           <div class="YTAH9">
-            <textarea
+            <textarea asp-for="@Model.NhanToThu9.NoiDung"
               class="form-control"
               rows="1"
               id="comment"
@@ -643,11 +699,11 @@
         <div class="form-group uname-info">
           <div class="row">
             <label class="uname-lb">Họ tên người trả lời:</label>
-            <input type="text" name="Master.TenNguoiTraLoi" id="" class="infoma" />
+            <input type="text" name="Master.TenNguoiTraLoi" asp-for="@Model.Master.TenNguoiTraLoi" class="infoma" />
           </div>
           <div class="row">
             <label class="uname-lb">Số điện thoại:</label>
-            <input type="text" name="Master.SdtnguoiTraLoi" id="" class="infoma" />
+            <input type="text" name="Master.SdtnguoiTraLoi" asp-for="@Model.Master.SdtnguoiTraLoi" class="infoma" />
           </div>
         </div>
         <div class="group-btn" style="justify-content: end;">
@@ -660,7 +716,7 @@
           <button type="submit" value="false" class="btn btn-primary">Lưu</button>
         </div>
       </form>
-      <div class="form-QLTT">
+      <div id="tableQLTT" class="form-QLTT" style="overflow: scroll;">
         <div class="head-group">
           <div class="title text-center">
             <h5 class="title-first"><b>DANH SÁCH CƠ SỞ</b></h5>
@@ -683,7 +739,7 @@
             </div>
           </div>
         </div>
-        <table id="example" class="table table-bordered table-hover">
+        <table id="example" class="table table-bordered table-hover" style="max-height: 100%;">
           <thead>
             <tr class="text-center tab-title">
               <th class="th1">Điều tra</th>
@@ -693,85 +749,14 @@
             </tr>
           </thead>
           <tbody>
+              @foreach(Master m in getMasters()){
             <tr>
-              <td>a575769898</td>
-              <td>c</td>
-              <td>b</td>
-              <td>d</td>
+              <td class="text-center">@m.MaPhieu</td>
+              <td class="text-center">@m.MaSoThue</td>
+              <td class="text-center">@m.MaSoThue2</td>
+              <td>@m.Ten</td>
             </tr>
-             <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-                         <tr>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-            </tr>
-
+              }
           </tbody>
         </table>
       </div>
@@ -818,7 +803,8 @@ function renderCity(data) {
   };
 }
 
-$('.infomal').on('blur', function() {
+$('.infomal').on('blur', format);
+function format(){
     if(checkNumber(this.value)){
         const value = this.value.replace(/,/g, '');
         this.value = parseFloat(value).toLocaleString('en-US', {
@@ -827,7 +813,7 @@ $('.infomal').on('blur', function() {
             minimumFractionDigits: 2
             })
     }
-});
+}
 
     function changeThthangTruoc(tt){
         
@@ -1011,7 +997,36 @@ $('.infomal').on('blur', function() {
             );
         }
     }
-    
+        $(document).ready(function(){
+          let ms = $('#Maphieu').val();
+          if(ms!=undefined){
+                $.ajax({
+                    type: 'POST',
+                    url: '/loadMaster1',
+                    data: "ms=" + ms,
+                    success: function (result) {
+                        $('#ThongTinDoanhNghiepGroup').replaceWith(result);
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+             }
+            });
+          }
+            var a = [@Html.Raw(getArray())];
+            a.forEach(myFunction);
+            $('.infomal').each(format);
+    })
+    $(window).scroll(function(){
+        
+    })
+    function myFunction(item, index) {
+        for(var i =0 ;i<=7;i++){
+            console.log($('#DanhSachNhanToAnhHuong_'+i).val()== item);
+                if($('#DanhSachNhanToAnhHuong_'+i).val()== item){
+                    $('#DanhSachNhanToAnhHuong_'+i).prop('checked', true);
+                }
+        }
+    }
     function checkNumber(str) {
         return /[0-9,.\-$]+/.test(str);
     }

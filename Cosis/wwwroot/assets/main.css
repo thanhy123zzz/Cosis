@@ -1,3 +1,7 @@
+body{
+    font-family: Arial;
+}
+
 .header {
   background-image: url(/assets/image/anh-background-cuc-dep_110341116.jpg);
 }
@@ -23,7 +27,7 @@ table input {
   background: #ffe15d;
   border-top: 2px solid #ff4800;
   border-bottom: 2px solid #ff4800;
-  color: #a70000;
+  color: black;
 }
 .form {
   border: 2px solid #ff4800;
@@ -126,11 +130,13 @@ table .infomal {
     border: none;
     border-bottom: 1px solid #000000;
     width: 100%;
+    text-align: right;
 }
 .infomal {
     border: none;
     border-bottom: 1px solid #000000;
     width: 100%;
+    text-align: right;
 }
 .row {
   margin: 5px 0 5px 20px;
