@@ -75,15 +75,15 @@
                 <input type="hidden" readonly id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="2._@item.MaNganh" />
             <input type="hidden" readonly name="Detail[@countDetails].TenCt" value="Doanh thu thuần [NGÀNH CHỌN MẪU]" />
             </td>
-            <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+            <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
                 class="infoma" /></td>
-            <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
-                id="ThthangTruoc@(countDetails)" oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+            <td><input type="text" readonly pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
+                id="ThthangTruoc@(countDetails)_@(item.MaNganh)_2TT" oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
             </td>
-            <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
-                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
-            <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
-                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+            <td><input type="text" readonly pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
+                id="DuTinh@(countDetails)_@(item.MaNganh)_2DT" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+            <td><input type="text" readonly pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
+                id="TongCongDon@(countDetails)_@(item.MaNganh)_2CD" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
         </tr>
             countDetails++;
         <tr>
@@ -91,15 +91,15 @@
                 <input type="hidden" id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="3._@item.MaNganh" />
             <input type="hidden" name="Detail[@countDetails].TenCt" value="Trị giá vốn nhà để ở đã bán" />
             </td>
-            <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+            <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
                 class="infoma" /></td>
             <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
-                id='ThthangTruoc@(countDetails)' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+                id='ThthangTruoc@(countDetails)_@item.MaNganh' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
             </td>
             <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
-                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+                id="DuTinh@(countDetails)_@item.MaNganh" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
             <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
-                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+                id="TongCongDon@(countDetails)_@item.MaNganh" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
         </tr>
             countDetails++;
         @if (item.MaNganh.Trim() == "68103")
@@ -112,15 +112,15 @@
             <input type="hidden" name="Detail[@countDetails].TenCt" value="Trị giá vốn nhà, công trình không để ở và bất động sản khác
                     đã bán (Chỉ hiển thị khi mã ngành chọn mẫu là 68103)" />
                 </td>
-                <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+                <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
                 class="infoma" /></td>
                 <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
-                id='ThthangTruoc@(countDetails)' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+                id='ThthangTruoc@(countDetails)_@item.MaNganh' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
                 </td>
                 <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
-                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+                id="DuTinh@(countDetails)_@item.MaNganh" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
                 <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
-                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+                id="TongCongDon@(countDetails)_@item.MaNganh" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
             </tr>
             countDetails++;
         }
@@ -134,34 +134,34 @@
             <input type="hidden" name="Detail[@countDetails].TenCt" value="Chi phí hoa hồng cho đại lý xổ số (Chỉ hiển thị khi mã ngành
                     chọn mẫu là 92)" />
                 </td>
-                <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
+                <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
                 class="infoma" /></td>
                 <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
-                id='ThthangTruoc@(countDetails)' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+                id='ThthangTruoc@(countDetails)_@item.MaNganh' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
                 </td>
                 <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
-                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+                id="DuTinh@(countDetails)_@item.MaNganh" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
                 <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
-                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+                id="TongCongDon@(countDetails)_@item.MaNganh" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
             </tr>
             countDetails++;
             <tr>
                 <td>
                     6. Chi phí trả thưởng xổ số (Chỉ hiển thị khi mã ngành chọn mẫu
                     là 92)
-                    <input type="hidden" id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="6._@item.MaNganh" />
+                    <input type="hidden" readonly id="stt@(countDetails)" name="Detail[@countDetails].Stt" value="6._@item.MaNganh" />
             <input type="hidden" name="Detail[@countDetails].TenCt" value="Chi phí trả thưởng xổ số (Chỉ hiển thị khi mã ngành chọn mẫu
                     là 92)" />
                 </td>
                 <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh" id="tennghanh_@countDetails"
                 class="infoma" /></td>
                 <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].ThthangTruoc"
-                id='ThthangTruoc@(countDetails)' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
+                id='ThthangTruoc@(countDetails)_@item.MaNganh' oninput="changeThthangTruoc(@countDetails)" class="infoma infomal" />
                 </td>
                 <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[@countDetails].DuTinh"
-                id="DuTinh@(countDetails)" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
+                id="DuTinh@(countDetails)_@item.MaNganh" oninput="changeDuTinh(@countDetails)" class="infoma infomal" /></td>
                 <td><input type="text" pattern="[0-9,.\-$]+" readonly name="Detail[@countDetails].TongCongDon"
-                id="TongCongDon@(countDetails)" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
+                id="TongCongDon@(countDetails)_@item.MaNganh" oninput="changeCongDon(@countDetails)" class="infoma infomal" /></td>
             </tr>
             countDetails++;
         }

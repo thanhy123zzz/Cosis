@@ -26,7 +26,7 @@ namespace Cosis.Controllers
             return View();
         }
         [HttpPost("/form2_1")]
-        public IActionResult InsertForm2_1(PhieuDieuTra phieu, IFormCollection form, bool loai)
+        public IActionResult InsertForm2_1(PhieuDieuTra phieu, IFormCollection form, int loai)
         {
             FormCosisContext context = new FormCosisContext();
             List<DanhSachNhanToAnhHuong> list = new List<DanhSachNhanToAnhHuong>();
@@ -54,22 +54,33 @@ namespace Cosis.Controllers
             phieu.Master.Nam = DateTime.Now.Year.ToString();
             phieu.Master.ThangThucHien = (DateTime.Now.Month - 1).ToString();
             phieu.Master.ThangDuTinh = DateTime.Now.Month.ToString();
+            Console.WriteLine(phieu.Master.MaCoSo);
             if (phieu.Master.MaSoThue != null)
             {
                 phieu.Master.MaSoThue2 = phieu.Master.MaSoThue.Substring(10);
                 phieu.Master.MaSoThue = phieu.Master.MaSoThue.Substring(0, 10);
+                var checkMST = context.ThongTinDoanhNghiep.FromSqlRaw("select*from ThongTinDoanhNghiep where MaSoThue = {0} and MaSoThue2 = {1}", phieu.Master.MaSoThue, phieu.Master.MaSoThue2).FirstOrDefault();
+                if(checkMST != null){
+
+                }else{
+                    phieu.Master.MaSoThue = null;
+                    phieu.Master.MaSoThue2 = null;
+                }
             }
             //
             var check = context.Master.FromSqlRaw("select*from Master where MaSoThue = '" + phieu.Master.MaSoThue + "' and MaSoThue2 = '" + phieu.Master.MaSoThue2 + "' and MaCoSo = '" + phieu.Master.MaCoSo + "' and ThangThucHien = '" + phieu.Master.ThangThucHien + "' and ThangDuTinh = '" + phieu.Master.ThangDuTinh + "' and Nam = '" + phieu.Master.Nam + "'").ToList();
             if (phieu.Master.MaSoThue != null && phieu.Master.MaCoSo != null)
             {
+                Console.WriteLine("Da vao 1");
             }
-            else if (phieu.Master.MaSoThue != null)
+            else if (phieu.Master.MaSoThue != null && phieu.Master.MaCoSo == null)
             {
+                Console.WriteLine("Da vao 2");
                 check = context.Master.FromSqlRaw("select*from Master where MaSoThue = '" + phieu.Master.MaSoThue + "' and MaCoSo = '" + phieu.Master.MaCoSo + "' and ThangThucHien = '" + phieu.Master.ThangThucHien + "' and ThangDuTinh = '" + phieu.Master.ThangDuTinh + "' and Nam = '" + phieu.Master.Nam + "'").ToList();
             }
-            else if (phieu.Master.MaCoSo != null)
+            else if (phieu.Master.MaCoSo != null && phieu.Master.MaSoThue == null)
             {
+                Console.WriteLine("Da vao 2");
                 check = context.Master.FromSqlRaw("select*from Master where MaCoSo = '" + phieu.Master.MaCoSo + "' and ThangThucHien = '" + phieu.Master.ThangThucHien + "' and ThangDuTinh = '" + phieu.Master.ThangDuTinh + "' and Nam = '" + phieu.Master.Nam + "'").ToList();
             }
             //
@@ -99,7 +110,7 @@ namespace Cosis.Controllers
                 }
             }
             TempData["ThongBao"] = "Thành công!";
-            if (loai)
+            if (loai == 1)
             {
                 var fullView = new HtmlToPdf();
                 fullView.Options.WebPageWidth = 1280;
@@ -110,6 +121,12 @@ namespace Cosis.Controllers
                 var pdf = fullView.ConvertUrl("https://localhost:5001/form2_1PDF/"+phieu.Master.MaPhieu);
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");
+            }
+            if(loai == 2){
+
+            }
+            if(loai == 3){
+
             }
             return RedirectToAction("Index");
         }

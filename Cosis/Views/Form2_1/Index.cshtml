@@ -669,11 +669,11 @@
         <td><input type="text" class="infoma" /></td>
         <td class="text-center">Triệu đồng</td>
         <input type="hidden" name="Detail[1].Dvt" value="Triệu đồng" />
-        <td><input pattern="[0-9,.\-$]+" type="text" name="Detail[1].ThthangTruoc" id="ThthangTruoc2"
+        <td><input required pattern="[0-9,.\-$]+" type="text" name="Detail[1].ThthangTruoc" id="ThthangTruoc2"
             oninput="changeThthangTruoc(2)" class="infoma infomal" /></td>
         <td><input pattern="[0-9,.\-$]+" type="text" name="Detail[1].DuTinh" id="DuTinh2" oninput="changeDuTinh(2)"
             class="infoma infomal" /></td>
-        <td><input pattern="[0-9,.\-$]+" type="text" name="Detail[1].TongCongDon" id="TongCongDon2"
+        <td><input required pattern="[0-9,.\-$]+" type="text" name="Detail[1].TongCongDon" id="TongCongDon2"
             oninput="changeCongDon(2)" class="infoma infomal" /></td>
       </tr>
       <tr>
@@ -684,7 +684,7 @@
         <td></td>
         <td>
           1. Bán tại siêu thị mini, cửa hàng tiện ích
-          <input type="radio" name="chose3" id="3-1_0" />
+          <input type="radio" required name="chose3" id="3-1_0" />
         </td>
         <td>
           2. Bán tại các địa điểm khác
@@ -706,9 +706,9 @@
         </td>
         <td><input type="text" class="infoma" /></td>
         <td class="text-center">Triệu đồng</td>
-        <td><input type="text" pattern="[0-9,.\-$]+" value="" name="Detail[3].ThthangTruoc" id="ThthangTruoc2_1"
+        <td><input type="text" required pattern="[0-9,.\-$]+" value="" name="Detail[3].ThthangTruoc" id="ThthangTruoc2_1"
             oninput="changeThthangTruoc('2_1')" class="infoma infomal" /></td>
-        <td><input type="text" pattern="[0-9,.\-$]+" name="Detail[3].DuTinh" id="DuTinh2_1" oninput="changeDuTinh('2_1')"
+        <td><input type="text" pattern="[0-9,.\-$]+" required name="Detail[3].DuTinh" id="DuTinh2_1" oninput="changeDuTinh('2_1')"
             class="infoma infomal" value="" /></td>
         <td><input type="text" pattern="[0-9,.\-$]+" name="Detail[3].TongCongDon" id="TongCongDon2_1"
             oninput="changeCongDon('2_1')" value="" class="infoma infomal" /></td>
@@ -761,7 +761,7 @@
   </div>
   <div class="group-btn" style="justify-content: end;">
           <select name="loai" style="margin-right:10px">
-              <option value="0">Chọn file cần xuất</option>
+              <option value="0" disabled selected>Chọn file cần xuất</option>
               <option value="1">Xuất File PDF</option>
               <option value="2">Xuất File Excel</option>
               <option value="3">Xuất cả 2</option>
@@ -886,13 +886,29 @@
       </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function () {
+        $('tr[class*="changed3_"').hide(this.check);
+    });
   function changeThthangTruoc(tt) {
     if (String(tt).includes('_1') == true) {
       var ktugachngang = tt.indexOf("_");
       var x = tt.substring(0, ktugachngang);
-        $('#ThthangTruoc' + x + '_1').attr({ "max": $('#ThthangTruoc' + x).val() });
+        if($('#ThthangTruoc' + x + '_1').val() != null){
+        if(getValue($('#ThthangTruoc' + x + '_1').val()) > getValue($('#ThthangTruoc' + x).val())){
+          $('#ThthangTruoc' + x + '_1')[0].setCustomValidity("Giá trị phải nhỏ hơn "+$('#ThthangTruoc' + x).val());
+        }else{
+          $('#ThthangTruoc' + x + '_1')[0].setCustomValidity("");
+        }
+        }
+        
     } else {
-      $('#ThthangTruoc' + tt + '_1').attr({ "max": $('#ThthangTruoc' + tt).val() });
+      /*if($('#ThthangTruoc' + tt + '_1').val() != null){
+        if(getValue($('#ThthangTruoc' + tt + '_1').val()) > getValue($('#ThthangTruoc' + tt).val())){
+          $('#ThthangTruoc' + tt + '_1')[0].setCustomValidity("Giá trị phải nhỏ hơn "+$('#ThthangTruoc' + tt).val());
+        }else{
+          $('#ThthangTruoc' + tt + '_1')[0].setCustomValidity("");
+        } 
+      } */
     }
     //
     var value = getValue($('#ThthangTruoc' + tt).val());
@@ -906,7 +922,6 @@
         url: '/get-tong2',
         data: "mast=" + mst + "&stt=" + stt + "&thangTrc=" + value + "&duTinh=" + duTinh + "&mcs=" + MaCS,
         success: function (result) {
-          console.log("da chang tong");
           $('#TongCongDon' + tt).val(
             parseFloat(result).toLocaleString('en-US', {
               style: 'decimal',
@@ -944,13 +959,31 @@
   }
   function changeDuTinh(tt) {
     /*$('#DuTinh'+tt).val($('#DuTinh'+tt).val().replace(/\D/g, ''));*/
-    if (String(tt).includes('_1') == true) {
+    /*if (String(tt).includes('_1') == true) {
       var ktugachngang = tt.indexOf("_");
       var x = tt.substring(0, ktugachngang);
-  /* console.log("chuoi cat tu gach ngang:" + x); */
         $('#DuTinh' + x + '_1').attr({ "max": $('#DuTinh' + x).val() });
     } else {
       $('#DuTinh' + tt + '_1').attr({ "max": $('#DuTinh' + tt).val() });
+    } */
+    if (String(tt).includes('_1') == true) {
+      var ktugachngang = tt.indexOf("_");
+      var x = tt.substring(0, ktugachngang);
+        if($('#DuTinh' + x + '_1').val() != null){
+        if(getValue($('#DuTinh' + x + '_1').val()) > getValue($('#DuTinh' + x).val())){
+          $('#DuTinh' + x + '_1')[0].setCustomValidity("Giá trị phải nhỏ hơn "+$('#DuTinh' + x).val());
+        }else{
+          $('#DuTinh' + x + '_1')[0].setCustomValidity("");
+        }
+        }
+    } else {
+      /*if($('#DuTinh' + tt + '_1').val() != null){
+        if(getValue($('#DuTinh' + tt + '_1').val()) > getValue($('#DuTinh' + tt).val())){
+          $('#DuTinh' + tt + '_1')[0].setCustomValidity("Giá trị phải nhỏ hơn "+$('#DuTinh' + tt).val());
+        }else{
+          $('#DuTinh' + tt + '_1')[0].setCustomValidity("");
+        } 
+      } */
     }
 
     var value = getValue($('#DuTinh' + tt).val());

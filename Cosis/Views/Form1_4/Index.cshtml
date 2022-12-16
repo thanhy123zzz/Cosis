@@ -472,7 +472,7 @@
         </div>
         <div class="group-btn" style="justify-content: end;">
           <select name="loai" style="margin-right:10px">
-              <option value="0">Chọn file cần xuất</option>
+              <option value="0" disabled selected>Chọn file cần xuất</option>
               <option value="1">Xuất File PDF</option>
               <option value="2">Xuất File Excel</option>
               <option value="3">Xuất cả 2</option>
@@ -650,17 +650,18 @@ $('.infomal').on('blur', function() {
 });
 
     function changeThthangTruoc(tt){
-        var value  = getValue($('#ThthangTruoc'+tt).val());
+       // var value  = getValue($('#ThthangTruoc'+tt).val());
+        var value  = getValue($('input[id*="ThthangTruoc'+tt+'"]').val());
         if(checkNumber(value)){
             var stt = $('#stt'+tt).val();        
             var mst = $('#MST1').val();
-            var duTinh = $('#DuTinh'+tt).val();
+            var duTinh = getValue($('input[id*="DuTinh'+tt+'"]').val());
             $.ajax({
                 type: 'POST',
                 url: '/get-tong',
                 data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh,
                 success: function (result) {
-                    $('#TongCongDon'+tt).val(
+                    $('input[id*="TongCongDon'+tt+'"]').val(
                         parseFloat(result).toLocaleString('en-US', {
                         style: 'decimal',
                         maximumFractionDigits: 2,
@@ -676,36 +677,57 @@ $('.infomal').on('blur', function() {
           }
     var Tong = 0;
     var valueStrStt = String($('input#stt'+tt).val());
-    //console.log(valueStrStt);
-    if (valueStrStt.includes('2._') == true) {
-      $('input[id*="stt"]').each(function () {
-        var stringID = $(this).val();
-        var strSTT = $(this).attr('id');
-        strSTT = strSTT.substring(3,strSTT.length);
-        if (stringID.includes("2._") == true) {
-            Tong += getValue($('#ThthangTruoc'+strSTT).val());
+    var cutStrSTT  = valueStrStt.substring(Number(valueStrStt.indexOf("_"))+1,valueStrStt.length);
+    //console.log(cutStrSTT);
+    var TongCT2 = 0;
+    // cut and skip first element 
+    $('input[id*="_'+cutStrSTT+'"]:not(:first)').each(function() {
+        var thisID = String($(this).attr('id'));
+        if(thisID.includes("ThthangTruoc") == true){
+          //console.log("id Thang Trc"+thisID);
+        TongCT2 += getValue($(this).val()); 
         }
-      });
-      $("#ThthangTruoc0").val(parseFloat(Tong).toLocaleString('en-US', {
+    });
+    // update value doanh thu thuan of each nghanh
+    $('input[id*="_'+cutStrSTT+'_2TT"]').val(parseFloat(TongCT2).toLocaleString('en-US', {
         style: 'decimal',
         maximumFractionDigits: 2,
         minimumFractionDigits: 2
       }));
-    }
+      // 
+      // sum CongDonCt2
+      var DT2 = getValue($('input[id*="_'+cutStrSTT+'_2DT"]').val());
+      $('input[id*="_'+cutStrSTT+'_2CD"]').val((parseFloat(TongCT2)+parseFloat(DT2)).toLocaleString('en-US', {
+        style: 'decimal',
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2
+      }));
+      // sum TT0
+      var sumTT0 = 0;
+      $('input[id*="_2TT"]').each(function () {
+        var value = $(this).val();
+        sumTT0 += getValue(value);
+      });
+      $("#ThthangTruoc0").val(parseFloat(sumTT0).toLocaleString('en-US', {
+        style: 'decimal',
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2
+      }));
 
     }
     function changeDuTinh(tt){
-        var value = getValue($('#DuTinh'+tt).val());
-        if((!isNaN(value) && $('#DuTinh'+tt).val() === '' + value)){
+        @* var value = getValue($('#DuTinh'+tt).val()); *@
+        var value  = getValue($('input[id*="DuTinh'+tt+'"]').val());
+        if(checkNumber(value)){
             var stt = $('#stt'+tt).val();        
             var mst = $('#MST1').val();
-            var duTinh = $('#ThthangTruoc'+tt).val();
+            var thtrc = getValue($('input[id*="ThthangTruoc'+tt+'"]').val());
             $.ajax({
                 type: 'POST',
                 url: '/get-tong',
-                data: "mast=" + mst + "&stt="+stt+"&thangTrc="+duTinh+"&duTinh="+value,
+                data: "mast=" + mst + "&stt="+stt+"&thangTrc="+thtrc+"&duTinh="+value,
                 success: function (result) {
-                      $('#TongCongDon'+tt).val(
+                      $('input[id*="TongCongDon'+tt+'"]').val(
                         parseFloat(result).toLocaleString('en-US', {
                         style: 'decimal',
                         maximumFractionDigits: 2,
@@ -721,46 +743,61 @@ $('.infomal').on('blur', function() {
           }
           var Tong = 0;
     var valueStrStt = String($('input#stt'+tt).val());
-    if (valueStrStt.includes('2._') == true) {
-      $('input[id*="stt"]').each(function () {
-        var stringID = $(this).val();
-        var strSTT = $(this).attr('id');
-        strSTT = strSTT.substring(3,strSTT.length);
-        //console.log("cutStrr"+strSTT);
-        if (stringID.includes("2._") == true) {
-            Tong += getValue($('#DuTinh'+strSTT).val());
+    var cutStrSTT  = valueStrStt.substring(Number(valueStrStt.indexOf("_"))+1,valueStrStt.length); // Ma Nghanh
+    var TongCT2 = 0;
+    // cut and skip first element 
+    $('input[id*="_'+cutStrSTT+'"]:not(:first)').each(function() {
+        var thisID = String($(this).attr('id'));
+        if(thisID.includes("DuTinh") == true && thisID.includes("_2DT") == false){
+          //console.log("id Du Tinh"+thisID);
+        TongCT2 += getValue($(this).val()); 
         }
+    });
+    // update value doanh thu thuan of each nghanh
+    $('input[id*="_'+cutStrSTT+'_2DT"]').val(parseFloat(TongCT2).toLocaleString('en-US', {
+        style: 'decimal',
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2
+      }));
+      // 
+      // sum CongDonCt2
+      var TT2 = getValue($('input[id*="_'+cutStrSTT+'_2TT"]').val());
+      $('input[id*="_'+cutStrSTT+'_2CD"]').val((parseFloat(TongCT2)+parseFloat(TT2)).toLocaleString('en-US', {
+        style: 'decimal',
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2
+      }));
+    // sum DT0
+      var sumDT0 = 0;
+      $('input[id*="_2DT"]').each(function () {
+        var value = $(this).val();
+        sumDT0 += getValue(value);
       });
       $("#DuTinh0").val(
-            parseFloat(Tong).toLocaleString('en-US', {
+            parseFloat(sumDT0).toLocaleString('en-US', {
                         style: 'decimal',
                         maximumFractionDigits: 2,
                         minimumFractionDigits: 2
                       })
             );
     }
-    }
     
     function changeCongDon(result,tt){
     var Tong = 0;
     var valueStrStt = String($('input#stt'+tt).val());
-    if (valueStrStt.includes('2._') == true) {
-      $('input[id*="stt"]').each(function () {
-        var stringID = $(this).val();
-        var strSTT = $(this).attr('id');
-        strSTT = strSTT.substring(3,strSTT.length);
-        if (stringID.includes("2._") == true) {
-            Tong += getValue($('#TongCongDon'+strSTT).val());
-        }
+    // SUm TCD0
+    var sumCD0 = 0;
+      $('input[id*="_2CD"]').each(function () {
+        var value = $(this).val();
+        sumCD0 += getValue(value);
       });
       //$("#TongCongDon0").val(Tong);
-      $("#TongCongDon0").val(parseFloat(Tong).toLocaleString('en-US', {
+      $("#TongCongDon0").val(parseFloat(sumCD0).toLocaleString('en-US', {
         style: 'decimal',
         maximumFractionDigits: 2,
         minimumFractionDigits: 2
       })
       );
-    }
     }
     
     function checkNumber(str) {
