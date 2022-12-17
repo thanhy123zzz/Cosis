@@ -102,7 +102,7 @@ namespace Cosis.Controllers
                 fullView.Options.MarginBottom = 40;
                 fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
 
-                var pdf = fullView.ConvertUrl("https://localhost:44358/form1_4PDF/"+phieu.Master.MaPhieu);
+                var pdf = fullView.ConvertUrl("https://localhost:5001/form1_4PDF/"+phieu.Master.MaPhieu);
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");
             }
@@ -114,7 +114,7 @@ namespace Cosis.Controllers
             {
 
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Form1_4");
         }
         [Route("/In14/{maPhieu}")]
         public IActionResult In(string maPhieu)
