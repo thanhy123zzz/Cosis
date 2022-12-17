@@ -82,13 +82,13 @@
                   <input type="hidden" name="Detail[0].Dvt" value="Triệu đồng"/>
                   <input type="hidden" name="Detail[1].Dvt" value="Triệu đồng"/>
               </td>
-              <td><input readonly type="text" class="infoma" id="ThangTruoc0" name="Detail[0].ThthangTruoc"/>
+              <td><input readonly type="text" class="infomal" id="ThangTruoc0" name="Detail[0].ThthangTruoc"/>
               </td>
-              <td><input readonly type="text" class="infoma" id="ThangTruocTT0" name="Detail[1].ThthangTruoc" /></td>
-              <td><input readonly type="text" class="infoma" id="DuTinh0" name="Detail[0].DuTinh"/></td>
-              <td><input readonly type="text" class="infoma" id="DuTinhTT0" name="Detail[1].DuTinh" /></td>
-              <td><input readonly type="text" class="infoma" id="TongCongDon0" name="Detail[0].TongCongDon"/></td>
-              <td><input readonly type="text" class="infoma" id="TongCongDonTT0" name="Detail[1].TongCongDon"/></td>
+              <td><input readonly type="text" class="infomal" id="ThangTruocTT0" name="Detail[1].ThthangTruoc" /></td>
+              <td><input readonly type="text" class="infomal" id="DuTinh0" name="Detail[0].DuTinh"/></td>
+              <td><input readonly type="text" class="infomal" id="DuTinhTT0" name="Detail[1].DuTinh" /></td>
+              <td><input readonly type="text" class="infomal" id="TongCongDon0" name="Detail[0].TongCongDon"/></td>
+              <td><input readonly type="text" class="infomal" id="TongCongDonTT0" name="Detail[1].TongCongDon"/></td>
             </tr>
             
             @for(int i =2; i<(list.Count+2);i++){
@@ -102,7 +102,7 @@
                       <input type="hidden" name="Detail[@z].TenCt" value="Doanh thu thuần @getNganhHoatDongKinhDoanh(list[i-2].MaNganh).TenNganh"/>
                       <input type="hidden" name="Detail[@j].TenCt" value="Trong đó: Bán trong siêu thị trung tâm thương mại"/>
                   </td>
-                  <td class="text-center">@getNganhHoatDongKinhDoanh(list[i-2].MaNganh).TenNganh</td>
+                  <td class="text-center">@getNganhHoatDongKinhDoanh(list[i-2].MaNganh).MaNganh</td>
                   <td class="text-center">Triệu đồng
                           <input type="hidden" name="Detail[@z].Dvt" value="Triệu đồng"/>
                       <input type="hidden" name="Detail[@j].Dvt" value="Triệu đồng"/>

@@ -47,11 +47,35 @@ namespace Cosis.Controllers
             return PartialView("_Master",a);
         }
         [HttpPost("/loadMaster1")]
-        public IActionResult loadMaster(string ms)
+        public IActionResult loadMaster(string ms,string mast)
         {
             FormCosisContext context = new FormCosisContext();
-            var a = context.Master.FirstOrDefault(x=>x.MaPhieu == ms);
-            return PartialView("_Master1_3", a);
+            if (ms != null)
+            {
+                var a = context.Master.FirstOrDefault(x => x.MaPhieu == ms);
+                return PartialView("_Master1_3", a);
+            }
+            else
+            {
+                var ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
+                Master a = getMaster(ttdn);
+                return PartialView("_Master1_3", a);
+            }
+        }
+        private Master getMaster(ThongTinDoanhNghiep tt)
+        {
+            Master master = new Master();
+            master.Ten = tt.TenDoanhNghiep;
+            master.MaSoThue = tt.MaSoThue;
+            master.MaSoThue2 = tt.MaSoThue2;
+            master.MaTinhTp = tt.MaTinhTp;
+            master.MaQuanHuyen = tt.MaQuanHuyen;
+            master.MaPhuongXa = tt.MaPhuongXa;
+            master.DiaChiCuThe = tt.DiaChiCuThe;
+            master.Sdt = tt.SdtdoanhNghiep;
+            master.Email = tt.Email;
+            master.MaLh = tt.MaLh;
+            return master;
         }
         /*        [Route("/xlsx")]
                 public IActionResult xlsx()

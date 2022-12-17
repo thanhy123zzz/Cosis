@@ -1,16 +1,21 @@
 ﻿@model Cosis.Models.PhieuDieuTra
 @{
     FormCosisContext context = new FormCosisContext();
-    string getThangTruoc(string m){
+    string getThangTruoc(string m)
+    {
         int i = Int32.Parse(m);
-        if(i==1){
+        if (i == 1)
+        {
             return "12";
-        }else{
+        }
+        else
+        {
             return toStringMonth(i - 1);
         }
     }
-    string getArray(){
-        if (Model.DanhSachNhanToAnhHuong !=null)
+    string getArray()
+    {
+        if (Model.DanhSachNhanToAnhHuong != null)
         {
             string a = "";
             foreach (DanhSachNhanToAnhHuong l in Model.DanhSachNhanToAnhHuong)
@@ -18,17 +23,24 @@
                 a = a + "'" + l.MaAh.Trim() + "', ";
             }
             return a;
-        }else{
+        }
+        else
+        {
             return "";
         }
 
     }
 
-    string toStringMonth(int i){
+    string toStringMonth(int i)
+    {
         if (i.ToString().Length > 1) return i.ToString();
         else return "0" + i;
     }
 
+    List<Master> getMasters()
+    {
+        return context.Master.ToList();
+    }
     string toStringMonthAndYear(int m, int year)
     {
         if (m == 1)
@@ -40,23 +52,17 @@
             return toStringMonth(m - 1) + "/" + year;
         }
     }
-    List<ThongTinDoanhNghiep> getTable(){
-        return context.ThongTinDoanhNghiep.Where(x => x.MaLoaiPhieu == "Form1_3").ToList();
-    }
-    int count(string mst1, string mst2, string thang, string nam){
-        return context.Master.Where(x => x.MaSoThue == mst1 && x.MaSoThue2 == mst2 && x.ThangDuTinh == thang && x.Nam == nam).Count();
-    }
 }
 @if (TempData["ThongBao"] != null)
-		{
-			<script type="text/javascript" charset="utf-8">
-				window.onload = function () {
-				alert("@Html.Raw(@TempData["ThongBao"])");
-			};
-			</script>
-		}
+{
+                <script type="text/javascript" charset="utf-8">
+                    window.onload = function () {
+                    alert("@Html.Raw(@TempData["ThongBao"])");
+                };
+                </script>
+}
 <form id="form" action="/form1_3" method="post" enctype="multipart/form-data">
-    <div class="choose-day row">
+<div class="choose-day row">
           <div class="choose-month">
             <label for="">Tháng</label>
             <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu()">
@@ -75,8 +81,8 @@
             <label for="">Năm</label>
             <input id="phieuNam"
               type="text"
-              size="1"
               name="nam"
+              size="1"
               value="@ViewBag.nam"
               style="height: 26px"
               
@@ -94,8 +100,8 @@
           <label for="">Mã số thuế</label>
             @if (Model.Master == null)
             {
-                <div class="row">
-                    <input
+                    <div class="row">
+                        <input
               type="text"
               id="n0"
               maxlength="1"
@@ -105,7 +111,7 @@
               autofocus
               data-next="1"
             />
-                    <input
+                        <input
               type="text"
               id="n1"
               maxlength="1"
@@ -114,7 +120,7 @@
               autocomplete="off"
               data-next="2"
             />
-                    <input
+                        <input
               type="text"
               id="n2"
               maxlength="1"
@@ -123,7 +129,7 @@
               autocomplete="off"
               data-next="3"
             />
-                    <input
+                        <input
               type="text"
               id="n3"
               maxlength="1"
@@ -132,7 +138,7 @@
               autocomplete="off"
               data-next="4"
             />
-                    <input
+                        <input
               type="text"
               id="n4"
               maxlength="1"
@@ -141,7 +147,7 @@
               autocomplete="off"
               data-next="5"
             />
-                    <input
+                        <input
               type="text"
               id="n5"
               maxlength="1"
@@ -150,7 +156,7 @@
               autocomplete="off"
               data-next="6"
             />
-                    <input
+                        <input
               type="text"
               id="n6"
               maxlength="1"
@@ -159,7 +165,7 @@
               autocomplete="off"
               data-next="7"
             />
-                    <input
+                        <input
               type="text"
               id="n7"
               maxlength="1"
@@ -168,7 +174,7 @@
               autocomplete="off"
               data-next="8"
             />
-                    <input
+                        <input
               type="text"
               id="n8"
               maxlength="1"
@@ -177,7 +183,7 @@
               autocomplete="off"
               data-next="9"
             />
-                    <input
+                        <input
               type="text"
               id="n9"
               maxlength="1"
@@ -186,9 +192,9 @@
               autocomplete="off"
               data-next="10"
             />
-                </div>
-                <div class="row">
-                    <input
+                    </div>
+                    <div class="row">
+                        <input
               type="text"
               id="n10"
               maxlength="1"
@@ -197,7 +203,7 @@
               autocomplete="off"
               data-next="11"
             />
-            <input
+                <input
               type="text"
               id="n11"
               maxlength="1"
@@ -206,7 +212,7 @@
               autocomplete="off"
               data-next="12"
             />
-            <input
+                <input
               type="text"
               id="n12"
               maxlength="1"
@@ -215,12 +221,15 @@
               autocomplete="off"
               data-next="13"
             />
-          </div>
-              <input type="hidden" id="MST1" value="" name="Master.MaSoThue"/>
-          }else{
-              <div class="row">
-                    @for(int i = 0; i < 10; i++){
-                        <input type="text"
+              </div>
+                  <input type="hidden" id="MST1" value="" name="Master.MaSoThue"/>
+            }
+            else
+            {
+                  <div class="row">
+                    @for (int i = 0; i < 10; i++)
+                    {
+                                <input type="text"
                            id="n0"
                            maxlength="1"
                            size="1"
@@ -231,11 +240,12 @@
                            value="@Model.Master.MaSoThue.Substring(i,1)"
                            />
                     }
-                </div>
-                <div class="row">
-                    @for(int i=0;i<3;i++){
+                    </div>
+                    <div class="row">
+                    @for (int i = 0; i < 3; i++)
+                    {
 
-                    <input type="text"
+                            <input type="text"
                            id="n10"
                            maxlength="1"
                            size="1"
@@ -245,11 +255,11 @@
                            value="@Model.Master.MaSoThue2.Substring(i,1)"
                            />
                     }
-                </div>
-                 <input type="hidden" id="Maphieu" asp-for="@Model.Master.MaPhieu"/>
-                    <input type="hidden" id="MST1" value="@Model.Master.MaSoThue@Model.Master.MaSoThue2" name="Master.MaSoThue"/>
-          }
-          
+                    </div>
+                     <input type="hidden" id="Maphieu" asp-for="@Model.Master.MaPhieu"/>
+                        <input type="hidden" id="MST1" value="@Model.Master.MaSoThue@Model.Master.MaSoThue2" name="Master.MaSoThue"/>
+            }
+
           </div>
         </div>
         <div class="form-group text-center tenphieu">
@@ -269,8 +279,7 @@
         <div class="form-group text-center">
           <div class="row"></div>
           <div>
-            <label> <b>Tháng @ViewBag.thang Năm @ViewBag.nam</b> 
-            </label>
+<label> <b>Tháng @ViewBag.thang Năm @ViewBag.nam</b> </label>
           </div>
           <div class="row"></div>
         </div>
@@ -684,11 +693,14 @@
                     <input type="checkbox" id="DanhSachNhanToAnhHuong_5" name="DanhSachNhanToAnhHuong_5" value="06"/>
                     <input type="checkbox" id="DanhSachNhanToAnhHuong_6" name="DanhSachNhanToAnhHuong_6" value="07" />
                     <input type="checkbox" id="DanhSachNhanToAnhHuong_7" name="DanhSachNhanToAnhHuong_7" value="08" />
-               @if(Model.NhanToThu9==null){
-              <input type="checkbox" id="YT9" value="" />
-               }else{
-                   <input type="checkbox" checked id="YT9" value="" />
-               }
+                @if (Model.NhanToThu9 == null)
+                {
+                  <input type="checkbox" id="YT9" value="" />
+                }
+                else
+                {
+                       <input type="checkbox" checked id="YT9" value="" />
+                }
             </div>
           </div>
           <div class="YTAH9">
@@ -776,7 +788,7 @@ function format(){
 }
 
     function changeThthangTruoc(tt){
-        
+
       /*  $('#ThthangTruoc'+tt).val($('#ThthangTruoc'+tt).val().replace(/\D/g, ''));*/
       /* if(tt==4){
            $('#ThthangTruoc4_1').attr({
@@ -804,7 +816,7 @@ function format(){
             var mst = $('#MST1').val();
             var duTinh = $('#DuTinh'+tt).val();
             var thangDuTinh = $('#phieuThang').val();
-            var nam = $('#phieuNam').val();
+            var nam = $('#phieuNam').val()
             $.ajax({
                 type: 'POST',
                 url: '/get-tong',
@@ -935,9 +947,9 @@ function format(){
        }
        $("#TongDuTinh").val(tong);*/
     }
-    
+
     function changeCongDon(result,tt){
-        
+
         if(tt==2||tt==8||tt==14||tt==15){
             var tong = 0;
             if(checkNumber($('#TongCongDon2').val())){
@@ -962,9 +974,9 @@ function format(){
         }
     }
         $(document).ready(function(){
-          let ms = $('#Maphieu').val();
-          
-          if(ms.length ===0){
+          let ms = @Html.Raw(Model.Master.MaPhieu);
+          let mst = @Html.Raw(Model.Master.MaSoThue);
+          if(ms!=undefined){
                 $.ajax({
                     type: 'POST',
                     url: '/loadMaster1',
@@ -982,9 +994,8 @@ function format(){
             $('.infomal').each(format);
     })
     $(window).scroll(function(){
-        
+
     })
-    
     function myFunction(item, index) {
         for(var i =0 ;i<=7;i++){
                 if($('#DanhSachNhanToAnhHuong_'+i).val()== item){
@@ -998,60 +1009,5 @@ function format(){
     function getValue(str){
        return Number(str.replace(/[^0-9.-]+/g,""));
     }
-    
 </script>
       </form>
-      <div id="tableQLTT" class="form-QLTT" style="overflow: scroll;">
-        <div class="head-group">
-          <div class="title text-center">
-            <h5 class="title-first"><b>DANH SÁCH CƠ SỞ</b></h5>
-            <label class="title-last"
-              ><i>Nhấn vào dòng cơ sở để nhập tin</i></label
-            >
-          </div>
-          <div class="group-radio-btn row">
-            <div class="check-form">
-              <i class="bi bi-circle-fill" style="color: rgb(0, 160, 255)"></i>
-              <label class="text-primary">Đã điều tra</label>
-            </div>
-            <div class="check-form" style="margin-left: 5px">
-              <i class="bi bi-circle-fill" style="color: white"></i>
-              <label>Chưa điều tra</label>
-            </div>
-            <div class="check-form" style="margin-left: 5px">
-              <i class="bi bi-circle-fill" style="color: rgb(215, 70, 0)"></i>
-              <label class="text">Không điều tra</label>
-            </div>
-          </div>
-        </div>
-        <table id="example" class="table table-bordered table-hover" style="max-height: 100%;">
-          <thead>
-            <tr class="text-center tab-title">
-              <th class="th1">Điều tra</th>
-              <th class="th2">Mã ĐB</th>
-              <th class="th3">Cơ sở số</th>
-              <th class="th4">Tên cơ sở</th>
-            </tr>
-          </thead>
-          <tbody>
-              @foreach(ThongTinDoanhNghiep m in @getTable()){
-              @if (count(m.MaSoThue, m.MaSoThue2, ViewBag.thang, ViewBag.nam) > 0)
-                {
-              <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu('@m.MaSoThue','@m.MaSoThue2')">
-                  <td class="text-center">1</td>
-                  <td class="text-center">@m.MaSoThue</td>
-                  <td class="text-center">@m.MaSoThue2</td>
-                  <td class="text-center">@m.TenDoanhNghiep</td>
-            </tr>
-              }else{
-               <tr style="cursor:pointer;" onclick="doiPhieu('@m.MaSoThue','@m.MaSoThue2')">
-                  <td class="text-center">1</td>
-                  <td class="text-center">@m.MaSoThue</td>
-                  <td class="text-center">@m.MaSoThue2</td>
-                  <td class="text-center">@m.TenDoanhNghiep</td>
-               </tr>
-              }
-              }
-          </tbody>
-        </table>
-      </div>

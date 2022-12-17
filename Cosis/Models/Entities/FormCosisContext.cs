@@ -470,7 +470,7 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaLoaiPhieuNavigation)
                     .WithMany(p => p.ThongTinCaThe)
                     .HasForeignKey(d => d.MaLoaiPhieu)
-                    .HasConstraintName("FK__ThongTinC__MaLoa__7167D3BD");
+                    .HasConstraintName("FK__ThongTinC__MaLoa__7720AD13");
 
                 entity.HasOne(d => d.MaPhuongXaNavigation)
                     .WithMany(p => p.ThongTinCaThe)
@@ -558,7 +558,7 @@ namespace Cosis.Models.Entities
                 entity.HasOne(d => d.MaLoaiPhieuNavigation)
                     .WithMany(p => p.ThongTinDoanhNghiep)
                     .HasForeignKey(d => d.MaLoaiPhieu)
-                    .HasConstraintName("FK__ThongTinD__MaLoa__7073AF84");
+                    .HasConstraintName("FK__ThongTinD__MaLoa__725BF7F6");
 
                 entity.HasOne(d => d.MaPhuongXaNavigation)
                     .WithMany(p => p.ThongTinDoanhNghiep)
