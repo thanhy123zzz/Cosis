@@ -1,4 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@{
+    FormCosisContext context = new FormCosisContext();
+    List<LoaiPhieu> getLoaiPhieu(){
+        if (User.IsInRole("001"))
+        {
+            return context.LoaiPhieu.ToList();
+        }
+        if (User.IsInRole("002"))
+        {
+            ThongTinDoanhNghiep tt = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
+            return context.LoaiPhieu.Where(x=>x.MaLoaiPhieu==tt.MaLoaiPhieu).ToList();
+        }
+        ThongTinCaThe td = context.ThongTinCaThe.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
+        return context.LoaiPhieu.Where(x => x.MaLoaiPhieu == td.MaLoaiPhieu).ToList();
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -33,36 +49,13 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/Home/Index">Trang chủ</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/Form1_1/Index"
-                >Phiếu 1.1/DN-TM-T</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/Form1_2/Index"
-                >Phiếu 1.2/DN-LAD-T</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/Form1_3/Index"
-                >Phiếu 1.3/DN-VT-T</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/Form1_4/Index"
-                >Phiếu 1.4/DN-DVK-T</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/Form2_1/Index"
-                >Phiếu 2.1/CT-TM-T</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/Form2_3/Index"
-                >Phiếu 2.3/CT-VT-T</a
-              >
-            </li>
+            @foreach(LoaiPhieu l in getLoaiPhieu()){
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/@l.MaLoaiPhieu/Index"
+                    >@l.TenLoaiPhieu</a
+                  >
+                </li>
+            }
           </ul>
         </div>
         <div
@@ -71,7 +64,7 @@
           style="justify-content: flex-end; padding-right: 15px"
         >
           <a class="nav-link text-white" href="/logout"
-                >Đăng xuất</a
+                >@User.Identity.Name - Đăng xuất</a
               >
         </div>
       </nav>
@@ -153,9 +146,9 @@
     });
     $("#YT9").change(function () {
       if (this.checked) {
-        document.getElementById("comment").disabled = false;
+        $('#comment').prop('readonly', false);
       } else {
-        document.getElementById("comment").disabled = true;
+        $('#comment').prop('readonly', true);
       }
     });
     $("#5").click(function () {
@@ -185,22 +178,52 @@
             next: "Sau",
           },
           searchPlaceholder: "Nhập cơ sở cần tìm",
-          search: "Tìm kiếm",
+          search: "",
         },
       });
         }
     );
     $(document).ready(function(){
-        let kq = "@User.IsInRole("001")"
+        let kq = "@User.IsInRole("001")";
         if(kq=="True"){
             $('#bodyDiv').addClass("col-lg-12");
             $('#form').addClass("form");
             $('#tableQLTT').css("display","block");
+            $('.MS').prop('readonly', false);
         }else{
             $('#tableQLTT').css("display","none");
             $('#form').addClass("form1");
+            $('.MS').prop('readonly', true);
         }
     });
+        function doiPhieu(mst1,mst2){
+        var thang = $('#phieuThang').val();
+        var nam = $('#phieuNam').val();
+
+          $.ajax({
+                    type: 'POST',
+                    url: '/changePhieu1_3',
+                    data: "thang=" + thang + "&nam="+nam + "&mst1="+mst1+"&mst2="+mst2,
+                    success: function (result) {
+                        $('#form').replaceWith(result);
+                                let kq = "@User.IsInRole("001")"
+                            if(kq=="True"){
+                                $('#bodyDiv').addClass("col-lg-12");
+                                $('#form').addClass("form");
+                                $('#tableQLTT').css("display","block");
+                                $('.MS').prop('readonly', false);
+                            }else{
+                                $('#tableQLTT').css("display","none");
+                                $('#form').addClass("form1");
+                                $('.MS').prop('readonly', true);
+                            }
+
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+             }
+            });
+    }
   </script>
     @RenderSection("Scripts", required: false)
 </body>

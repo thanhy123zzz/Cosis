@@ -1,5 +1,5 @@
 ﻿@model Cosis.Models.PhieuDieuTra
-@{
+@{FormCosisContext context = new FormCosisContext();
     int getThang()
     {
         return DateTime.Now.Month;
@@ -27,6 +27,9 @@
         {
             return (getThang() - 1) + "/" + getNam();
         }
+    }
+        List<Master> getMasters(){
+        return context.Master.ToList();
     }
 }
 @if (TempData["ThongBao"] != null)
@@ -420,8 +423,7 @@
           </select>
           <button type="submit" value="false" class="btn btn-primary">Lưu</button>
         </div>
-      </form>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script type="text/javascript">
     var citis = document.getElementById("city");
 var districts = document.getElementById("district");
@@ -534,7 +536,7 @@ $('.infomal').on('blur', function() {
     }
 
     function changeTong(tt){
-        
+
         var stt = $('#stt_'+tt).val();        
         var mst = $('#MST1').val();
         var duTinh = $('#DuTinh_'+tt).val();
@@ -604,139 +606,6 @@ $('.infomal').on('blur', function() {
             });
     }
 
-/*    function changeThthangTruoc(tt){
-        var value = getValue($('#ThthangTruoc'+tt).val());
-
-        if(checkNumber(value)){
-            var stt = $('#stt'+tt).val();        
-            var mst = $('#MST1').val();
-            var duTinh = $('#DuTinh'+tt).val();
-            $.ajax({
-                type: 'POST',
-                url: '/get-tong',
-                data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh,
-                success: function (result) {
-                    $('#TongCongDon'+tt).val(
-                        parseFloat(result).toLocaleString('en-US', {
-                        style: 'decimal',
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                      })
-                    );
-                    changeCongDon(result,tt);
-                },
-               error: function (result) {
-               alert('Mã số thuế không tồn tại!');
-             }
-            });
-          }
-        if(tt==2||tt==8||tt==14||tt==15){
-            var tong = 0;
-            var value2 = getValue($('#ThthangTruoc'+2).val());
-            if(checkNumber(value2)){
-                tong = tong + value2;
-            }
-            var value8 = getValue($('#ThthangTruoc'+8).val());
-            if(checkNumber(value8)){
-                tong = tong + value8;
-            }
-            var value14 = getValue($('#ThthangTruoc'+14).val());
-            if(checkNumber(value14)){
-                tong = tong + value14;
-            }
-            var value15 = getValue($('#ThthangTruoc'+15).val());
-            if(checkNumber(value15)){
-                tong = tong + value15;
-            }
-            $("#ThthangTruoc0").val(
-            parseFloat(tong).toLocaleString('en-US', {
-                        style: 'decimal',
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                      })
-            );
-        }
-    }
-    function changeDuTinh(tt){
-        var value = parseFloat($('#DuTinh'+tt).val());
-
-        if((!isNaN(value) && $('#DuTinh'+tt).val() === '' + value)){
-            var stt = $('#stt'+tt).val();        
-            var mst = $('#MST1').val();
-            var duTinh = $('#ThthangTruoc'+tt).val();
-            $.ajax({
-                type: 'POST',
-                url: '/get-tong',
-                data: "mast=" + mst + "&stt="+stt+"&thangTrc="+duTinh+"&duTinh="+value,
-                success: function (result) {
-                    $('#TongCongDon'+tt).val(
-                        parseFloat(result).toLocaleString('en-US', {
-                        style: 'decimal',
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                      })
-                    );
-                    changeCongDon(result,tt);
-                },
-               error: function (result) {
-               alert('Mã số thuế không tồn tại!');
-             }
-            });
-          }
-          if(tt==2||tt==8||tt==14||tt==15){
-            var tong = 0;
-            var value2 = getValue($('#DuTinh'+2).val());
-            if(checkNumber(value2)){
-                tong = tong + value2;
-            }
-            var value8 = getValue($('#DuTinh'+8).val());
-            if(checkNumber(value8)){
-                tong = tong + value8;
-            }
-            var value14 = getValue($('#DuTinh'+14).val());
-            if(checkNumber(value14)){
-                tong = tong + value14;
-            }
-            var value15 = getValue($('#DuTinh'+15).val());
-            if(checkNumber(value15)){
-                tong = tong + value15;
-            }
-            $("#DuTinh0").val(
-            parseFloat(tong).toLocaleString('en-US', {
-                        style: 'decimal',
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                      })
-            );
-        }
-    }
-
-    function changeCongDon(result,tt){
-
-        if(tt==2||tt==8||tt==14||tt==15){
-            var tong = 0;
-            if(checkNumber($('#TongCongDon2').val())){
-                tong = tong + getValue($('#TongCongDon2').val());
-            }
-            if(checkNumber($('#TongCongDon8').val())){
-                tong = tong + getValue($('#TongCongDon8').val());
-            }
-            if(checkNumber($('#TongCongDon14').val())){
-                tong = tong + getValue($('#TongCongDon14').val());
-            }
-            if(checkNumber($('#TongCongDon').val())){
-                tong = tong + getValue($('#TongCongDon15').val());
-            }
-            $("#TongCongDon0").val(
-                parseFloat(tong).toLocaleString('en-US', {
-                        style: 'decimal',
-                        maximumFractionDigits: 2,
-                        minimumFractionDigits: 2
-                      })
-            );
-        }
-    }
-    */
     function checkNumber(str) {
         return /[0-9,.\-$]+/.test(str);
     }
@@ -744,3 +613,49 @@ $('.infomal').on('blur', function() {
        return Number(str.replace(/[^0-9.-]+/g,""));
     }
 </script>
+      </form>
+                  <div id="tableQLTT" class="form-QLTT" style="overflow: scroll;">
+        <div class="head-group">
+          <div class="title text-center">
+            <h5 class="title-first"><b>DANH SÁCH CƠ SỞ</b></h5>
+            <label class="title-last"
+              ><i>Nhấn vào dòng cơ sở để nhập tin</i></label
+            >
+          </div>
+          <div class="group-radio-btn row">
+            <div class="check-form">
+              <i class="bi bi-circle-fill" style="color: rgb(0, 160, 255)"></i>
+              <label class="text-primary">Đã điều tra</label>
+            </div>
+            <div class="check-form" style="margin-left: 5px">
+              <i class="bi bi-circle-fill" style="color: white"></i>
+              <label>Chưa điều tra</label>
+            </div>
+            <div class="check-form" style="margin-left: 5px">
+              <i class="bi bi-circle-fill" style="color: rgb(215, 70, 0)"></i>
+              <label class="text">Không điều tra</label>
+            </div>
+          </div>
+        </div>
+        <table id="example" class="table table-bordered table-hover" style="max-height: 100%;">
+          <thead>
+            <tr class="text-center tab-title">
+              <th class="th1">Điều tra</th>
+              <th class="th2">Mã ĐB</th>
+              <th class="th3">Cơ sở số</th>
+              <th class="th4">Tên cơ sở</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (Master m in getMasters())
+            {
+                <tr>
+                  <td class="text-center">@m.MaPhieu</td>
+                  <td class="text-center">@m.MaSoThue</td>
+                  <td class="text-center">@m.MaSoThue2</td>
+                  <td>@m.Ten</td>
+                </tr>
+            }
+          </tbody>
+        </table>
+      </div>

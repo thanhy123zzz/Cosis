@@ -43,7 +43,7 @@ namespace Cosis.Controllers
         }
         private async Task SignInUser(TaiKhoang tk)
         {
-                    var claims = new List<Claim>
+            var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, tk.TaiKhoang1.Trim()),
                         new Claim(ClaimTypes.Role, tk.IdvaiTro.Trim()),
