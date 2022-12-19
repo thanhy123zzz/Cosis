@@ -1,0 +1,35 @@
+﻿@{
+    FormCosisContext context = new FormCosisContext();
+    List<ThongTinDoanhNghiep> getTable()
+    {
+        string s = ViewBag.LoaiPhieu;
+        return context.ThongTinDoanhNghiep.Where(x => x.MaLoaiPhieu == s).ToList();
+    }
+    int count(string mst1, string mst2, string thang, string nam)
+    {
+        return context.Master.Where(x => x.MaSoThue == mst1 && x.MaSoThue2 == mst2 && x.ThangDuTinh == thang && x.Nam == nam).Count();
+    }
+}
+          <tbody id="tBody">
+            @foreach (ThongTinDoanhNghiep m in getTable())
+            {
+                @if (count(m.MaSoThue, m.MaSoThue2, ViewBag.thang, ViewBag.nam) > 0)
+                {
+                      <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu('@m.MaSoThue','@m.MaSoThue2')">
+                          <td class="text-center">1</td>
+                          <td class="text-center">@m.MaSoThue</td>
+                          <td class="text-center">@m.MaSoThue2</td>
+                          <td class="text-center">@m.TenDoanhNghiep</td>
+                    </tr>
+                }
+                else
+                {
+                       <tr style="cursor:pointer;" onclick="doiPhieu('@m.MaSoThue','@m.MaSoThue2')">
+                          <td class="text-center">1</td>
+                          <td class="text-center">@m.MaSoThue</td>
+                          <td class="text-center">@m.MaSoThue2</td>
+                          <td class="text-center">@m.TenDoanhNghiep</td>
+                       </tr>
+                }
+            }
+          </tbody>
