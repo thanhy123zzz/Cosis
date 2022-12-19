@@ -57,11 +57,30 @@ namespace Cosis.Controllers
             }
             else
             {
-                var ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
-                Master a = getMaster(ttdn);
-                return PartialView("_Master1_3", a);
+                if (User.IsInRole("002"))
+                {
+                    var ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
+                    Master a = getMaster(ttdn);
+                    return PartialView("_Master1_3", a);
+                }
+                else
+                {
+                    string mst1 = mast.Substring(0, 10);
+                    string mst2 = mast.Substring(10);
+                    var ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.MaSoThue == mst1 && x.MaSoThue2 == mst2);
+                    Master a = getMaster(ttdn);
+                    return PartialView("_Master1_3", a);
+                }
             }
         }
+        [HttpPost("/get-tableTTDN")]
+        public IActionResult loadTableTTDN(string thang, string nam, string loaiPhieu)
+        {
+            ViewBag.thang = thang;
+            ViewBag.nam = nam;
+            ViewBag.LoaiPhieu = loaiPhieu;
+            return PartialView("_tableTTDoanhNghiep");
+        } 
         private Master getMaster(ThongTinDoanhNghiep tt)
         {
             Master master = new Master();

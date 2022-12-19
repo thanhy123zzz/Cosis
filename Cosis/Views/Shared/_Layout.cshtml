@@ -127,7 +127,8 @@
                     error: function (result) {
                         alert('Mã số thuế không tồn tại!');
                     }
-            })
+            });
+            doiPhieu(strMS.substring(0, 10),strMS.substring(10, 13));
         }
     });
 
@@ -199,7 +200,19 @@
         function doiPhieu(mst1,mst2){
         var thang = $('#phieuThang').val();
         var nam = $('#phieuNam').val();
-
+        var s = "@Html.Raw(ViewBag.LoaiPhieu)";
+        console.log(s);
+          $.ajax({
+                    type: 'POST',
+                    url: '/get-tableTTDN',
+                    data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
+                    success: function (result) {
+                        $('#tBody').replaceWith(result);
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+             }
+            });
           $.ajax({
                     type: 'POST',
                     url: '/changePhieu1_3',

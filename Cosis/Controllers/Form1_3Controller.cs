@@ -39,6 +39,7 @@ namespace Cosis.Controllers
         {
             FormCosisContext context = new FormCosisContext();
             PhieuDieuTra phieu = new PhieuDieuTra();
+            ViewBag.LoaiPhieu = "Form1_3";
             if (User.IsInRole("001"))
             {
                 ViewBag.thang = DateTime.Now.Month.ToString();
@@ -71,6 +72,7 @@ namespace Cosis.Controllers
                     return View(phieu);
                 }
             }
+            
             return View(phieu);
         }
         [HttpPost("/changePhieu1_3")]
@@ -80,8 +82,15 @@ namespace Cosis.Controllers
             FormCosisContext context = new FormCosisContext();
             PhieuDieuTra phieu = new PhieuDieuTra();
             ThongTinDoanhNghiep ttdn;
+            ViewBag.LoaiPhieu = "Form1_3";
             if (User.IsInRole("001"))
             {
+                if (mst1.Equals("undefined"))
+                {
+                    ViewBag.thang = thang;
+                    ViewBag.nam = nam;
+                    return PartialView(phieu);
+                }
                 ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.MaSoThue==mst1 && x.MaSoThue2 == mst2);
             }
             else
@@ -111,6 +120,7 @@ namespace Cosis.Controllers
                 return PartialView(phieu);
             }
         }
+
         private Master getMaster(ThongTinDoanhNghiep tt)
         {
             Master master = new Master();

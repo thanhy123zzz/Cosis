@@ -247,7 +247,7 @@
                     }
                 </div>
                  <input type="hidden" id="Maphieu" asp-for="@Model.Master.MaPhieu"/>
-                    <input type="hidden" id="MST1" value="@Model.Master.MaSoThue@Model.Master.MaSoThue2" name="Master.MaSoThue"/>
+                 <input type="hidden" id="MST1" value="@Model.Master.MaSoThue@Model.Master.MaSoThue2" name="Master.MaSoThue"/>
           }
           
           </div>
@@ -963,12 +963,12 @@ function format(){
     }
         $(document).ready(function(){
           let ms = $('#Maphieu').val();
-          
-          if(ms.length ===0){
+          let mst = $('#MST1').val();
+          if(ms!=undefined){
                 $.ajax({
                     type: 'POST',
                     url: '/loadMaster1',
-                    data: "ms=" + ms +"&mast" + $('#MST1').val(),
+                    data: "ms=" + ms +"&mast=" + mst,
                     success: function (result) {
                         $('#ThongTinDoanhNghiepGroup').replaceWith(result);
                     },
@@ -1026,14 +1026,14 @@ function format(){
         </div>
         <table id="example" class="table table-bordered table-hover" style="max-height: 100%;">
           <thead>
-            <tr class="text-center tab-title">
+            <tr class="text-center tab-title" style="background-color: #fff3bd;">
               <th class="th1">Điều tra</th>
               <th class="th2">Mã ĐB</th>
               <th class="th3">Cơ sở số</th>
               <th class="th4">Tên cơ sở</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tBody">
               @foreach(ThongTinDoanhNghiep m in @getTable()){
               @if (count(m.MaSoThue, m.MaSoThue2, ViewBag.thang, ViewBag.nam) > 0)
                 {
