@@ -776,27 +776,6 @@ function format(){
 }
 
     function changeThthangTruoc(tt){
-        
-      /*  $('#ThthangTruoc'+tt).val($('#ThthangTruoc'+tt).val().replace(/\D/g, ''));*/
-      /* if(tt==4){
-           $('#ThthangTruoc4_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }else if(tt==3){
-           $('#ThthangTruoc3_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }else if(tt==9){
-           $('#ThthangTruoc9_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }
-       else if(tt==10){
-           $('#ThthangTruoc10_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }
-       */
         var value = getValue($('#ThthangTruoc'+tt).val());
 
         if(checkNumber(value)){
@@ -852,27 +831,6 @@ function format(){
         }
     }
     function changeDuTinh(tt){
-       /* $('#DuTinh'+tt).val($('#DuTinh'+tt).val().replace(/\D/g, ''));*/
-
-        /*if(tt==4){
-           $('#DuTinh4_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }else if(tt==3){
-           $('#DuTinh3_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }else if(tt==9){
-           $('#DuTinh9_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }
-       else if(tt==10){
-           $('#DuTinh10_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }*/
-
         var value = parseFloat($('#DuTinh'+tt).val());
 
         if(checkNumber(value)){
@@ -926,14 +884,6 @@ function format(){
                       })
             );
         }
-        /*var tong = 0;
-        for(var i=1;i<=15;i++){
-            var value = parseFloat($('#DuTinh'+i).val()); 
-            if((!isNaN(value) && $('#DuTinh'+i).val() === '' + value)){
-            tong = tong + value;
-          }
-       }
-       $("#TongDuTinh").val(tong);*/
     }
     
     function changeCongDon(result,tt){
@@ -981,10 +931,6 @@ function format(){
             a.forEach(myFunction);
             $('.infomal').each(format);
     })
-    $(window).scroll(function(){
-        
-    })
-    
     function myFunction(item, index) {
         for(var i =0 ;i<=7;i++){
                 if($('#DanhSachNhanToAnhHuong_'+i).val()== item){
@@ -998,7 +944,69 @@ function format(){
     function getValue(str){
        return Number(str.replace(/[^0-9.-]+/g,""));
     }
-    
+    function doiPhieu(mst1,mst2){
+        var thang = $('#phieuThang').val();
+        var nam = $('#phieuNam').val();
+        var s = "@Html.Raw(ViewBag.LoaiPhieu)";
+        $.ajax({
+                    type: 'POST',
+                    url: '/get-tableTTDN',
+                    data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
+                    success: function (result) {
+                        $('#tBody').replaceWith(result);
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+             }
+       });
+          $.ajax({
+                    type: 'POST',
+                    url: '/changePhieu1_3',
+                    data: "thang=" + thang + "&nam="+nam + "&mst1="+mst1+"&mst2="+mst2,
+                    success: function (result) {
+                        $('#form').replaceWith(result);
+                            let kq = "@User.IsInRole("001")"
+                            if(kq=="True"){
+                                $('#bodyDiv').addClass("col-lg-12");
+                                $('#form').addClass("form");
+                                $('#tableQLTT').css("display","block");
+                                $('.MS').prop('readonly', false);
+                            }else{
+                                $('#tableQLTT').css("display","none");
+                                $('#form').addClass("form1");
+                                $('.MS').prop('readonly', true);
+                            }
+
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+             }
+            });
+    }
+        $(".MS").keyup(function() {
+
+        var valueArr = [];
+                document.querySelectorAll('.MS').forEach(function(el){
+                valueArr.push(el.value);
+            });
+        strMS = "";
+        valueArr.forEach(AddMS)
+        $('#MST1').val(strMS);
+        if(strMS.length==13){
+                $.ajax({
+                    type: 'POST',
+                    url: '/loadMaster',
+                    data: "ms=" + strMS,
+                    success: function (result) {
+                        $('#ThongTinDoanhNghiepGroup').replaceWith(result);
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+                    }
+            });
+            doiPhieu(strMS.substring(0, 10),strMS.substring(10, 13));
+        }
+    });
 </script>
       </form>
       <div id="tableQLTT" class="form-QLTT" style="overflow: scroll;">
