@@ -2,20 +2,6 @@
 @model Cosis.Models.Entities.Master
 @{
     FormCosisContext context = new FormCosisContext();
-    /* TinhTp getTinh(string idTinh){
-         return context.TinhTp.Find(idTinh);
-     }
-
-     QuanHuyen getHuyen(string idHuyen)
-     {
-         return context.QuanHuyen.Find(idHuyen);
-     }
-
-     PhuongXa getXa(string idXa)
-     {
-         return context.PhuongXa.Find(idXa);
-     }
-     */
     List<NganhKinhDoanh> getNganhKinhDoanh(string mast1, string mast2)
     {
         return context.NganhKinhDoanh.Where(x => x.MaSoThue == mast1 && x.MaSoThue2 == mast2).ToList();
@@ -157,7 +143,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
-    var citis = document.getElementById("city");
+var citis = document.getElementById("city");
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
 

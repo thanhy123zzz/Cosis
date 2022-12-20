@@ -1008,5 +1008,70 @@ function format(){
     function getValue(str){
        return Number(str.replace(/[^0-9.-]+/g,""));
     }
+
+        function doiPhieu(mst1,mst2){
+        var thang = $('#phieuThang').val();
+        var nam = $('#phieuNam').val();
+        var s = "@Html.Raw(ViewBag.LoaiPhieu)";
+        console.log(s);
+          $.ajax({
+                    type: 'POST',
+                    url: '/get-tableTTDN',
+                    data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
+                    success: function (result) {
+                        $('#tBody').replaceWith(result);
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+             }
+            });
+          $.ajax({
+                    type: 'POST',
+                    url: '/changePhieu1_3',
+                    data: "thang=" + thang + "&nam="+nam + "&mst1="+mst1+"&mst2="+mst2,
+                    success: function (result) {
+                        $('#form').replaceWith(result);
+                                let kq = "@User.IsInRole("001")"
+                            if(kq=="True"){
+                                $('#bodyDiv').addClass("col-lg-12");
+                                $('#form').addClass("form");
+                                $('#tableQLTT').css("display","block");
+                                $('.MS').prop('readonly', false);
+                            }else{
+                                $('#tableQLTT').css("display","none");
+                                $('#form').addClass("form1");
+                                $('.MS').prop('readonly', true);
+                            }
+
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+             }
+            });
+    }
+        $(".MS").keyup(function() {
+
+        var valueArr = [];
+                document.querySelectorAll('.MS').forEach(function(el){
+                valueArr.push(el.value);
+            });
+        strMS = "";
+        valueArr.forEach(AddMS)
+        $('#MST1').val(strMS);
+        if(strMS.length==13){
+                $.ajax({
+                    type: 'POST',
+                    url: '/loadMaster',
+                    data: "ms=" + strMS,
+                    success: function (result) {
+                        $('#ThongTinDoanhNghiepGroup').replaceWith(result);
+                    },
+                    error: function (result) {
+                        alert('Mã số thuế không tồn tại!');
+                    }
+            });
+            doiPhieu(strMS.substring(0, 10),strMS.substring(10, 13));
+        }
+    });
 </script>
       </form>

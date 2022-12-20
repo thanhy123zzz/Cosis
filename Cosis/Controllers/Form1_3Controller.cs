@@ -258,8 +258,12 @@ namespace Cosis.Controllers
         [Route("/form1_3PDF/{maPhieu}")]
         public IActionResult Form1_3PDF(string maPhieu)
         {
-            PhieuDieuTra phieu = GetPhieu(maPhieu);
-            ViewBag.NganhKinhDoanh = GetNganhKinhDoanhs(phieu.Master.MaSoThue,phieu.Master.MaSoThue2);
+            FormCosisContext context = new FormCosisContext();
+            PhieuDieuTra phieu = new PhieuDieuTra();
+            ViewBag.LoaiPhieu = "Form1_3";
+            phieu = GetPhieu(maPhieu);
+            ViewBag.thang = phieu.Master.ThangDuTinh;
+            ViewBag.nam = phieu.Master.Nam;
 
             return View(phieu);
         }
