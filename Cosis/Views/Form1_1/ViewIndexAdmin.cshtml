@@ -734,7 +734,7 @@ $('.infomal').on('blur', function() {
               <th class="th4">Tên cơ sở</th>
             </tr>
           </thead>
-          <tbody id="tBody">
+          <tbody >
             @foreach (ThongTinDoanhNghiep m in @getTable())
             {
                 @if (count(m.MaSoThue, m.MaSoThue2, ViewBag.thang, ViewBag.nam) > 0)
@@ -772,7 +772,7 @@ $('.infomal').on('blur', function() {
                     url: '/get-tableTTDN',
                     data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
                     success: function (result) {
-                        $('#tBody').replaceWith(result);
+                        $('#tableQLTT').replaceWith(result);
                     },
                     error: function (result) {
                         alert('Mã số thuế không tồn tại!');

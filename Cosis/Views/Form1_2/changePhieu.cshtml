@@ -1,16 +1,21 @@
 ﻿@model Cosis.Models.PhieuDieuTra
 @{
     FormCosisContext context = new FormCosisContext();
-    string getThangTruoc(string m){
+    string getThangTruoc(string m)
+    {
         int i = Int32.Parse(m);
-        if(i==1){
+        if (i == 1)
+        {
             return "12";
-        }else{
+        }
+        else
+        {
             return toStringMonth(i - 1);
         }
     }
-    string getArray(){
-        if (Model.DanhSachNhanToAnhHuong !=null)
+    string getArray()
+    {
+        if (Model.DanhSachNhanToAnhHuong != null)
         {
             string a = "";
             foreach (DanhSachNhanToAnhHuong l in Model.DanhSachNhanToAnhHuong)
@@ -18,17 +23,24 @@
                 a = a + "'" + l.MaAh.Trim() + "', ";
             }
             return a;
-        }else{
+        }
+        else
+        {
             return "";
         }
 
     }
 
-    string toStringMonth(int i){
+    string toStringMonth(int i)
+    {
         if (i.ToString().Length > 1) return i.ToString();
         else return "0" + i;
     }
 
+    List<Master> getMasters()
+    {
+        return context.Master.ToList();
+    }
     string toStringMonthAndYear(int m, int year)
     {
         if (m == 1)
@@ -40,23 +52,17 @@
             return toStringMonth(m - 1) + "/" + year;
         }
     }
-    List<ThongTinDoanhNghiep> getTable(){
-        return context.ThongTinDoanhNghiep.Where(x => x.MaLoaiPhieu == "Form1_2").ToList();
-    }
-    int count(string mst1, string mst2, string thang, string nam){
-        return context.Master.Where(x => x.MaSoThue == mst1 && x.MaSoThue2 == mst2 && x.ThangDuTinh == thang && x.Nam == nam).Count();
-    }
 }
 @if (TempData["ThongBao"] != null)
-		{
-			<script type="text/javascript" charset="utf-8">
-				window.onload = function () {
-				alert("@Html.Raw(@TempData["ThongBao"])");
-			};
-			</script>
-		}
+{
+                    <script type="text/javascript" charset="utf-8">
+                        window.onload = function () {
+                        alert("@Html.Raw(@TempData["ThongBao"])");
+                    };
+                    </script>
+}
 <form id="form" action="/form1_2" method="post" enctype="multipart/form-data">
-       <div class="choose-day row">
+<div class="choose-day row">
           <div class="choose-month">
             <label for="">Tháng</label>
             <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu()">
@@ -78,8 +84,8 @@
             <label for="">Năm</label>
             <input id="phieuNam"
               type="text"
-              size="1"
               name="nam"
+              size="1"
               value="@ViewBag.nam"
               style="height: 26px"
 
@@ -87,16 +93,18 @@
           </div>
         </div>
         <div class="form-group text-center">
-          <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
+          <label class="choose-title">
+            <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b>
+          </label>
         </div>
-    <div class="form-group MSTP-info">
+        <div class="form-group MSTP-info">
           <label class="P-name"><b>Phiếu 1.2/DN-LAD-T</b></label>
-                    <div class="mstp">
+          <div class="mstp">
           <label for="">Mã số thuế</label>
             @if (Model.Master == null)
             {
-                    <div class="row">
-                        <input
+                        <div class="row">
+                            <input
               type="text"
               id="n0"
               maxlength="1"
@@ -106,7 +114,7 @@
               autofocus
               data-next="1"
             />
-                        <input
+                            <input
               type="text"
               id="n1"
               maxlength="1"
@@ -115,7 +123,7 @@
               autocomplete="off"
               data-next="2"
             />
-                        <input
+                            <input
               type="text"
               id="n2"
               maxlength="1"
@@ -124,7 +132,7 @@
               autocomplete="off"
               data-next="3"
             />
-                        <input
+                            <input
               type="text"
               id="n3"
               maxlength="1"
@@ -133,7 +141,7 @@
               autocomplete="off"
               data-next="4"
             />
-                        <input
+                            <input
               type="text"
               id="n4"
               maxlength="1"
@@ -142,7 +150,7 @@
               autocomplete="off"
               data-next="5"
             />
-                        <input
+                            <input
               type="text"
               id="n5"
               maxlength="1"
@@ -151,7 +159,7 @@
               autocomplete="off"
               data-next="6"
             />
-                        <input
+                            <input
               type="text"
               id="n6"
               maxlength="1"
@@ -160,7 +168,7 @@
               autocomplete="off"
               data-next="7"
             />
-                        <input
+                            <input
               type="text"
               id="n7"
               maxlength="1"
@@ -169,7 +177,7 @@
               autocomplete="off"
               data-next="8"
             />
-                        <input
+                            <input
               type="text"
               id="n8"
               maxlength="1"
@@ -178,7 +186,7 @@
               autocomplete="off"
               data-next="9"
             />
-                        <input
+                            <input
               type="text"
               id="n9"
               maxlength="1"
@@ -187,9 +195,9 @@
               autocomplete="off"
               data-next="10"
             />
-                    </div>
-                    <div class="row">
-                        <input
+                        </div>
+                        <div class="row">
+                            <input
               type="text"
               id="n10"
               maxlength="1"
@@ -198,7 +206,7 @@
               autocomplete="off"
               data-next="11"
             />
-                <input
+                    <input
               type="text"
               id="n11"
               maxlength="1"
@@ -207,7 +215,7 @@
               autocomplete="off"
               data-next="12"
             />
-                <input
+                    <input
               type="text"
               id="n12"
               maxlength="1"
@@ -216,15 +224,15 @@
               autocomplete="off"
               data-next="13"
             />
-              </div>
-                  <input type="hidden" id="MST1" value="" name="Master.MaSoThue"/>
+                  </div>
+                      <input type="hidden" id="MST1" value="" name="Master.MaSoThue"/>
             }
             else
             {
-                  <div class="row">
+                      <div class="row">
                     @for (int i = 0; i < 10; i++)
                     {
-                                <input type="text"
+                                        <input type="text"
                            id="n0"
                            maxlength="1"
                            size="1"
@@ -235,12 +243,11 @@
                            value="@Model.Master.MaSoThue.Substring(i,1)"
                            />
                     }
-                    </div>
-                    <div class="row">
+                        </div>
+                        <div class="row">
                     @for (int i = 0; i < 3; i++)
                     {
-
-                            <input type="text"
+                                    <input type="text"
                            id="n10"
                            maxlength="1"
                            size="1"
@@ -250,9 +257,9 @@
                            value="@Model.Master.MaSoThue2.Substring(i,1)"
                            />
                     }
-                    </div>
-                     <input type="hidden" id="Maphieu" asp-for="@Model.Master.MaPhieu"/>
-                     <input type="hidden" id="MST1" value="@Model.Master.MaSoThue@Model.Master.MaSoThue2" name="Master.MaSoThue"/>
+                        </div>
+                         <input type="hidden" id="Maphieu" asp-for="@Model.Master.MaPhieu"/>
+                         <input type="hidden" id="MST1" value="@Model.Master.MaSoThue@Model.Master.MaSoThue2" name="Master.MaSoThue"/>
             }
 
           </div>
@@ -264,8 +271,7 @@
           <label>
             <b>
               <i>
-                (Áp dụng đối với doanh nghiệp/chi nhánh doanh nghiệp, hợp tác xã
-                có hoạt động dịch vụ lưu trú, ăn uống, du lịch)
+                (Áp dụng đối với doanh nghiệp/chi nhánh doanh nghiệp, hợp tác xã có hoạt động dịch vụ lưu trú, ăn uống, du lịch)
               </i>
             </b>
           </label>
@@ -274,7 +280,7 @@
         <div class="form-group text-center">
           <div class="row"></div>
           <div>
-            <label> <b>Tháng @ViewBag.thang Năm @ViewBag.nam</b> </label>
+<label> <b>Tháng @ViewBag.thang Năm @ViewBag.nam</b> </label>
           </div>
           <div class="row"></div>
         </div>
@@ -283,11 +289,11 @@
         </div>
         <div id="ThongTinDoanhNghiepGroup" class="form-group">
           <div class="row">
-            <label class="lb-info">Tên doanh nghiệp/HTX: </label>
+            <label class="lb-info"><b>1. Tên doanh nghiệp/HTX: </b></label>
             <input type="text" name="Master.Ten" asp-for="@Model.Master.Ten" class="infoma" />
           </div>
           <div class="adress">
-            <label for="">Địa chỉ doanh nghiệp </label>
+            <label for=""><b>2. Địa chỉ doanh nghiệp: </b></label>
             <div class="adress-detail">
               <div class="row">
                 <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
@@ -318,15 +324,15 @@
             </div>
           </div>
           <div class="row">
-            <label class="lb-info">Số điện thoại: </label>
+            <label class="lb-info"><b>3. Số điện thoại: </b></label>
             <input name="Master.Sdt" type="text" class="infoma" />
           </div>
           <div class="row">
-            <label class="lb-info">Email: </label>
+            <label class="lb-info"><b>4. Email: </b></label>
             <input name="Master.Email" type="text" class="infoma" />
           </div>
           <div class="loaihinh">
-            <label>Loại hình kinh tế</label>
+            <label><b>5. Loại hình kinh tế</b></label>
 
             <div class="checkbox-tt">
               <label> 1.Kinh tế nhà nước</label>
@@ -335,7 +341,7 @@
             </div>
             <div class="checkbox">
               <input type="radio" name="Master.MaLh" value="Kinh tế nhà nước" />
-              <input
+              <input 
                 type="radio"
                 name="Master.MaLh"
                 value="Kinh tế ngoài nhà nước"
@@ -349,7 +355,7 @@
           </div>
           <div class="nganhKD">
             <div class="row">
-              <label for="">Ngành hoạt động kinh doanh</label>
+              <label for=""><b>6. Ngành hoạt động kinh doanh</b></label>
               <div class="MNHD row">
                 <input
                   type="text"
@@ -383,11 +389,11 @@
                 />
               </div>
               <label for="">Tên ngành HĐKD:</label>
-              <input type="text" class="infoma-nganh" />
+              <input type="text" readonly class="infoma-nganh" style="width: 35%;"/>
             </div>
-          </div>
+          </div>    
         </div>
-       <div class="form-group m-title text-center">
+        <div class="form-group m-title text-center">
           <h5 style="margin-top: .5rem;"><b>B. KẾT QUẢ HOẠT ĐỘNG KINH DOANH</b></h5>
         </div>
         <table class="table table-striped table-hover table-bordered">
@@ -667,32 +673,32 @@
                     <input type="checkbox" id="DanhSachNhanToAnhHuong_7" name="DanhSachNhanToAnhHuong_7" value="08" />
                 @if (Model.NhanToThu9 == null)
                 {
-                  <input type="checkbox" id="YT9" value="" />
+                      <input type="checkbox" id="YT9" value="" />
                 }
                 else
                 {
-                       <input type="checkbox" checked id="YT9" value="" />
+                           <input type="checkbox" checked id="YT9" value="" />
                 }
             </div>
           </div>
           <div class="YTAH9">
-           <textarea asp-for="@Model.NhanToThu9.NoiDung"
+            <textarea asp-for="@Model.NhanToThu9.NoiDung"
               class="form-control"
               rows="1"
               id="comment"
               name="NhanToThu9.NoiDung"
-              disabled
+              readonly
             ></textarea>
           </div>
         </div>
         <div class="form-group uname-info">
           <div class="row">
             <label class="uname-lb">Họ tên người trả lời:</label>
-            <input type="text" name="Master.TenNguoiTraLoi" id="" asp-for="@Model.Master.TenNguoiTraLoi" class="infoma" />
+            <input type="text" name="Master.TenNguoiTraLoi" asp-for="@Model.Master.TenNguoiTraLoi" class="infoma" />
           </div>
           <div class="row">
             <label class="uname-lb">Số điện thoại:</label>
-            <input type="text" name="Master.SdtnguoiTraLoi" id="" asp-for="@Model.Master.SdtnguoiTraLoi" class="infoma" />
+            <input type="text" name="Master.SdtnguoiTraLoi" asp-for="@Model.Master.SdtnguoiTraLoi" class="infoma" />
           </div>
         </div>
         <div class="group-btn" style="justify-content: end;">
@@ -704,8 +710,7 @@
           </select>
           <button type="submit" value="false" class="btn btn-primary">Lưu</button>
         </div>
-    
- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script type="text/javascript">
     var citis = document.getElementById("city");
 var districts = document.getElementById("district");
@@ -762,6 +767,26 @@ function format(){
 
     function changeThthangTruoc(tt){
 
+      /*  $('#ThthangTruoc'+tt).val($('#ThthangTruoc'+tt).val().replace(/\D/g, ''));*/
+      /* if(tt==4){
+           $('#ThthangTruoc4_1').attr({
+            "max" : $('#ThthangTruoc'+tt).val()
+        });
+       }else if(tt==3){
+           $('#ThthangTruoc3_1').attr({
+            "max" : $('#ThthangTruoc'+tt).val()
+        });
+       }else if(tt==9){
+           $('#ThthangTruoc9_1').attr({
+            "max" : $('#ThthangTruoc'+tt).val()
+        });
+       }
+       else if(tt==10){
+           $('#ThthangTruoc10_1').attr({
+            "max" : $('#ThthangTruoc'+tt).val()
+        });
+       }
+       */
         var value = getValue($('#ThthangTruoc'+tt).val());
 
         if(checkNumber(value)){
@@ -769,10 +794,10 @@ function format(){
             var mst = $('#MST1').val();
             var duTinh = $('#DuTinh'+tt).val();
             var thangDuTinh = $('#phieuThang').val();
-            var nam = $('#phieuNam').val();
+            var nam = $('#phieuNam').val()
             $.ajax({
                 type: 'POST',
-                url: '/get-tong1',
+                url: '/get-tong',
                 data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh+"&thangDuTinh="+thangDuTinh+"&nam="+nam,
                 success: function (result) {
                     $('#TongCongDon'+tt).val(
@@ -789,9 +814,9 @@ function format(){
              }
             });
           }
-        if (tt == 2 || tt == 6 || tt == 8) {
+        if(tt==2||tt==8||tt==14||tt==15){
             var tong = 0;
-             var value2 = getValue($('#ThthangTruoc'+2).val());
+            var value2 = getValue($('#ThthangTruoc'+2).val());
             if(checkNumber(value2)){
                 tong = tong + value2;
             }
@@ -799,9 +824,13 @@ function format(){
             if(checkNumber(value8)){
                 tong = tong + value8;
             }
-            var value6 = getValue($('#ThthangTruoc'+6).val());
-            if(checkNumber(value6)){
-                tong = tong + value6;
+            var value14 = getValue($('#ThthangTruoc'+14).val());
+            if(checkNumber(value14)){
+                tong = tong + value14;
+            }
+            var value15 = getValue($('#ThthangTruoc'+15).val());
+            if(checkNumber(value15)){
+                tong = tong + value15;
             }
             $("#ThthangTruoc0").val(
             parseFloat(tong).toLocaleString('en-US', {
@@ -813,7 +842,26 @@ function format(){
         }
     }
     function changeDuTinh(tt){
+       /* $('#DuTinh'+tt).val($('#DuTinh'+tt).val().replace(/\D/g, ''));*/
 
+        /*if(tt==4){
+           $('#DuTinh4_1').attr({
+            "max" : $('#DuTinh'+tt).val()
+        });
+       }else if(tt==3){
+           $('#DuTinh3_1').attr({
+            "max" : $('#DuTinh'+tt).val()
+        });
+       }else if(tt==9){
+           $('#DuTinh9_1').attr({
+            "max" : $('#DuTinh'+tt).val()
+        });
+       }
+       else if(tt==10){
+           $('#DuTinh10_1').attr({
+            "max" : $('#DuTinh'+tt).val()
+        });
+       }*/
 
         var value = parseFloat($('#DuTinh'+tt).val());
 
@@ -825,7 +873,7 @@ function format(){
             var nam = $('#phieuNam').val();
             $.ajax({
                 type: 'POST',
-                url: '/get-tong1',
+                url: '/get-tong',
                 data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh+"&thangDuTinh="+thangDuTinh+"&nam="+nam,
                 success: function (result) {
                     $('#TongCongDon'+tt).val(
@@ -842,7 +890,7 @@ function format(){
              }
             });
           }
-          if (tt == 2 || tt == 6 || tt == 8 ) {
+          if(tt==2||tt==8||tt==14||tt==15){
             var tong = 0;
             var value2 = getValue($('#DuTinh'+2).val());
             if(checkNumber(value2)){
@@ -852,9 +900,13 @@ function format(){
             if(checkNumber(value8)){
                 tong = tong + value8;
             }
-            var value6 = getValue($('#DuTinh'+6).val());
-            if(checkNumber(value6)){
-                tong = tong + value6;
+            var value14 = getValue($('#DuTinh'+14).val());
+            if(checkNumber(value14)){
+                tong = tong + value14;
+            }
+            var value15 = getValue($('#DuTinh'+15).val());
+            if(checkNumber(value15)){
+                tong = tong + value15;
             }
             $("#DuTinh0").val(
             parseFloat(tong).toLocaleString('en-US', {
@@ -876,7 +928,7 @@ function format(){
 
     function changeCongDon(result,tt){
 
-        if(tt == 2 || tt == 6 || tt == 8){
+        if(tt==2||tt==8||tt==14||tt==15){
             var tong = 0;
             if(checkNumber($('#TongCongDon2').val())){
                 tong = tong + getValue($('#TongCongDon2').val());
@@ -884,10 +936,12 @@ function format(){
             if(checkNumber($('#TongCongDon8').val())){
                 tong = tong + getValue($('#TongCongDon8').val());
             }
-            if(checkNumber($('#TongCongDon6').val())){
-                tong = tong + getValue($('#TongCongDon6').val());
+            if(checkNumber($('#TongCongDon14').val())){
+                tong = tong + getValue($('#TongCongDon14').val());
             }
-
+            if(checkNumber($('#TongCongDon').val())){
+                tong = tong + getValue($('#TongCongDon15').val());
+            }
             $("#TongCongDon0").val(
                 parseFloat(tong).toLocaleString('en-US', {
                         style: 'decimal',
@@ -920,7 +974,6 @@ function format(){
     $(window).scroll(function(){
 
     })
-
     function myFunction(item, index) {
         for(var i =0 ;i<=7;i++){
                 if($('#DanhSachNhanToAnhHuong_'+i).val()== item){
@@ -934,197 +987,5 @@ function format(){
     function getValue(str){
        return Number(str.replace(/[^0-9.-]+/g,""));
     }
-    function doiPhieu(mst1,mst2){
-        var thang = $('#phieuThang').val();
-        var nam = $('#phieuNam').val();
-        var s = "@Html.Raw(ViewBag.LoaiPhieu)";
-        $.ajax({
-                    type: 'POST',
-                    url: '/get-tableTTDN',
-                    data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
-                    success: function (result) {
-                        $('#tableQLTT').replaceWith(result);
-                    },
-                    error: function (result) {
-                        alert('Mã số thuế không tồn tại!');
-             }
-       });
-          $.ajax({
-                    type: 'POST',
-                    url: '/changePhieu1_2',
-                    data: "thang=" + thang + "&nam="+nam + "&mst1="+mst1+"&mst2="+mst2,
-                    success: function (result) {
-                        $('#form').replaceWith(result);
-                            let kq = "@User.IsInRole("001")"
-                            if(kq=="True"){
-                                $('#bodyDiv').addClass("col-lg-12");
-                                $('#form').addClass("form");
-                                $('#tableQLTT').css("display","block");
-                                $('.MS').prop('readonly', false);
-                            }else{
-                                $('#tableQLTT').css("display","none");
-                                $('#form').addClass("form1");
-                                $('.MS').prop('readonly', true);
-                            }
-
-                    },
-                    error: function (result) {
-                        alert('Mã số thuế không tồn tại!');
-             }
-            });
-    }
-    var strMS = "";
-    function AddMS(item){
-        strMS += item;
-    }
-
-    $(".MS").keyup(function() {
-
-        var valueArr = [];
-                document.querySelectorAll('.MS').forEach(function(el){
-                valueArr.push(el.value);
-            });
-        strMS = "";
-        valueArr.forEach(AddMS)
-        $('#MST1').val(strMS);
-        if(strMS.length==13){
-             if ($('label.P-name b').text().includes('2.') == false) {
-                $.ajax({
-                type: 'POST',
-             url: '/loadMaster',
-             data: "ms=" + strMS,
-             success: function (result) {
-              $('#ThongTinDoanhNghiepGroup').replaceWith(result);
-              if($('#tenPhieu').val()==='1.1'){
-                            $.ajax({
-                                type: 'POST',
-                                url: '/loadTable1-1',
-                                data: "ms=" + strMS,
-                                success: function (result) {
-                                    $('#tab-KQ').replaceWith(result);
-                                },
-                               error: function (result) {
-                               // alert('Mã số thuế không tồn tại!');
-                             }
-                        });
-                        }else if($('label.P-name b').text().includes('1.4')){
-                          $.ajax({
-                                type: 'POST',
-                                url: '/loaddata_14B',
-                                data: "ms=" + strMS,
-                                success: function (result) {
-                                    $('#table-data1_4').replaceWith(result);
-                                },
-                               error: function (result) {
-                               // alert('Mã số thuế không tồn tại!'); 
-                             }
-                        });
-                        }
-            },
-            error: function (result) {
-              alert('Mã số thuế không tồn tại!');
-            }
-          });
-        } else {
-          $.ajax({
-            type: 'POST',
-            url: '/loadMaster2',
-            data: "ms=" + strMS,
-            success: function (result) {
-              $('#ThongTinDoanhNghiepGroup').replaceWith(result);
-              $('#MST1').val(strMS);
-              if ($('label.P-name b').text().includes('2.1')) {
-                  $.ajax({
-                    type: 'POST',
-                    url: '/loaddata_21B',
-                    data: "ms=" + strMS,
-                    success: function (result) {
-                        $('#table-data').replaceWith(result);
-                    },
-                    error: function (result) {
-                    }
-                  });
-                }
-                else if($('label.P-name b').text().includes('2.3')){
-                          $.ajax({
-                                type: 'POST',
-                                url: '/loaddata_2_3',
-                                data: "ms=" + strMS,
-                                success: function (result) {
-                                    $('#table-data').replaceWith(result);
-                                },
-                               error: function (result) {
-                               // alert('Mã số thuế không tồn tại!'); 
-                             }
-                        });
-                        }
-
-            },
-            error: function (result) {
-              alert('Mã số thuế không tồn tại!');
-            }
-          });
-        }
-        /** end */
-        }
-    });
-
 </script>
-  </form>
-            <div id="tableQLTT" class="form-QLTT" style="overflow: scroll;">
-        <div class="head-group">
-          <div class="title text-center">
-            <h5 class="title-first"><b>DANH SÁCH CƠ SỞ</b></h5>
-            <label class="title-last"
-              ><i>Nhấn vào dòng cơ sở để nhập tin</i></label
-            >
-          </div>
-          <div class="group-radio-btn row">
-            <div class="check-form">
-              <i class="bi bi-circle-fill" style="color: rgb(0, 160, 255)"></i>
-              <label class="text-primary">Đã điều tra</label>
-            </div>
-            <div class="check-form" style="margin-left: 5px">
-              <i class="bi bi-circle-fill" style="color: white"></i>
-              <label>Chưa điều tra</label>
-            </div>
-            <div class="check-form" style="margin-left: 5px">
-              <i class="bi bi-circle-fill" style="color: rgb(215, 70, 0)"></i>
-              <label class="text">Không điều tra</label>
-            </div>
-          </div>
-        </div>
-        <table id="example" class="table table-bordered table-hover" style="max-height: 100%;">
-          <thead>
-            <tr class="text-center tab-title" style="background-color: #fff3bd;">
-              <th class="th1">Điều tra</th>
-              <th class="th2">Mã ĐB</th>
-              <th class="th3">Cơ sở số</th>
-              <th class="th4">Tên cơ sở</th>
-            </tr>
-          </thead>
-          <tbody id="tBody">
-            @foreach (ThongTinDoanhNghiep m in @getTable())
-            {
-                @if (count(m.MaSoThue, m.MaSoThue2, ViewBag.thang, ViewBag.nam) > 0)
-                {
-                              <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu('@m.MaSoThue','@m.MaSoThue2')">
-                                  <td class="text-center">1</td>
-                                  <td class="text-center">@m.MaSoThue</td>
-                                  <td class="text-center">@m.MaSoThue2</td>
-                                  <td class="text-center">@m.TenDoanhNghiep</td>
-                            </tr>
-                }
-                else
-                {
-                               <tr style="cursor:pointer;" onclick="doiPhieu('@m.MaSoThue','@m.MaSoThue2')">
-                                  <td class="text-center">1</td>
-                                  <td class="text-center">@m.MaSoThue</td>
-                                  <td class="text-center">@m.MaSoThue2</td>
-                                  <td class="text-center">@m.TenDoanhNghiep</td>
-                               </tr>
-                }
-            }
-          </tbody>
-        </table>
-      </div>
+      </form>
