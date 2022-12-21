@@ -62,11 +62,11 @@
 }
 @if (TempData["ThongBao"] != null)
 {
-                    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8">
                         window.onload = function () {
                         alert("@Html.Raw(@TempData["ThongBao"])");
                     };
-                    </script>
+    </script>
 }
       <form id="form" action="/form1_1" method="post" enctype="multipart/form-data">
          <div class="choose-day row">
