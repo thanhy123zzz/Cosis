@@ -36,6 +36,7 @@ body{
 
 .header {
   background-image: url(/assets/image/anh-background-cuc-dep_110341116.jpg);
+  padding-top: 20px;
 }
 table input {
     border: none !important;
@@ -391,4 +392,11 @@ li:hover .header-option {
 }
 .footer {
   background: #17a2b8;
+}
+.logo {
+  position: absolute;
+  width: 118px;
+  height: 118px;
+  left: 100px;
+  top: 0;
 }
