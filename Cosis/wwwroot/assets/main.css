@@ -399,3 +399,61 @@ li:hover .header-option {
   height: 118px;
   top: 0;
 }
+/*Thống kê css*/
+.TK-title {
+  color: #893b03;
+  justify-content: center;
+  margin: 20px;
+}
+.head-container {
+  display: block;
+  width: 100%;
+}
+.drop-up {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 20px;
+}
+.drop-bot {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 20px;
+}
+.group-drop {
+  display: flex;
+  width: 25%;
+  justify-content: flex-end;
+}
+.TK-drop {
+  width: 65%;
+  margin-left: 10px;
+}
+.group-button {
+  padding-bottom: 10px;
+  margin-left: 10%;
+}
+.container-main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.table-TK {
+  width: 100%;
+  margin: 0;
+}
+.table-TK thead {
+  background: #8aedfc;
+}
+.table-TK thead {
+  position: sticky;
+  top: 0;
+}
+
+.body-container {
+  overflow: auto;
+  height: 450px;
+  margin-bottom: 15px;
+}
+.body-container .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(212, 206, 206, 0.838);
+}
