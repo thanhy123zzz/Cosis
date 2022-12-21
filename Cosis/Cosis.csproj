@@ -19,7 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Form1_2\Form1_2\" />
     <Folder Include="Views\ViewPDF\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Form1_2\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
