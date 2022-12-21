@@ -283,11 +283,11 @@
         </div>
         <div id="ThongTinDoanhNghiepGroup" class="form-group">
           <div class="row">
-            <label class="lb-info">Tên doanh nghiệp/HTX: </label>
+           <label class="lb-info"><b>1. Tên doanh nghiệp/HTX: </b></label>
             <input type="text" name="Master.Ten" asp-for="@Model.Master.Ten" class="infoma" />
           </div>
           <div class="adress">
-            <label for="">Địa chỉ doanh nghiệp </label>
+           <label for=""><b>2. Địa chỉ doanh nghiệp: </b></label>
             <div class="adress-detail">
               <div class="row">
                 <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
@@ -318,15 +318,15 @@
             </div>
           </div>
           <div class="row">
-            <label class="lb-info">Số điện thoại: </label>
+           <label class="lb-info"><b>3. Số điện thoại: </b></label>
             <input name="Master.Sdt" type="text" class="infoma" />
           </div>
           <div class="row">
-            <label class="lb-info">Email: </label>
+            <label class="lb-info"><b>4. Email: </b></label>
             <input name="Master.Email" type="text" class="infoma" />
           </div>
           <div class="loaihinh">
-            <label>Loại hình kinh tế</label>
+            <label><b>5. Loại hình kinh tế</b></label>
 
             <div class="checkbox-tt">
               <label> 1.Kinh tế nhà nước</label>
@@ -349,7 +349,7 @@
           </div>
           <div class="nganhKD">
             <div class="row">
-              <label for="">Ngành hoạt động kinh doanh</label>
+              <label for=""><b>6. Ngành hoạt động kinh doanh</b></label>
               <div class="MNHD row">
                 <input
                   type="text"
@@ -383,7 +383,7 @@
                 />
               </div>
               <label for="">Tên ngành HĐKD:</label>
-              <input type="text" class="infoma-nganh" />
+              <input type="text" class="infoma-nganh" style="width:35%"/>
             </div>
           </div>
         </div>

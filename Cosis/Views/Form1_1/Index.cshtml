@@ -930,10 +930,19 @@ function format(){
     }
 
     function changeThthangTruocTT(tt){
+        if ($('#ThangTruoc_' + tt).val() != null) {
+            if (getValue($('#ThangTruocTT_'+tt).val()) > getValue($('#ThangTruoc_' + tt).val())) {
+              $('#ThangTruocTT_' + tt)[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#ThangTruoc_' + tt).val());
+            } else {
+              $('#ThangTruocTT_'+tt)[0].setCustomValidity("");
+            }
+        }
+
         var tong = 0;
         for(var i = 2; i< $('#SLRow').val();i++){
             tong += getValue($('#ThangTruocTT_'+i).val());
         }
+
         $('#ThangTruocTT0').val(
             parseFloat(tong).toLocaleString('en-US', {
                         style: 'decimal',
