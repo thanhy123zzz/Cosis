@@ -441,7 +441,7 @@
                             var wards = document.getElementById("ward");
 
                             var Parameter = {
-                              url: "https://localhost:44358/assets/DiaChi.json", 
+                              url: "https://localhost:" +window.location.port+"/assets/DiaChi.json", 
                               method: "GET", 
                               responseType: "application/json", 
                             };
@@ -614,7 +614,7 @@
         var districts = document.getElementById("district");
         var wards = document.getElementById("ward");
         var Parameter = {
-          url: "https://localhost:44358/assets/DiaChi.json", 
+          url: "https://localhost:" +window.location.port+"/assets/DiaChi.json", 
           method: "GET", 
           responseType: "application/json", 
         };
