@@ -268,7 +268,7 @@ namespace Cosis.Controllers
             phieu.Master = master;
             phieu.NhanToThu9 = context.NhanToThu9.FromSqlRaw("select*from NhanToThu9 where MaPhieu = '" + maPhieu + "'").ToList().FirstOrDefault();
             phieu.DanhSachNhanToAnhHuong = context.DanhSachNhanToAnhHuong.FromSqlRaw("select*from DanhSachNhanToAnhHuong where MaPhieu = '" + maPhieu + "'").ToList();
-            phieu.Detail = context.Detail.FromSqlRaw("select*from Detail where MaPhieu = '" + maPhieu + "'").ToList();
+            phieu.Detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",maPhieu).ToList();
             return phieu;
         }
         public List<NganhKinhDoanh> GetNganhKinhDoanhs(string MaSoThue, string MaSoThue2)

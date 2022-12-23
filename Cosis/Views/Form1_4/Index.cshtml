@@ -97,6 +97,7 @@
                 @if(User.IsInRole("001")){
                   <div class="mstp">
                     <label for="">Mã số thuế</label>
+                    <div class="row">
                     <input type="text" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off"
                         autofocus data-next="1" required />
                     <input type="text" id="n1" maxlength="1" size="1" class="text-center MS" autocomplete="off"
@@ -124,12 +125,14 @@
                         data-next="12" required />
                     <input type="text" id="n12" maxlength="1" size="1" class="text-center MS" autocomplete="off"
                         data-next="13" required />
+                    </div>
                     <input type="hidden" id="Maphieu" asp-for="@Model.Master.MaPhieu" value="" />
                     <input type="hidden" id="MST1" name="Master.MaSoThue" />
                 </div>
                 }else{
                   <div class="mstp">
                     <label for="">Mã số thuế</label>
+                    <div class="row">
                   @for (int i = 0; i < 10; i++)
                   {
                     <input type="text" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" autofocus
@@ -140,6 +143,7 @@
                     <input type="text" id="n10" maxlength="1" size="1" class="text-center MS" autocomplete="off"
                   value="@Model.Master.MaSoThue2.Substring(i,1)" />
                   }
+                  </div>
                   </div>
                   <input type="hidden" id="Maphieu" asp-for="@Model.Master.MaPhieu" value="@Model.Master.MaPhieu"/>
       <input type="hidden" id="MST1" value="@Model.Master.MaSoThue@Model.Master.MaSoThue2" name="Master.MaSoThue" />
@@ -173,11 +177,11 @@
             @if(User.IsInRole("001")){
             <div id="ThongTinDoanhNghiepGroup" class="form-group">
                 <div class="row">
-                    <label class="lb-info">Tên doanh nghiệp/HTX: </label>
+                    <label class="lb-info"><b>1. Tên doanh nghiệp/HTX: </b></label>
                     <input type="text" name="Master.Ten" class="infoma" />
                 </div>
                 <div class="adress">
-                    <label for="">Địa chỉ doanh nghiệp </label>
+                    <label for=""><b>2. Địa chỉ doanh nghiệp </b></label>
                     <div class="adress-detail">
                         <div class="row">
                             <label class="lb-info">Tỉnh/TP trực thuộc TW: </label>
@@ -206,15 +210,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <label class="lb-info">Số điện thoại: </label>
+                    <label class="lb-info"><b>3. Số điện thoại: </b></label>
                     <input name="Master.Sdt" type="text" class="infoma" />
                 </div>
                 <div class="row">
-                    <label class="lb-info">Email: </label>
+                    <label class="lb-info"><b>4. Email: </b></label>
                     <input name="Master.Email" type="text" class="infoma" />
                 </div>
                 <div class="loaihinh">
-                    <label>Loại hình kinh tế</label>
+                    <label><b>5. Loại hình kinh tế</b></label>
 
                     <div class="checkbox-tt">
                         <label> 1.Kinh tế nhà nước</label>
@@ -227,18 +231,24 @@
                         <input type="radio" name="Master.MaLh" value="Kinh tế có vốn đầu tư trực tiếp nước ngoài" />
                     </div>
                 </div>
-                <div class="nganhKD">
-                    <div class="row">
-                        <label for="">Ngành hoạt động kinh doanh</label>
-                        <div class="MNHD row">
+                <div class="row m-0">
+                    <div class="col-3">
+                    <label class="pl-1" for=""><b>6. Ngành hoạt động kinh doanh</b></label>
+                    </div>
+                    <div class="col-9 m-0">
+                        <div class="row m-0 pl-0">
+                        <div class="col-5 pl-0">
                             <input type="text" maxlength="1" size="1" class="text-center MN" />
                             <input type="text" maxlength="1" size="1" class="text-center MN" />
                             <input type="text" maxlength="1" size="1" class="text-center MN" />
                             <input type="text" maxlength="1" size="1" class="text-center MN" />
                             <input type="text" maxlength="1" size="1" class="text-center MN" />
                         </div>
-                        <label for="">Tên ngành HĐKD:</label>
-                        <input type="text" readonly class="infoma-nganh" style="width: 35%;" />
+                        <div class="col-7 pl-0 pr-0">
+                            <label for="">Tên ngành HĐKD:</label>
+                        <input type="text" readonly class="infoma-nganh" style="width: 50%;" />
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -327,33 +337,31 @@
                         }
                     </div>
                 </div>
-                <div class="nganhKD row">
-                    <label class="nganh-lb" for=""><b>6. Ngành hoạt động kinh doanh</b></label>
-                    <div class="nganh-ct">
-                        @{
-                        int i= 0;
-                        }
-                        @foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.Master.MaSoThue,
-                        Model.Master.MaSoThue2))
-                        {
-
-                        <div class="row">
-                            <div class="MNHD row">
-                                <input value="@nganh.MaNganh.Substring(0,1)" type="text" maxlength="1" size="1"
-                                    class="text-center MN" />
-                                <input value="@nganh.MaNganh.Substring(1,1)" type="text" maxlength="1" size="1"
-                                    class="text-center MN" />
-                                <input value="@nganh.MaNganh.Substring(2,1)" type="text" maxlength="1" size="1"
-                                    class="text-center MN" />
-                                <input value="@nganh.MaNganh.Substring(3,1)" type="text" maxlength="1" size="1"
-                                    class="text-center MN" />
-                                <input value="@nganh.MaNganh.Substring(4,1)" type="text" maxlength="1" size="1"
-                                    class="text-center MN" />
-                            </div>
-                            <label for="">Tên ngành HĐKD: @getNganhHoatDongKinhDoanh(nganh.MaNganh).TenNganh</label>
-
+                <div class="row m-0">
+                    <div class="col-3">
+                    <label class="pl-1" for=""><b>6. Ngành hoạt động kinh doanh</b></label>
+                    </div>
+                    <div class="col-9 m-0">
+                    @foreach (NganhKinhDoanh nganh in getNganhKinhDoanh(Model.Master.MaSoThue,Model.Master.MaSoThue2))
+                    {
+                        <div class="row m-0 pl-0">
+                        <div class="col-5 pl-0">
+                            <input readonly value="@nganh.MaNganh.Substring(0,1)" type="text" maxlength="1" size="1"
+                            class="text-center MN" />
+                            <input readonly value="@nganh.MaNganh.Substring(1,1)" type="text" maxlength="1" size="1"
+                            class="text-center MN" />
+                            <input readonly value="@nganh.MaNganh.Substring(2,1)" type="text" maxlength="1" size="1"
+                            class="text-center MN" />
+                            <input readonly value="@nganh.MaNganh.Substring(3,1)" type="text" maxlength="1" size="1"
+                            class="text-center MN" />
+                            <input readonly value="@nganh.MaNganh.Substring(4,1)" type="text" maxlength="1" size="1"
+                            class="text-center MN" />
                         </div>
-                        }
+                        <div class="col-7 pl-0 pr-0">
+                            <label for="">Tên ngành HĐKD: @getNganhHoatDongKinhDoanh(nganh.MaNganh).TenNganh</label>
+                        </div>
+                        </div>
+                    }
                     </div>
                 </div>
             </div>
@@ -479,11 +487,11 @@
                     @foreach (var item in @ViewBag.ListNghanh)
                     {
                     <tr>
-                        <td>2. Doanh thu thuần [NGÀNH CHỌN MẪU]
+                        <td>2. Doanh thu thuần
                             <input type="hidden" readonly id="stt@(countDetails)" name="Detail[@countDetails].Stt"
                                 value="2._@item.MaNganh" />
                             <input type="hidden" readonly name="Detail[@countDetails].TenCt"
-                                value="Doanh thu thuần [NGÀNH CHỌN MẪU]" />
+                                value="Doanh thu thuần" />
                         </td>
                         <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh"
                                 id="tennghanh_@countDetails" class="infoma" /></td>
@@ -526,12 +534,11 @@
                     {
                     <tr>
                         <td>
-                            4. Trị giá vốn nhà, công trình không để ở và bất động sản khác
-                            đã bán (Chỉ hiển thị khi mã ngành chọn mẫu là 68103)
+                            4. Trị giá vốn nhà, công trình không để ở và bất động sản khác đã bán
                             <input type="hidden" id="stt@(countDetails)" name="Detail[@countDetails].Stt"
                                 value="4._@item.MaNganh" />
                             <input type="hidden" name="Detail[@countDetails].TenCt"
-                                value="Trị giá vốn nhà, công trình không để ở và bất động sản khác đã bán (Chỉ hiển thị khi mã ngành chọn mẫu là 68103)" />
+                                value="Trị giá vốn nhà, công trình không để ở và bất động sản khác đã bán" />
                         </td>
                         <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh"
                                 id="tennghanh_@countDetails" class="infoma" /></td>
@@ -552,12 +559,11 @@
                     {
                     <tr>
                         <td>
-                            5. Chi phí hoa hồng cho đại lý xổ số (Chỉ hiển thị khi mã ngành
-                            chọn mẫu là 92)
+                            4. Chi phí hoa hồng cho đại lý xổ số
                             <input type="hidden" id="stt@(countDetails)" name="Detail[@countDetails].Stt"
                                 value="5._@item.MaNganh" />
                             <input type="hidden" name="Detail[@countDetails].TenCt"
-                                value="Chi phí hoa hồng cho đại lý xổ số (Chỉ hiển thị khi mã ngành chọn mẫu là 92)" />
+                                value="Chi phí hoa hồng cho đại lý xổ số" />
                         </td>
                         <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh"
                                 id="tennghanh_@countDetails" class="infoma" /></td>
@@ -575,12 +581,11 @@
                     countDetails++;
                     <tr>
                         <td>
-                            6. Chi phí trả thưởng xổ số (Chỉ hiển thị khi mã ngành chọn mẫu
-                            là 92)
+                            5. Chi phí trả thưởng xổ số
                             <input type="hidden" readonly id="stt@(countDetails)" name="Detail[@countDetails].Stt"
                                 value="6._@item.MaNganh" />
                             <input type="hidden" name="Detail[@countDetails].TenCt"
-                                value="Chi phí trả thưởng xổ số (Chỉ hiển thị khi mã ngành chọn mẫu là 92)" />
+                                value="Chi phí trả thưởng xổ số" />
                         </td>
                         <td><input type="text" value="@getNganhHoatDongKinhDoanh(@item.MaNganh).TenNganh"
                                 id="tennghanh_@countDetails" class="infoma" /></td>
@@ -633,7 +638,6 @@
                         <td><input type="text" pattern="[0-9,.\-$]+" id="TongCongDon0" name="Detail[0].TongCongDon"
                                 value="@dt.TongCongDon" class="infoma infomal" readonly /></td>
                     </tr>
-                    continue;
                     }else{
                         string cutSTT = (dt.Stt.Substring(0, dt.Stt.IndexOf("_"))).Trim();
                         string cutMaNghanh = (dt.Stt.Substring(dt.Stt.IndexOf("_") + 1)).Trim();
@@ -660,7 +664,6 @@
                                             oninput="changeCongDon(@countDT)" class="infoma infomal" /></td>
                                 </tr>
                                 countDT++;
-                                continue;
                         }else if(cutSTT == "3."){
                         <tr>
                         <td>@cutSTT @dt.TenCt
@@ -682,10 +685,52 @@
                                 class="infoma infomal" /></td>
                     </tr>
                     countDT++;
-                     continue;
                         }
                     }else if(cutMaNghanh == "68103"){
-                        if(cutSTT == "4."){
+                        if(cutSTT == "2."){
+                            <tr>
+                                    <td>@cutSTT @dt.TenCt
+                                        <input type="hidden" readonly id="stt@(countDT)" name="Detail[@countDT].Stt"
+                                            value="@dt.Stt.Trim()" />
+                                        <input type="hidden" readonly name="Detail[@countDT].TenCt"
+                                            value="@dt.TenCt" />
+                                    </td>
+                                    <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@cutMaNghanh).TenNganh"
+                                            id="tennghanh_@countDT" class="infoma" /></td>
+                                    <td><input type="text" readonly pattern="[0-9,.\-$]+" required value="@dt.ThthangTruoc"
+                                            name="Detail[@countDT].ThthangTruoc" id="ThthangTruoc@(countDT)_@(cutMaNghanh)_2TT"
+                                            oninput="changeThthangTruoc(@countDT)" class="infoma infomal" />
+                                    </td>
+                                    <td><input type="text" readonly pattern="[0-9,.\-$]+" value="@dt.DuTinh" required name="Detail[@countDT].DuTinh"
+                                            id="DuTinh@(countDT)_@(cutMaNghanh)_2DT" oninput="changeDuTinh(@countDT)"
+                                            class="infoma infomal" /></td>
+                                    <td><input type="text" readonly pattern="[0-9,.\-$]+" value="@dt.TongCongDon" readonly
+                                            name="Detail[@countDT].TongCongDon" id="TongCongDon@(countDT)_@(cutMaNghanh)_2CD"
+                                            oninput="changeCongDon(@countDT)" class="infoma infomal" /></td>
+                                </tr>
+                                countDT++;
+                        }else if(cutSTT == "3."){
+                        <tr>
+                        <td>@cutSTT @dt.TenCt
+                            <input type="hidden" id="stt@(countDT)" name="Detail[@countDT].Stt"
+                                value="@dt.Stt.Trim()" />
+                            <input type="hidden" name="Detail[@countDT].TenCt" value="@dt.TenCt" />
+                        </td>
+                        <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@cutMaNghanh).TenNganh"
+                                id="tennghanh_@countDT" class="infoma" /></td>
+                        <td><input type="text" pattern="[0-9,.\-$]+" required value="@dt.ThthangTruoc" name="Detail[@countDT].ThthangTruoc"
+                                id='ThthangTruoc@(countDT)_@cutMaNghanh' oninput="changeThthangTruoc(@countDT)"
+                                class="infoma infomal" />
+                        </td>
+                        <td><input type="text" pattern="[0-9,.\-$]+" value="@dt.DuTinh" required name="Detail[@countDT].DuTinh"
+                                id="DuTinh@(countDT)_@cutMaNghanh" oninput="changeDuTinh(@countDT)"
+                                class="infoma infomal" /></td>
+                        <td><input type="text" pattern="[0-9,.\-$]+" value="@dt.TongCongDon" readonly name="Detail[@countDT].TongCongDon"
+                                id="TongCongDon@(countDT)_@cutMaNghanh" oninput="changeCongDon(@countDT)"
+                                class="infoma infomal" /></td>
+                    </tr>
+                    countDT++;
+                        }else if(cutSTT == "4."){
                             <tr>
                         <td>@cutSTT @dt.TenCt
                             <input type="hidden" id="stt@(countDT)" name="Detail[@countDT].Stt"
@@ -707,11 +752,53 @@
                                 class="infoma infomal" /></td>
                     </tr>
                     countDT++;
-                     continue;
                         }
                     
                     }else if(cutMaNghanh == "92"){
-                        if(cutSTT == "5."){
+                        if(cutSTT == "2."){
+                            <tr>
+                                    <td>@cutSTT @dt.TenCt
+                                        <input type="hidden" readonly id="stt@(countDT)" name="Detail[@countDT].Stt"
+                                            value="@dt.Stt.Trim()" />
+                                        <input type="hidden" readonly name="Detail[@countDT].TenCt"
+                                            value="@dt.TenCt" />
+                                    </td>
+                                    <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@cutMaNghanh).TenNganh"
+                                            id="tennghanh_@countDT" class="infoma" /></td>
+                                    <td><input type="text" readonly pattern="[0-9,.\-$]+" required value="@dt.ThthangTruoc"
+                                            name="Detail[@countDT].ThthangTruoc" id="ThthangTruoc@(countDT)_@(cutMaNghanh)_2TT"
+                                            oninput="changeThthangTruoc(@countDT)" class="infoma infomal" />
+                                    </td>
+                                    <td><input type="text" readonly pattern="[0-9,.\-$]+" value="@dt.DuTinh" required name="Detail[@countDT].DuTinh"
+                                            id="DuTinh@(countDT)_@(cutMaNghanh)_2DT" oninput="changeDuTinh(@countDT)"
+                                            class="infoma infomal" /></td>
+                                    <td><input type="text" readonly pattern="[0-9,.\-$]+" value="@dt.TongCongDon" readonly
+                                            name="Detail[@countDT].TongCongDon" id="TongCongDon@(countDT)_@(cutMaNghanh)_2CD"
+                                            oninput="changeCongDon(@countDT)" class="infoma infomal" /></td>
+                                </tr>
+                                countDT++;
+                        }else if(cutSTT == "3."){
+                        <tr>
+                        <td>@cutSTT @dt.TenCt
+                            <input type="hidden" id="stt@(countDT)" name="Detail[@countDT].Stt"
+                                value="@dt.Stt.Trim()" />
+                            <input type="hidden" name="Detail[@countDT].TenCt" value="@dt.TenCt" />
+                        </td>
+                        <td><input type="text" readonly value="@getNganhHoatDongKinhDoanh(@cutMaNghanh).TenNganh"
+                                id="tennghanh_@countDT" class="infoma" /></td>
+                        <td><input type="text" pattern="[0-9,.\-$]+" required value="@dt.ThthangTruoc" name="Detail[@countDT].ThthangTruoc"
+                                id='ThthangTruoc@(countDT)_@cutMaNghanh' oninput="changeThthangTruoc(@countDT)"
+                                class="infoma infomal" />
+                        </td>
+                        <td><input type="text" pattern="[0-9,.\-$]+" value="@dt.DuTinh" required name="Detail[@countDT].DuTinh"
+                                id="DuTinh@(countDT)_@cutMaNghanh" oninput="changeDuTinh(@countDT)"
+                                class="infoma infomal" /></td>
+                        <td><input type="text" pattern="[0-9,.\-$]+" value="@dt.TongCongDon" readonly name="Detail[@countDT].TongCongDon"
+                                id="TongCongDon@(countDT)_@cutMaNghanh" oninput="changeCongDon(@countDT)"
+                                class="infoma infomal" /></td>
+                    </tr>
+                    countDT++;
+                        }else if(cutSTT == "4."){
                             <tr>
                         <td>@cutSTT @dt.TenCt
                             <input type="hidden" id="stt@(countDT)" name="Detail[@countDT].Stt"
@@ -733,8 +820,7 @@
                                 class="infoma infomal" /></td>
                     </tr>
                     countDT++;
-                     continue;
-                        }else if(cutSTT == "6."){
+                        }else if(cutSTT == "5."){
                             <tr>
                         <td>@cutSTT @dt.TenCt
                             <input type="hidden" readonly id="stt@(countDT)" name="Detail[@countDT].Stt"
@@ -756,7 +842,6 @@
                                 class="infoma infomal" /></td>
                     </tr>
                     countDT++;
-                     continue;
                         }
                     }
                     }

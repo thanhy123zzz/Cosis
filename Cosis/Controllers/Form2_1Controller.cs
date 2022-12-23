@@ -404,7 +404,7 @@ namespace Cosis.Controllers
                 phieu.NhanToThu9 = nt9;
             }
             phieu.DanhSachNhanToAnhHuong = context.DanhSachNhanToAnhHuong.FromSqlRaw("select*from DanhSachNhanToAnhHuong where MaPhieu = '" + maPhieu + "'").ToList();
-            phieu.Detail = context.Detail.FromSqlRaw("select*from Detail where MaPhieu = '" + maPhieu + "'").ToList();
+            phieu.Detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",maPhieu).ToList();
             return View(phieu);
         }
         // add home controller
