@@ -134,7 +134,7 @@
                 }
             }
             <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Thống kê</i></a>
+                    <a class="nav-link text-white" href="/ThongKe">Tiến độ</i></a>
                 </li>
                 <li class="nav-item">
                     Hướng dẫn
@@ -241,19 +241,6 @@
         }
     });
 
-    setInterval("CallButton()",4000);
-    function CallButton()
-    {
-       document.getElementById("next").click();
-    }   
-    document.getElementById("next").onclick = function () {
-      let lists = document.querySelectorAll(".item");
-      document.getElementById("slide").appendChild(lists[0]);
-    };
-    document.getElementById("prev").onclick = function () {
-      let lists = document.querySelectorAll(".item");
-      document.getElementById("slide").prepend(lists[lists.length - 1]);
-    };
   </script>
     @RenderSection("Scripts", required: false)
 </body>
