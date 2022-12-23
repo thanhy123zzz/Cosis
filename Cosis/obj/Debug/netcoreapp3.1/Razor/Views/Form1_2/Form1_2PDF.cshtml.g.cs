@@ -33,8 +33,15 @@ using Cosis.Models.Entities;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
+using Microsoft.EntityFrameworkCore;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9037822f058c8ac46ded0d7f59a3381d7d9f4f55", @"/Views/Form1_2/Form1_2PDF.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0b88521a2e1eba7c1c948980452ed678c2226406", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"330bfff8c7c5f9dba2758406de113abfa6a13415", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Form1_2_Form1_2PDF : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Cosis.Models.PhieuDieuTra>
     #nullable disable
@@ -193,9 +200,9 @@ using Cosis.Models.Entities;
 #line hidden
 #nullable disable
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5510443", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5510612", async() => {
                 WriteLiteral("\r\n    <meta charset=\"UTF-8\" />\r\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>Document</title>\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5510922", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5511091", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -210,7 +217,7 @@ using Cosis.Models.Entities;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5512101", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5512270", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -237,9 +244,9 @@ using Cosis.Models.Entities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5514065", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5514234", async() => {
                 WriteLiteral("\r\n    <!--Form -->\r\n    <div class=\"container\">\r\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js\"></script>\r\n\r\n      ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5514481", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5514650", async() => {
                     WriteLiteral(@"
         <div class=""form-group text-center"">
           <label class=""choose-title"">
@@ -467,7 +474,7 @@ WriteAttributeValue("", 8456, Model.Master.MaSoThue2.Substring(i,1), 8456, 38, f
 #line hidden
 #nullable disable
                     WriteLiteral("                            </div>\r\n                             ");
-                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5522689", async() => {
+                    __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "9037822f058c8ac46ded0d7f59a3381d7d9f4f5522858", async() => {
                     }
                     );
                     __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

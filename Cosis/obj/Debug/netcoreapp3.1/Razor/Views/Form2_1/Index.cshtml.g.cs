@@ -33,8 +33,15 @@ using Cosis.Models.Entities;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
+using Microsoft.EntityFrameworkCore;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"55f8ad5286cd3d4edb6d1acb0468fab95579a39c", @"/Views/Form2_1/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0b88521a2e1eba7c1c948980452ed678c2226406", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"330bfff8c7c5f9dba2758406de113abfa6a13415", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Form2_1_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Cosis.Models.PhieuDieuTra>
     #nullable disable
@@ -69,7 +76,7 @@ using Cosis.Models.Entities;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n      ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55f8ad5286cd3d4edb6d1acb0468fab95579a39c4467", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55f8ad5286cd3d4edb6d1acb0468fab95579a39c4636", async() => {
                 WriteLiteral(@"
         <div class=""form-group text-center"">
           <label> <b>ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ </b> </label>
@@ -116,7 +123,7 @@ using Cosis.Models.Entities;
                 BeginWriteAttribute("id", " id=\"", 1416, "\"", 1421, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"infoma\">\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55f8ad5286cd3d4edb6d1acb0468fab95579a39c6428", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55f8ad5286cd3d4edb6d1acb0468fab95579a39c6597", async() => {
                     WriteLiteral("--- Chọn Tỉnh/TP ---");
                 }
                 );
@@ -137,7 +144,7 @@ using Cosis.Models.Entities;
                 BeginWriteAttribute("id", " id=\"", 1716, "\"", 1721, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"infoma\">\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55f8ad5286cd3d4edb6d1acb0468fab95579a39c8188", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55f8ad5286cd3d4edb6d1acb0468fab95579a39c8357", async() => {
                     WriteLiteral("--- Chọn Huyện/quận ---");
                 }
                 );
@@ -158,7 +165,7 @@ using Cosis.Models.Entities;
                 BeginWriteAttribute("id", " id=\"", 1967, "\"", 1972, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"infoma\">\r\n              ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55f8ad5286cd3d4edb6d1acb0468fab95579a39c9895", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55f8ad5286cd3d4edb6d1acb0468fab95579a39c10064", async() => {
                     WriteLiteral("--- Chọn Xã/phường/thị trấn ---");
                 }
                 );

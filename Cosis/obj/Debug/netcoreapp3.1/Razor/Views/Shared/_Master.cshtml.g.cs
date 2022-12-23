@@ -27,6 +27,13 @@ using Cosis.Models.Entities;
 #line hidden
 #nullable disable
 #nullable restore
+#line 4 "D:\ProjectC#\Cosis\Cosis\Views\_ViewImports.cshtml"
+using Microsoft.EntityFrameworkCore;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "D:\ProjectC#\Cosis\Cosis\Views\Shared\_Master.cshtml"
 using Cosis.Models;
 
@@ -34,7 +41,7 @@ using Cosis.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3b11b45f8149a9ba3a2a778911e10fb2dd42ac35", @"/Views/Shared/_Master.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0b88521a2e1eba7c1c948980452ed678c2226406", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"330bfff8c7c5f9dba2758406de113abfa6a13415", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared__Master : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Cosis.Models.Entities.ThongTinDoanhNghiep>
     #nullable disable
@@ -112,7 +119,7 @@ WriteAttributeValue("", 982, Model.TenDoanhNghiep, 982, 21, false);
                 <label class=""lb-info"">Tỉnh/TP trực thuộc TW: </label>
                 <select name=""Master.MaTinhTp"" id=""city"" class=""infoma"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b11b45f8149a9ba3a2a778911e10fb2dd42ac355458", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b11b45f8149a9ba3a2a778911e10fb2dd42ac355627", async() => {
                 WriteLiteral("--- Chọn Tỉnh/TP ---");
             }
             );
@@ -140,7 +147,7 @@ WriteAttributeValue("", 982, Model.TenDoanhNghiep, 982, 21, false);
                 <select name=""Master.MaQuanHuyen"" id=""district"" class=""infoma"">
 ");
             WriteLiteral("                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b11b45f8149a9ba3a2a778911e10fb2dd42ac357291", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b11b45f8149a9ba3a2a778911e10fb2dd42ac357460", async() => {
                 WriteLiteral("--- Chọn Huyện/quận ---");
             }
             );
@@ -160,7 +167,7 @@ WriteAttributeValue("", 982, Model.TenDoanhNghiep, 982, 21, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </select>\r\n              </div>\r\n              <div class=\"row\">\r\n                <label class=\"lb-info\">Xã/phường/thị trấn: </label>\r\n                <select name=\"Master.MaPhuongXa\" id=\"ward\" class=\"infoma\">\r\n");
             WriteLiteral("                  ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b11b45f8149a9ba3a2a778911e10fb2dd42ac359074", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3b11b45f8149a9ba3a2a778911e10fb2dd42ac359243", async() => {
                 WriteLiteral("--- Chọn Xã/phường/thị trấn ---");
             }
             );
