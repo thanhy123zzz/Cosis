@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj": {}
+    "D:\\ProC#\\Cosis\\Cosis\\Cosis.csproj": {}
   },
   "projects": {
-    "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj": {
+    "D:\\ProC#\\Cosis\\Cosis\\Cosis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
+        "projectUniqueName": "D:\\ProC#\\Cosis\\Cosis\\Cosis.csproj",
         "projectName": "Cosis",
-        "projectPath": "D:\\ProjectC#\\Cosis\\Cosis\\Cosis.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\ProjectC#\\Cosis\\Cosis\\obj\\",
+        "projectPath": "D:\\ProC#\\Cosis\\Cosis\\Cosis.csproj",
+        "packagesPath": "C:\\Users\\TG\\.nuget\\packages\\",
+        "outputPath": "D:\\ProC#\\Cosis\\Cosis\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TG\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,10 @@
             "EPPlus": {
               "target": "Package",
               "version": "[6.1.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Cookies": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
