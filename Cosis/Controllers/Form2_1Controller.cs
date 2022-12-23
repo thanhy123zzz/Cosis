@@ -88,8 +88,8 @@ namespace Cosis.Controllers
                     phieu.Master = master;
                     var ntah = context.DanhSachNhanToAnhHuong.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
                     phieu.DanhSachNhanToAnhHuong = ntah;
-                    var detail = context.Detail.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
-                    //var detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",master.MaPhieu).ToList();
+                    // var detail = context.Detail.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
+                    var detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",master.MaPhieu).ToList();
                     phieu.Detail = detail;
                     var Nhan9 = context.NhanToThu9.FirstOrDefault(x => x.MaPhieu == master.MaPhieu.Trim());
                     phieu.NhanToThu9 = Nhan9;
@@ -139,8 +139,8 @@ namespace Cosis.Controllers
                 ViewBag.nam = master.Nam;
                 var ntah = context.DanhSachNhanToAnhHuong.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
                 phieu.DanhSachNhanToAnhHuong = ntah;
-                var detail = context.Detail.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
-                //var detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",master.MaPhieu).ToList();
+                // var detail = context.Detail.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
+                var detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",master.MaPhieu).ToList();
                 phieu.Detail = detail;
                 var Nhan9 = context.NhanToThu9.FirstOrDefault(x => x.MaPhieu == master.MaPhieu.Trim());
                 phieu.NhanToThu9 = Nhan9;
