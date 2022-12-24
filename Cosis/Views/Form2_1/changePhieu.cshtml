@@ -189,7 +189,7 @@
         <div class="col-3 p-0">
         <label class=""><b>4. Mã số thuế</b></label>
         </div>
-        <div class="col-9">
+        <div class="col-9 m-0">
           <div class="row ml-0">
         <div class="col-9 m-0 pl-0">
         <input type="text" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" autofocus
@@ -213,7 +213,7 @@
         <input type="text" id="n9" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="10"
         required />
       </div>
-      <div class="col-3 pl-0 ">
+      <div class="col-3 pl-2">
         <input type="text" id="n10" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="11"
         required />
         <input type="text" id="n11" maxlength="1" size="1" class="text-center MS" autocomplete="off" data-next="12"
@@ -248,7 +248,7 @@
       <div class="row">
         <label class="lb-info"><b>2. Mã cơ sở: </b></label>
         <input type="text" id="macoso" value="@Model.Master.MaCoSoNavigation.MaCoSo" asp-for="@Model.Master.MaCoSo" maxlength="5"
-        class="infoma" required autofocus />
+        class="infoma" required readonly autofocus />
       </div>
       <div class="row">
         <label class="lb-info"><b>3. Tên cơ sở: </b></label>
@@ -258,19 +258,19 @@
         <div class="col-3 p-0">
         <label class=""><b>4. Mã số thuế</b></label>
         </div>
-        <div class="col-9">
+        <div class="col-9 m-0 pl-0" id="divMST">
           <div class="row ml-0">
         <div class="col-9 m-0 pl-0">
         @for (int i = 0; i < 10; i++)
         {
-          <input type="text" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" autofocus
+          <input type="text" id="n0" maxlength="1" size="1" class="text-center MS" autocomplete="off" readonly
         data-next="1" value="@Model.Master.MaSoThue.Substring(i,1)" />
         }
       </div>
-      <div class="col-3 pl-0 ">
+      <div class="col-3 pl-2">
         @for (int i = 0; i < 3; i++)
         {
-          <input type="text" id="n10" maxlength="1" size="1" class="text-center MS" autocomplete="off"
+          <input type="text" id="n10" maxlength="1" size="1" class="text-center MS" readonly autocomplete="off"
         value="@Model.Master.MaSoThue2.Substring(i,1)" />
         }
       </div>
@@ -1326,6 +1326,9 @@
                             if (kq == "True") {
                                 $('#form').addClass("col-12 form1 p-0");
                                 $('#form').removeClass("form")
+                            }
+                            if("@User.IsInRole("001")" == "True"){
+                              $('#divMST').removeClass("pl-0");
                             }
                     },
                     error: function (result) {

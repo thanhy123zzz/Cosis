@@ -185,6 +185,7 @@ namespace Cosis.Controllers
                 context.Database.ExecuteSqlRaw("delete from Detail where MaPhieu = {0}", phieu.Master.MaPhieu);
                 foreach (Detail dt in phieu.Detail)
                 {
+                    dt.Dvt = "Triệu đồng";
                     context.Database.ExecuteSqlRaw("INSERT INTO [dbo].[Detail]([MaPhieu],[STT],[TenCT],[DVT],[THThangTruoc],[DuTinh],[TongCongDon]) values({0},{1},{2},{3},{4},{5},{6})", phieu.Master.MaPhieu, dt.Stt, dt.TenCt, dt.Dvt, dt.ThthangTruoc, dt.DuTinh, dt.TongCongDon);
                 }
             }
@@ -211,6 +212,7 @@ namespace Cosis.Controllers
                 }
                 foreach (Detail dt in phieu.Detail)
                 {
+                    dt.Dvt = "Triệu đồng";
                     context.Database.ExecuteSqlRaw("INSERT INTO [dbo].[Detail]([MaPhieu],[STT],[TenCT],[DVT],[THThangTruoc],[DuTinh],[TongCongDon]) values({0},{1},{2},{3},{4},{5},{6})", phieu.Master.MaPhieu, dt.Stt, dt.TenCt, dt.Dvt, dt.ThthangTruoc, dt.DuTinh, dt.TongCongDon);
                 }
             }
@@ -250,6 +252,19 @@ namespace Cosis.Controllers
                 var pdf = fullView.ConvertUrl("https://localhost:5001/form1_4PDF/"+maPhieu);
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", maPhieu + ".pdf");  
+        }
+        public string remove(){
+            var context = new FormCosisContext();
+            var list = context.Master.FromSqlRaw("select ms.* from Master ms join ThongTinCaThe dn on  ms.MaCoSo = dn.MaCoSo and dn.MaLoaiPhieu = 'Form2_1';").ToList();
+            int i = 1;
+            foreach(Master m in list){
+                context.Database.ExecuteSqlRaw("delete from Detail where MaPhieu = {0}", m.MaPhieu);
+                context.Database.ExecuteSqlRaw("delete from DanhSachNhanToAnhHuong where MaPhieu = {0}", m.MaPhieu);
+                context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", m.MaPhieu);
+                context.Database.ExecuteSqlRaw("delete from Master where MaPhieu = {0}", m.MaPhieu);
+                Console.WriteLine("Da xoa"+i); i++;
+            }
+            return "ok";
         }
         
         [Route("/form1_4PDF/{maPhieu}")]

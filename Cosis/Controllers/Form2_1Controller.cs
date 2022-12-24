@@ -341,7 +341,7 @@ namespace Cosis.Controllers
             string mast2 = mast.Substring(10);
             string thangDuTinh = DateTime.Now.Month.ToString();
             string nam = DateTime.Now.Year.ToString();
-            if (mcs == null) { mcs = "00000"; }
+            //if (mcs == null) { mcs = "00000"; }
             FormCosisContext context = new FormCosisContext();
             SqlParameter[] parameters =
                     {

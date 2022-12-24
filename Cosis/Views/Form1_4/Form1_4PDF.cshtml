@@ -142,22 +142,25 @@
                         <label>Kinh tế có vốn đầu tư trực tiếp nước ngoài</label>
                     }
                 </div>
-                <div class="nganhKD row">
-                    <label class="nganh-lb"><b>6. Ngành hoạt động kinh doanh</b></label>
-                    <div class="nganh-ct">
-                        @foreach (NganhKinhDoanh a in ViewBag.NganhKinhDoanh)
-                        {
-                            <div class="row">
-                                <div class="MNHD row">
-                                    @for (int i = 0; i < 5; i++)
+                <div class="row m-0">
+                    <div class="col-3">
+                    <label class="pl-1" for=""><b>6. Ngành hoạt động kinh doanh</b></label>
+                    </div>
+                    <div class="col-9 m-0">
+                    @foreach(NganhKinhDoanh a in ViewBag.NganhKinhDoanh)
+                    {
+                        <div class="row m-0 pl-0">
+                        <div class="col-5 pl-0">
+                            @for (int i =0; i<5;i++)
                                     {
-                                        <input type="text" maxlength="1" size="1" class="text-center MN"
-                                    value="@a.MaNganh.Substring(i,1)" />
+                                       <input type="text"maxlength="1"size="1" readonly class="text-center MN" value = "@a.MaNganh.Substring(i,1)"/>
                                     }
-                                </div>
-                                <label for="">Tên ngành HĐKD: @getNganhHoatDongKinhDoanh(a.MaNganh).TenNganh</label>
-                            </div>
-                        }
+                        </div>
+                        <div class="col-7 pl-0 pr-0">
+                            <label for="">Tên ngành HĐKD:  @getNganhHoatDongKinhDoanh(a.MaNganh).TenNganh</label>
+                        </div>
+                        </div>
+                    }
                     </div>
                 </div>
             </div>
