@@ -61,81 +61,47 @@
                             Thương mại
                                 <div class="header-option">
                                 <div class="nav-option">
-                                  <div class="option">Doanh nghiệp
-                                  </div>
-                                  <div class="option">Cá thể
-                                  </div>
+                                  <a href="/Form1_1/Index" class="option">Doanh nghiệp
+                                  </a>
+                                  <a href="/Form2_1/Index" class="option">Cá thể
+                                  </a>
                                 </div>
                               </div>
                         </li>
                         <li class="nav-item">
-                                Dịch vụ
-                                    <div class="header-option">
-                                    <div class="nav-option">
-                                      <div class="option">Doanh nghiệp
-                                      </div>
-                                      <div class="option">Cá thể
-                                      </div>
-                                    </div>
-                                  </div>
+                               <a class="nav-link text-white" href="/Form1_2/Index">Dịch vụ</a>
                             </li>
                         <li class="nav-item">
                             Vận tải - Kho bãi
                           <div class="header-option">
                             <div class="nav-option">
-                              <div class="option">Doanh nghiệp
-                              </div>
-                              <div class="option">Cá thể
-                              </div>
+                              <a href="/Form1_3/Index" class="option">Doanh nghiệp
+                              </a>
+                              <a href="/Form2_3/Index" class="option">Cá thể
+                              </a>
                             </div>
                           </div>
                      </li>
+                         <li class="nav-item">
+                                 <a class="nav-link text-white" href="/Form1_4/Index">Bất động sản - DV khác</a>
+                         </li>
             }else{
                 @if (User.IsInRole("002")){
                      <li class="nav-item">
-                                 @getThongTinDoanhNghiep().TenLoaiPhieu
-                                    <div class="header-option">
-                                        <div class="nav-option">
-                                            <div class="option">
-                                                Vận tải
-                                                <div class="header-option1">
-                                                    <a class="option1" href="/@getThongTinDoanhNghiep().MaLoaiPhieu/Index">Doanh nghiệp</a>
-                                                </div>
-                                            </div>
-                                            <div class="option">
-                                                Kho bãi
-                                                <div class="header-option1">
-                                                     <a class="option1" href="/@getThongTinDoanhNghiep().MaLoaiPhieu/Index">Doanh nghiệp</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <a class="nav-link text-white" href="/@getThongTinDoanhNghiep().MaLoaiPhieu/Index">@getThongTinDoanhNghiep().TenLoaiPhieu</a>
                      </li>
                 }else{
-                                                 <li class="nav-item">
-                                @getThongTinCaThe().TenLoaiPhieu
-                                            <div class="header-option">
-                                                <div class="nav-option">
-                                                    <div class="option">
-                                                        Thương mại
-                                                        <div class="header-option1">
-                                                            <a class="option1" href="/@getThongTinCaThe().MaLoaiPhieu/Index">Cá thể</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="option">
-                                                        Dịch vụ
-                                                        <div class="header-option1">
-                                                             <a class="option1" href="/@getThongTinCaThe().MaLoaiPhieu/Index">Cá thể</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                             </li>
+                         <li class="nav-item">
+                                <a class="nav-link text-white" href="/@getThongTinCaThe().MaLoaiPhieu/Index">@getThongTinCaThe().TenLoaiPhieu</a>
+                     </li>
                 }
             }
-            <li class="nav-item">
-                    <a class="nav-link text-white" href="/ThongKe">Tiến độ</i></a>
-                </li>
+                    @if (User.IsInRole("001"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/ThongKe">Tiến độ</a>
+            </li>
+            }
                 <li class="nav-item">
                     Hướng dẫn
                     <div class="header-option">
@@ -239,6 +205,7 @@
             $('#form').addClass("form1");
             $('.MS').prop('readonly', true);
         }
+        
     });
 
   </script>
