@@ -42,9 +42,13 @@
                         <label for="tinh">Loại phiếu:</label>
                         <select id="loaiPhieu" class="TK-drop">
                             <option value="0">Tất cả</option>
-                            @foreach(LoaiPhieu l in getListLoaiPhieu()){
+                            @*@foreach(LoaiPhieu l in getListLoaiPhieu()){
                                 <option value="@l.MaLoaiPhieu">@l.MaLoaiPhieu</option>
-                            }
+                            }*@
+                            <option value="_1">Thương mại</option>
+                            <option value="_2">Dịch vụ</option>
+                            <option value="_3">Vận Tải - kho bãi</option>
+                            <option value="_4">Bất động sản - DV khác</option>
                         </select>
                     </div>
                     <div class="group-drop">
