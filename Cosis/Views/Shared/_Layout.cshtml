@@ -45,6 +45,18 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/assets/image/logo.png" />
   </head>
 <body id="body">
+    <div id="toast" class="toasts col-8" style="position: fixed; top: 50px; right: 30px; z-index: 3;">
+      <div class="toast-header">
+
+        <strong style="margin:auto;color:#28a745">Thông báo</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        @TempData["ThongBao"]
+      </div>
+    </div>
     <!-- Header -->
     <div class="header">
       <div class="banner">
@@ -61,9 +73,9 @@
                             Thương mại
                                 <div class="header-option">
                                 <div class="nav-option">
-                                  <a href="/Form1_1/Index" class="option">Doanh nghiệp
+                                      <a href="/Form1_1/Index" class="nav-link text-white option">Doanh nghiệp
                                   </a>
-                                  <a href="/Form2_1/Index" class="option">Cá thể
+                                      <a href="/Form2_1/Index" class="nav-link text-white option">Cá thể
                                   </a>
                                 </div>
                               </div>
@@ -75,9 +87,9 @@
                             Vận tải - Kho bãi
                           <div class="header-option">
                             <div class="nav-option">
-                              <a href="/Form1_3/Index" class="option">Doanh nghiệp
+                                  <a href="/Form1_3/Index" class="nav-link text-white option">Doanh nghiệp
                               </a>
-                              <a href="/Form2_3/Index" class="option">Cá thể
+                                  <a href="/Form2_3/Index" class="nav-link text-white option">Cá thể
                               </a>
                             </div>
                           </div>
@@ -88,11 +100,11 @@
             }else{
                 @if (User.IsInRole("002")){
                      <li class="nav-item">
-                                <a class="nav-link text-white" href="/@getThongTinDoanhNghiep().MaLoaiPhieu/Index">@getThongTinDoanhNghiep().TenLoaiPhieu</a>
+                                <a class="nav-link text-white option" href="/@getThongTinDoanhNghiep().MaLoaiPhieu/Index">@getThongTinDoanhNghiep().TenLoaiPhieu</a>
                      </li>
                 }else{
                          <li class="nav-item">
-                                <a class="nav-link text-white" href="/@getThongTinCaThe().MaLoaiPhieu/Index">@getThongTinCaThe().TenLoaiPhieu</a>
+                                <a class="nav-link text-white option" href="/@getThongTinCaThe().MaLoaiPhieu/Index">@getThongTinCaThe().TenLoaiPhieu</a>
                      </li>
                 }
             }
@@ -106,7 +118,7 @@
                     Hướng dẫn
                     <div class="header-option">
                         <div class="nav-option">
-                            <a class="nav-link text-white option" style="padding: 5px 0 5px 15px;" href="#">Trợ giúp</i></a>
+                            <a class="nav-link text-white option" style="padding: 5px 0 5px 15px;" href="/HuongDan">Trợ giúp</i></a>
                         </div>
                     </div>
                 </li>
@@ -205,9 +217,13 @@
             $('#form').addClass("form1");
             $('.MS').prop('readonly', true);
         }
-        
-    });
-
+        var check = '@Html.Raw(TempData["ThongBao"]!=null)';
+        if(check=="True"){
+        var x = document.getElementById("toast");
+          x.classList.add("show");
+          setTimeout(function(){ x.className = x.className.replace("show", "toasts"); }, 5000);
+        }
+        });
   </script>
     @RenderSection("Scripts", required: false)
 </body>

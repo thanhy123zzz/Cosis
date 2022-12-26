@@ -758,6 +758,24 @@ function format(){
 }
 
     function changeThthangTruoc(tt){
+        if(tt.toString().includes("_")){
+        var idd = tt.substring(0, 1);
+        if ($('#ThthangTruoc' + idd).val() != null) {
+            if (getValue($('#ThthangTruoc'+tt).val()) > getValue($('#ThthangTruoc' + idd).val())) {
+              $('#ThthangTruoc' + tt)[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#ThthangTruoc' + idd).val());
+            } else {
+              $('#ThthangTruoc'+tt)[0].setCustomValidity("");
+            }
+        }
+        }else{
+            if($('#ThthangTruoc'+tt+'_1')!=undefined){
+                if (getValue($('#ThthangTruoc'+tt+'_1').val()) > getValue($('#ThthangTruoc' + tt).val())) {
+                  $('#ThthangTruoc' + tt + '_1')[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#ThthangTruoc' + tt).val());
+                } else {
+                  $('#ThthangTruoc'+tt + '_1')[0].setCustomValidity("");
+                }
+            }
+        }
         var value = getValue($('#ThthangTruoc'+tt).val());
 
         if(checkNumber(value)){
@@ -813,6 +831,24 @@ function format(){
         }
     }
     function changeDuTinh(tt){
+        if(tt.toString().includes("_")){
+        var idd = tt.substring(0, 1);
+        if ($('#DuTinh' + idd).val() != null) {
+            if (getValue($('#DuTinh'+tt).val()) > getValue($('#DuTinh' + idd).val())) {
+              $('#DuTinh' + tt)[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#DuTinh' + idd).val());
+            } else {
+              $('#DuTinh'+tt)[0].setCustomValidity("");
+            }
+        }
+        }else{
+            if($('#DuTinh'+tt+'_1')!=undefined){
+                if (getValue($('#DuTinh'+tt+'_1').val()) > getValue($('#DuTinh' + tt).val())) {
+                  $('#DuTinh' + tt + '_1')[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#DuTinh' + tt).val());
+                } else {
+                  $('#DuTinh'+tt + '_1')[0].setCustomValidity("");
+                }
+            }
+        }
         var value = parseFloat($('#DuTinh'+tt).val());
 
         if(checkNumber(value)){

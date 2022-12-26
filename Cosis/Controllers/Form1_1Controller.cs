@@ -254,7 +254,14 @@ namespace Cosis.Controllers
             phieu.Detail = context.Detail.FromSqlRaw("select*from Detail where MaPhieu = '" + maPhieu + "'").ToList();
             return phieu;
         }
-
+        [HttpPost("/ThemDong")]
+        public IActionResult ThemDong(string mast,int stt)
+        {
+            ViewBag.stt = stt;
+            ViewBag.mast1 = mast.Substring(0, 10);
+            ViewBag.mast2 = mast.Substring(10);
+            return PartialView();
+        }
         public List<NganhKinhDoanh> GetNganhKinhDoanhs(string MaSoThue, string MaSoThue2)
         {
             FormCosisContext context = new FormCosisContext();

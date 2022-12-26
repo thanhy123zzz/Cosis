@@ -772,27 +772,27 @@ function format(){
 }
 
     function changeThthangTruoc(tt){
-
-      /*  $('#ThthangTruoc'+tt).val($('#ThthangTruoc'+tt).val().replace(/\D/g, ''));*/
-      /* if(tt==4){
-           $('#ThthangTruoc4_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }else if(tt==3){
-           $('#ThthangTruoc3_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }else if(tt==9){
-           $('#ThthangTruoc9_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }
-       else if(tt==10){
-           $('#ThthangTruoc10_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }
-       */
+        if(String(tt).includes("_")){
+        var idd = tt.substring(0, 1);
+        if ($('#ThthangTruoc' + idd).val() != null) {
+            if (getValue($('#ThthangTruoc'+tt).val()) > getValue($('#ThthangTruoc' + idd).val())) {
+              $('#ThthangTruoc' + tt)[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#ThthangTruoc' + idd).val());
+            } else {
+              $('#ThthangTruoc'+tt)[0].setCustomValidity("");
+            }
+        }
+        }
+        
+        else{
+            
+            if($('#ThthangTruoc'+tt+'_1').length){
+                if (getValue($('#ThthangTruoc'+tt+'_1').val()) > getValue($('#ThthangTruoc' + tt).val())) {
+                  $('#ThthangTruoc' + tt + '_1')[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#ThthangTruoc' + tt).val());
+                } else {
+                  $('#ThthangTruoc'+tt + '_1')[0].setCustomValidity("");
+                }
+            }
+        }
         var value = getValue($('#ThthangTruoc'+tt).val());
 
         if(checkNumber(value)){
@@ -848,27 +848,26 @@ function format(){
         }
     }
     function changeDuTinh(tt){
-       /* $('#DuTinh'+tt).val($('#DuTinh'+tt).val().replace(/\D/g, ''));*/
-
-        /*if(tt==4){
-           $('#DuTinh4_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }else if(tt==3){
-           $('#DuTinh3_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }else if(tt==9){
-           $('#DuTinh9_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }
-       else if(tt==10){
-           $('#DuTinh10_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }*/
-
+        
+        if(String(tt).includes("_")){
+        var idd = tt.substring(0, 1);
+        if ($('#DuTinh' + idd).val() != null) {
+            if (getValue($('#DuTinh'+tt).val()) > getValue($('#DuTinh' + idd).val())) {
+              $('#DuTinh' + tt)[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#DuTinh' + idd).val());
+            } else {
+              $('#DuTinh'+tt)[0].setCustomValidity("");
+            }
+        }
+        }else{
+            if($('#DuTinh'+tt+'_1').length){
+                if (getValue($('#DuTinh'+tt+'_1').val()) > getValue($('#DuTinh' + tt).val())) {
+                  $('#DuTinh' + tt + '_1')[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#DuTinh' + tt).val());
+                } else {
+                  $('#DuTinh'+tt + '_1')[0].setCustomValidity("");
+                }
+            }
+        }
+        
         var value = parseFloat($('#DuTinh'+tt).val());
 
         if(checkNumber(value)){
@@ -922,14 +921,6 @@ function format(){
                       })
             );
         }
-        /*var tong = 0;
-        for(var i=1;i<=15;i++){
-            var value = parseFloat($('#DuTinh'+i).val()); 
-            if((!isNaN(value) && $('#DuTinh'+i).val() === '' + value)){
-            tong = tong + value;
-          }
-       }
-       $("#TongDuTinh").val(tong);*/
     }
 
     function changeCongDon(result,tt){

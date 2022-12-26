@@ -100,7 +100,7 @@ namespace Cosis.Models.Entities
 
                 entity.Property(e => e.TenCt)
                     .HasColumnName("TenCT")
-                    .HasMaxLength(100);
+                    .HasMaxLength(500);
 
                 entity.Property(e => e.ThthangTruoc)
                     .HasColumnName("THThangTruoc")
