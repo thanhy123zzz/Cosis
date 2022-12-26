@@ -84,14 +84,6 @@
 
     }
 }
-@if (TempData["ThongBao"] != null)
-{
-                        <script type="text/javascript" charset="utf-8">
-                            window.onload = function () {
-                            alert("@Html.Raw(@TempData["ThongBao"])");
-                        };
-                        </script>
-}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -295,6 +287,13 @@
           </label>
         </div>
 
+        <div class="form-group text-center">
+          <div class="row"></div>
+          <div>
+            <label> <b>Tháng @ViewBag.thang Năm @ViewBag.nam</b> </label>
+          </div>
+          <div class="row"></div>
+        </div>
         <div class="form-group m-title text-center">
           <h5 style="margin-top: .5rem;"><b>A. THÔNG TIN CHUNG</b></h5>
         </div>
@@ -402,89 +401,233 @@
         </div>
         <table class="table table-striped table-hover table-bordered">
           <thead>
-                    <tr class="text-center">
-                        <th><b>Tên chỉ tiêu</b></th>
-                        <th><b>Đơn vị tính</b></th>
-                        <th style="width:20%"><b>Thực hiện</b></th>
-                        <th style="width:20%"><b>Dự tính</b></th>
-                        <th style="width:20%">
-                            CỘNG DỒN TỪ ĐẦU NĂM ĐẾN CUỐI THÁNG BÁO CÁO
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center">
-                        <td>A</td>
-                        <td>B</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>@Model.Detail[0].Stt @Model.Detail[0].TenCt</td>
-                        <td class="text-center">@Model.Detail[0].Dvt</td>
-                        <td class="text-center">@Model.Detail[0].ThthangTruoc</td>
-                        <td class="text-center">@Model.Detail[0].DuTinh</td>
-                        <td class="text-center">@Model.Detail[0].TongCongDon</td>
-                    </tr>
-                    <tr>
-                        <th attr colspan="5">B1. Dịch vụ lưu trú</th>
-                    </tr>
-                    @for (int i = 1; i <= 8; i++)
-                    {
-                            <tr>
-                                <td>@Model.Detail[i].Stt @Model.Detail[i].TenCt</td>
-                                <td class="text-center">@Model.Detail[i].Dvt</td>
-                                <td class="text-center">@Model.Detail[i].ThthangTruoc</td>
-                                <td class="text-center">@Model.Detail[i].DuTinh</td>
-                                <td class="text-center">@Model.Detail[i].TongCongDon</td>
-                            </tr>
-                    }
-                    <tr>
-                        <th attr colspan="5">B2. Dịch vụ ăn uống</th>
-                    </tr>
-                    @for (int i = 9; i <= 11; i++)
-                    {
-                                <tr>
-                                    <td>@Model.Detail[i].Stt @Model.Detail[i].TenCt</td>
-                                    <td class="text-center">@Model.Detail[i].Dvt</td>
-                                    <td class="text-center">@Model.Detail[i].ThthangTruoc</td>
-                                    <td class="text-center">@Model.Detail[i].DuTinh</td>
-                                    <td class="text-center">@Model.Detail[i].TongCongDon</td>
-                                </tr>
-                    }
-                    <tr>
-                        <th attr colspan="5">
-                            B3. Dịch vụ lữ hành và hoạt động hỗ trợ du lịch
-                        </th>
-                    </tr>
-                    @for (int i = 12; i <= 14; i++)
-                    {
-                                    <tr>
-                                        <td>@Model.Detail[i].Stt @Model.Detail[i].TenCt</td>
-                                        <td class="text-center">@Model.Detail[i].Dvt</td>
-                                        <td class="text-center">@Model.Detail[i].ThthangTruoc</td>
-                                        <td class="text-center">@Model.Detail[i].DuTinh</td>
-                                        <td class="text-center">@Model.Detail[i].TongCongDon</td>
-                                    </tr>
-                    }
-                    <tr>
-                        <th attr colspan="5">
-                            Chia ra:
-                        </th>
-                    </tr>
-                    @for (int i = 15; i <= 16; i++)
-                    {
-                                        <tr>
-                                            <td>@Model.Detail[i].Stt @Model.Detail[i].TenCt</td>
-                                            <td class="text-center">@Model.Detail[i].Dvt</td>
-                                            <td class="text-center">@Model.Detail[i].ThthangTruoc</td>
-                                            <td class="text-center">@Model.Detail[i].DuTinh</td>
-                                            <td class="text-center">@Model.Detail[i].TongCongDon</td>
-                                        </tr>
-                    }
-                    </tbody>
-            </table>
+            <tr class="text-center">
+              <th><b>Tên chỉ tiêu</b></th>
+              <th><b>Đơn vị tính</b></th>
+               <th style="width:20%;"><b>Tháng thực hiện @toStringMonthAndYear(Int32.Parse(ViewBag.thang),Int32.Parse(ViewBag.nam))</b></th>
+              <th style="width:20%;"><b>Dự tính @toStringMonth(Int32.Parse(ViewBag.thang))/@ViewBag.nam</b></th>
+              <th style="width:20%;">
+                <b>Cộng dồn từ đầu năm đến cuối tháng @toStringMonth(Int32.Parse(ViewBag.thang))/@ViewBag.nam</b>
+              </th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr class="text-center">
+              <td>A</td>
+              <td>B</td>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>1.Tổng doanh thu
+                  <input type="hidden" id="stt0" asp-for="Detail[0].Stt" value="1."/>
+                  <input type="hidden" asp-for="Detail[0].TenCt" value="Tổng doanh thu"/>  
+              </td>
+              <td class="text-center">Triệu đồng
+                   <input type="hidden" asp-for="Detail[0].Dvt" value="Triệu đồng"/> 
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly id="ThthangTruoc0" oninput="changeThthangTruoc(0)" value="@format(Model.Detail[0].ThthangTruoc)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly id="DuTinh0" oninput="changeDuTinh(0)" value="@format(Model.Detail[0].DuTinh)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly id="TongCongDon0" value="@format(Model.Detail[0].TongCongDon)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <th attr colspan="5">B1. Dịch vụ lưu trú</th>
+            </tr>
+            <tr>
+              <td>2.Doanh thu thuần
+                  <input type="hidden" id="stt2" asp-for="Detail[1].Stt" value="2."/>
+                  <input type="hidden" asp-for="Detail[1].TenCt" value="Doanh thu thuần"/>
+              </td>
+              <td class="text-center">Triệu đồng
+                  <input type="hidden" asp-for="Detail[1].Dvt" value="Triệu đồng"/>  
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[1].ThthangTruoc)" id="ThthangTruoc2" oninput="changeThthangTruoc(2)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[1].DuTinh)" id="DuTinh2" oninput="changeDuTinh(2)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[1].TongCongDon)" id="TongCongDon2" oninput="changeCongDon(2)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td>3.Số lượt khách phục vụ
+                 
+              </td>
+              <td class="text-center">Lượt khách
+                   
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[2].ThthangTruoc)" id="ThthangTruoc3" oninput="changeThthangTruoc(3)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[2].DuTinh)" id="DuTinh3" oninput="changeDuTinh(3)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[2].TongCongDon)" id="TongCongDon3" oninput="changeCongDon(3)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td class="p-1">3.1.Lượt khách ngủ qua đêm
+                   
+              </td>
+              <td class="text-center">Lượt khách
+                   
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[3].ThthangTruoc)" id="ThthangTruoc3_1" oninput="changeThthangTruoc('3_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[3].DuTinh)" id="DuTinh3_1" oninput="changeDuTinh('3_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[3].TongCongDon)" id="TongCongDon3_1" oninput="changeCongDon('3_1')" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td class="p-1-1">3.1.1.Trong đó: khách quốc tế
+                  
+              </td>
+              <td class="text-center">Lượt khách
+                 
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[4].ThthangTruoc)" id="ThthangTruoc3_1_1" oninput="changeThthangTruoc('3_1_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[4].DuTinh)" id="DuTinh3_1_1" oninput="changeDuTinh('3_1_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[4].TongCongDon)" id="TongCongDon3_1_1" oninput="changeCongDon('3_1_1')" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td class="p-1">3.2.Lượt khách trong ngày
+                   
+              </td>
+              <td class="text-center">Lượt khách
+                   
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[5].ThthangTruoc)" id="ThthangTruoc3_2" oninput="changeThthangTruoc('3_2')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[5].DuTinh)" id="DuTinh3_2" oninput="changeDuTinh('3_2')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[5].TongCongDon)" id="TongCongDon3_2" oninput="changeCongDon('3_2')" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td>4.Số ngày phục vụ khách ( chỉ tính khách có ngủ qua đêm)
+                  
+              </td>
+              <td class="text-center">Ngày khách
+                  
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[6].ThthangTruoc)" id="ThthangTruoc4" oninput="changeThthangTruoc(4)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[6].DuTinh)" id="DuTinh4" oninput="changeDuTinh(4)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[6].TongCongDon)" id="TongCongDon4" oninput="changeCongDon(4)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td class="p-1">4.1.Trong đó: khách quốc tế
+                  
+              <td class="text-center">Ngày khách
+                   
+              </td>
+              <td><input type="text"  pattern="[0-9,.\-$]+" required value="@format(Model.Detail[7].ThthangTruoc)" id="ThthangTruoc4_1" oninput="changeThthangTruoc('4_1')" class="infomal" /></td>
+              <td><input type="text"  pattern="[0-9,.\-$]+" required value="@format(Model.Detail[7].DuTinh)" id="DuTinh4_1" oninput="changeDuTinh('4_1')" class="infomal" /></td>
+              <td><input type="text"  pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[7].TongCongDon)" id="TongCongDon4_1" oninput="changeCongDon('4_1')" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td>
+                5.Giá phòng bình quân 1 lượt khách thuê trong ngày (thuê theo
+                 
+              </td>
+              <td class="text-center">Nghìn đồng
+                  
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[8].ThthangTruoc)" id="ThthangTruoc5" oninput="changeThthangTruoc(5)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[8].DuTinh)" id="DuTinh5" oninput="changeDuTinh(5)"  class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[8].TongCongDon)" id="TongCongDon5" oninput="changeCongDon(5)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <th attr colspan="5">B2. Dịch vụ ăn uống</th>
+            </tr>
+            <tr>
+              <td>6.Doanh thu thuần
+                  
+              </td>
+
+              <td class="text-center">Triệu đồng
+                   
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[9].ThthangTruoc)" id="ThthangTruoc6" oninput="changeThthangTruoc(6)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[9].DuTinh)" id="DuTinh6" oninput="changeDuTinh(6)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[9].TongCongDon)" id="TongCongDon6" oninput="changeCongDon(6)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td class="p-1">6.1.Trong đó: doanh thu thuần hàng chuyên bán
+                
+              </td>
+              <td class="text-center">Triệu đồng
+                  
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[10].ThthangTruoc)" id="ThthangTruoc6_1" oninput="changeThthangTruoc('6_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[10].DuTinh)" id="DuTinh6_1" oninput="changeDuTinh('6_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[10].TongCongDon)" id="TongCongDon6_1" oninput="changeCongDon('6_1')" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td>
+                7.Trị giá vốn của hàng chuyên bán (tương ứng với doanh thu hàng
+                tháng)
+                 
+              </td>
+              <td class="text-center">Triệu đồng
+                   
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[11].ThthangTruoc)" id="ThthangTruoc7" oninput="changeThthangTruoc(7)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[11].DuTinh)" id="DuTinh7" oninput="changeDuTinh(7)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[11].TongCongDon)" id="TongCongDon7" oninput="changeCongDon(7)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <th attr colspan="5">
+                B3. Dịch vụ lữ hành và hoạt động hỗ trợ du lịch
+              </th>
+            </tr>
+            <tr>
+              <td>8.Doanh thu thuần
+                  
+              </td>
+              <td class="text-center">Triệu đồng
+                  
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[12].ThthangTruoc)" id="ThthangTruoc8" oninput="changeThthangTruoc(8)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[12].DuTinh)" id="DuTinh8" oninput="changeDuTinh(8)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[12].TongCongDon)" id="TongCongDon8" oninput="changeCongDon(8)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td class="p-1">
+                8.1.Trong đó: doanh thu thuần điều hành (tuor) du lịch
+                  
+              </td>
+              <td class="text-center">Triệu đồng
+                   
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[13].ThthangTruoc)" id="ThthangTruoc8_1" oninput="changeThthangTruoc('8_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[13].DuTinh)" id="DuTinh8_1" oninput="changeDuTinh('8_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[13].TongCongDon)" id="TongCongDon8_1" oninput="changeCongDon('8_1')" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td>9.Lượt khách du lịch theo tuor
+                  
+              </td>
+              <td class="text-center">Lượt khách
+                  
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[14].ThthangTruoc)" id="ThthangTruoc9" oninput="changeThthangTruoc(9)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[14].DuTinh)" id="DuTinh9" oninput="changeDuTinh(9)" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[14].TongCongDon)" id="TongCongDon9" oninput="changeCongDon(9)" class="infomal" /></td>
+            </tr>
+            <tr>
+              <th attr colspan="5">Chia ra:</th>
+            </tr>
+            <tr>
+              <td class="p-1">9.1.Lượt khách quốc tế
+                 
+              </td>
+              <td class="text-center">Lượt khách
+                  
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[15].ThthangTruoc)" id="ThthangTruoc9_1" oninput="changeThthangTruoc('9_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[15].DuTinh)" id="DuTinh9_1" oninput="changeDuTinh('9_1')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[15].TongCongDon)" id="TongCongDon9_1" oninput="changeCongDon('9_1')" class="infomal" /></td>
+            </tr>
+            <tr>
+              <td class="p-1">9.2.Lượt khách Việt Nam đi trong nước
+                  
+              </td>
+              <td class="text-center">Lượt khách
+                 
+              </td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[16].ThthangTruoc)" id="ThthangTruoc9_2" oninput="changeThthangTruoc('9_2')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required value="@format(Model.Detail[16].DuTinh)" id="DuTinh9_2" oninput="changeDuTinh('9_2')" class="infomal" /></td>
+              <td><input type="text" pattern="[0-9,.\-$]+" required readonly value="@format(Model.Detail[16].TongCongDon)" id="TongCongDon9_2" oninput="changeCongDon('9_2')" class="infomal" /></td>
+            </tr>
+          </tbody>
+        </table>
         <div class="form-group m-title text-center">
           <h5 style="margin-top: .5rem;"><b>C. CÁC YẾU TỔ ẢNH HƯỞNG ĐẾN HOẠT ĐỘNG KINH DOANH</b></h5>
         </div>

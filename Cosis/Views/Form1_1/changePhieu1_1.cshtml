@@ -660,9 +660,11 @@
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="tbody-tb">
                     <tr class="text-center">
-                      <td>A</td>
+                      <td>A
+                          <button id="addDong" type="button" class="btn btn-info">Thêm</button>
+                      </td>
                       <td>B</td>
                       <td>1</td>
                       <td>Tổng</td>
@@ -775,9 +777,11 @@
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="tbody-tb">
                     <tr class="text-center">
-                      <td>A</td>
+                      <td>A
+                          <button id="addDong" type="button" class="btn btn-info">Thêm</button>
+                      </td>
                       <td>B</td>
                       <td>1</td>
                       <td>Tổng</td>
@@ -926,6 +930,20 @@ function format(){
             })
     }
 }
+$('#addDong').on('click',function(){
+    var mst = $('#MST1').val();
+    $.ajax({
+                type: 'POST',
+                url: '/ThemDong',
+                data: "mast=" + mst + "&stt="+$('#tbody-tb tr').length,
+                success: function (result) {
+                    $("#tbody-tb").append(result);
+                },
+               error: function (result) {
+               alert('Mã số thuế không tồn tại!');
+             }
+            });
+});
 
     function changeThthangTruoc(tt){
         if ($('#ThangTruoc_' + tt).val() != null) {

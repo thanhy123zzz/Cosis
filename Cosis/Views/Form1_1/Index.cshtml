@@ -71,14 +71,6 @@
     }
     List<NganhKinhDoanh> list;
 }
-@if (TempData["ThongBao"] != null)
-{
-                <script type="text/javascript" charset="utf-8">
-                    window.onload = function () {
-                    alert("@Html.Raw(@TempData["ThongBao"])");
-                };
-                </script>
-}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
       <form id="form" action="/form1_1" method="post" enctype="multipart/form-data">
               <div class="choose-day row">
@@ -895,6 +887,14 @@ function format(){
 }
 
     function changeThthangTruoc(tt){
+        if ($('#ThangTruoc_' + tt).val() != null) {
+            if (getValue($('#ThangTruocTT_'+tt).val()) > getValue($('#ThangTruoc_' + tt).val())) {
+              $('#ThangTruocTT_' + tt)[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#ThangTruoc_' + tt).val());
+            } else {
+              $('#ThangTruocTT_'+tt)[0].setCustomValidity("");
+            }
+        }
+
         var tong = 0;
         for(var i = 2; i< $('#SLRow').val();i++){
             tong += getValue($('#ThangTruoc_'+i).val());
@@ -909,6 +909,13 @@ function format(){
         changeTong(tt);
     }
     function changeDuTinh(tt){
+        if ($('#DuTinh_' + tt).val() != null) {
+            if (getValue($('#DuTinhTT_'+tt).val()) > getValue($('#DuTinh_' + tt).val())) {
+              $('#DuTinhTT_' + tt)[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#DuTinh_' + tt).val());
+            } else {
+              $('#DuTinhTT_'+tt)[0].setCustomValidity("");
+            }
+        }
         var tong = 0;
         for(var i = 2; i< $('#SLRow').val();i++){
             tong += getValue($('#DuTinh_'+i).val());
@@ -947,6 +954,13 @@ function format(){
         changeTongTT(tt);
     }
     function changeDuTinhTT(tt){
+        if ($('#DuTinh_' + tt).val() != null) {
+            if (getValue($('#DuTinhTT_'+tt).val()) > getValue($('#DuTinh_' + tt).val())) {
+              $('#DuTinhTT_' + tt)[0].setCustomValidity("Giá trị phải nhỏ hơn " + $('#DuTinh_' + tt).val());
+            } else {
+              $('#DuTinhTT_'+tt)[0].setCustomValidity("");
+            }
+        }
         var tong = 0;
         for(var i = 2; i< $('#SLRow').val();i++){
             tong += getValue($('#DuTinhTT_'+i).val());

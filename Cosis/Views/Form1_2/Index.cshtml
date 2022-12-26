@@ -47,14 +47,6 @@
         return context.Master.Where(x => x.MaSoThue == mst1 && x.MaSoThue2 == mst2 && x.ThangDuTinh == thang && x.Nam == nam).Count();
     }
 }
-@if (TempData["ThongBao"] != null)
-		{
-			<script type="text/javascript" charset="utf-8">
-				window.onload = function () {
-				alert("@Html.Raw(@TempData["ThongBao"])");
-			};
-			</script>
-		}
 <form id="form" action="/form1_2" method="post" enctype="multipart/form-data">
        <div class="choose-day row">
           <div class="choose-month">
