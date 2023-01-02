@@ -883,7 +883,7 @@
             <tbody id="tBody">
                 @foreach (ThongTinCaThe m in @getTable())
                 {
-                    @if (count(m.MaCoSo, ViewBag.thang, ViewBag.nam) > 0)
+                    @if (count(m.MaCoSo, toStringMonth(Int32.Parse(ViewBag.thang)), ViewBag.nam) > 0)
                     {
                         <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu2_1('@m.MaCoSo')">
                             <td class="text-center">1</td>
