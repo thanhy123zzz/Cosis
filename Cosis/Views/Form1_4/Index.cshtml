@@ -939,7 +939,7 @@
                 </thead>
                 <tbody id="tBody">
                     @foreach(ThongTinDoanhNghiep m in @getTable()){
-                    @if (count(m.MaSoThue, m.MaSoThue2, ViewBag.thang, ViewBag.nam) > 0)
+                    @if (count(m.MaSoThue, m.MaSoThue2, toStringMonth(Int32.Parse(ViewBag.thang)), ViewBag.nam) > 0)
                     {
                     <tr style="background-color: rgb(0, 160, 255); cursor:pointer;"
                         onclick="doiPhieu('@m.MaSoThue','@m.MaSoThue2')">

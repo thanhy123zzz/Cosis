@@ -70,7 +70,7 @@ namespace Cosis.Controllers
         }
 
         [HttpPost("/form1_1")]
-        public IActionResult InsertForm1_3(PhieuDieuTra phieu, IFormCollection form, int loai, string thangDuTinh, string thangThucHien, string nam)
+        public IActionResult InsertForm1_1(PhieuDieuTra phieu, IFormCollection form, int loai, string thangDuTinh, string thangThucHien, string nam)
         {
             FormCosisContext context = new FormCosisContext();
             List<DanhSachNhanToAnhHuong> list = new List<DanhSachNhanToAnhHuong>();

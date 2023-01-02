@@ -673,6 +673,15 @@ $('.infomal').on('blur', function() {
     function getValue(str){
        return Number(str.replace(/[^0-9.-]+/g,""));
     }
+    $("#YT9").change(function () {
+            if (this.checked) {
+                $('#comment').prop('disabled', false);
+                $('#comment').removeAttr('readonly');
+            } else {
+                $('#comment').prop('disabled', true);
+                $('#comment').empty();
+            }
+            });
     $(".MS").keyup(function() {
 
         var valueArr = [];
@@ -748,9 +757,9 @@ $('.infomal').on('blur', function() {
             </tr>
           </thead>
           <tbody >
-            @foreach (ThongTinDoanhNghiep m in @getTable())
+            @foreach (ThongTinDoanhNghiep m in getTable())
             {
-                @if (count(m.MaSoThue, m.MaSoThue2, ViewBag.thang, ViewBag.nam) > 0)
+                @if (count(m.MaSoThue, m.MaSoThue2, toStringMonth(Int32.Parse(ViewBag.thang)), ViewBag.nam) > 0)
                 {
                       <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu('@m.MaSoThue','@m.MaSoThue2')">
                           <td class="text-center">1</td>
@@ -786,6 +795,7 @@ $('.infomal').on('blur', function() {
                     data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
                     success: function (result) {
                         $('#tableQLTT').replaceWith(result);
+                        console.log('hio');
                     },
                     error: function (result) {
                         alert('Mã số thuế không tồn tại!');

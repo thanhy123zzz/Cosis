@@ -954,8 +954,8 @@ $('#addDong').on('click',function(){
             }
         }
         var tong = 0;
-        for(var i = 2; i< $('#SLRow').val();i++){
-            tong += getValue($('#ThangTruoc_'+i).val());
+        for(var i = 2; i < getValue($('#SLRow').val())+2;i++){
+            tong+= getValue($('#ThangTruoc_'+i).val());
         }
         $('#ThangTruoc0').val(
             parseFloat(tong).toLocaleString('en-US', {
@@ -975,7 +975,7 @@ $('#addDong').on('click',function(){
             }
         }
         var tong = 0;
-        for(var i = 2; i< $('#SLRow').val();i++){
+        for(var i = 2; i< getValue($('#SLRow').val())+2;i++){
             tong += getValue($('#DuTinh_'+i).val());
         }
         $('#DuTinh0').val(
@@ -998,7 +998,7 @@ $('#addDong').on('click',function(){
         }
 
         var tong = 0;
-        for(var i = 2; i< $('#SLRow').val();i++){
+        for(var i = 2; i< getValue($('#SLRow').val())+2;i++){
             tong += getValue($('#ThangTruocTT_'+i).val());
         }
         $('#ThangTruocTT0').val(
@@ -1020,7 +1020,7 @@ $('#addDong').on('click',function(){
         }
 
         var tong = 0;
-        for(var i = 2; i< $('#SLRow').val();i++){
+        for(var i = 2; i< getValue($('#SLRow').val())+2;i++){
             tong += getValue($('#DuTinhTT_'+i).val());
         }
         $('#DuTinhTT0').val(
@@ -1037,8 +1037,8 @@ $('#addDong').on('click',function(){
 
         var stt = $('#stt_'+tt).val();        
         var mst = $('#MST1').val();
-        var duTinh = $('#DuTinh_'+tt).val();
-        var value = $('#ThangTruoc_'+tt).val();
+        var duTinh = getValue($('#DuTinh_'+tt).val());
+        var value = getValue($('#ThangTruoc_'+tt).val());
         var thangDuTinh = $('#phieuThang').val();
         var nam = $('#phieuNam').val();
         $.ajax({
@@ -1046,6 +1046,7 @@ $('#addDong').on('click',function(){
                 url: '/form1_1/get-tong',
                 data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh+"&thangDuTinh="+thangDuTinh+"&nam="+nam,
                 success: function (result) {
+                    console.log(result);
                     $('#TongCongDon_'+tt).val(
                         parseFloat(result).toLocaleString('en-US', {
                         style: 'decimal',
@@ -1054,7 +1055,7 @@ $('#addDong').on('click',function(){
                       })
                     );
                     var tong = 0;
-                    for(var i = 2; i< $('#SLRow').val();i++){
+                    for(var i = 2; i< getValue($('#SLRow').val())+2;i++){
                         tong += getValue($('#TongCongDon_'+i).val());
                     }
                     $('#TongCongDon0').val(
@@ -1074,8 +1075,8 @@ $('#addDong').on('click',function(){
 
         var stt = $('#sttTT_'+tt).val();        
         var mst = $('#MST1').val();
-        var duTinh = $('#DuTinhTT_'+tt).val();
-        var value = $('#ThangTruocTT_'+tt).val();
+        var duTinh = getValue($('#DuTinhTT_'+tt).val());
+        var value = getValue($('#ThangTruocTT_'+tt).val());
         var thangDuTinh = $('#phieuThang').val();
         var nam = $('#phieuNam').val();
         $.ajax({
@@ -1091,7 +1092,7 @@ $('#addDong').on('click',function(){
                       })
                     );
                     var tong = 0;
-                    for(var i = 2; i< $('#SLRow').val();i++){
+                    for(var i = 2; i< getValue($('#SLRow').val())+2;i++){
                         tong += getValue($('#TongCongDonTT_'+i).val());
                     }
                     $('#TongCongDonTT0').val(
@@ -1164,7 +1165,7 @@ $('#addDong').on('click',function(){
                     url: '/get-tableTTDN',
                     data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
                     success: function (result) {
-                        $('#tBody').replaceWith(result);
+                        $('#tableQLTT').replaceWith(result);
                     },
                     error: function (result) {
                         alert('Mã số thuế không tồn tại!');
@@ -1194,5 +1195,14 @@ $('#addDong').on('click',function(){
              }
           });
     }
+    $("#YT9").change(function () {
+            if (this.checked) {
+                $('#comment').prop('disabled', false);
+                $('#comment').removeAttr('readonly');
+            } else {
+                $('#comment').prop('disabled', true);
+                $('#comment').empty();
+            }
+            });
 </script>
       </form>

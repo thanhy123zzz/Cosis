@@ -57,7 +57,7 @@
 <div class="choose-day row">
           <div class="choose-month">
             <label for="">Tháng</label>
-            <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu()">
+            <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu('@Model.Master.MaSoThue','@Model.Master.MaSoThue2')">
                 @for(int i =1;i<=12;i++){
                     @if (Int32.Parse(ViewBag.thang) == i)
                     {
@@ -995,7 +995,7 @@ function format(){
                     url: '/get-tableTTDN',
                     data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
                     success: function (result) {
-                        $('#tBody').replaceWith(result);
+                       $('#tableQLTT').replaceWith(result);
                     },
                     error: function (result) {
                         alert('Mã số thuế không tồn tại!');

@@ -7,7 +7,8 @@
     }
     int count(string mst1, string mst2, string thang, string nam)
     {
-        return context.Master.Where(x => x.MaSoThue == mst1 && x.MaSoThue2 == mst2 && x.ThangDuTinh == thang && x.Nam == nam).Count();
+        int s = context.Master.Where(x => x.MaSoThue == mst1 && x.MaSoThue2 == mst2 && x.ThangDuTinh == thang && x.Nam == nam).Count();
+        return s;
     }
 }
 <div id="tableQLTT" class="form-QLTT" style="overflow: scroll;">

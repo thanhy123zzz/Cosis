@@ -1095,6 +1095,15 @@ function format(){
              $('#comment').prop('disabled', false);
          }
     });
+    $("#YT9").change(function () {
+            if (this.checked) {
+                $('#comment').prop('disabled', false);
+                $('#comment').removeAttr('readonly');
+            } else {
+                $('#comment').prop('disabled', true);
+                $('#comment').empty();
+            }
+            });
 
     function doiPhieu(mst1,mst2){
         var thang = $('#phieuThang').val();
