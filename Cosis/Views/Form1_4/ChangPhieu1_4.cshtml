@@ -51,6 +51,11 @@ List<NganhKinhDoanh> getNganhKinhDoanh(string mast1, string mast2){
     return toStringMonth(m - 1) + "/" + year;
     }
     }
+    string getLink()
+    {
+        string port = Context.Request.Host.Port.ToString();
+        return "https://localhost:" + port + "/assets/DiaChi.json";
+    }
     List<ThongTinDoanhNghiep> getTable(){
         return context.ThongTinDoanhNghiep.Where(x => x.MaLoaiPhieu == "Form1_4").ToList();
         }
@@ -63,7 +68,7 @@ List<NganhKinhDoanh> getNganhKinhDoanh(string mast1, string mast2){
             <div class="choose-day row">
                 <div class="choose-month">
                     <label for="">Tháng</label>
-                    <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu()">
+                    <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu('@Model.Master.MaSoThue','@Model.Master.MaSoThue2')">
                         @for(int i =1;i<=12;i++){ @if (Int32.Parse(ViewBag.thang)==i) { <option selected
                             value="@toStringMonth(i)">@toStringMonth(i)</option>
                             }else{

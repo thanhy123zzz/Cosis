@@ -226,7 +226,7 @@ namespace Cosis.Controllers
                 fullView.Options.MarginBottom = 40;
                 fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
 
-                var pdf = fullView.ConvertUrl("https://localhost:5001/form1_4PDF/"+phieu.Master.MaPhieu);
+                var pdf = fullView.ConvertUrl("https://localhost:"+ HttpContext.Request.Host.Port.ToString() + "/form1_4PDF/"+phieu.Master.MaPhieu);
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");
             }
@@ -249,7 +249,7 @@ namespace Cosis.Controllers
                 fullView.Options.MarginTop = 40;
                 fullView.Options.MarginBottom = 40;
                 fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
-                var pdf = fullView.ConvertUrl("https://localhost:5001/form1_4PDF/"+maPhieu);
+                var pdf = fullView.ConvertUrl("https://localhost:"+ HttpContext.Request.Host.Port.ToString() + "/form1_4PDF/"+maPhieu);
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", maPhieu + ".pdf");  
         }

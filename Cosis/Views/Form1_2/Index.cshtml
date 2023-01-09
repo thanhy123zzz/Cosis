@@ -9,6 +9,11 @@
             return toStringMonth(i - 1);
         }
     }
+    string getLink()
+    {
+        string port = Context.Request.Host.Port.ToString();
+        return "https://localhost:" + port + "/assets/DiaChi.json";
+    }
     string getArray(){
         if (Model.DanhSachNhanToAnhHuong !=null)
         {
@@ -696,7 +701,7 @@
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
 var Parameter = {
-  url: "https://localhost:44358/assets/DiaChi.json", 
+  url: '@Html.Raw(getLink())',
   method: "GET", 
   responseType: "application/json", 
 };

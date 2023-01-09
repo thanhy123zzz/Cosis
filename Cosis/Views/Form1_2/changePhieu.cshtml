@@ -13,6 +13,11 @@
             return toStringMonth(i - 1);
         }
     }
+    string getLink()
+    {
+        string port = Context.Request.Host.Port.ToString();
+        return "https://localhost:" + port + "/assets/DiaChi.json";
+    }
     string getArray()
     {
         if (Model.DanhSachNhanToAnhHuong != null)
@@ -36,7 +41,6 @@
         if (i.ToString().Length > 1) return i.ToString();
         else return "0" + i;
     }
-
     List<Master> getMasters()
     {
         return context.Master.ToList();
@@ -57,7 +61,7 @@
 <div class="choose-day row">
           <div class="choose-month">
             <label for="">Tháng</label>
-            <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu()">
+            <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu('@Model.Master.MaSoThue','@Model.Master.MaSoThue2')">
                 @for (int i = 1; i <= 12; i++)
                 {
                     @if (Int32.Parse(ViewBag.thang) == i)
@@ -701,7 +705,7 @@
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
 var Parameter = {
-  url: "https://localhost:44358/assets/DiaChi.json", 
+  url: "https://localhost:" + window.location.port + "/assets/DiaChi.json",
   method: "GET", 
   responseType: "application/json", 
 };

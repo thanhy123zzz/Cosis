@@ -52,6 +52,11 @@
             return toStringMonth(m - 1) + "/" + year;
         }
     }
+    string getLink()
+    {
+        string port = Context.Request.Host.Port.ToString();
+        return "https://localhost:" + port + "/assets/DiaChi.json";
+    }
 }
 <form id="form" action="/form1_3" method="post" enctype="multipart/form-data">
 <div class="choose-day row">
@@ -722,7 +727,7 @@
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
 var Parameter = {
-  url: "https://localhost:44358/assets/DiaChi.json", 
+  url: "https://localhost:" + window.location.port + "/assets/DiaChi.json",
   method: "GET", 
   responseType: "application/json", 
 };
