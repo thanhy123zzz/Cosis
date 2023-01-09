@@ -19,6 +19,7 @@
     }
     int getNam()
     {
+        
         return DateTime.Now.Year;
     }
     string getThangNamTruoc()
@@ -77,6 +78,11 @@
             return "";
         }
 
+    }
+    string getLink()
+    {
+        string port = Context.Request.Host.Port.ToString();
+        return "https://localhost:" + port + "/assets/DiaChi.json";
     }
     List<NganhKinhDoanh> list;
 }
@@ -433,7 +439,7 @@
                             var wards = document.getElementById("ward");
 
                             var Parameter = {
-                              url: "https://localhost:44358/assets/DiaChi.json", 
+                              url: "https://localhost:" + window.location.port + "/assets/DiaChi.json",
                               method: "GET", 
                               responseType: "application/json", 
                             };
@@ -606,7 +612,7 @@
         var districts = document.getElementById("district");
         var wards = document.getElementById("ward");
         var Parameter = {
-          url: "https://localhost:44358/assets/DiaChi.json", 
+         url: "https://localhost:" + window.location.port + "/assets/DiaChi.json",
           method: "GET", 
           responseType: "application/json", 
         };

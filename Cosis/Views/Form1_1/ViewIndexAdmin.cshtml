@@ -21,14 +21,10 @@
     {
         return DateTime.Now.Year;
     }
-    string getThangNamTruoc()
+    string getLink()
     {
-        if (getThang() == 1)
-            return "12/" + (getNam() - 1);
-        else
-        {
-            return (getThang() - 1) + "/" + getNam();
-        }
+        string port = Context.Request.Host.Port.ToString();
+        return "https://localhost:"+port+"/assets/DiaChi.json";
     }
     List<Master> getMasters()
     {
@@ -471,7 +467,7 @@
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
 var Parameter = {
-  url: "https://localhost:44358/assets/DiaChi.json", 
+  url: '@Html.Raw(getLink())', 
   method: "GET", 
   responseType: "application/json", 
 };

@@ -13,6 +13,13 @@ namespace Cosis.Controllers
 {
     public class Form1_1Controller : Controller
     {
+        private readonly FormCosisContext context;
+
+        public Form1_1Controller(FormCosisContext context)
+        {
+            this.context = context;
+        }
+
         private static Random random = new Random();
         public static string RandomString(int length)
         {
@@ -22,7 +29,7 @@ namespace Cosis.Controllers
         }
         public IActionResult Index()
         {
-            FormCosisContext context = new FormCosisContext();
+            string s = HttpContext.Request.Host.Port.ToString();
             PhieuDieuTra phieu = new PhieuDieuTra();
             ViewBag.LoaiPhieu = "Form1_1";
             if (User.IsInRole("001"))
@@ -72,7 +79,6 @@ namespace Cosis.Controllers
         [HttpPost("/form1_1")]
         public IActionResult InsertForm1_1(PhieuDieuTra phieu, IFormCollection form, int loai, string thangDuTinh, string thangThucHien, string nam)
         {
-            FormCosisContext context = new FormCosisContext();
             List<DanhSachNhanToAnhHuong> list = new List<DanhSachNhanToAnhHuong>();
             for (int i = 0; i < 8; i++)
             {
@@ -145,8 +151,8 @@ namespace Cosis.Controllers
                 fullView.Options.MarginTop = 40;
                 fullView.Options.MarginBottom = 40;
                 fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
-
-                var pdf = fullView.ConvertUrl("https://localhost:44358/form1_1PDF/" + phieu.Master.MaPhieu);
+                
+                var pdf = fullView.ConvertUrl("https://localhost:"+ HttpContext.Request.Host.Port.ToString() + "/form1_1PDF/" + phieu.Master.MaPhieu);
 
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");
@@ -167,7 +173,6 @@ namespace Cosis.Controllers
             if (mast == null) { return thangTrc + duTinh; }
             string mast1 = mast.Substring(0, 10);
             string mast2 = mast.Substring(10);
-            FormCosisContext context = new FormCosisContext();
             SqlParameter[] parameters =
                     {
                         new SqlParameter("@MaSoThue",mast1),
@@ -188,7 +193,6 @@ namespace Cosis.Controllers
         [Route("/form1_1PDF/{maPhieu}")]
         public IActionResult Form1_1PDF(string maPhieu)
         {
-            FormCosisContext context = new FormCosisContext();
             PhieuDieuTra phieu = new PhieuDieuTra();
             ViewBag.LoaiPhieu = "Form1_1";
             phieu = GetPhieu(maPhieu);
@@ -201,8 +205,6 @@ namespace Cosis.Controllers
         [HttpPost("/changePhieu1_1")]
         public IActionResult changePhieu1_1(string thang, string nam, string mst1, string mst2)
         {
-
-            FormCosisContext context = new FormCosisContext();
             PhieuDieuTra phieu = new PhieuDieuTra();
             ThongTinDoanhNghiep ttdn;
             ViewBag.LoaiPhieu = "Form1_1";
@@ -245,7 +247,6 @@ namespace Cosis.Controllers
         }
         public PhieuDieuTra GetPhieu(string maPhieu)
         {
-            FormCosisContext context = new FormCosisContext();
             Master master = context.Master.Find(maPhieu);
             PhieuDieuTra phieu = new PhieuDieuTra();
             phieu.Master = master;
@@ -264,33 +265,27 @@ namespace Cosis.Controllers
         }
         public List<NganhKinhDoanh> GetNganhKinhDoanhs(string MaSoThue, string MaSoThue2)
         {
-            FormCosisContext context = new FormCosisContext();
             return
             context.NganhKinhDoanh.FromSqlRaw("select*from NganhKinhDoanh where MaSoThue ='" + MaSoThue + "' and MaSoThue2='" + MaSoThue2 + "'").ToList();
         }
         string getTinh(string ma)
         {
-            FormCosisContext context = new FormCosisContext();
             return context.TinhTp.Find(ma).Name;
         }
         string getHuyen(string ma)
         {
-            FormCosisContext context = new FormCosisContext();
             return context.QuanHuyen.Find(ma).Name;
         }
         string getXa(string ma)
         {
-            FormCosisContext context = new FormCosisContext();
             return context.PhuongXa.Find(ma).Name;
         }
         NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma)
         {
-            FormCosisContext context = new FormCosisContext();
             return context.NganhHoatDongKinhDoanh.Find(ma);
         }
         NhanToAnhHuong nhanToAnhHuong(string ma)
         {
-            FormCosisContext context = new FormCosisContext();
             return context.NhanToAnhHuong.Find(ma);
         }
         private Master getMaster(ThongTinDoanhNghiep tt)
