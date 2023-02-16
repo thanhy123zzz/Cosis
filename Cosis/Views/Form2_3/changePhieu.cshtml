@@ -1728,18 +1728,6 @@ function format(){
         var thang = $('#phieuThang').val();
         var nam = $('#phieuNam').val();
         var s = "@Html.Raw(ViewBag.LoaiPhieu)";
-        
-        $.ajax({
-                    type: 'POST',
-                    url: '/get-tableTTCT',
-                    data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
-                    success: function (result) {
-                        $('#tBody').replaceWith(result);
-                    },
-                    error: function (result) {
-                        alert('Mã số thuế không tồn tại!');
-                     }
-                });
 
         $.ajax({
                     type: 'POST',

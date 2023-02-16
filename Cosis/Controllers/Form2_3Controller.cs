@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using SelectPdf;
@@ -15,7 +13,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 
 namespace Cosis.Controllers
@@ -42,7 +39,7 @@ namespace Cosis.Controllers
             ViewBag.LoaiPhieu = "Form2_3";
             if (User.IsInRole("001"))
             {
-                    
+
                 ViewBag.thang = DateTime.Now.Month.ToString();
                 ViewBag.nam = DateTime.Now.Year.ToString();
                 return View("ViewIndexAdmin");
@@ -179,7 +176,8 @@ namespace Cosis.Controllers
             //phieu.Master.MaCoSo = phieu.Master.MaCoSo;
             if (phieu.Master.MaPhieu != null)
             {
-
+                context.Master.Update(phieu.Master);
+                context.SaveChanges();
                 if (phieu.NhanToThu9 != null)
                 {
                     context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", phieu.Master.MaPhieu);
@@ -235,7 +233,7 @@ namespace Cosis.Controllers
                 fullView.Options.MarginBottom = 40;
                 fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
 
-                var pdf = fullView.ConvertUrl("https://localhost:"+ HttpContext.Request.Host.Port.ToString() + "/form2_3PDF/" + phieu.Master.MaPhieu);
+                var pdf = fullView.ConvertUrl("https://localhost:" + HttpContext.Request.Host.Port.ToString() + "/form2_3PDF/" + phieu.Master.MaPhieu);
 
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");
@@ -254,7 +252,7 @@ namespace Cosis.Controllers
         public decimal? getTongDauNam(string mast, string stt, decimal thangTrc, decimal duTinh, string thangDuTinh, string nam)
         {
             if (mast == null) { return thangTrc + duTinh; }
-          
+
             FormCosisContext context = new FormCosisContext();
             SqlParameter[] parameters =
                     {

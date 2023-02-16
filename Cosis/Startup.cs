@@ -1,7 +1,9 @@
+using Cosis.Models.Entities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,9 @@ namespace Cosis
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string str = Configuration.GetConnectionString("ConnectionString");
+            services.AddDbContext<FormCosisContext>(options =>
+            options.UseSqlServer(str));
             services.AddControllersWithViews();
             services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

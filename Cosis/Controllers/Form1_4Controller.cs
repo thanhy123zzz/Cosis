@@ -3,19 +3,12 @@ using Cosis.Models.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using Newtonsoft.Json;
-using OfficeOpenXml;
-using OfficeOpenXml.Style;
 using SelectPdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 
 namespace Cosis.Controllers
@@ -37,7 +30,7 @@ namespace Cosis.Controllers
         }
         public IActionResult Index()
         {
-           FormCosisContext context = new FormCosisContext();
+            FormCosisContext context = new FormCosisContext();
             PhieuDieuTra phieu = new PhieuDieuTra();
             ViewBag.LoaiPhieu = "Form1_4";
             if (User.IsInRole("001"))
@@ -49,7 +42,7 @@ namespace Cosis.Controllers
             }
             if (User.IsInRole("002"))
             {
-                
+
                 var ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
                 var master = context.Master.FirstOrDefault(x => x.MaSoThue == ttdn.MaSoThue && x.MaSoThue2 == ttdn.MaSoThue2 && x.ThangDuTinh == DateTime.Now.Month.ToString() && x.Nam == DateTime.Now.Year.ToString());
                 if (master != null)
@@ -59,7 +52,7 @@ namespace Cosis.Controllers
                     phieu.Master = master;
                     var ntah = context.DanhSachNhanToAnhHuong.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
                     phieu.DanhSachNhanToAnhHuong = ntah;
-                    var detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",master.MaPhieu).ToList();
+                    var detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC", master.MaPhieu).ToList();
                     phieu.Detail = detail;
                     var Nhan9 = context.NhanToThu9.FirstOrDefault(x => x.MaPhieu == master.MaPhieu.Trim());
                     phieu.NhanToThu9 = Nhan9;
@@ -69,19 +62,19 @@ namespace Cosis.Controllers
                 else
                 {
                     phieu.Master = getMaster(ttdn);
-                    ViewBag.ListNghanh = context.NganhKinhDoanh.Where(x => x.MaSoThue ==  ttdn.MaSoThue && x.MaSoThue2 ==  ttdn.MaSoThue2).ToList();
+                    ViewBag.ListNghanh = context.NganhKinhDoanh.Where(x => x.MaSoThue == ttdn.MaSoThue && x.MaSoThue2 == ttdn.MaSoThue2).ToList();
                     ViewBag.thang = DateTime.Now.Month.ToString();
                     ViewBag.nam = DateTime.Now.Year.ToString();
                     ViewBag.ShowDC = "2";
                     return View(phieu);
                 }
             }
-            
+
             return View(phieu);
         }
 
         [HttpPost("/changePhieu1_4")]
-        public IActionResult ChangPhieu1_4(string thang, string nam,string mst1, string mst2)
+        public IActionResult ChangPhieu1_4(string thang, string nam, string mst1, string mst2)
         {
 
             FormCosisContext context = new FormCosisContext();
@@ -97,24 +90,24 @@ namespace Cosis.Controllers
                     ViewBag.CheckDC = "1";
                     return PartialView(phieu);
                 }
-                ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.MaSoThue==mst1.Trim() && x.MaSoThue2 == mst2.Trim());
+                ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.MaSoThue == mst1.Trim() && x.MaSoThue2 == mst2.Trim());
             }
             else
             {
                 ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
             }
-            
+
             var master = context.Master.FirstOrDefault(x => x.MaSoThue == ttdn.MaSoThue && x.MaSoThue2 == ttdn.MaSoThue2 && x.ThangDuTinh == thang && x.Nam == nam);
             phieu.Master = master;
             if (master != null)
             {
                 ViewBag.thang = master.ThangDuTinh;
                 ViewBag.nam = master.Nam;
-                ViewBag.ListNghanh = context.NganhKinhDoanh.Where(x => x.MaSoThue ==  ttdn.MaSoThue && x.MaSoThue2 ==  ttdn.MaSoThue2).ToList();
+                ViewBag.ListNghanh = context.NganhKinhDoanh.Where(x => x.MaSoThue == ttdn.MaSoThue && x.MaSoThue2 == ttdn.MaSoThue2).ToList();
                 phieu.Master.MaSoThueNavigation = ttdn;
                 var ntah = context.DanhSachNhanToAnhHuong.Where(x => x.MaPhieu == master.MaPhieu.Trim()).ToList();
                 phieu.DanhSachNhanToAnhHuong = ntah;
-                var detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",master.MaPhieu).ToList();
+                var detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC", master.MaPhieu).ToList();
                 phieu.Detail = detail;
                 var Nhan9 = context.NhanToThu9.FirstOrDefault(x => x.MaPhieu == master.MaPhieu.Trim());
                 phieu.NhanToThu9 = Nhan9;
@@ -124,7 +117,7 @@ namespace Cosis.Controllers
             {
                 ViewBag.thang = thang;
                 ViewBag.nam = nam;
-                ViewBag.ListNghanh = context.NganhKinhDoanh.Where(x => x.MaSoThue ==  ttdn.MaSoThue && x.MaSoThue2 ==  ttdn.MaSoThue2).ToList();
+                ViewBag.ListNghanh = context.NganhKinhDoanh.Where(x => x.MaSoThue == ttdn.MaSoThue && x.MaSoThue2 == ttdn.MaSoThue2).ToList();
                 phieu.Master = getMaster(ttdn);
                 return PartialView(phieu);
             }
@@ -145,20 +138,20 @@ namespace Cosis.Controllers
             return master;
         }
         [HttpPost("/form1_4")]
-        public IActionResult InsertForm1_4(PhieuDieuTra phieu, IFormCollection form, int loai,string thangDuTinh,string thangThucHien,string nam)
+        public IActionResult InsertForm1_4(PhieuDieuTra phieu, IFormCollection form, int loai, string thangDuTinh, string thangThucHien, string nam)
         {
             FormCosisContext context = new FormCosisContext();
-            
+
             List<DanhSachNhanToAnhHuong> list = new List<DanhSachNhanToAnhHuong>();
-            for (int i =0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 string name = "DanhSachNhanToAnhHuong" + i;
                 string value = form[name];
-                if(value!=null)
+                if (value != null)
                 {
                     list.Add(new DanhSachNhanToAnhHuong(value));
-                }    
-                
+                }
+
             }
             phieu.DanhSachNhanToAnhHuong = list;
             phieu.Master.NgayTao = DateTime.Now;
@@ -170,11 +163,16 @@ namespace Cosis.Controllers
             phieu.Master.MaCoSo = "00000";
             if (phieu.Master.MaPhieu != null)
             {
-                if(phieu.NhanToThu9 == null){
-                context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", phieu.Master.MaPhieu);
-                }else{
-                        context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", phieu.Master.MaPhieu);
-                        context.Database.ExecuteSqlRaw("insert into NhanToThu9 values({0},{1})", phieu.Master.MaPhieu, phieu.NhanToThu9.NoiDung);
+                context.Master.Update(phieu.Master);
+                context.SaveChanges();
+                if (phieu.NhanToThu9 == null)
+                {
+                    context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", phieu.Master.MaPhieu);
+                }
+                else
+                {
+                    context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", phieu.Master.MaPhieu);
+                    context.Database.ExecuteSqlRaw("insert into NhanToThu9 values({0},{1})", phieu.Master.MaPhieu, phieu.NhanToThu9.NoiDung);
                 }
                 context.Database.ExecuteSqlRaw("delete from DanhSachNhanToAnhHuong where MaPhieu = {0}", phieu.Master.MaPhieu);
                 foreach (DanhSachNhanToAnhHuong ds in phieu.DanhSachNhanToAnhHuong)
@@ -217,7 +215,7 @@ namespace Cosis.Controllers
                 }
             }
             TempData["ThongBao"] = "Thành công!";
-            if (loai==1)
+            if (loai == 1)
             {
                 var fullView = new HtmlToPdf();
                 fullView.Options.WebPageWidth = 1280;
@@ -226,53 +224,55 @@ namespace Cosis.Controllers
                 fullView.Options.MarginBottom = 40;
                 fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
 
-                var pdf = fullView.ConvertUrl("https://localhost:"+ HttpContext.Request.Host.Port.ToString() + "/form1_4PDF/"+phieu.Master.MaPhieu);
+                var pdf = fullView.ConvertUrl("https://localhost:" + HttpContext.Request.Host.Port.ToString() + "/form1_4PDF/" + phieu.Master.MaPhieu);
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");
             }
             if (loai == 2)
             {
-                
+
             }
             if (loai == 3)
             {
 
             }
-            return RedirectToAction("Index","Form1_4");
+            return RedirectToAction("Index", "Form1_4");
         }
         [Route("/In14/{maPhieu}")]
         public IActionResult In(string maPhieu)
-        { 
-          var fullView = new HtmlToPdf();
-                fullView.Options.WebPageWidth = 1280;
-                fullView.Options.PdfPageSize = PdfPageSize.A4;
-                fullView.Options.MarginTop = 40;
-                fullView.Options.MarginBottom = 40;
-                fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
-                var pdf = fullView.ConvertUrl("https://localhost:"+ HttpContext.Request.Host.Port.ToString() + "/form1_4PDF/"+maPhieu);
-                var pdfBytes = pdf.Save();
-                return File(pdfBytes, "application/pdf", maPhieu + ".pdf");  
+        {
+            var fullView = new HtmlToPdf();
+            fullView.Options.WebPageWidth = 1280;
+            fullView.Options.PdfPageSize = PdfPageSize.A4;
+            fullView.Options.MarginTop = 40;
+            fullView.Options.MarginBottom = 40;
+            fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
+            var pdf = fullView.ConvertUrl("https://localhost:" + HttpContext.Request.Host.Port.ToString() + "/form1_4PDF/" + maPhieu);
+            var pdfBytes = pdf.Save();
+            return File(pdfBytes, "application/pdf", maPhieu + ".pdf");
         }
-        public string remove(){
+        public string remove()
+        {
             var context = new FormCosisContext();
             var list = context.Master.FromSqlRaw("select ms.* from Master ms join ThongTinCaThe dn on  ms.MaCoSo = dn.MaCoSo and dn.MaLoaiPhieu = 'Form2_1';").ToList();
             int i = 1;
-            foreach(Master m in list){
+            foreach (Master m in list)
+            {
                 context.Database.ExecuteSqlRaw("delete from Detail where MaPhieu = {0}", m.MaPhieu);
                 context.Database.ExecuteSqlRaw("delete from DanhSachNhanToAnhHuong where MaPhieu = {0}", m.MaPhieu);
                 context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", m.MaPhieu);
                 context.Database.ExecuteSqlRaw("delete from Master where MaPhieu = {0}", m.MaPhieu);
-                Console.WriteLine("Da xoa"+i); i++;
+                Console.WriteLine("Da xoa" + i); i++;
             }
             return "ok";
         }
-        
+
         [Route("/form1_4PDF/{maPhieu}")]
         public IActionResult Form1_4PDF(string maPhieu)
         {
             // TJQK5
             PhieuDieuTra phieu = GetPhieu(maPhieu);
-            ViewBag.NganhKinhDoanh = GetNganhKinhDoanhs(phieu.Master.MaSoThue,phieu.Master.MaSoThue2);
+            ViewBag.NganhKinhDoanh = GetNganhKinhDoanhs(phieu.Master.MaSoThue, phieu.Master.MaSoThue2);
             return View(phieu);
         }
         public PhieuDieuTra GetPhieu(string maPhieu)
@@ -283,7 +283,7 @@ namespace Cosis.Controllers
             phieu.Master = master;
             phieu.NhanToThu9 = context.NhanToThu9.FromSqlRaw("select*from NhanToThu9 where MaPhieu = '" + maPhieu + "'").ToList().FirstOrDefault();
             phieu.DanhSachNhanToAnhHuong = context.DanhSachNhanToAnhHuong.FromSqlRaw("select*from DanhSachNhanToAnhHuong where MaPhieu = '" + maPhieu + "'").ToList();
-            phieu.Detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC",maPhieu).ToList();
+            phieu.Detail = context.Detail.FromSqlRaw("SELECT * FROM Detail WHERE MaPhieu = {0} Order by id ASC", maPhieu).ToList();
             return phieu;
         }
         public List<NganhKinhDoanh> GetNganhKinhDoanhs(string MaSoThue, string MaSoThue2)
