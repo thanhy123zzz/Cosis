@@ -755,29 +755,8 @@ function format(){
 }
 
     function changeThthangTruoc(tt){
-
-      /*  $('#ThthangTruoc'+tt).val($('#ThthangTruoc'+tt).val().replace(/\D/g, ''));*/
-      /* if(tt==4){
-           $('#ThthangTruoc4_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }else if(tt==3){
-           $('#ThthangTruoc3_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }else if(tt==9){
-           $('#ThthangTruoc9_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }
-       else if(tt==10){
-           $('#ThthangTruoc10_1').attr({
-            "max" : $('#ThthangTruoc'+tt).val()
-        });
-       }
-       */
         var value = getValue($('#ThthangTruoc'+tt).val());
-
+        
         if(checkNumber(value)){
             var stt = $('#stt'+tt).val();        
             var mst = $('#MST1').val();
@@ -789,6 +768,7 @@ function format(){
                 url: '/get-tong',
                 data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh+"&thangDuTinh="+thangDuTinh+"&nam="+nam,
                 success: function (result) {
+                    
                     $('#TongCongDon'+tt).val(
                         parseFloat(result).toLocaleString('en-US', {
                         style: 'decimal',
@@ -803,24 +783,18 @@ function format(){
              }
             });
           }
-        if(tt==2||tt==8||tt==14||tt==15){
+        if(tt == 2 || tt == 6 || tt == 8){
             var tong = 0;
-            var value2 = getValue($('#ThthangTruoc'+2).val());
-            if(checkNumber(value2)){
-                tong = tong + value2;
+            if(checkNumber($('#ThthangTruoc2').val())){
+                tong = tong + getValue($('#ThthangTruoc2').val());
             }
-            var value8 = getValue($('#ThthangTruoc'+8).val());
-            if(checkNumber(value8)){
-                tong = tong + value8;
+            if(checkNumber($('#ThthangTruoc2').val())){
+                tong = tong + getValue($('#ThthangTruoc8').val());
             }
-            var value14 = getValue($('#ThthangTruoc'+14).val());
-            if(checkNumber(value14)){
-                tong = tong + value14;
+            if(checkNumber($('#ThthangTruoc2').val())){
+                tong = tong + getValue($('#ThthangTruoc6').val());
             }
-            var value15 = getValue($('#ThthangTruoc'+15).val());
-            if(checkNumber(value15)){
-                tong = tong + value15;
-            }
+
             $("#ThthangTruoc0").val(
             parseFloat(tong).toLocaleString('en-US', {
                         style: 'decimal',
@@ -831,27 +805,6 @@ function format(){
         }
     }
     function changeDuTinh(tt){
-       /* $('#DuTinh'+tt).val($('#DuTinh'+tt).val().replace(/\D/g, ''));*/
-
-        /*if(tt==4){
-           $('#DuTinh4_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }else if(tt==3){
-           $('#DuTinh3_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }else if(tt==9){
-           $('#DuTinh9_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }
-       else if(tt==10){
-           $('#DuTinh10_1').attr({
-            "max" : $('#DuTinh'+tt).val()
-        });
-       }*/
-
         var value = parseFloat($('#DuTinh'+tt).val());
 
         if(checkNumber(value)){
@@ -865,6 +818,7 @@ function format(){
                 url: '/get-tong',
                 data: "mast=" + mst + "&stt="+stt+"&thangTrc="+value+"&duTinh="+duTinh+"&thangDuTinh="+thangDuTinh+"&nam="+nam,
                 success: function (result) {
+                    
                     $('#TongCongDon'+tt).val(
                         parseFloat(result).toLocaleString('en-US', {
                         style: 'decimal',
@@ -879,24 +833,18 @@ function format(){
              }
             });
           }
-          if(tt==2||tt==8||tt==14||tt==15){
+          if(tt == 2 || tt == 6 || tt == 8){
             var tong = 0;
-            var value2 = getValue($('#DuTinh'+2).val());
-            if(checkNumber(value2)){
-                tong = tong + value2;
+            if(checkNumber($('#DuTinh2').val())){
+                tong = tong + getValue($('#DuTinh2').val());
             }
-            var value8 = getValue($('#DuTinh'+8).val());
-            if(checkNumber(value8)){
-                tong = tong + value8;
+            if(checkNumber($('#DuTinh8').val())){
+                tong = tong + getValue($('#DuTinh8').val());
             }
-            var value14 = getValue($('#DuTinh'+14).val());
-            if(checkNumber(value14)){
-                tong = tong + value14;
+            if(checkNumber($('#DuTinh8').val())){
+                tong = tong + getValue($('#DuTinh8').val());
             }
-            var value15 = getValue($('#DuTinh'+15).val());
-            if(checkNumber(value15)){
-                tong = tong + value15;
-            }
+
             $("#DuTinh0").val(
             parseFloat(tong).toLocaleString('en-US', {
                         style: 'decimal',
@@ -905,14 +853,6 @@ function format(){
                       })
             );
         }
-        /*var tong = 0;
-        for(var i=1;i<=15;i++){
-            var value = parseFloat($('#DuTinh'+i).val()); 
-            if((!isNaN(value) && $('#DuTinh'+i).val() === '' + value)){
-            tong = tong + value;
-          }
-       }
-       $("#TongDuTinh").val(tong);*/
     }
 
     function changeCongDon(result,tt){

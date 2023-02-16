@@ -89,7 +89,7 @@
   <div class="choose-day row">
     <div class="choose-month">
       <label for="">Tháng</label>
-      <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu2_1()">
+      <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu()">
         @for (int i = 1; i <= 12; i++)
         {
           @if (Int32.Parse(ViewBag.thang) == i)
@@ -1292,7 +1292,7 @@
     } else {
     } 
   }); *@
-   function doiPhieu2_1(mcs){
+   function doiPhieu(mcs){
         var thang = $('#phieuThang').val();
         var nam = $('#phieuNam').val();
         var s = "@Html.Raw(ViewBag.LoaiPhieu)";

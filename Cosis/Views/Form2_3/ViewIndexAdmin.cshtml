@@ -30,10 +30,6 @@
             return (getThang() - 1) + "/" + getNam();
         }
     }
-    List<Master> getMasters()
-    {
-        return context.Master.ToList();
-    }
 
     string getArray()
     {
@@ -47,35 +43,13 @@
         if (i.ToString().Length > 1) return i.ToString();
         else return "0" + i;
     }
-
-    string toStringMonthAndYear(int m, int year)
-    {
-        if (m == 1)
-        {
-            return 12 + "/" + (year - 1).ToString();
-        }
-        else
-        {
-            return toStringMonth(m - 1) + "/" + year;
-        }
+  List<ThongTinCaThe> getTable()
+  {
+    return context.ThongTinCaThe.Where(x => x.MaLoaiPhieu == "Form2_3").ToList();
+  }
+  int count(string macs, string thang, string nam){
+        return context.Master.Where(x => x.MaCoSo == macs && x.ThangDuTinh == thang && x.Nam == nam).Count();
     }
-    List<ThongTinCaThe> getTable()
-    {
-        return context.ThongTinCaThe.Where(x => x.MaLoaiPhieu == "Form2_3").ToList();
-    }
-    NganhHoatDongKinhDoanh getNganhHoatDongKinhDoanh(string ma)
-    {
-        return context.NganhHoatDongKinhDoanh.Where(x => x.MaNganh == ma).FirstOrDefault();
-    }
-    List<NganhKinhDoanh> getNganhKinhDoanh(string mcs)
-    {
-        return context.NganhKinhDoanh.Where(x => x.MaCoSo == mcs).ToList();
-    }
-    int count(string mcs, string thang, string nam)
-    {
-        return context.Master.Where(x => x.MaCoSo == mcs && x.ThangDuTinh == thang && x.Nam == nam).Count();
-    }
-    List<NganhKinhDoanh> list;
 }
       <form id="form" action="/form2_3" method="post" enctype="multipart/form-data">
            <div class="choose-day row">
@@ -793,6 +767,18 @@
         var s = "@Html.Raw(ViewBag.LoaiPhieu)";
 
         $.ajax({
+                        type: 'POST',
+                        url: '/get-tableTTCT',
+                        data: "thang=" + thang + "&nam="+nam + "&loaiPhieu=" +s,
+                        success: function (result) {
+                            $('#tBody').replaceWith(result);
+                        },
+                        error: function (result) {
+                            alert('Mã số thuế không tồn tại!');
+                 }
+                });
+
+        $.ajax({
                     type: 'POST',
                     url: '/changePhieu2_3',
                     data: "thang=" + thang + "&nam="+nam + "&mcs="+mcs,
@@ -1186,39 +1172,41 @@ function format(){
           </div>
         </div>
         <table id="example" class="table table-bordered table-hover" style="max-height: 100%;">
-          <thead>
-            <tr class="text-center tab-title" style="background-color: #fff3bd;">
-              <th class="th1">Điều tra</th>
-              <th class="th2">Mã ĐB</th>
-              <th class="th3">Cơ sở số</th>
-              <th class="th4">Tên cơ sở</th>
-            </tr>
-          </thead>
-          <tbody id="tBody">
-            @foreach (ThongTinCaThe m in @getTable())
-            {
-                @if (count(m.MaCoSo, ViewBag.thang, ViewBag.nam) > 0)
+            <thead>
+                <tr class="text-center tab-title" style="background-color: #fff3bd;">
+                    <th class="th1">Điều tra</th>
+                    <th class="th2">Mã Số Thuế</th>
+                    <th class="th3">Mã Số Thuế 2</th>
+                    <th class="th4">Cơ sở số</th>
+                    <th class="th5">Tên cơ sở</th>
+                </tr>
+            </thead>
+            <tbody id="tBody">
+                @foreach (ThongTinCaThe m in @getTable())
                 {
-                              <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu('@m.MaCoSo')">
-                                  <td class="text-center">1</td>
-                                  <td class="text-center">@m.MaSoThue</td>
+                    @if (count(m.MaCoSo, toStringMonth(Int32.Parse(ViewBag.thang)), ViewBag.nam) > 0)
+                    {
+                        <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu('@m.MaCoSo')">
+                            <td class="text-center">1</td>
+                            <td class="text-center">@m.MaSoThue</td>
+                            <td class="text-center">@m.MaSoThue2</td>
+                            <td class="text-center">@m.MaCoSo</td>
+                            <td class="text-center">@m.TenCoSo</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr style="cursor:pointer;" onclick="doiPhieu('@m.MaCoSo')">
+                            <td class="text-center">1</td>
+                            <td class="text-center">@m.MaSoThue</td>
+                            <td class="text-center">@m.MaSoThue2</td>
+                            <td class="text-center">@m.MaCoSo</td>
+                            <td class="text-center">@m.TenCoSo</td>
+                        </tr>
+                    }
 
-                                  <td class="text-center">@m.MaCoSo</td>
-                                  <td class="text-center">@m.TenCoSo</td>
-                            </tr>
                 }
-                else
-                {
-                               <tr style="cursor:pointer;" onclick="doiPhieu('@m.MaCoSo')">
-                                  <td class="text-center">1</td>
-                                  <td class="text-center">@m.MaSoThue</td>
-
-                                  <td class="text-center">@m.MaCoSo</td>
-                                  <td class="text-center">@m.TenCoSo</td>
-                               </tr>
-                }
-            }
-          </tbody>
+            </tbody>
         </table>
       </div>
 

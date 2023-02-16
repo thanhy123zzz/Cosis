@@ -2,12 +2,10 @@
 using Cosis.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 
 namespace Cosis.Controllers
@@ -29,13 +27,14 @@ namespace Cosis.Controllers
             ViewBag.city = city;
             ViewBag.district = district;
             ViewBag.ward = ward;
-            
+
             return PartialView();
         }
 
         [Route("/downloadExcel")]
         public IActionResult downloadExcel(string thang, string nam, string maLoaiPhieu, string maT, string maH, string maX)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage())
             {
                 FormCosisContext context = new FormCosisContext();
@@ -43,9 +42,9 @@ namespace Cosis.Controllers
                 string maLoaiPhieuDN = "Form1" + maLoaiPhieu;
                 string maLoaiPhieuCS = "Form2" + maLoaiPhieu;
 
-
                 string IDDiaChi;
                 string name;
+                getName();
                 getName();
                 void getName()
                 {
@@ -395,7 +394,6 @@ namespace Cosis.Controllers
                         return context.ThongTinCaThe.Where(x => x.MaPhuongXa == maXa && x.MaLoaiPhieu == maLoaiPhieuCS).ToList().Count();
                     }
                 }
-
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Thống kê tiến độ");
                 //r 1
                 var tenPhieu = worksheet.Cells["A1:L1"];
@@ -419,8 +417,17 @@ namespace Cosis.Controllers
                 worksheet.Cells["A4:B4"].Merge = true;
                 worksheet.Cells["A4:B4"].Value = "1. Loại phiếu:";
                 worksheet.Cells["A4:B4"].Style.Font.Bold = true;
-                worksheet.Cells["C4:D4"].Merge=true;
-                worksheet.Cells["C4:D4"].Value = context.LoaiPhieu.Find(maLoaiPhieuDN).TenLoaiPhieu;
+                worksheet.Cells["C4:D4"].Merge = true;
+
+                if (maLoaiPhieu == "0")
+                {
+                    worksheet.Cells["C4:D4"].Value = "Tất cả";
+                }
+                else
+                {
+                    worksheet.Cells["C4:D4"].Value = context.LoaiPhieu.Find(maLoaiPhieuDN).TenLoaiPhieu;
+                }
+
 
                 //r 5
                 worksheet.Cells["A5:L5"].Merge = true;
@@ -464,7 +471,7 @@ namespace Cosis.Controllers
                 worksheet.Cells["G7"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
 
                 worksheet.Cells["H7"].Value = "Tỉ lệ hoàn thành";
-                worksheet.Cells["H7"].Style.WrapText= true;
+                worksheet.Cells["H7"].Style.WrapText = true;
                 worksheet.Cells["H7"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
 
                 worksheet.Cells["I7"].Value = "Tổng";
@@ -481,7 +488,7 @@ namespace Cosis.Controllers
                 worksheet.Cells["L7"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
 
                 worksheet.Cells[7, 1, 7, 12].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                worksheet.Cells[7,1,7,12].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                worksheet.Cells[7, 1, 7, 12].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
                 worksheet.Cells["A7:L7"].Style.Font.Bold = true;
                 worksheet.Cells["A7:L7"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
@@ -714,7 +721,7 @@ namespace Cosis.Controllers
                         }
                     }
                 }
-                    return File(package.GetAsByteArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ThongKeTienDo.xlsx");
+                return File(package.GetAsByteArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "ThongKeTienDo.xlsx");
             }
         }
     }

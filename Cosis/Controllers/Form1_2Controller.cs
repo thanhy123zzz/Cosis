@@ -5,17 +5,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using Newtonsoft.Json;
-using OfficeOpenXml;
-using OfficeOpenXml.Style;
 using SelectPdf;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 
 namespace Cosis.Controllers
@@ -162,7 +156,8 @@ namespace Cosis.Controllers
             phieu.Master.MaCoSo = "00000";
             if (phieu.Master.MaPhieu != null)
             {
-
+                context.Master.Update(phieu.Master);
+                context.SaveChanges();
                 if (phieu.NhanToThu9 != null)
                 {
                     context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", phieu.Master.MaPhieu);
@@ -216,7 +211,7 @@ namespace Cosis.Controllers
                 fullView.Options.MarginBottom = 40;
                 fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
 
-                var pdf = fullView.ConvertUrl("https://localhost:"+ HttpContext.Request.Host.Port.ToString() + "/form1_2PDF/" + phieu.Master.MaPhieu);
+                var pdf = fullView.ConvertUrl("https://localhost:" + HttpContext.Request.Host.Port.ToString() + "/form1_2PDF/" + phieu.Master.MaPhieu);
 
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");

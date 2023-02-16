@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using SelectPdf;
@@ -15,7 +13,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 
 namespace Cosis.Controllers
@@ -48,7 +45,7 @@ namespace Cosis.Controllers
             }
             if (User.IsInRole("002"))
             {
-                
+
                 var ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
                 var master = context.Master.FirstOrDefault(x => x.MaSoThue == ttdn.MaSoThue && x.MaSoThue2 == ttdn.MaSoThue2 && x.ThangDuTinh == DateTime.Now.Month.ToString() && x.Nam == DateTime.Now.Year.ToString());
                 if (master != null)
@@ -72,11 +69,11 @@ namespace Cosis.Controllers
                     return View(phieu);
                 }
             }
-            
+
             return View(phieu);
         }
         [HttpPost("/changePhieu1_3")]
-        public IActionResult changePhieu(string thang, string nam,string mst1, string mst2)
+        public IActionResult changePhieu(string thang, string nam, string mst1, string mst2)
         {
 
             FormCosisContext context = new FormCosisContext();
@@ -91,13 +88,13 @@ namespace Cosis.Controllers
                     ViewBag.nam = nam;
                     return PartialView(phieu);
                 }
-                ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.MaSoThue==mst1 && x.MaSoThue2 == mst2);
+                ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.MaSoThue == mst1 && x.MaSoThue2 == mst2);
             }
             else
             {
                 ttdn = context.ThongTinDoanhNghiep.FirstOrDefault(x => x.TaiKhoan == User.Identity.Name);
             }
-            
+
             var master = context.Master.FirstOrDefault(x => x.MaSoThue == ttdn.MaSoThue && x.MaSoThue2 == ttdn.MaSoThue2 && x.ThangDuTinh == thang && x.Nam == nam);
             phieu.Master = master;
             if (master != null)
@@ -137,20 +134,20 @@ namespace Cosis.Controllers
             return master;
         }
         [HttpPost("/form1_3")]
-        public IActionResult InsertForm1_3(PhieuDieuTra phieu, IFormCollection form, int loai,string thangDuTinh,string thangThucHien,string nam)
+        public IActionResult InsertForm1_3(PhieuDieuTra phieu, IFormCollection form, int loai, string thangDuTinh, string thangThucHien, string nam)
         {
             FormCosisContext context = new FormCosisContext();
-            
+
             List<DanhSachNhanToAnhHuong> list = new List<DanhSachNhanToAnhHuong>();
-            for (int i =0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 string name = "DanhSachNhanToAnhHuong_" + i;
                 string value = form[name];
-                if(value!=null)
+                if (value != null)
                 {
                     list.Add(new DanhSachNhanToAnhHuong(value));
-                }    
-                
+                }
+
             }
             phieu.DanhSachNhanToAnhHuong = list;
             phieu.Master.NgayTao = DateTime.Now;
@@ -162,7 +159,8 @@ namespace Cosis.Controllers
             phieu.Master.MaCoSo = "00000";
             if (phieu.Master.MaPhieu != null)
             {
-
+                context.Master.Update(phieu.Master);
+                context.SaveChanges();
                 if (phieu.NhanToThu9 != null)
                 {
                     context.Database.ExecuteSqlRaw("delete from NhanToThu9 where MaPhieu = {0}", phieu.Master.MaPhieu);
@@ -207,7 +205,7 @@ namespace Cosis.Controllers
                 }
             }
             TempData["ThongBao"] = "Thành công!";
-            if (loai==1)
+            if (loai == 1)
             {
                 var fullView = new HtmlToPdf();
                 fullView.Options.WebPageWidth = 1280;
@@ -216,14 +214,14 @@ namespace Cosis.Controllers
                 fullView.Options.MarginBottom = 40;
                 fullView.Options.PdfPageOrientation = PdfPageOrientation.Portrait;
 
-                var pdf = fullView.ConvertUrl("https://localhost:"+ HttpContext.Request.Host.Port.ToString() + "/form1_3PDF/"+phieu.Master.MaPhieu);
+                var pdf = fullView.ConvertUrl("https://localhost:" + HttpContext.Request.Host.Port.ToString() + "/form1_3PDF/" + phieu.Master.MaPhieu);
 
                 var pdfBytes = pdf.Save();
                 return File(pdfBytes, "application/pdf", phieu.Master.MaPhieu + ".pdf");
             }
             if (loai == 2)
             {
-                
+
             }
             if (loai == 3)
             {
@@ -232,7 +230,7 @@ namespace Cosis.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost("/get-tong")]
-        public decimal? getTongDauNam(string mast,string stt, decimal thangTrc, decimal duTinh,string thangDuTinh,string nam)
+        public decimal? getTongDauNam(string mast, string stt, decimal thangTrc, decimal duTinh, string thangDuTinh, string nam)
         {
             if (mast == null) { return thangTrc + duTinh; }
             string mast1 = mast.Substring(0, 10);
@@ -247,9 +245,9 @@ namespace Cosis.Controllers
                         new SqlParameter("@Stt",stt),
                         new SqlParameter("@thangDuTinh",thangDuTinh),
                     };
-           var a = context.Detail.FromSqlRaw("exec TongCongDon @MaSoThue, @MaSoThue2, @MaCoSo, @nam, @Stt, @thangDuTinh",parameters.ToArray()).ToList().FirstOrDefault();
+            var a = context.Detail.FromSqlRaw("exec TongCongDon @MaSoThue, @MaSoThue2, @MaCoSo, @nam, @Stt, @thangDuTinh", parameters.ToArray()).ToList().FirstOrDefault();
             if (a.ThthangTruoc != null)
-            return a.ThthangTruoc + thangTrc + duTinh;
+                return a.ThthangTruoc + thangTrc + duTinh;
             else
             {
                 return thangTrc + duTinh;
@@ -274,37 +272,37 @@ namespace Cosis.Controllers
             {
                 // add a new worksheet to the empty workbook
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ");
-/*                using (var cells = worksheet.Cells[1, 1, 1, 4])
-                {
-                    cells.Style.Font.Bold = true;
-                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    cells.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
-                }
-                //First add the headers
-                worksheet.Cells[1, 1].Value = "ID";
-                worksheet.Cells[1, 2].Value = "Name";
-                worksheet.Cells[1, 3].Value = "Gender";
-                worksheet.Cells[1, 4].Value = "Salary (in $)";
-                //Add values
-                worksheet.Cells["A2"].Value = "00000";
-                worksheet.Cells["B2"].Value = "Jon";
-                worksheet.Cells["C2"].Value = "M";
-                worksheet.Cells["D2"].Value = 5000;
+                /*                using (var cells = worksheet.Cells[1, 1, 1, 4])
+                                {
+                                    cells.Style.Font.Bold = true;
+                                    cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                    cells.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                                }
+                                //First add the headers
+                                worksheet.Cells[1, 1].Value = "ID";
+                                worksheet.Cells[1, 2].Value = "Name";
+                                worksheet.Cells[1, 3].Value = "Gender";
+                                worksheet.Cells[1, 4].Value = "Salary (in $)";
+                                //Add values
+                                worksheet.Cells["A2"].Value = "00000";
+                                worksheet.Cells["B2"].Value = "Jon";
+                                worksheet.Cells["C2"].Value = "M";
+                                worksheet.Cells["D2"].Value = 5000;
 
-                worksheet.Cells["A3"].Value = 1001;
-                worksheet.Cells["B3"].Value = "Graham";
-                worksheet.Cells["C3"].Value = "M";
-                worksheet.Cells["D3"].Value = 10000;
+                                worksheet.Cells["A3"].Value = 1001;
+                                worksheet.Cells["B3"].Value = "Graham";
+                                worksheet.Cells["C3"].Value = "M";
+                                worksheet.Cells["D3"].Value = 10000;
 
-                worksheet.Cells["A4"].Value = 1002;
-                worksheet.Cells["B4"].Value = "Jenny";
-                worksheet.Cells["C4"].Value = "F";
-                worksheet.Cells["D4"].Value = 5000;
+                                worksheet.Cells["A4"].Value = 1002;
+                                worksheet.Cells["B4"].Value = "Jenny";
+                                worksheet.Cells["C4"].Value = "F";
+                                worksheet.Cells["D4"].Value = 5000;
 
-                worksheet.Cells[5, 1].Value = "ID";
-                worksheet.Cells[5, 2].Value = "Name";
-                worksheet.Cells[5, 3].Value = "Gender";
-                worksheet.Cells[5, 4].Value = "Salary (in $)";*/
+                                worksheet.Cells[5, 1].Value = "ID";
+                                worksheet.Cells[5, 2].Value = "Name";
+                                worksheet.Cells[5, 3].Value = "Gender";
+                                worksheet.Cells[5, 4].Value = "Salary (in $)";*/
 
                 PhieuDieuTra phieu = GetPhieu("ZKJ8D");
                 FormCosisContext context = new FormCosisContext();
@@ -316,10 +314,10 @@ namespace Cosis.Controllers
                 tenPhieu.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 tenPhieu.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 tenPhieu.Value = "ĐIỀU TRA HOẠT ĐỘNG THƯƠNG MẠI VÀ DỊCH VỤ";
-                
+
                 //row 2
                 worksheet.Cells["A2:K2"].Merge = true;
-                
+
                 //row 3
                 worksheet.Cells["A3:K3"].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 worksheet.Cells["B3"].Value = "Phiếu 1.3/DN-VT-T";
@@ -340,7 +338,7 @@ namespace Cosis.Controllers
                 worksheet.Cells["A5:K5"].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
                 worksheet.Cells["A5:K5"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 worksheet.Cells["A5:K5"].Style.Font.Bold = true;
-               
+
                 //row 6
                 worksheet.Cells["A6:K6"].Merge = true;
                 worksheet.Cells["A6:K6"].Value = "(Áp dụng đối với doanh nghiệp/chi nhánh doanh nghiệp, hợp tác xã có hoạt động vận tải, kho bãi)";
@@ -425,14 +423,14 @@ namespace Cosis.Controllers
                 List<NganhKinhDoanh> lits = GetNganhKinhDoanhs(phieu.Master.MaSoThue, phieu.Master.MaSoThue2);
                 int SLNganh = lits.Count;
                 worksheet.Cells["A20:B20"].Value = "Ngành hoạt động kinh doanh";
-                for (int i = 1; i<= SLNganh; i++)
+                for (int i = 1; i <= SLNganh; i++)
                 {
                     int r = 19 + i;
 
                     worksheet.Cells["A" + r + ":B" + r].Merge = true;
 
                     worksheet.Cells["C" + r + ":D" + r].Merge = true;
-                    worksheet.Cells["C" + r + ":D" + r].Value = lits[i-1].MaNganh;
+                    worksheet.Cells["C" + r + ":D" + r].Value = lits[i - 1].MaNganh;
 
                     worksheet.Cells["E" + r + ":F" + r].Merge = true;
                     worksheet.Cells["E" + r + ":F" + r].Value = "Tên ngành HĐKD:";
@@ -459,7 +457,7 @@ namespace Cosis.Controllers
                 worksheet.Cells["A" + crn + ":C" + crn].Merge = true;
                 worksheet.Cells["D" + crn + ":E" + crn].Value = "Đơn vị tính";
                 worksheet.Cells["D" + crn + ":E" + crn].Merge = true;
-                worksheet.Cells["F" + crn + ":G" + crn].Value = "Tháng thực hiện "+phieu.Master.ThangThucHien+"/"+ phieu.Master.Nam;
+                worksheet.Cells["F" + crn + ":G" + crn].Value = "Tháng thực hiện " + phieu.Master.ThangThucHien + "/" + phieu.Master.Nam;
                 worksheet.Cells["F" + crn + ":G" + crn].Merge = true;
                 worksheet.Cells["H" + crn + ":I" + crn].Value = "Dự tính " + phieu.Master.ThangDuTinh + "/" + phieu.Master.Nam;
                 worksheet.Cells["H" + crn + ":I" + crn].Merge = true;

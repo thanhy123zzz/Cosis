@@ -89,7 +89,7 @@
   <div class="choose-day row">
     <div class="choose-month">
       <label for="">Tháng</label>
-      <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu2_1()">
+      <select name="thangDuTinh" id="phieuThang" onchange="doiPhieu()">
         @for (int i = 1; i <= 12; i++)
         {
           @if (Int32.Parse(ViewBag.thang) == i)
@@ -885,7 +885,7 @@
                 {
                     @if (count(m.MaCoSo, toStringMonth(Int32.Parse(ViewBag.thang)), ViewBag.nam) > 0)
                     {
-                        <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu2_1('@m.MaCoSo')">
+                        <tr style="background-color: rgb(0, 160, 255); cursor:pointer;" onclick="doiPhieu('@m.MaCoSo')">
                             <td class="text-center">1</td>
                             <td class="text-center">@m.MaSoThue</td>
                             <td class="text-center">@m.MaSoThue2</td>
@@ -895,7 +895,7 @@
                     }
                     else
                     {
-                        <tr style="cursor:pointer;" onclick="doiPhieu2_1('@m.MaCoSo')">
+                        <tr style="cursor:pointer;" onclick="doiPhieu('@m.MaCoSo')">
                             <td class="text-center">1</td>
                             <td class="text-center">@m.MaSoThue</td>
                             <td class="text-center">@m.MaSoThue2</td>
@@ -1348,7 +1348,7 @@ $("#YT9").change(function () {
     } else {
     } 
   }); *@
-   function doiPhieu2_1(mcs){
+   function doiPhieu(mcs){
         var thang = $('#phieuThang').val();
         var nam = $('#phieuNam').val();
         var s = "@Html.Raw(ViewBag.LoaiPhieu)";
